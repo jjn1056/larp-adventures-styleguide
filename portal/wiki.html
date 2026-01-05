@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dungeon">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Northern Alliance - Wiki - LARP Adventures</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="../css/variables.css" rel="stylesheet">
+  <link href="../css/theme-dungeon.css" rel="stylesheet" id="theme-css">
+  <style>
+    .portal-sidebar { width: var(--sidebar-width); min-height: 100vh; background-color: var(--color-bg-muted); border-right: var(--border-heavy); position: fixed; left: 0; top: 0; padding-top: var(--space-4); }
+    .portal-main { margin-left: var(--sidebar-width); min-height: 100vh; }
+    .portal-header { background-color: var(--color-bg-surface); border-bottom: var(--border-standard); padding: var(--space-3) var(--space-4); }
+    .portal-sidebar .nav-link { color: var(--color-text-secondary); padding: var(--space-2) var(--space-4); border-left: 3px solid transparent; }
+    .portal-sidebar .nav-link:hover, .portal-sidebar .nav-link.active { color: var(--color-primary); background-color: var(--color-bg-subtle); border-left-color: var(--color-primary); }
+    @media (max-width: 991px) { .portal-sidebar { display: none; } .portal-main { margin-left: 0; } }
+
+    .wiki-layout {
+      display: grid;
+      grid-template-columns: 1fr 250px;
+      gap: var(--space-6);
+    }
+
+    @media (max-width: 1200px) {
+      .wiki-layout {
+        grid-template-columns: 1fr;
+      }
+      .wiki-toc {
+        display: none;
+      }
+    }
+
+    .wiki-content h2 {
+      margin-top: var(--space-8);
+      padding-top: var(--space-4);
+      border-top: var(--border-standard);
+    }
+
+    .wiki-content h2:first-of-type {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
+
+    .wiki-content h3 {
+      margin-top: var(--space-6);
+    }
+
+    .wiki-toc {
+      position: sticky;
+      top: var(--space-4);
+      background-color: var(--color-bg-surface);
+      border: var(--border-standard);
+      padding: var(--space-4);
+      height: fit-content;
+    }
+
+    .wiki-toc-title {
+      font-weight: var(--font-semibold);
+      font-size: var(--text-sm);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-wide);
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-3);
+    }
+
+    .wiki-toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: var(--text-sm);
+    }
+
+    .wiki-toc-list li {
+      margin-bottom: var(--space-2);
+    }
+
+    .wiki-toc-list a {
+      color: var(--color-text-secondary);
+      text-decoration: none;
+    }
+
+    .wiki-toc-list a:hover {
+      color: var(--color-primary);
+    }
+
+    .wiki-toc-list ul {
+      list-style: none;
+      padding-left: var(--space-4);
+      margin-top: var(--space-2);
+    }
+
+    .wiki-infobox {
+      background-color: var(--color-bg-surface);
+      border: var(--border-standard);
+      padding: var(--space-4);
+      margin-bottom: var(--space-4);
+      float: right;
+      width: 300px;
+      margin-left: var(--space-4);
+    }
+
+    @media (max-width: 768px) {
+      .wiki-infobox {
+        float: none;
+        width: 100%;
+        margin-left: 0;
+      }
+    }
+
+    .wiki-infobox-title {
+      font-family: var(--font-heading);
+      font-size: var(--text-lg);
+      font-weight: var(--font-bold);
+      text-align: center;
+      margin-bottom: var(--space-3);
+      padding-bottom: var(--space-2);
+      border-bottom: var(--border-standard);
+      color: var(--color-primary);
+    }
+
+    .wiki-infobox-image {
+      width: 100%;
+      height: 150px;
+      background-color: var(--color-bg-muted);
+      margin-bottom: var(--space-3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-text-muted);
+    }
+
+    .wiki-infobox-row {
+      display: flex;
+      padding: var(--space-2) 0;
+      border-bottom: 1px dotted var(--color-border);
+      font-size: var(--text-sm);
+    }
+
+    .wiki-infobox-row:last-child {
+      border-bottom: none;
+    }
+
+    .wiki-infobox-label {
+      font-weight: var(--font-semibold);
+      width: 100px;
+      flex-shrink: 0;
+      color: var(--color-text-secondary);
+    }
+
+    .wiki-infobox-value {
+      flex: 1;
+    }
+
+    .wiki-notice {
+      background-color: var(--color-warning-bg);
+      border: 1px solid var(--color-warning-border);
+      border-left: 4px solid var(--color-warning);
+      padding: var(--space-3);
+      margin-bottom: var(--space-4);
+      font-size: var(--text-sm);
+    }
+
+    .wiki-notice-title {
+      font-weight: var(--font-semibold);
+      color: var(--color-warning);
+      margin-bottom: var(--space-1);
+    }
+
+    .wiki-meta {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      padding: var(--space-3);
+      background-color: var(--color-bg-subtle);
+      border-top: var(--border-standard);
+      margin-top: var(--space-6);
+    }
+
+    .wiki-categories {
+      margin-top: var(--space-4);
+      padding-top: var(--space-4);
+      border-top: var(--border-standard);
+    }
+
+    .wiki-related {
+      background-color: var(--color-bg-surface);
+      border: var(--border-standard);
+      padding: var(--space-4);
+      margin-top: var(--space-4);
+    }
+
+    .wiki-related-title {
+      font-weight: var(--font-semibold);
+      margin-bottom: var(--space-3);
+    }
+
+    .wiki-related-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: var(--space-2);
+    }
+
+    .wiki-related-list a {
+      color: var(--color-text-link);
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <nav class="portal-sidebar d-none d-lg-block">
+    <div class="px-4 mb-4">
+      <a href="../public/landing.html" class="text-decoration-none"><h1 class="h5 mb-0">LARP Adventures</h1></a>
+      <small class="text-muted">Player Portal</small>
+    </div>
+    <ul class="nav flex-column">
+      <li class="nav-item"><a class="nav-link" href="dashboard.html"><i class="bi bi-house me-2"></i>Dashboard</a></li>
+      <li class="nav-item"><a class="nav-link" href="world.html"><i class="bi bi-globe me-2"></i>My World</a></li>
+      <li class="nav-item"><a class="nav-link" href="forum-index.html"><i class="bi bi-chat-dots me-2"></i>Forums</a></li>
+      <li class="nav-item"><a class="nav-link active" href="wiki.html"><i class="bi bi-book me-2"></i>Wiki</a></li>
+      <li class="nav-item"><a class="nav-link" href="lore.html"><i class="bi bi-scroll me-2"></i>Lore Drops</a></li>
+    </ul>
+    <hr class="mx-4">
+    <div class="px-4">
+      <p class="small text-muted mb-2">Wiki Navigation</p>
+    </div>
+    <ul class="nav flex-column">
+      <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-house-door me-2"></i>Main Page</a></li>
+      <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-people me-2"></i>Factions</a></li>
+      <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-geo-alt me-2"></i>Locations</a></li>
+      <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-person me-2"></i>Characters</a></li>
+      <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-calendar-event me-2"></i>Events</a></li>
+      <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-journal-text me-2"></i>Lore</a></li>
+    </ul>
+  </nav>
+
+  <main class="portal-main">
+    <header class="portal-header d-flex justify-content-between align-items-center">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item"><a href="#">Wiki</a></li>
+          <li class="breadcrumb-item"><a href="#">Factions</a></li>
+          <li class="breadcrumb-item active">The Northern Alliance</li>
+        </ol>
+      </nav>
+      <div class="d-flex gap-2">
+        <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-clock-history me-1"></i>History</button>
+        <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-chat me-1"></i>Discussion</button>
+        <button class="btn btn-sm btn-primary"><i class="bi bi-pencil me-1"></i>Edit</button>
+      </div>
+    </header>
+
+    <div class="p-4">
+      <div class="wiki-layout">
+        <article class="wiki-content">
+          <h1 class="mb-4">The Northern Alliance</h1>
+
+          <!-- Infobox -->
+          <aside class="wiki-infobox">
+            <div class="wiki-infobox-title">The Northern Alliance</div>
+            <div class="wiki-infobox-image">
+              <i class="bi bi-shield-fill" style="font-size: 48px;"></i>
+            </div>
+            <div class="wiki-infobox-row">
+              <span class="wiki-infobox-label">Type</span>
+              <span class="wiki-infobox-value">Major Faction</span>
+            </div>
+            <div class="wiki-infobox-row">
+              <span class="wiki-infobox-label">Founded</span>
+              <span class="wiki-infobox-value">Year 847 (in-game)</span>
+            </div>
+            <div class="wiki-infobox-row">
+              <span class="wiki-infobox-label">Leader</span>
+              <span class="wiki-infobox-value"><a href="#">High King Aldric III</a></span>
+            </div>
+            <div class="wiki-infobox-row">
+              <span class="wiki-infobox-label">Capital</span>
+              <span class="wiki-infobox-value"><a href="#">Winterhold</a></span>
+            </div>
+            <div class="wiki-infobox-row">
+              <span class="wiki-infobox-label">Territory</span>
+              <span class="wiki-infobox-value">Northern Reaches</span>
+            </div>
+            <div class="wiki-infobox-row">
+              <span class="wiki-infobox-label">Members</span>
+              <span class="wiki-infobox-value">~45 active players</span>
+            </div>
+            <div class="wiki-infobox-row">
+              <span class="wiki-infobox-label">Allies</span>
+              <span class="wiki-infobox-value"><a href="#">The Free Cities</a></span>
+            </div>
+            <div class="wiki-infobox-row">
+              <span class="wiki-infobox-label">Rivals</span>
+              <span class="wiki-infobox-value"><a href="#">The Shadow Court</a></span>
+            </div>
+          </aside>
+
+          <p class="lead"><strong>The Northern Alliance</strong> is one of the major player factions in LARP Adventures, known for their honorable warriors, strong defensive tactics, and loyalty to their allies. Based in the frozen northern territories, they have stood as a bulwark against the darkness for centuries.</p>
+
+          <div class="wiki-notice">
+            <div class="wiki-notice-title"><i class="bi bi-exclamation-triangle me-1"></i>This article contains spoilers</div>
+            <p class="mb-0">This article may contain plot details from recent events. Read at your own discretion.</p>
+          </div>
+
+          <h2 id="history">History</h2>
+          <p>The Northern Alliance was founded in the year 847 following the <a href="#">Great Sundering</a>, when the northern clans united under a single banner to face the growing threat of the <a href="#">Frost Giants</a>. What began as a temporary military alliance evolved into a permanent coalition of kingdoms, bound by blood oaths and ancient traditions.</p>
+
+          <h3 id="founding">The Founding</h3>
+          <p>The Alliance was forged at the <a href="#">Council of Winterhold</a>, where seven clan chieftains swore the <strong>Oath of the Northern Star</strong>. This oath, still recited by new members today, binds all Alliance members to defend each other's lands and honor.</p>
+
+          <h3 id="recent-events">Recent Events</h3>
+          <p>During the <a href="#">Darkfall Campaign</a> (Season 12), the Northern Alliance played a crucial role in defending the <a href="#">Mountain Pass</a> against the <a href="#">Shadow Court's</a> invasion. Their sacrifice at the <a href="#">Battle of Frozen Tears</a> is commemorated annually at the Midwinter Festival.</p>
+
+          <h2 id="organization">Organization</h2>
+          <p>The Alliance operates as a confederation of semi-autonomous holds, each governed by a Jarl. The High King serves as supreme commander in times of war and mediator in times of peace.</p>
+
+          <h3 id="leadership">Leadership Structure</h3>
+          <ul>
+            <li><strong>High King</strong> - Elected by the Council of Jarls, serves for life</li>
+            <li><strong>Council of Jarls</strong> - Seven ruling lords, one from each founding clan</li>
+            <li><strong>Thanes</strong> - Noble warriors who serve the Jarls</li>
+            <li><strong>Huscarls</strong> - Elite personal guards of the nobility</li>
+            <li><strong>Freemen</strong> - Common soldiers and citizens</li>
+          </ul>
+
+          <h3 id="military">Military Forces</h3>
+          <p>The Alliance fields several specialized military units:</p>
+          <ul>
+            <li><strong>The Shield Wall</strong> - Heavy infantry famous for their defensive formations</li>
+            <li><strong>Winter Wolves</strong> - Scout and ranger company</li>
+            <li><strong>Storm Riders</strong> - Cavalry shock troops</li>
+            <li><strong>The Runewardens</strong> - Battle mages specializing in protective magic</li>
+          </ul>
+
+          <h2 id="culture">Culture & Traditions</h2>
+          <p>Northern culture emphasizes honor, martial prowess, and loyalty to one's sworn brothers and sisters. Key traditions include:</p>
+
+          <h3 id="oath-taking">Oath-Taking</h3>
+          <p>All members of the Alliance must swear the <strong>Oath of the Northern Star</strong> upon joining. Breaking this oath is considered one of the gravest offenses and can result in exile or worse.</p>
+
+          <h3 id="festivals">Major Festivals</h3>
+          <ul>
+            <li><strong>Midwinter Festival</strong> - Celebrates the longest night and honors fallen heroes</li>
+            <li><strong>Thawmeet</strong> - Spring festival marking the end of winter isolation</li>
+            <li><strong>The Proving</strong> - Annual tournament where warriors compete for glory</li>
+          </ul>
+
+          <h2 id="joining">How to Join</h2>
+          <p>Players interested in joining the Northern Alliance should:</p>
+          <ol>
+            <li>Create a character with a background compatible with northern culture</li>
+            <li>Contact a current member or the faction leader in-game or on the forums</li>
+            <li>Complete the in-game initiation quest "<a href="#">The Trial of Frost</a>"</li>
+            <li>Attend at least one event to be formally inducted</li>
+          </ol>
+
+          <div class="alert alert-info">
+            <i class="bi bi-info-circle me-2"></i>
+            <strong>OOC Note:</strong> The Northern Alliance is always welcoming new members! Contact <a href="#">@HighKingAldric</a> on Discord for more information.
+          </div>
+
+          <!-- Related Articles -->
+          <div class="wiki-related">
+            <div class="wiki-related-title"><i class="bi bi-link-45deg me-2"></i>Related Articles</div>
+            <ul class="wiki-related-list">
+              <li><a href="#">The Shadow Court</a></li>
+              <li><a href="#">The Free Cities</a></li>
+              <li><a href="#">Winterhold</a></li>
+              <li><a href="#">High King Aldric III</a></li>
+              <li><a href="#">The Great Sundering</a></li>
+              <li><a href="#">Battle of Frozen Tears</a></li>
+            </ul>
+          </div>
+
+          <!-- Categories -->
+          <div class="wiki-categories">
+            <i class="bi bi-tag me-2"></i>
+            <strong>Categories:</strong>
+            <a href="#" class="badge bg-secondary text-decoration-none ms-2">Factions</a>
+            <a href="#" class="badge bg-secondary text-decoration-none">Major Factions</a>
+            <a href="#" class="badge bg-secondary text-decoration-none">Northern Territories</a>
+            <a href="#" class="badge bg-secondary text-decoration-none">Playable Factions</a>
+          </div>
+
+          <!-- Article Meta -->
+          <div class="wiki-meta">
+            <div class="row">
+              <div class="col-md-6">
+                <strong>Last edited:</strong> 3 days ago by <a href="#">Lady Mira</a>
+              </div>
+              <div class="col-md-6 text-md-end">
+                <strong>Created:</strong> Season 3 by <a href="#">Founder_Dan</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Table of Contents -->
+        <aside class="wiki-toc">
+          <div class="wiki-toc-title">Contents</div>
+          <ol class="wiki-toc-list">
+            <li>
+              <a href="#history">History</a>
+              <ul>
+                <li><a href="#founding">The Founding</a></li>
+                <li><a href="#recent-events">Recent Events</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#organization">Organization</a>
+              <ul>
+                <li><a href="#leadership">Leadership Structure</a></li>
+                <li><a href="#military">Military Forces</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#culture">Culture & Traditions</a>
+              <ul>
+                <li><a href="#oath-taking">Oath-Taking</a></li>
+                <li><a href="#festivals">Major Festivals</a></li>
+              </ul>
+            </li>
+            <li><a href="#joining">How to Join</a></li>
+          </ol>
+          <hr>
+          <div class="d-grid gap-2">
+            <a href="#" class="btn btn-sm btn-outline-secondary"><i class="bi bi-printer me-1"></i>Print</a>
+            <a href="#" class="btn btn-sm btn-outline-secondary"><i class="bi bi-share me-1"></i>Share</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/theme-switcher.js"></script>
+</body>
+</html>
