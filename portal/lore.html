@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dungeon">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lore Drops - LARP Adventures Portal</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="../css/variables.css" rel="stylesheet">
+  <link href="../css/theme-dungeon.css" rel="stylesheet" id="theme-css">
+  <style>
+    .portal-sidebar { width: var(--sidebar-width); min-height: 100vh; background-color: var(--color-bg-muted); border-right: var(--border-heavy); position: fixed; left: 0; top: 0; padding-top: var(--space-4); }
+    .portal-main { margin-left: var(--sidebar-width); min-height: 100vh; }
+    .portal-header { background-color: var(--color-bg-surface); border-bottom: var(--border-standard); padding: var(--space-3) var(--space-4); }
+    .portal-sidebar .nav-link { color: var(--color-text-secondary); padding: var(--space-2) var(--space-4); border-left: 3px solid transparent; }
+    .portal-sidebar .nav-link:hover, .portal-sidebar .nav-link.active { color: var(--color-primary); background-color: var(--color-bg-subtle); border-left-color: var(--color-primary); }
+    @media (max-width: 991px) { .portal-sidebar { display: none; } .portal-main { margin-left: 0; } }
+
+    .lore-list-item {
+      display: flex;
+      gap: var(--space-3);
+      padding: var(--space-3);
+      border-bottom: var(--border-standard);
+      cursor: pointer;
+      transition: background-color var(--transition-fast);
+    }
+
+    .lore-list-item:hover {
+      background-color: var(--color-bg-subtle);
+    }
+
+    .lore-list-item.active {
+      background-color: var(--color-primary-subtle);
+      border-left: 3px solid var(--color-primary);
+    }
+
+    .lore-list-item.unread {
+      background-color: var(--color-bg-surface);
+    }
+
+    .lore-list-item.unread .lore-title {
+      font-weight: var(--font-semibold);
+    }
+
+    .lore-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-md);
+      background-color: var(--color-bg-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .lore-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .lore-title {
+      margin: 0;
+      font-size: var(--text-base);
+    }
+
+    .lore-meta {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+    }
+
+    .lore-reader {
+      background-color: var(--color-bg-surface);
+      border: var(--border-standard);
+      min-height: 500px;
+    }
+
+    .lore-reader-header {
+      padding: var(--space-4);
+      border-bottom: var(--border-standard);
+      background-color: var(--color-bg-subtle);
+    }
+
+    .lore-reader-body {
+      padding: var(--space-6);
+      max-width: 75ch;
+      margin: 0 auto;
+    }
+
+    .lore-reader-body p {
+      margin-bottom: var(--space-4);
+      line-height: var(--leading-relaxed);
+    }
+
+    .lore-reader-body img {
+      max-width: 100%;
+      height: auto;
+      margin: var(--space-4) 0;
+      border: var(--border-standard);
+    }
+
+    .lore-reader-body .drop-cap::first-letter {
+      float: left;
+      font-size: var(--text-5xl);
+      font-weight: var(--font-bold);
+      line-height: 1;
+      margin-right: var(--space-2);
+      color: var(--color-primary);
+    }
+
+    .lore-badge {
+      font-size: var(--text-xs);
+      padding: 2px 8px;
+    }
+
+    .lore-image-full {
+      width: 100%;
+      margin: var(--space-6) 0;
+    }
+
+    .lore-image-float {
+      float: right;
+      max-width: 300px;
+      margin: 0 0 var(--space-4) var(--space-4);
+    }
+
+    @media (max-width: 768px) {
+      .lore-image-float {
+        float: none;
+        max-width: 100%;
+        margin: var(--space-4) 0;
+      }
+    }
+
+    .lore-divider {
+      text-align: center;
+      margin: var(--space-6) 0;
+      color: var(--color-text-muted);
+    }
+
+    .lore-divider::before,
+    .lore-divider::after {
+      content: '~~~';
+      margin: 0 var(--space-3);
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <nav class="portal-sidebar d-none d-lg-block">
+    <div class="px-4 mb-4">
+      <a href="../public/landing.html" class="text-decoration-none"><h1 class="h5 mb-0">LARP Adventures</h1></a>
+      <small class="text-muted">Player Portal</small>
+    </div>
+    <ul class="nav flex-column">
+      <li class="nav-item"><a class="nav-link" href="dashboard.html"><i class="bi bi-house me-2"></i>Dashboard</a></li>
+      <li class="nav-item"><a class="nav-link" href="world.html"><i class="bi bi-globe me-2"></i>My World</a></li>
+      <li class="nav-item"><a class="nav-link active" href="lore.html"><i class="bi bi-book me-2"></i>Lore Drops</a></li>
+      <li class="nav-item"><a class="nav-link" href="character.html"><i class="bi bi-person-badge me-2"></i>Character</a></li>
+      <li class="nav-item"><a class="nav-link" href="forum-index.html"><i class="bi bi-chat-dots me-2"></i>Forums</a></li>
+    </ul>
+  </nav>
+
+  <main class="portal-main">
+    <header class="portal-header d-flex justify-content-between align-items-center">
+      <div>
+        <h1 class="h4 mb-0">Lore Drops</h1>
+        <small class="text-muted">Stories and secrets from Osterra</small>
+      </div>
+      <div class="d-flex gap-2 align-items-center">
+        <span class="badge bg-primary">3 unread</span>
+        <div class="dropdown">
+          <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">
+            <i class="bi bi-filter me-1"></i>Filter
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="#">All Lore</a></li>
+            <li><a class="dropdown-item" href="#">Unread Only</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">World Lore</a></li>
+            <li><a class="dropdown-item" href="#">Faction Updates</a></li>
+            <li><a class="dropdown-item" href="#">Character Backstory</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <div class="p-4">
+      <div class="row">
+        <!-- Lore List -->
+        <div class="col-lg-4 mb-4 mb-lg-0">
+          <div class="card">
+            <div class="card-header">
+              <strong>Recent Lore</strong>
+            </div>
+            <div class="list-group list-group-flush">
+              <!-- Unread item -->
+              <div class="lore-list-item unread active">
+                <div class="lore-icon" style="background-color: var(--color-primary-subtle);">
+                  <i class="bi bi-scroll text-primary"></i>
+                </div>
+                <div class="lore-content">
+                  <h4 class="lore-title">The Fall of Ironhold</h4>
+                  <div class="lore-meta">
+                    <span class="badge lore-badge bg-info">World Lore</span>
+                    <span class="ms-2">Dec 15, 2023</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Unread item -->
+              <div class="lore-list-item unread">
+                <div class="lore-icon" style="background-color: var(--color-warning-bg);">
+                  <i class="bi bi-flag text-warning"></i>
+                </div>
+                <div class="lore-content">
+                  <h4 class="lore-title">Northern Alliance: Winter Report</h4>
+                  <div class="lore-meta">
+                    <span class="badge lore-badge bg-primary">Faction</span>
+                    <span class="ms-2">Dec 10, 2023</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Read items -->
+              <div class="lore-list-item">
+                <div class="lore-icon">
+                  <i class="bi bi-map"></i>
+                </div>
+                <div class="lore-content">
+                  <h4 class="lore-title">The Merchant Roads of Osterra</h4>
+                  <div class="lore-meta">
+                    <span class="badge lore-badge bg-secondary">Geography</span>
+                    <span class="ms-2">Nov 28, 2023</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="lore-list-item">
+                <div class="lore-icon">
+                  <i class="bi bi-star"></i>
+                </div>
+                <div class="lore-content">
+                  <h4 class="lore-title">The Gods of the Old Faith</h4>
+                  <div class="lore-meta">
+                    <span class="badge lore-badge bg-info">World Lore</span>
+                    <span class="ms-2">Nov 15, 2023</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="lore-list-item">
+                <div class="lore-icon">
+                  <i class="bi bi-person"></i>
+                </div>
+                <div class="lore-content">
+                  <h4 class="lore-title">Sir Aldric: A Letter from Home</h4>
+                  <div class="lore-meta">
+                    <span class="badge lore-badge bg-success">Personal</span>
+                    <span class="ms-2">Nov 1, 2023</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="lore-list-item">
+                <div class="lore-icon">
+                  <i class="bi bi-journal-text"></i>
+                </div>
+                <div class="lore-content">
+                  <h4 class="lore-title">Autumn Adventure Recap</h4>
+                  <div class="lore-meta">
+                    <span class="badge lore-badge bg-secondary">Event</span>
+                    <span class="ms-2">Oct 20, 2023</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lore Reader -->
+        <div class="col-lg-8">
+          <div class="lore-reader">
+            <div class="lore-reader-header">
+              <div class="d-flex justify-content-between align-items-start">
+                <div>
+                  <span class="badge bg-info mb-2">World Lore</span>
+                  <h2 class="h4 mb-1">The Fall of Ironhold</h2>
+                  <p class="text-muted mb-0">
+                    <small>Released December 15, 2023 | From the Chronicles of Osterra</small>
+                  </p>
+                </div>
+                <div class="btn-group">
+                  <button class="btn btn-outline-secondary btn-sm" title="Mark as unread">
+                    <i class="bi bi-envelope"></i>
+                  </button>
+                  <button class="btn btn-outline-secondary btn-sm" title="Bookmark">
+                    <i class="bi bi-bookmark"></i>
+                  </button>
+                  <button class="btn btn-outline-secondary btn-sm" title="Share">
+                    <i class="bi bi-share"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="lore-reader-body">
+              <!-- Sample lore content - this would come from Google Drive -->
+              <p class="drop-cap">The dwarven stronghold of Ironhold had stood for seven centuries, its great gates never breached by enemy forces. But on the night of the winter solstice, something stirred in the deep places beneath the mountain—something that had slumbered since before the dwarves first delved those halls.</p>
+
+              <img src="https://placehold.co/800x400/1a1a1a/ffffff?text=Ironhold+Mountains" alt="The mountains surrounding Ironhold" class="lore-image-full">
+
+              <p>The first sign of trouble came from the lower mines. Foreman Dolgrim's crew failed to report for the shift change. When a search party was sent to investigate, they found only abandoned tools and a strange darkness that swallowed their torchlight.</p>
+
+              <p>"It wasn't natural dark," survivor Brunna Ironbeard would later recount to the refugees gathered at Camp Northwatch. "It moved. It breathed. And when it touched you..." She trailed off, her hands trembling around her tankard of ale.</p>
+
+              <div class="lore-divider"></div>
+
+              <img src="https://placehold.co/300x400/2d2d2d/ffffff?text=Ancient+Runes" alt="Ancient runes found in the deep" class="lore-image-float">
+
+              <p>What emerged from the depths defied description. Some called it shadow made flesh. Others whispered of an ancient evil, one of the Forgotten Ones sealed away by the first mages of the Old Faith. Whatever its nature, the entity moved through Ironhold's halls like a plague, consuming all in its path.</p>
+
+              <p>King Thrain IV ordered an immediate evacuation. For the first time in seven hundred years, the great gates of Ironhold were sealed—not to keep enemies out, but to keep something in.</p>
+
+              <p>Now, some three thousand dwarven refugees make their way north, seeking shelter with the Northern Alliance. They bring with them only what they could carry: family heirlooms, sacred relics, and terrible memories of the night their homeland fell.</p>
+
+              <div class="lore-divider"></div>
+
+              <p>The Northern Alliance has pledged to aid the refugees, but questions remain. What awakened in the depths of Ironhold? Can it be contained behind the sealed gates? And most troubling of all—are there other Forgotten Ones, waiting in dark places across Osterra?</p>
+
+              <div class="callout mt-5">
+                <div class="callout-title">Plot Hook</div>
+                <p class="mb-0">The Ironhold refugees will feature prominently in the upcoming <strong>Rites of Spring</strong> event. Players may encounter dwarven NPCs seeking aid, artifacts from the fallen stronghold, or clues about the nature of the entity that destroyed their home.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Navigation -->
+          <div class="d-flex justify-content-between mt-4">
+            <button class="btn btn-outline-secondary" disabled>
+              <i class="bi bi-arrow-left me-2"></i>Newer
+            </button>
+            <button class="btn btn-outline-secondary">
+              Older<i class="bi bi-arrow-right ms-2"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/theme-switcher.js"></script>
+</body>
+</html>

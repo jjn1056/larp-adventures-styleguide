@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dungeon">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Northern Alliance - LARP Adventures Portal</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="../css/variables.css" rel="stylesheet">
+  <link href="../css/theme-dungeon.css" rel="stylesheet" id="theme-css">
+  <style>
+    .portal-sidebar { width: var(--sidebar-width); min-height: 100vh; background-color: var(--color-bg-muted); border-right: var(--border-heavy); position: fixed; left: 0; top: 0; padding-top: var(--space-4); }
+    .portal-main { margin-left: var(--sidebar-width); min-height: 100vh; }
+    .portal-header { background-color: var(--color-bg-surface); border-bottom: var(--border-standard); padding: var(--space-3) var(--space-4); }
+    .portal-sidebar .nav-link { color: var(--color-text-secondary); padding: var(--space-2) var(--space-4); border-left: 3px solid transparent; }
+    .portal-sidebar .nav-link:hover, .portal-sidebar .nav-link.active { color: var(--color-primary); background-color: var(--color-bg-subtle); border-left-color: var(--color-primary); }
+    @media (max-width: 991px) { .portal-sidebar { display: none; } .portal-main { margin-left: 0; } }
+
+    .group-header {
+      background-color: var(--color-bg-muted);
+      padding: var(--space-6) var(--space-4);
+      border-bottom: var(--border-heavy);
+    }
+
+    .member-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-full);
+      border: 2px solid var(--color-border);
+    }
+
+    .objective-item {
+      background-color: var(--color-bg-surface);
+      border: var(--border-standard);
+      padding: var(--space-3);
+      margin-bottom: var(--space-3);
+    }
+
+    .loot-entry {
+      display: flex;
+      justify-content: space-between;
+      padding: var(--space-2) 0;
+      border-bottom: 1px dotted var(--color-border);
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <nav class="portal-sidebar d-none d-lg-block">
+    <div class="px-4 mb-4">
+      <a href="../public/landing.html" class="text-decoration-none"><h1 class="h5 mb-0">LARP Adventures</h1></a>
+      <small class="text-muted">Player Portal</small>
+    </div>
+    <ul class="nav flex-column">
+      <li class="nav-item"><a class="nav-link" href="dashboard.html"><i class="bi bi-house me-2"></i>Dashboard</a></li>
+      <li class="nav-item"><a class="nav-link" href="world.html"><i class="bi bi-globe me-2"></i>My World</a></li>
+      <li class="nav-item"><a class="nav-link active" href="group.html"><i class="bi bi-people me-2"></i>My Coalition</a></li>
+      <li class="nav-item"><a class="nav-link" href="lore.html"><i class="bi bi-scroll me-2"></i>Lore Drops</a></li>
+      <li class="nav-item"><a class="nav-link" href="forum-index.html"><i class="bi bi-chat-dots me-2"></i>Forums</a></li>
+    </ul>
+  </nav>
+
+  <main class="portal-main">
+    <!-- Group Header -->
+    <div class="group-header">
+      <div class="d-flex align-items-center gap-4">
+        <div style="width: 80px; height: 80px; background: var(--color-primary); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;">
+          <i class="bi bi-shield-fill text-white" style="font-size: 2rem;"></i>
+        </div>
+        <div>
+          <h1 class="h2 mb-1">Northern Alliance</h1>
+          <p class="text-muted mb-2">Defenders of the North | Founded 2018</p>
+          <span class="badge bg-primary">24 Members</span>
+          <span class="badge bg-secondary">Active</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="border-bottom" style="background-color: var(--color-bg-surface);">
+      <div class="container-fluid">
+        <ul class="nav nav-tabs border-0">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Overview</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Members</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Objectives</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Loot Log</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Discussions</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="p-4">
+      <div class="row">
+        <!-- Main Content -->
+        <div class="col-lg-8">
+          <!-- Announcements -->
+          <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <strong>Faction Announcements</strong>
+              <span class="badge bg-primary">New</span>
+            </div>
+            <div class="card-body">
+              <div class="feed-item px-0">
+                <div class="feed-avatar" style="background: var(--color-primary);"></div>
+                <div class="feed-content">
+                  <p class="mb-1"><strong>Lady Mira</strong> <span class="badge bg-secondary">Speaker</span></p>
+                  <p class="mb-2">Fellow members of the Northern Alliance, I'm honored to serve as your Speaker. Strategy meeting at Rites of Spring - all members encouraged to attend.</p>
+                  <small class="text-muted">2 days ago</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Current Objectives -->
+          <div class="card mb-4">
+            <div class="card-header">
+              <strong>Current Objectives</strong>
+            </div>
+            <div class="card-body">
+              <div class="objective-item">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                  <h4 class="h6 mb-0">Secure the Northern Trade Route</h4>
+                  <span class="badge bg-warning text-dark">In Progress</span>
+                </div>
+                <p class="text-muted mb-2">Clear the mountain passes of bandits and establish safe waypoints for merchants.</p>
+                <div class="progress mb-2" style="height: 8px;">
+                  <div class="progress-bar bg-success" style="width: 60%;"></div>
+                </div>
+                <small class="text-muted">3 of 5 waypoints secured</small>
+              </div>
+
+              <div class="objective-item">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                  <h4 class="h6 mb-0">Investigate Ironhold Refugees</h4>
+                  <span class="badge bg-info">New</span>
+                </div>
+                <p class="text-muted mb-2">Aid the dwarven refugees from Ironhold and learn what destroyed their stronghold.</p>
+                <div class="progress mb-2" style="height: 8px;">
+                  <div class="progress-bar bg-success" style="width: 10%;"></div>
+                </div>
+                <small class="text-muted">Information gathering phase</small>
+              </div>
+
+              <div class="objective-item">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                  <h4 class="h6 mb-0">Maintain Peace Treaty</h4>
+                  <span class="badge bg-success">Ongoing</span>
+                </div>
+                <p class="text-muted mb-2">Uphold the terms of the peace treaty signed with the Southern Kingdoms at Winter Council.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent Loot Log -->
+          <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <strong>Faction Treasury & Loot Log</strong>
+              <button class="btn btn-outline-primary btn-sm">Add Entry</button>
+            </div>
+            <div class="card-body">
+              <div class="row mb-3">
+                <div class="col-4 text-center">
+                  <div style="font-size: var(--text-2xl); font-weight: var(--font-bold); color: var(--color-primary);">847</div>
+                  <small class="text-muted">Gold Coins</small>
+                </div>
+                <div class="col-4 text-center">
+                  <div style="font-size: var(--text-2xl); font-weight: var(--font-bold); color: var(--color-primary);">23</div>
+                  <small class="text-muted">Faction Favor</small>
+                </div>
+                <div class="col-4 text-center">
+                  <div style="font-size: var(--text-2xl); font-weight: var(--font-bold); color: var(--color-primary);">12</div>
+                  <small class="text-muted">Magic Items</small>
+                </div>
+              </div>
+              <hr>
+              <h5 class="h6">Recent Acquisitions</h5>
+              <div class="loot-entry">
+                <span>Enchanted Shield (+1 AP)</span>
+                <small class="text-muted">Winter Council 2023</small>
+              </div>
+              <div class="loot-entry">
+                <span>200 gold from trade agreement</span>
+                <small class="text-muted">Winter Council 2023</small>
+              </div>
+              <div class="loot-entry">
+                <span>Map to Ancient Shrine</span>
+                <small class="text-muted">Autumn Adventure</small>
+              </div>
+              <div class="loot-entry">
+                <span>Healing Potion x5</span>
+                <small class="text-muted">Autumn Adventure</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-lg-4">
+          <!-- Leadership -->
+          <div class="card mb-4">
+            <div class="card-header"><strong>Leadership</strong></div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item d-flex align-items-center gap-3">
+                <div class="member-avatar" style="background: var(--color-primary);"></div>
+                <div>
+                  <strong>Lady Mira</strong>
+                  <p class="text-muted mb-0 small">Speaker</p>
+                </div>
+              </li>
+              <li class="list-group-item d-flex align-items-center gap-3">
+                <div class="member-avatar" style="background: var(--color-secondary);"></div>
+                <div>
+                  <strong>Sir Aldric</strong>
+                  <p class="text-muted mb-0 small">War Marshal</p>
+                </div>
+              </li>
+              <li class="list-group-item d-flex align-items-center gap-3">
+                <div class="member-avatar" style="background: var(--color-info);"></div>
+                <div>
+                  <strong>Thornwick</strong>
+                  <p class="text-muted mb-0 small">Treasurer</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Members Online -->
+          <div class="card mb-4">
+            <div class="card-header"><strong>Members Online</strong></div>
+            <div class="card-body">
+              <div class="d-flex flex-wrap gap-2">
+                <div class="member-avatar" style="width: 36px; height: 36px; background: var(--color-primary);" title="Sir Aldric"></div>
+                <div class="member-avatar" style="width: 36px; height: 36px; background: var(--color-secondary);" title="Lady Mira"></div>
+                <div class="member-avatar" style="width: 36px; height: 36px; background: var(--color-info);" title="Thornwick"></div>
+                <span class="d-flex align-items-center text-muted small">+5 more</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Poll -->
+          <div class="card">
+            <div class="card-header"><strong>Quick Poll</strong></div>
+            <div class="card-body">
+              <p class="mb-3"><strong>Should we prioritize the trade route or Ironhold investigation?</strong></p>
+              <div class="d-grid gap-2">
+                <button class="btn btn-outline-primary text-start">
+                  <i class="bi bi-circle me-2"></i>Trade Route (8 votes)
+                </button>
+                <button class="btn btn-outline-primary text-start">
+                  <i class="bi bi-circle me-2"></i>Ironhold (12 votes)
+                </button>
+                <button class="btn btn-outline-primary text-start">
+                  <i class="bi bi-circle me-2"></i>Split resources (4 votes)
+                </button>
+              </div>
+              <small class="text-muted d-block mt-2">Poll ends: March 10, 2024</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/theme-switcher.js"></script>
+</body>
+</html>

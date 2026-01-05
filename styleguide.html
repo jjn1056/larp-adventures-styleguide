@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dungeon">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LARP Adventures Style Guide</title>
+
+  <!-- Bootstrap 5.3 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Theme CSS -->
+  <link href="css/variables.css" rel="stylesheet">
+  <link href="css/theme-dungeon.css" rel="stylesheet" id="theme-css">
+
+  <style>
+    /* Style Guide specific styles */
+    .sg-section {
+      padding: var(--space-8) 0;
+      border-bottom: var(--border-standard);
+    }
+
+    .sg-section:last-child {
+      border-bottom: none;
+    }
+
+    .sg-example {
+      background-color: var(--color-bg-surface);
+      border: var(--border-standard);
+      padding: var(--space-4);
+      margin-bottom: var(--space-4);
+    }
+
+    .sg-code {
+      background-color: var(--color-bg-muted);
+      border: var(--border-standard);
+      padding: var(--space-4);
+      font-size: var(--text-sm);
+      overflow-x: auto;
+    }
+
+    .sg-swatch {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      margin: var(--space-2);
+    }
+
+    .sg-swatch-color {
+      width: 80px;
+      height: 60px;
+      border: var(--border-standard);
+      margin-bottom: var(--space-2);
+    }
+
+    .sg-swatch-label {
+      font-size: var(--text-xs);
+      text-align: center;
+    }
+
+    .sg-nav {
+      position: sticky;
+      top: 0;
+      background-color: var(--color-bg-page);
+      z-index: 100;
+      padding: var(--space-3) 0;
+      border-bottom: var(--border-heavy);
+    }
+
+    .sg-sidebar {
+      position: sticky;
+      top: 80px;
+      height: calc(100vh - 100px);
+      overflow-y: auto;
+      padding-right: var(--space-4);
+    }
+
+    .sg-sidebar .nav-link {
+      color: var(--color-text-secondary);
+      padding: var(--space-2) var(--space-3);
+      font-size: var(--text-sm);
+    }
+
+    .sg-sidebar .nav-link:hover,
+    .sg-sidebar .nav-link.active {
+      color: var(--color-primary);
+      font-weight: var(--font-semibold);
+    }
+
+    /* Theme switcher */
+    .theme-switcher {
+      display: flex;
+      gap: var(--space-2);
+    }
+
+    .theme-switcher button {
+      padding: var(--space-2) var(--space-4);
+      border: var(--border-standard);
+      background: var(--color-bg-surface);
+      cursor: pointer;
+      font-size: var(--text-sm);
+    }
+
+    .theme-switcher button.active {
+      background: var(--color-primary);
+      color: var(--color-text-inverse);
+      border-color: var(--color-primary);
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Navigation -->
+  <nav class="sg-nav">
+    <div class="container">
+      <h1 class="h4 mb-0" style="border: none; padding: 0;">LARP Adventures Style Guide</h1>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="row">
+      <!-- Sidebar Navigation -->
+      <div class="col-lg-3 d-none d-lg-block">
+        <nav class="sg-sidebar">
+          <ul class="nav flex-column">
+            <li class="nav-item"><strong class="d-block py-2">Foundation</strong></li>
+            <li class="nav-item"><a class="nav-link" href="#colors">Colors</a></li>
+            <li class="nav-item"><a class="nav-link" href="#typography">Typography</a></li>
+            <li class="nav-item"><a class="nav-link" href="#spacing">Spacing</a></li>
+
+            <li class="nav-item"><strong class="d-block py-2 mt-3">Base Elements</strong></li>
+            <li class="nav-item"><a class="nav-link" href="#headings">Headings</a></li>
+            <li class="nav-item"><a class="nav-link" href="#text">Text & Lists</a></li>
+            <li class="nav-item"><a class="nav-link" href="#links">Links</a></li>
+
+            <li class="nav-item"><strong class="d-block py-2 mt-3">Forms</strong></li>
+            <li class="nav-item"><a class="nav-link" href="#inputs">Inputs</a></li>
+            <li class="nav-item"><a class="nav-link" href="#buttons">Buttons</a></li>
+            <li class="nav-item"><a class="nav-link" href="#validation">Validation</a></li>
+
+            <li class="nav-item"><strong class="d-block py-2 mt-3">Components</strong></li>
+            <li class="nav-item"><a class="nav-link" href="#cards">Cards</a></li>
+            <li class="nav-item"><a class="nav-link" href="#tables">Tables</a></li>
+            <li class="nav-item"><a class="nav-link" href="#navigation">Navigation</a></li>
+            <li class="nav-item"><a class="nav-link" href="#alerts">Alerts & Callouts</a></li>
+            <li class="nav-item"><a class="nav-link" href="#badges">Badges</a></li>
+            <li class="nav-item"><a class="nav-link" href="#modals">Modals</a></li>
+
+            <li class="nav-item"><strong class="d-block py-2 mt-3">Web App Elements</strong></li>
+            <li class="nav-item"><a class="nav-link" href="#toasts">Toasts</a></li>
+            <li class="nav-item"><a class="nav-link" href="#feed">Activity Feed</a></li>
+            <li class="nav-item"><a class="nav-link" href="#avatars">Avatars</a></li>
+            <li class="nav-item"><a class="nav-link" href="#character-cards">Character Cards</a></li>
+            <li class="nav-item"><a class="nav-link" href="#stats">Stat Blocks</a></li>
+            <li class="nav-item"><a class="nav-link" href="#progress">Progress</a></li>
+            <li class="nav-item"><a class="nav-link" href="#empty-states">Empty States</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Main Content -->
+      <div class="col-lg-9">
+
+        <!-- ============================================
+             FOUNDATION
+             ============================================ -->
+
+        <!-- Colors -->
+        <section id="colors" class="sg-section">
+          <h2>Color Palette</h2>
+          <p>The color system uses CSS custom properties for easy theming. All colors are designed to meet WCAG 2.1 AA contrast requirements.</p>
+
+          <h3 class="h5">Primary Colors</h3>
+          <div class="sg-example">
+            <div class="sg-swatch">
+              <div class="sg-swatch-color" style="background-color: var(--color-primary);"></div>
+              <span class="sg-swatch-label">Primary<br><code>--color-primary</code></span>
+            </div>
+            <div class="sg-swatch">
+              <div class="sg-swatch-color" style="background-color: var(--color-primary-hover);"></div>
+              <span class="sg-swatch-label">Hover<br><code>--color-primary-hover</code></span>
+            </div>
+            <div class="sg-swatch">
+              <div class="sg-swatch-color" style="background-color: var(--color-primary-light);"></div>
+              <span class="sg-swatch-label">Light<br><code>--color-primary-light</code></span>
+            </div>
+            <div class="sg-swatch">
+              <div class="sg-swatch-color" style="background-color: var(--color-primary-subtle);"></div>
+              <span class="sg-swatch-label">Subtle<br><code>--color-primary-subtle</code></span>
+            </div>
+          </div>
+
+          <h3 class="h5">Secondary Colors</h3>
+          <div class="sg-example">
+            <div class="sg-swatch">
+              <div class="sg-swatch-color" style="background-color: var(--color-secondary);"></div>
+              <span class="sg-swatch-label">Secondary<br><code>--color-secondary</code></span>
+            </div>
+            <div class="sg-swatch">
+              <div class="sg-swatch-color" style="background-color: var(--color-secondary-hover);"></div>
+              <span class="sg-swatch-label">Hover<br><code>--color-secondary-hover</code></span>
+            </div>
+            <div class="sg-swatch">
+              <div class="sg-swatch-color" style="background-color: var(--color-secondary-light);"></div>
+              <span class="sg-swatch-label">Light<br><code>--color-secondary-light</code></span>
+            </div>
+          </div>
+
+          <h3 class="h5">Background Colors</h3>
+          <div class="sg-example">
+            <div class="sg-swatch">
+              <div class="sg-swatch-color" style="background-color: var(--color-bg-page);"></div>
+              <span class="sg-swatch-label">Page<br><code>--color-bg-page</code></span>
+            </div>
+            <div class="sg-swatch">
+              <div class="sg-swatch-color" style="background-color: var(--color-bg-surface);"></div>
+              <span class="sg-swatch-label">Surface<br><code>--color-bg-surface</code></span>
+            </div>
+            <div class="sg-swatch">
+              <div class="sg-swatch-color" style="background-color: var(--color-bg-muted);"></div>
+              <span class="sg-swatch-label">Muted<br><code>--color-bg-muted</code></span>
+            </div>
+            <div class="sg-swatch">
+              <div class="sg-swatch-color" style="background-color: var(--color-bg-elevated);"></div>
+              <span class="sg-swatch-label">Elevated<br><code>--color-bg-elevated</code></span>
+            </div>
+          </div>
+
+          <h3 class="h5">Status Colors</h3>
+          <div class="sg-example">
+            <div class="sg-swatch">
+              <div class="sg-swatch-color" style="background-color: var(--color-success);"></div>
+              <span class="sg-swatch-label">Success<br><code>--color-success</code></span>
+            </div>
+            <div class="sg-swatch">
+              <div class="sg-swatch-color" style="background-color: var(--color-warning);"></div>
+              <span class="sg-swatch-label">Warning<br><code>--color-warning</code></span>
+            </div>
+            <div class="sg-swatch">
+              <div class="sg-swatch-color" style="background-color: var(--color-danger);"></div>
+              <span class="sg-swatch-label">Danger<br><code>--color-danger</code></span>
+            </div>
+            <div class="sg-swatch">
+              <div class="sg-swatch-color" style="background-color: var(--color-info);"></div>
+              <span class="sg-swatch-label">Info<br><code>--color-info</code></span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Typography -->
+        <section id="typography" class="sg-section">
+          <h2>Typography</h2>
+          <p>Typography inspired by classic RPG manuals with clear hierarchy and readable body text.</p>
+
+          <h3 class="h5">Font Families</h3>
+          <div class="sg-example">
+            <p><strong>Headings:</strong> <span style="font-family: var(--font-heading);">Georgia, Times New Roman, serif</span></p>
+            <p><strong>Body:</strong> <span style="font-family: var(--font-body);">Georgia, Times New Roman, serif</span></p>
+            <p><strong>Mono:</strong> <code style="font-family: var(--font-mono);">SFMono-Regular, Consolas, monospace</code></p>
+          </div>
+
+          <h3 class="h5">Type Scale</h3>
+          <div class="sg-example">
+            <p style="font-size: var(--text-5xl); line-height: 1.2;">Text 5XL (48px)</p>
+            <p style="font-size: var(--text-4xl); line-height: 1.2;">Text 4XL (36px)</p>
+            <p style="font-size: var(--text-3xl); line-height: 1.2;">Text 3XL (30px)</p>
+            <p style="font-size: var(--text-2xl);">Text 2XL (24px)</p>
+            <p style="font-size: var(--text-xl);">Text XL (20px)</p>
+            <p style="font-size: var(--text-lg);">Text LG (18px)</p>
+            <p style="font-size: var(--text-base);">Text Base (16px)</p>
+            <p style="font-size: var(--text-sm);">Text SM (14px)</p>
+            <p style="font-size: var(--text-xs);">Text XS (12px)</p>
+          </div>
+        </section>
+
+        <!-- Spacing -->
+        <section id="spacing" class="sg-section">
+          <h2>Spacing Scale</h2>
+          <p>Consistent spacing using a base unit of 4px.</p>
+
+          <div class="sg-example">
+            <div class="d-flex flex-wrap align-items-end gap-3">
+              <div class="text-center">
+                <div style="width: var(--space-1); height: 40px; background: var(--color-primary);"></div>
+                <small>1 (4px)</small>
+              </div>
+              <div class="text-center">
+                <div style="width: var(--space-2); height: 40px; background: var(--color-primary);"></div>
+                <small>2 (8px)</small>
+              </div>
+              <div class="text-center">
+                <div style="width: var(--space-3); height: 40px; background: var(--color-primary);"></div>
+                <small>3 (12px)</small>
+              </div>
+              <div class="text-center">
+                <div style="width: var(--space-4); height: 40px; background: var(--color-primary);"></div>
+                <small>4 (16px)</small>
+              </div>
+              <div class="text-center">
+                <div style="width: var(--space-6); height: 40px; background: var(--color-primary);"></div>
+                <small>6 (24px)</small>
+              </div>
+              <div class="text-center">
+                <div style="width: var(--space-8); height: 40px; background: var(--color-primary);"></div>
+                <small>8 (32px)</small>
+              </div>
+              <div class="text-center">
+                <div style="width: var(--space-12); height: 40px; background: var(--color-primary);"></div>
+                <small>12 (48px)</small>
+              </div>
+              <div class="text-center">
+                <div style="width: var(--space-16); height: 40px; background: var(--color-primary);"></div>
+                <small>16 (64px)</small>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================
+             BASE ELEMENTS
+             ============================================ -->
+
+        <!-- Headings -->
+        <section id="headings" class="sg-section">
+          <h2>Headings</h2>
+
+          <div class="sg-example">
+            <h1>Heading 1 - The Realm of Osterra</h1>
+            <h2>Heading 2 - Character Creation</h2>
+            <h3>Heading 3 - Combat Rules</h3>
+            <h4>Heading 4 - Equipment</h4>
+            <h5>Heading 5 - Skills & Abilities</h5>
+            <h6>Heading 6 - Appendix</h6>
+          </div>
+
+          <div class="sg-code">
+            <pre><code>&lt;h1&gt;Heading 1&lt;/h1&gt;
+&lt;h2&gt;Heading 2&lt;/h2&gt;
+&lt;h3&gt;Heading 3&lt;/h3&gt;
+&lt;h4&gt;Heading 4&lt;/h4&gt;
+&lt;h5&gt;Heading 5&lt;/h5&gt;
+&lt;h6&gt;Heading 6&lt;/h6&gt;</code></pre>
+          </div>
+        </section>
+
+        <!-- Text & Lists -->
+        <section id="text" class="sg-section">
+          <h2>Text & Lists</h2>
+
+          <h3 class="h5">Paragraphs</h3>
+          <div class="sg-example">
+            <p>Welcome, brave adventurer, to the realm of Osterra. Here, the veil between worlds grows thin, and those with courage may find themselves called to defend the living against threats both mortal and supernatural.</p>
+            <p>This is a <strong>strong text</strong> and this is <em>emphasized text</em>. You can also use <mark>highlighted text</mark> for important notes, or <small>small text</small> for fine print.</p>
+          </div>
+
+          <h3 class="h5">Blockquotes</h3>
+          <div class="sg-example">
+            <blockquote>
+              <p>"The sword knows not friend from foe. Only the hand that wields it may choose mercy."</p>
+              <footer>- Elder Cedric of the White Tower</footer>
+            </blockquote>
+          </div>
+
+          <h3 class="h5">Lists</h3>
+          <div class="sg-example">
+            <div class="row">
+              <div class="col-md-6">
+                <h6>Unordered List</h6>
+                <ul>
+                  <li>Warrior's Path</li>
+                  <li>Rogue's Path</li>
+                  <li>Wizard's Path</li>
+                  <li>Healer's Path</li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <h6>Ordered List</h6>
+                <ol>
+                  <li>Create your character</li>
+                  <li>Choose a path</li>
+                  <li>Select starting equipment</li>
+                  <li>Join a faction (optional)</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="h5">Horizontal Rules</h3>
+          <div class="sg-example">
+            <p>Content above the divider.</p>
+            <hr>
+            <p>Content below the divider.</p>
+            <hr class="heavy">
+            <p>Content below heavy divider.</p>
+          </div>
+        </section>
+
+        <!-- Links -->
+        <section id="links" class="sg-section">
+          <h2>Links</h2>
+
+          <div class="sg-example">
+            <p>This is a <a href="#">standard link</a> within text.</p>
+            <p>Visit the <a href="#">Rules Hub</a> for complete documentation.</p>
+          </div>
+        </section>
+
+        <!-- ============================================
+             FORMS
+             ============================================ -->
+
+        <!-- Inputs -->
+        <section id="inputs" class="sg-section">
+          <h2>Form Inputs</h2>
+
+          <h3 class="h5">Text Inputs</h3>
+          <div class="sg-example">
+            <div class="mb-3">
+              <label for="charName" class="form-label">Character Name</label>
+              <input type="text" class="form-control" id="charName" placeholder="Enter character name">
+            </div>
+            <div class="mb-3">
+              <label for="charBio" class="form-label">Character Biography</label>
+              <textarea class="form-control" id="charBio" rows="3" placeholder="Tell us about your character..."></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="disabledInput" class="form-label">Disabled Input</label>
+              <input type="text" class="form-control" id="disabledInput" placeholder="Disabled" disabled>
+            </div>
+          </div>
+
+          <h3 class="h5">Select</h3>
+          <div class="sg-example">
+            <div class="mb-3">
+              <label for="pathSelect" class="form-label">Choose Your Path</label>
+              <select class="form-select" id="pathSelect">
+                <option selected>Select a path...</option>
+                <option value="warrior">Warrior's Path</option>
+                <option value="rogue">Rogue's Path</option>
+                <option value="wizard">Wizard's Path</option>
+                <option value="healer">Healer's Path</option>
+              </select>
+            </div>
+          </div>
+
+          <h3 class="h5">Checkboxes & Radios</h3>
+          <div class="sg-example">
+            <div class="row">
+              <div class="col-md-6">
+                <h6>Checkboxes</h6>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="check1" checked>
+                  <label class="form-check-label" for="check1">I accept the Code of Conduct</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="check2">
+                  <label class="form-check-label" for="check2">Subscribe to newsletter</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="check3" disabled>
+                  <label class="form-check-label" for="check3">Disabled checkbox</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <h6>Radio Buttons</h6>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="faction" id="radio1" checked>
+                  <label class="form-check-label" for="radio1">Northern Alliance</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="faction" id="radio2">
+                  <label class="form-check-label" for="radio2">Southern Kingdoms</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="faction" id="radio3">
+                  <label class="form-check-label" for="radio3">Independent</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="h5">Switches</h3>
+          <div class="sg-example">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="switch1" checked>
+              <label class="form-check-label" for="switch1">Receive event notifications</label>
+            </div>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="switch2">
+              <label class="form-check-label" for="switch2">Show character publicly</label>
+            </div>
+          </div>
+
+          <h3 class="h5">Floating Labels</h3>
+          <div class="sg-example">
+            <div class="form-floating mb-3">
+              <input type="email" class="form-control" id="floatEmail" placeholder="name@example.com">
+              <label for="floatEmail">Email address</label>
+            </div>
+            <div class="form-floating">
+              <select class="form-select" id="floatSelect">
+                <option selected>Open this select menu</option>
+                <option value="1">Full Weekend</option>
+                <option value="2">Saturday Only</option>
+                <option value="3">Sunday Only</option>
+              </select>
+              <label for="floatSelect">Event Registration Type</label>
+            </div>
+          </div>
+        </section>
+
+        <!-- Buttons -->
+        <section id="buttons" class="sg-section">
+          <h2>Buttons</h2>
+
+          <h3 class="h5">Primary Buttons</h3>
+          <div class="sg-example">
+            <button type="button" class="btn btn-primary">Register Now</button>
+            <button type="button" class="btn btn-primary" disabled>Disabled</button>
+          </div>
+
+          <h3 class="h5">Secondary Buttons</h3>
+          <div class="sg-example">
+            <button type="button" class="btn btn-secondary">Learn More</button>
+            <button type="button" class="btn btn-outline-primary">View Rules</button>
+            <button type="button" class="btn btn-outline-secondary">Cancel</button>
+          </div>
+
+          <h3 class="h5">Button Sizes</h3>
+          <div class="sg-example">
+            <button type="button" class="btn btn-primary btn-lg">Large Button</button>
+            <button type="button" class="btn btn-primary">Default</button>
+            <button type="button" class="btn btn-primary btn-sm">Small Button</button>
+          </div>
+
+          <h3 class="h5">Button with Icons</h3>
+          <div class="sg-example">
+            <button type="button" class="btn btn-primary"><i class="bi bi-calendar-event me-2"></i>View Events</button>
+            <button type="button" class="btn btn-outline-primary"><i class="bi bi-book me-2"></i>Read Rules</button>
+            <button type="button" class="btn btn-secondary"><i class="bi bi-person-plus me-2"></i>Join Us</button>
+          </div>
+
+          <h3 class="h5">Button Group</h3>
+          <div class="sg-example">
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-outline-primary active">All Events</button>
+              <button type="button" class="btn btn-outline-primary">Upcoming</button>
+              <button type="button" class="btn btn-outline-primary">Past</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Validation -->
+        <section id="validation" class="sg-section">
+          <h2>Form Validation</h2>
+
+          <div class="sg-example">
+            <div class="mb-3">
+              <label for="validInput" class="form-label">Valid Input</label>
+              <input type="text" class="form-control is-valid" id="validInput" value="Sir Aldric">
+              <div class="valid-feedback">Looks good!</div>
+            </div>
+            <div class="mb-3">
+              <label for="invalidInput" class="form-label">Invalid Input</label>
+              <input type="text" class="form-control is-invalid" id="invalidInput" value="">
+              <div class="invalid-feedback">Please enter a character name.</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================
+             COMPONENTS
+             ============================================ -->
+
+        <!-- Cards -->
+        <section id="cards" class="sg-section">
+          <h2>Cards</h2>
+
+          <h3 class="h5">Basic Card</h3>
+          <div class="sg-example">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="card">
+                  <div class="card-header">Upcoming Event</div>
+                  <div class="card-body">
+                    <h5 class="card-title">Winter Council 2024</h5>
+                    <p class="card-text">Join us for three days of adventure in the frozen north. Battle the forces of the Frost Queen and uncover ancient secrets.</p>
+                    <a href="#" class="btn btn-primary">Register</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Card Without Header</h5>
+                    <p class="card-text">Sometimes you just need a simple card without the header section.</p>
+                    <a href="#" class="btn btn-outline-primary">Learn More</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="h5">Event Card</h3>
+          <div class="sg-example">
+            <div class="card" style="max-width: 400px;">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <span>March 15-17, 2024</span>
+                <span class="badge bg-primary">Campout</span>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Rites of Spring</h5>
+                <p class="card-text text-muted">Camp Evergreen, Pennsylvania</p>
+                <p class="card-text">The veil grows thin as winter yields to spring. Ancient rituals must be performed to ensure the harvest...</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <span class="fw-semibold">$85 - $125</span>
+                  <a href="#" class="btn btn-primary btn-sm">View Details</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Tables -->
+        <section id="tables" class="sg-section">
+          <h2>Tables</h2>
+
+          <h3 class="h5">Basic Table</h3>
+          <div class="sg-example">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Skill</th>
+                  <th scope="col">Path</th>
+                  <th scope="col">Cost</th>
+                  <th scope="col">Prerequisites</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Shield Bash</td>
+                  <td>Warrior</td>
+                  <td>2 XP</td>
+                  <td>Shield Proficiency</td>
+                </tr>
+                <tr>
+                  <td>Backstab</td>
+                  <td>Rogue</td>
+                  <td>3 XP</td>
+                  <td>Stealth I</td>
+                </tr>
+                <tr>
+                  <td>Fireball</td>
+                  <td>Wizard</td>
+                  <td>4 XP</td>
+                  <td>Flame Touch, 5 Magic</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="h5">Striped Table</h3>
+          <div class="sg-example">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Time</th>
+                  <th scope="col">Activity</th>
+                  <th scope="col">Location</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>6:00 PM</td>
+                  <td>Check-in Opens</td>
+                  <td>Main Hall</td>
+                </tr>
+                <tr>
+                  <td>7:00 PM</td>
+                  <td>New Player Orientation</td>
+                  <td>Training Grounds</td>
+                </tr>
+                <tr>
+                  <td>8:00 PM</td>
+                  <td>Opening Ceremony</td>
+                  <td>Great Hall</td>
+                </tr>
+                <tr>
+                  <td>9:00 PM</td>
+                  <td>Game On!</td>
+                  <td>All Areas</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Navigation -->
+        <section id="navigation" class="sg-section">
+          <h2>Navigation</h2>
+
+          <h3 class="h5">Navbar</h3>
+          <div class="sg-example">
+            <nav class="navbar navbar-expand-lg">
+              <div class="container-fluid">
+                <a class="navbar-brand" href="#">LARP Adventures</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDemo">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarDemo">
+                  <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Events</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Rules</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Community</a></li>
+                  </ul>
+                  <a href="#" class="btn btn-primary btn-sm">Sign In</a>
+                </div>
+              </div>
+            </nav>
+          </div>
+
+          <h3 class="h5">Breadcrumbs</h3>
+          <div class="sg-example">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Rules</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Combat</li>
+              </ol>
+            </nav>
+          </div>
+
+          <h3 class="h5">Tabs</h3>
+          <div class="sg-example">
+            <ul class="nav nav-tabs">
+              <li class="nav-item">
+                <a class="nav-link active" href="#">Overview</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Skills</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Equipment</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled" href="#">Achievements</a>
+              </li>
+            </ul>
+          </div>
+
+          <h3 class="h5">Pagination</h3>
+          <div class="sg-example">
+            <nav aria-label="Page navigation">
+              <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+              </ul>
+            </nav>
+          </div>
+        </section>
+
+        <!-- Alerts & Callouts -->
+        <section id="alerts" class="sg-section">
+          <h2>Alerts & Callouts</h2>
+
+          <h3 class="h5">Bootstrap Alerts</h3>
+          <div class="sg-example">
+            <div class="alert alert-success" role="alert">
+              <strong>Success!</strong> Your registration has been confirmed.
+            </div>
+            <div class="alert alert-info" role="alert">
+              <strong>Note:</strong> Check-in opens at 6:00 PM on Friday.
+            </div>
+            <div class="alert alert-warning" role="alert">
+              <strong>Warning:</strong> Registration closes in 3 days.
+            </div>
+            <div class="alert alert-danger" role="alert">
+              <strong>Error:</strong> Payment could not be processed.
+            </div>
+          </div>
+
+          <h3 class="h5">Custom Callouts</h3>
+          <div class="sg-example">
+            <div class="callout">
+              <div class="callout-title">Important Rule</div>
+              <p class="mb-0">All combat calls must be made clearly and audibly. If your opponent cannot hear your call, the effect does not apply.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Badges -->
+        <section id="badges" class="sg-section">
+          <h2>Badges & Labels</h2>
+
+          <div class="sg-example">
+            <span class="badge bg-primary">Primary</span>
+            <span class="badge bg-secondary">Secondary</span>
+            <span class="badge bg-success">Active</span>
+            <span class="badge bg-danger">Cancelled</span>
+            <span class="badge bg-warning text-dark">Pending</span>
+            <span class="badge bg-info">New</span>
+          </div>
+
+          <h3 class="h5">Pill Badges</h3>
+          <div class="sg-example">
+            <span class="badge rounded-pill bg-primary">Warrior</span>
+            <span class="badge rounded-pill bg-secondary">Rogue</span>
+            <span class="badge rounded-pill bg-info">Wizard</span>
+            <span class="badge rounded-pill bg-success">Healer</span>
+          </div>
+
+          <h3 class="h5">Badge in Context</h3>
+          <div class="sg-example">
+            <h4>Messages <span class="badge bg-primary">4</span></h4>
+            <button type="button" class="btn btn-primary">
+              Notifications <span class="badge bg-light text-dark ms-2">3</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- Modals -->
+        <section id="modals" class="sg-section">
+          <h2>Modals</h2>
+
+          <div class="sg-example">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              Launch Demo Modal
+            </button>
+          </div>
+
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Confirm Registration</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <p>You are about to register for <strong>Winter Council 2024</strong>.</p>
+                  <ul>
+                    <li>Date: March 15-17, 2024</li>
+                    <li>Location: Camp Evergreen</li>
+                    <li>Cost: $125 (Full Weekend)</li>
+                  </ul>
+                  <p>Do you wish to continue?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-primary">Confirm Registration</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================
+             WEB APP ELEMENTS
+             ============================================ -->
+
+        <!-- Toasts -->
+        <section id="toasts" class="sg-section">
+          <h2>Toast Notifications</h2>
+          <p>Stackable notifications that appear in the corner of the screen.</p>
+
+          <div class="sg-example">
+            <button type="button" class="btn btn-primary" id="showToastBtn">Show Toast</button>
+
+            <div class="mt-4">
+              <div class="toast show" role="alert" style="position: relative;">
+                <div class="toast-header">
+                  <i class="bi bi-bell-fill text-primary me-2"></i>
+                  <strong class="me-auto">Notification</strong>
+                  <small>Just now</small>
+                  <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+                </div>
+                <div class="toast-body">
+                  Your character sheet has been updated.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sg-code">
+            <pre><code>&lt;!-- Toast container (fixed position) --&gt;
+&lt;div class="toast-container position-fixed top-0 end-0 p-3"&gt;
+  &lt;div class="toast" role="alert"&gt;
+    &lt;div class="toast-header"&gt;
+      &lt;strong class="me-auto"&gt;Notification&lt;/strong&gt;
+      &lt;button type="button" class="btn-close" data-bs-dismiss="toast"&gt;&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="toast-body"&gt;Message here&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </section>
+
+        <!-- Activity Feed -->
+        <section id="feed" class="sg-section">
+          <h2>Activity Feed</h2>
+
+          <div class="sg-example">
+            <div class="card">
+              <div class="card-header">Recent Activity</div>
+              <div class="card-body p-0">
+                <div class="feed-item">
+                  <div class="feed-avatar" style="background: var(--color-primary-light);"></div>
+                  <div class="feed-content">
+                    <p class="mb-1"><strong>Sir Aldric</strong> joined the Northern Alliance</p>
+                    <p class="feed-meta mb-0">2 hours ago</p>
+                  </div>
+                </div>
+                <div class="feed-item">
+                  <div class="feed-avatar" style="background: var(--color-secondary-light);"></div>
+                  <div class="feed-content">
+                    <p class="mb-1"><strong>Lady Mira</strong> posted a new lore entry: "The Fall of Ironhold"</p>
+                    <p class="feed-meta mb-0">5 hours ago</p>
+                  </div>
+                </div>
+                <div class="feed-item">
+                  <div class="feed-avatar" style="background: var(--color-info);"></div>
+                  <div class="feed-content">
+                    <p class="mb-1"><strong>Winter Council</strong> registration is now open!</p>
+                    <p class="feed-meta mb-0">1 day ago</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Avatars -->
+        <section id="avatars" class="sg-section">
+          <h2>Avatars</h2>
+
+          <div class="sg-example">
+            <div class="d-flex align-items-end gap-3">
+              <div class="text-center">
+                <div class="feed-avatar" style="width: 32px; height: 32px; background: var(--color-primary);"></div>
+                <small class="d-block mt-1">XS</small>
+              </div>
+              <div class="text-center">
+                <div class="feed-avatar" style="width: 40px; height: 40px; background: var(--color-primary);"></div>
+                <small class="d-block mt-1">SM</small>
+              </div>
+              <div class="text-center">
+                <div class="feed-avatar" style="width: 48px; height: 48px; background: var(--color-primary);"></div>
+                <small class="d-block mt-1">MD</small>
+              </div>
+              <div class="text-center">
+                <div class="feed-avatar" style="width: 64px; height: 64px; background: var(--color-primary);"></div>
+                <small class="d-block mt-1">LG</small>
+              </div>
+              <div class="text-center">
+                <div class="feed-avatar" style="width: 96px; height: 96px; background: var(--color-primary);"></div>
+                <small class="d-block mt-1">XL</small>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="h5">Avatar with Status</h3>
+          <div class="sg-example">
+            <div class="d-flex gap-4">
+              <div class="position-relative">
+                <div class="feed-avatar" style="width: 48px; height: 48px; background: var(--color-secondary);"></div>
+                <span class="position-absolute bottom-0 end-0 bg-success rounded-circle" style="width: 12px; height: 12px; border: 2px solid white;"></span>
+              </div>
+              <div class="position-relative">
+                <div class="feed-avatar" style="width: 48px; height: 48px; background: var(--color-secondary);"></div>
+                <span class="position-absolute bottom-0 end-0 bg-danger rounded-circle" style="width: 12px; height: 12px; border: 2px solid white;"></span>
+              </div>
+              <div class="position-relative">
+                <div class="feed-avatar" style="width: 48px; height: 48px; background: var(--color-secondary);"></div>
+                <span class="position-absolute bottom-0 end-0 bg-warning rounded-circle" style="width: 12px; height: 12px; border: 2px solid white;"></span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Character Cards -->
+        <section id="character-cards" class="sg-section">
+          <h2>Character Cards</h2>
+
+          <div class="sg-example">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="character-card">
+                  <div class="character-card-header">
+                    <div class="character-avatar" style="background: var(--color-primary-light);"></div>
+                    <div>
+                      <h4 class="character-name">Sir Aldric Stormwind</h4>
+                      <p class="character-class mb-0">Warrior, Level 5</p>
+                    </div>
+                  </div>
+                  <div class="stat-row">
+                    <span class="stat-label">Faction</span>
+                    <span>Northern Alliance</span>
+                  </div>
+                  <div class="stat-row">
+                    <span class="stat-label">XP</span>
+                    <span>47 / 60</span>
+                  </div>
+                  <div class="stat-row">
+                    <span class="stat-label">Events Attended</span>
+                    <span>12</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Stat Blocks -->
+        <section id="stats" class="sg-section">
+          <h2>Stat Blocks</h2>
+          <p>RPG-style stat blocks for displaying structured game information.</p>
+
+          <div class="sg-example">
+            <div class="stat-block" style="max-width: 400px;">
+              <div class="stat-block-header">Shield Bash</div>
+              <div class="stat-block-subheader">Warrior Combat Skill</div>
+              <div class="stat-row">
+                <span class="stat-label">Cost</span>
+                <span>2 XP</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">Prerequisites</span>
+                <span>Shield Proficiency</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">Call</span>
+                <span>"Shield Bash - Knockback!"</span>
+              </div>
+              <hr class="my-3">
+              <p class="mb-0"><em>Strike your opponent's shield or weapon with your own shield. Target must take 3 steps backward.</em></p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Progress -->
+        <section id="progress" class="sg-section">
+          <h2>Progress Indicators</h2>
+
+          <h3 class="h5">Progress Bars</h3>
+          <div class="sg-example">
+            <div class="mb-3">
+              <label class="form-label">XP Progress (47/60)</label>
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: 78%; background-color: var(--color-primary);">78%</div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Quest Progress</label>
+              <div class="progress">
+                <div class="progress-bar bg-success" role="progressbar" style="width: 33%;">Step 1 of 3</div>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="h5">Loading Spinner</h3>
+          <div class="sg-example">
+            <div class="spinner-border text-primary" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-border text-secondary" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow text-primary" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Empty States -->
+        <section id="empty-states" class="sg-section">
+          <h2>Empty States</h2>
+
+          <div class="sg-example">
+            <div class="text-center py-5">
+              <i class="bi bi-inbox" style="font-size: 3rem; color: var(--color-text-muted);"></i>
+              <h4 class="mt-3">No Messages Yet</h4>
+              <p class="text-muted">When you receive messages from other players, they'll appear here.</p>
+              <button class="btn btn-primary">Find Players</button>
+            </div>
+          </div>
+
+          <div class="sg-example">
+            <div class="text-center py-5">
+              <i class="bi bi-calendar-x" style="font-size: 3rem; color: var(--color-text-muted);"></i>
+              <h4 class="mt-3">No Upcoming Events</h4>
+              <p class="text-muted">Check back soon for new adventures in Osterra.</p>
+              <a href="#" class="btn btn-outline-primary">View Past Events</a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Divider Text -->
+        <section class="sg-section">
+          <h2>Section Dividers</h2>
+
+          <div class="sg-example">
+            <p>Content above the divider.</p>
+            <div class="divider-text"><span>Chapter II</span></div>
+            <p>Content below the divider.</p>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container for Demo -->
+  <div class="toast-container position-fixed top-0 end-0 p-3">
+    <div class="toast" role="alert" id="demoToast">
+      <div class="toast-header">
+        <i class="bi bi-check-circle-fill text-success me-2"></i>
+        <strong class="me-auto">Success</strong>
+        <small>Just now</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+      </div>
+      <div class="toast-body">
+        This is how toast notifications appear!
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Theme Switcher
+    document.querySelectorAll('.theme-switcher button').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const theme = this.dataset.theme;
+        document.documentElement.setAttribute('data-theme', theme);
+        document.getElementById('theme-css').href = `css/theme-${theme}.css`;
+
+        // Update active state
+        document.querySelectorAll('.theme-switcher button').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+
+    // Toast Demo
+    document.getElementById('showToastBtn')?.addEventListener('click', function() {
+      const toast = new bootstrap.Toast(document.getElementById('demoToast'));
+      toast.show();
+    });
+
+    // Smooth scroll for sidebar links
+    document.querySelectorAll('.sg-sidebar a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+  <script src="js/theme-switcher.js"></script>
+</body>
+</html>

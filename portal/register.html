@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dungeon">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Registration - LARP Adventures Portal</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="../css/variables.css" rel="stylesheet">
+  <link href="../css/theme-dungeon.css" rel="stylesheet" id="theme-css">
+  <style>
+    .portal-sidebar { width: var(--sidebar-width); min-height: 100vh; background-color: var(--color-bg-muted); border-right: var(--border-heavy); position: fixed; left: 0; top: 0; padding-top: var(--space-4); }
+    .portal-main { margin-left: var(--sidebar-width); min-height: 100vh; }
+    .portal-header { background-color: var(--color-bg-surface); border-bottom: var(--border-standard); padding: var(--space-3) var(--space-4); }
+    .portal-sidebar .nav-link { color: var(--color-text-secondary); padding: var(--space-2) var(--space-4); border-left: 3px solid transparent; }
+    .portal-sidebar .nav-link:hover, .portal-sidebar .nav-link.active { color: var(--color-primary); background-color: var(--color-bg-subtle); border-left-color: var(--color-primary); }
+    @media (max-width: 991px) { .portal-sidebar { display: none; } .portal-main { margin-left: 0; } }
+
+    .wizard-steps {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: var(--space-6);
+      position: relative;
+    }
+
+    .wizard-steps::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 50px;
+      right: 50px;
+      height: 2px;
+      background-color: var(--color-border);
+      z-index: 0;
+    }
+
+    .wizard-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .wizard-step-number {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-full);
+      background-color: var(--color-bg-muted);
+      border: 2px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: var(--font-bold);
+      margin-bottom: var(--space-2);
+    }
+
+    .wizard-step.active .wizard-step-number {
+      background-color: var(--color-primary);
+      border-color: var(--color-primary);
+      color: white;
+    }
+
+    .wizard-step.completed .wizard-step-number {
+      background-color: var(--color-success);
+      border-color: var(--color-success);
+      color: white;
+    }
+
+    .wizard-step-label {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+    }
+
+    .wizard-step.active .wizard-step-label {
+      color: var(--color-primary);
+      font-weight: var(--font-semibold);
+    }
+
+    .ticket-option {
+      border: var(--border-standard);
+      padding: var(--space-4);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .ticket-option:hover {
+      border-color: var(--color-primary);
+    }
+
+    .ticket-option.selected {
+      border-color: var(--color-primary);
+      background-color: var(--color-primary-subtle);
+    }
+
+    .ticket-option input {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <nav class="portal-sidebar d-none d-lg-block">
+    <div class="px-4 mb-4">
+      <a href="../public/landing.html" class="text-decoration-none"><h1 class="h5 mb-0">LARP Adventures</h1></a>
+      <small class="text-muted">Player Portal</small>
+    </div>
+    <ul class="nav flex-column">
+      <li class="nav-item"><a class="nav-link" href="dashboard.html"><i class="bi bi-house me-2"></i>Dashboard</a></li>
+      <li class="nav-item"><a class="nav-link" href="world.html"><i class="bi bi-globe me-2"></i>My World</a></li>
+      <li class="nav-item"><a class="nav-link" href="../public/event-index.html"><i class="bi bi-calendar-event me-2"></i>Events</a></li>
+      <li class="nav-item"><a class="nav-link active" href="register.html"><i class="bi bi-ticket me-2"></i>Registration</a></li>
+      <li class="nav-item"><a class="nav-link" href="lore.html"><i class="bi bi-scroll me-2"></i>Lore Drops</a></li>
+    </ul>
+  </nav>
+
+  <main class="portal-main">
+    <header class="portal-header">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item"><a href="dashboard.html">Portal</a></li>
+          <li class="breadcrumb-item"><a href="../public/event-index.html">Events</a></li>
+          <li class="breadcrumb-item active">Register for Rites of Spring</li>
+        </ol>
+      </nav>
+    </header>
+
+    <div class="p-4">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <!-- Event Summary -->
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-start">
+                <div>
+                  <h1 class="h3 mb-1">Rites of Spring</h1>
+                  <p class="text-muted mb-0"><i class="bi bi-calendar me-1"></i>March 15-17, 2024 | <i class="bi bi-geo-alt ms-2 me-1"></i>Camp Evergreen, PA</p>
+                </div>
+                <span class="badge bg-success">33 spots left</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Progress Steps -->
+          <div class="wizard-steps">
+            <div class="wizard-step completed">
+              <div class="wizard-step-number"><i class="bi bi-check"></i></div>
+              <span class="wizard-step-label">Ticket</span>
+            </div>
+            <div class="wizard-step active">
+              <div class="wizard-step-number">2</div>
+              <span class="wizard-step-label">Character</span>
+            </div>
+            <div class="wizard-step">
+              <div class="wizard-step-number">3</div>
+              <span class="wizard-step-label">Details</span>
+            </div>
+            <div class="wizard-step">
+              <div class="wizard-step-number">4</div>
+              <span class="wizard-step-label">Payment</span>
+            </div>
+          </div>
+
+          <!-- Step 2: Character Selection -->
+          <div class="card mb-4">
+            <div class="card-header">
+              <strong>Step 2: Select Your Character</strong>
+            </div>
+            <div class="card-body">
+              <p class="text-muted mb-4">Which character will you be playing at this event?</p>
+
+              <div class="row mb-4">
+                <div class="col-md-6 mb-3">
+                  <label class="ticket-option d-block selected">
+                    <input type="radio" name="character" value="aldric" checked>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="character-avatar" style="background: var(--color-primary-light);"></div>
+                      <div>
+                        <strong>Sir Aldric Stormwind</strong>
+                        <p class="text-muted mb-0 small">Warrior, Level 5</p>
+                      </div>
+                    </div>
+                  </label>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label class="ticket-option d-block">
+                    <input type="radio" name="character" value="whisper">
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="character-avatar" style="background: var(--color-secondary-light);"></div>
+                      <div>
+                        <strong>Whisper</strong>
+                        <p class="text-muted mb-0 small">Rogue, Level 2</p>
+                      </div>
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              <div class="border-top pt-4">
+                <a href="#" class="btn btn-outline-secondary btn-sm"><i class="bi bi-plus me-2"></i>Create New Character</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Additional Options -->
+          <div class="card mb-4">
+            <div class="card-header">
+              <strong>Additional Information</strong>
+            </div>
+            <div class="card-body">
+              <div class="mb-3">
+                <label for="dietary" class="form-label">Dietary Restrictions</label>
+                <select class="form-select" id="dietary">
+                  <option selected>None</option>
+                  <option>Vegetarian</option>
+                  <option>Vegan</option>
+                  <option>Gluten-Free</option>
+                  <option>Other (specify below)</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label for="medical" class="form-label">Medical Considerations (Optional)</label>
+                <textarea class="form-control" id="medical" rows="2" placeholder="Any medical conditions or allergies we should be aware of..."></textarea>
+                <small class="text-muted">This information is confidential and only shared with safety staff.</small>
+              </div>
+
+              <div class="mb-3">
+                <label for="cabin" class="form-label">Cabin Preference</label>
+                <select class="form-select" id="cabin">
+                  <option selected>No preference</option>
+                  <option>Northern Alliance members</option>
+                  <option>Quiet cabin</option>
+                  <option>I'd like to bunk with: [specify]</option>
+                </select>
+              </div>
+
+              <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" id="loaner">
+                <label class="form-check-label" for="loaner">I need loaner gear (weapons, costume items)</label>
+              </div>
+
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="carpool">
+                <label class="form-check-label" for="carpool">I'm interested in carpooling (we'll connect you with other players)</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Order Summary -->
+          <div class="card mb-4" style="background-color: var(--color-bg-muted);">
+            <div class="card-header">
+              <strong>Order Summary</strong>
+            </div>
+            <div class="card-body">
+              <div class="d-flex justify-content-between mb-2">
+                <span>Full Weekend Ticket</span>
+                <span>$125.00</span>
+              </div>
+              <div class="d-flex justify-content-between mb-2 text-success">
+                <span>Early Bird Discount</span>
+                <span>-$15.00</span>
+              </div>
+              <hr>
+              <div class="d-flex justify-content-between fw-bold" style="font-size: var(--text-lg);">
+                <span>Total</span>
+                <span>$110.00</span>
+              </div>
+              <small class="text-muted">Early bird pricing ends March 1, 2024</small>
+            </div>
+          </div>
+
+          <!-- Navigation -->
+          <div class="d-flex justify-content-between">
+            <a href="#" class="btn btn-outline-secondary"><i class="bi bi-arrow-left me-2"></i>Back</a>
+            <button class="btn btn-primary">Continue to Payment <i class="bi bi-arrow-right ms-2"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Ticket option selection
+    document.querySelectorAll('.ticket-option').forEach(option => {
+      option.addEventListener('click', function() {
+        document.querySelectorAll('.ticket-option').forEach(o => o.classList.remove('selected'));
+        this.classList.add('selected');
+      });
+    });
+  </script>
+  <script src="../js/theme-switcher.js"></script>
+</body>
+</html>

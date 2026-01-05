@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dungeon">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - LARP Adventures Portal</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="../css/variables.css" rel="stylesheet">
+  <link href="../css/theme-dungeon.css" rel="stylesheet" id="theme-css">
+  <style>
+    .portal-sidebar {
+      width: var(--sidebar-width);
+      min-height: 100vh;
+      background-color: var(--color-bg-muted);
+      border-right: var(--border-heavy);
+      position: fixed;
+      left: 0;
+      top: 0;
+      padding-top: var(--space-4);
+      overflow-y: auto;
+    }
+
+    .portal-main {
+      margin-left: var(--sidebar-width);
+      min-height: 100vh;
+    }
+
+    .portal-header {
+      background-color: var(--color-bg-surface);
+      border-bottom: var(--border-standard);
+      padding: var(--space-3) var(--space-4);
+      position: sticky;
+      top: 0;
+      z-index: var(--z-sticky);
+    }
+
+    .portal-sidebar .nav-link {
+      color: var(--color-text-secondary);
+      padding: var(--space-2) var(--space-4);
+      border-left: 3px solid transparent;
+    }
+
+    .portal-sidebar .nav-link:hover,
+    .portal-sidebar .nav-link.active {
+      color: var(--color-primary);
+      background-color: var(--color-bg-subtle);
+      border-left-color: var(--color-primary);
+    }
+
+    .portal-sidebar .nav-link i {
+      width: 24px;
+    }
+
+    .stat-card {
+      background-color: var(--color-bg-surface);
+      border: var(--border-standard);
+      padding: var(--space-4);
+      text-align: center;
+    }
+
+    .stat-card-value {
+      font-size: var(--text-3xl);
+      font-weight: var(--font-bold);
+      color: var(--color-primary);
+    }
+
+    .stat-card-label {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-wide);
+    }
+
+    .digest-card {
+      border-left: var(--border-width-thick) solid var(--color-primary);
+    }
+
+    @media (max-width: 991px) {
+      .portal-sidebar {
+        transform: translateX(-100%);
+        z-index: var(--z-modal);
+        transition: transform var(--transition-normal);
+      }
+
+      .portal-sidebar.show {
+        transform: translateX(0);
+      }
+
+      .portal-main {
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <nav class="portal-sidebar d-none d-lg-block">
+    <div class="px-4 mb-4">
+      <a href="../public/landing.html" class="text-decoration-none">
+        <h1 class="h5 mb-0" style="font-family: var(--font-heading);">LARP Adventures</h1>
+      </a>
+      <small class="text-muted">Player Portal</small>
+    </div>
+
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link active" href="dashboard.html">
+          <i class="bi bi-house me-2"></i>Dashboard
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="world.html">
+          <i class="bi bi-globe me-2"></i>My World
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="feed.html">
+          <i class="bi bi-rss me-2"></i>Activity Feed
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="profile.html">
+          <i class="bi bi-person me-2"></i>My Profile
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="character.html">
+          <i class="bi bi-person-badge me-2"></i>Characters
+        </a>
+      </li>
+
+      <li class="nav-item mt-3">
+        <small class="px-4 text-muted text-uppercase" style="letter-spacing: var(--tracking-wider);">Play</small>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="lore.html">
+          <i class="bi bi-scroll me-2"></i>Lore Drops
+          <span class="badge bg-primary ms-auto">3</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="spellbook.html">
+          <i class="bi bi-book me-2"></i>Spellbook
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="group.html">
+          <i class="bi bi-people me-2"></i>My Coalition
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="marketplace.html">
+          <i class="bi bi-shop me-2"></i>Marketplace
+        </a>
+      </li>
+
+      <li class="nav-item mt-3">
+        <small class="px-4 text-muted text-uppercase" style="letter-spacing: var(--tracking-wider);">Events</small>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../public/event-index.html">
+          <i class="bi bi-calendar-event me-2"></i>Upcoming Events
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="register.html">
+          <i class="bi bi-ticket me-2"></i>My Registrations
+        </a>
+      </li>
+
+      <li class="nav-item mt-3">
+        <small class="px-4 text-muted text-uppercase" style="letter-spacing: var(--tracking-wider);">Community</small>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="forum-index.html">
+          <i class="bi bi-chat-dots me-2"></i>Forums
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="notifications.html">
+          <i class="bi bi-bell me-2"></i>Notifications
+          <span class="badge bg-primary ms-auto">3</span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="mt-auto p-4" style="position: absolute; bottom: 0; width: 100%;">
+      <hr>
+      <a class="nav-link" href="settings.html">
+        <i class="bi bi-gear me-2"></i>Settings
+      </a>
+      <a class="nav-link text-danger" href="../public/landing.html">
+        <i class="bi bi-box-arrow-left me-2"></i>Sign Out
+      </a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="portal-main">
+    <!-- Header -->
+    <header class="portal-header d-flex justify-content-between align-items-center">
+      <div class="d-flex align-items-center">
+        <button class="btn btn-outline-secondary d-lg-none me-3" type="button">
+          <i class="bi bi-list"></i>
+        </button>
+        <h1 class="h4 mb-0">Dashboard</h1>
+      </div>
+      <div class="d-flex align-items-center gap-3">
+        <a href="notifications.html" class="btn btn-outline-secondary position-relative">
+          <i class="bi bi-bell"></i>
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">3</span>
+        </a>
+        <div class="dropdown">
+          <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+            <i class="bi bi-person-circle me-1"></i>Sir Aldric
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="profile.html">My Profile</a></li>
+            <li><a class="dropdown-item" href="settings.html">Settings</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item text-danger" href="../public/landing.html">Sign Out</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="p-4">
+      <!-- Welcome / Since Last Login -->
+      <section class="mb-5">
+        <div class="card digest-card">
+          <div class="card-body">
+            <h2 class="h5 mb-3"><i class="bi bi-sunrise me-2"></i>Welcome back, Sir Aldric!</h2>
+            <p class="mb-3">Here's what happened since your last visit (3 days ago):</p>
+            <ul class="mb-0">
+              <li><strong>Rites of Spring</strong> registration is now open - 47 of 80 spots filled</li>
+              <li>New lore entry: <a href="lore.html">"The Fall of Ironhold"</a> - <span class="text-primary">unread</span></li>
+              <li>Combat rules updated to version 3.2 - <a href="#">see changes</a></li>
+              <li>2 new messages in the <a href="#">Northern Alliance forum</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Quick Stats -->
+      <section class="mb-5">
+        <div class="row">
+          <div class="col-6 col-md-3 mb-3">
+            <div class="stat-card">
+              <div class="stat-card-value">47</div>
+              <div class="stat-card-label">Total XP</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3 mb-3">
+            <div class="stat-card">
+              <div class="stat-card-value">12</div>
+              <div class="stat-card-label">Events Attended</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3 mb-3">
+            <div class="stat-card">
+              <div class="stat-card-value">2</div>
+              <div class="stat-card-label">Characters</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3 mb-3">
+            <div class="stat-card">
+              <div class="stat-card-value">5</div>
+              <div class="stat-card-label">Level</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="row">
+        <!-- Next Event -->
+        <div class="col-lg-6 mb-4">
+          <div class="card h-100">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <strong>Next Event</strong>
+              <span class="badge bg-success">Registered</span>
+            </div>
+            <div class="card-body">
+              <h3 class="h5">Rites of Spring</h3>
+              <p class="text-muted mb-2"><i class="bi bi-calendar me-1"></i>March 15-17, 2024</p>
+              <p class="text-muted mb-3"><i class="bi bi-geo-alt me-1"></i>Camp Evergreen, PA</p>
+
+              <div class="progress mb-3" style="height: 8px;">
+                <div class="progress-bar" role="progressbar" style="width: 59%; background-color: var(--color-primary);"></div>
+              </div>
+              <small class="text-muted">47 of 80 registered</small>
+
+              <hr>
+
+              <p class="mb-2"><strong>Your Registration:</strong></p>
+              <ul class="list-unstyled mb-0">
+                <li><i class="bi bi-check-circle text-success me-2"></i>Full Weekend - $125</li>
+                <li><i class="bi bi-check-circle text-success me-2"></i>Playing as: Sir Aldric</li>
+                <li><i class="bi bi-check-circle text-success me-2"></i>Cabin assignment: Oakwood Lodge</li>
+              </ul>
+            </div>
+            <div class="card-footer">
+              <a href="../public/event-detail.html" class="btn btn-outline-primary btn-sm">View Event Details</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Active Character -->
+        <div class="col-lg-6 mb-4">
+          <div class="card h-100">
+            <div class="card-header">
+              <strong>Active Character</strong>
+            </div>
+            <div class="card-body">
+              <div class="character-card-header mb-3">
+                <div class="character-avatar" style="background: var(--color-primary-light);"></div>
+                <div>
+                  <h4 class="character-name">Sir Aldric Stormwind</h4>
+                  <p class="character-class mb-0">Warrior, Level 5</p>
+                </div>
+              </div>
+
+              <div class="stat-row">
+                <span class="stat-label">Faction</span>
+                <span>Northern Alliance</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">XP Progress</span>
+                <span>47 / 60</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">Resurrection Tokens</span>
+                <span>3</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">Gold</span>
+                <span>127 coins</span>
+              </div>
+            </div>
+            <div class="card-footer">
+              <a href="character.html" class="btn btn-outline-primary btn-sm">View Full Sheet</a>
+              <a href="spellbook.html" class="btn btn-outline-secondary btn-sm">Open Spellbook</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Latest Lore Drop -->
+      <div class="row mb-4">
+        <div class="col-12">
+          <div class="card" style="border-left: var(--border-width-thick) solid var(--color-info);">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="d-flex gap-3">
+                  <div style="width: 48px; height: 48px; background-color: var(--color-info-bg); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;">
+                    <i class="bi bi-scroll" style="font-size: 1.5rem; color: var(--color-info);"></i>
+                  </div>
+                  <div>
+                    <span class="badge bg-info mb-1">New Lore</span>
+                    <h3 class="h5 mb-1"><a href="lore.html" class="text-decoration-none">The Fall of Ironhold</a></h3>
+                    <p class="text-muted mb-0 small">The dwarven stronghold has fallen to an ancient darkness. Learn what this means for the realm of Osterra...</p>
+                  </div>
+                </div>
+                <a href="lore.html" class="btn btn-outline-primary btn-sm">Read Now</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Activity -->
+      <section>
+        <div class="card">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <strong>Recent Activity</strong>
+            <a href="feed.html" class="btn btn-outline-primary btn-sm">View All</a>
+          </div>
+          <div class="card-body p-0">
+            <div class="feed-item">
+              <div class="feed-avatar" style="background: var(--color-success);"></div>
+              <div class="feed-content">
+                <p class="mb-1"><strong>Rules Committee</strong> published Combat Rules v3.2</p>
+                <p class="feed-meta mb-0">2 hours ago</p>
+              </div>
+            </div>
+            <div class="feed-item">
+              <div class="feed-avatar" style="background: var(--color-info);"></div>
+              <div class="feed-content">
+                <p class="mb-1">New lore entry: <a href="lore.html">"The Fall of Ironhold"</a></p>
+                <p class="feed-meta mb-0">1 day ago</p>
+              </div>
+            </div>
+            <div class="feed-item">
+              <div class="feed-avatar" style="background: var(--color-primary);"></div>
+              <div class="feed-content">
+                <p class="mb-1"><strong>Lady Mira</strong> replied to your forum post</p>
+                <p class="feed-meta mb-0">2 days ago</p>
+              </div>
+            </div>
+            <div class="feed-item">
+              <div class="feed-avatar" style="background: var(--color-secondary);"></div>
+              <div class="feed-content">
+                <p class="mb-1">You registered for <strong>Rites of Spring</strong></p>
+                <p class="feed-meta mb-0">3 days ago</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Toast Container -->
+  <div class="toast-container position-fixed top-0 end-0 p-3">
+    <div class="toast" role="alert" id="welcomeToast">
+      <div class="toast-header">
+        <i class="bi bi-bell-fill text-primary me-2"></i>
+        <strong class="me-auto">Welcome Back!</strong>
+        <small>Just now</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+      </div>
+      <div class="toast-body">
+        You have 3 unread notifications.
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Show welcome toast on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      const toast = new bootstrap.Toast(document.getElementById('welcomeToast'));
+      setTimeout(() => toast.show(), 1000);
+    });
+  </script>
+  <script src="../js/theme-switcher.js"></script>
+</body>
+</html>

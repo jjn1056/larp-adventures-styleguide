@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dungeon">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notifications - LARP Adventures Portal</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="../css/variables.css" rel="stylesheet">
+  <link href="../css/theme-dungeon.css" rel="stylesheet" id="theme-css">
+  <style>
+    .portal-sidebar { width: var(--sidebar-width); min-height: 100vh; background-color: var(--color-bg-muted); border-right: var(--border-heavy); position: fixed; left: 0; top: 0; padding-top: var(--space-4); }
+    .portal-main { margin-left: var(--sidebar-width); min-height: 100vh; }
+    .portal-header { background-color: var(--color-bg-surface); border-bottom: var(--border-standard); padding: var(--space-3) var(--space-4); }
+    .portal-sidebar .nav-link { color: var(--color-text-secondary); padding: var(--space-2) var(--space-4); border-left: 3px solid transparent; }
+    .portal-sidebar .nav-link:hover, .portal-sidebar .nav-link.active { color: var(--color-primary); background-color: var(--color-bg-subtle); border-left-color: var(--color-primary); }
+    @media (max-width: 991px) { .portal-sidebar { display: none; } .portal-main { margin-left: 0; } }
+
+    .notification-item {
+      display: flex;
+      gap: var(--space-3);
+      padding: var(--space-3) var(--space-4);
+      border-bottom: var(--border-standard);
+      background-color: var(--color-bg-surface);
+    }
+
+    .notification-item.unread {
+      background-color: var(--color-primary-subtle);
+      border-left: var(--border-width-thick) solid var(--color-primary);
+    }
+
+    .notification-item:hover {
+      background-color: var(--color-bg-subtle);
+    }
+
+    .notification-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .notification-content {
+      flex: 1;
+    }
+
+    .notification-actions {
+      opacity: 0;
+      transition: opacity var(--transition-fast);
+    }
+
+    .notification-item:hover .notification-actions {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <nav class="portal-sidebar d-none d-lg-block">
+    <div class="px-4 mb-4">
+      <a href="../public/landing.html" class="text-decoration-none"><h1 class="h5 mb-0">LARP Adventures</h1></a>
+      <small class="text-muted">Player Portal</small>
+    </div>
+    <ul class="nav flex-column">
+      <li class="nav-item"><a class="nav-link" href="dashboard.html"><i class="bi bi-house me-2"></i>Dashboard</a></li>
+      <li class="nav-item"><a class="nav-link" href="world.html"><i class="bi bi-globe me-2"></i>My World</a></li>
+      <li class="nav-item"><a class="nav-link" href="feed.html"><i class="bi bi-rss me-2"></i>Activity Feed</a></li>
+      <li class="nav-item"><a class="nav-link active" href="notifications.html"><i class="bi bi-bell me-2"></i>Notifications<span class="badge bg-primary ms-auto">3</span></a></li>
+      <li class="nav-item"><a class="nav-link" href="lore.html"><i class="bi bi-scroll me-2"></i>Lore Drops</a></li>
+      <li class="nav-item"><a class="nav-link" href="settings.html"><i class="bi bi-gear me-2"></i>Settings</a></li>
+    </ul>
+  </nav>
+
+  <main class="portal-main">
+    <header class="portal-header d-flex justify-content-between align-items-center">
+      <h1 class="h4 mb-0">Notifications</h1>
+      <div class="d-flex gap-2">
+        <button class="btn btn-outline-secondary btn-sm">Mark All Read</button>
+        <div class="dropdown">
+          <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">
+            Filter
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item active" href="#">All</a></li>
+            <li><a class="dropdown-item" href="#">Unread</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Announcements</a></li>
+            <li><a class="dropdown-item" href="#">Events</a></li>
+            <li><a class="dropdown-item" href="#">Forum</a></li>
+            <li><a class="dropdown-item" href="#">Rules Updates</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <div class="notification-list">
+      <!-- Unread Notifications -->
+      <div class="notification-item unread">
+        <div class="notification-icon" style="background-color: var(--color-info);">
+          <i class="bi bi-megaphone text-white"></i>
+        </div>
+        <div class="notification-content">
+          <p class="mb-1"><strong>Combat Rules Updated</strong></p>
+          <p class="mb-1">The rules committee has published Combat Rules v3.2 with changes to Shield Bash, Backstab, and ranged weapons.</p>
+          <small class="text-muted">2 hours ago</small>
+        </div>
+        <div class="notification-actions">
+          <button class="btn btn-sm btn-outline-secondary" title="Mark as read"><i class="bi bi-check"></i></button>
+          <button class="btn btn-sm btn-outline-secondary" title="Delete"><i class="bi bi-trash"></i></button>
+        </div>
+      </div>
+
+      <div class="notification-item unread">
+        <div class="notification-icon" style="background-color: var(--color-success);">
+          <i class="bi bi-book text-white"></i>
+        </div>
+        <div class="notification-content">
+          <p class="mb-1"><strong>New Lore Entry</strong></p>
+          <p class="mb-1">"The Fall of Ironhold" has been added to the world lore. This story sets the stage for upcoming events.</p>
+          <small class="text-muted">1 day ago</small>
+        </div>
+        <div class="notification-actions">
+          <button class="btn btn-sm btn-outline-secondary" title="Mark as read"><i class="bi bi-check"></i></button>
+          <button class="btn btn-sm btn-outline-secondary" title="Delete"><i class="bi bi-trash"></i></button>
+        </div>
+      </div>
+
+      <div class="notification-item unread">
+        <div class="notification-icon" style="background-color: var(--color-primary);">
+          <i class="bi bi-chat text-white"></i>
+        </div>
+        <div class="notification-content">
+          <p class="mb-1"><strong>Lady Mira replied to your post</strong></p>
+          <p class="mb-1">"I agree with your assessment. The Northern Alliance should focus on..."</p>
+          <small class="text-muted">2 days ago</small>
+        </div>
+        <div class="notification-actions">
+          <button class="btn btn-sm btn-outline-secondary" title="Mark as read"><i class="bi bi-check"></i></button>
+          <button class="btn btn-sm btn-outline-secondary" title="Delete"><i class="bi bi-trash"></i></button>
+        </div>
+      </div>
+
+      <!-- Read Notifications -->
+      <div class="notification-item">
+        <div class="notification-icon" style="background-color: var(--color-secondary);">
+          <i class="bi bi-calendar-check text-white"></i>
+        </div>
+        <div class="notification-content">
+          <p class="mb-1"><strong>Registration Confirmed</strong></p>
+          <p class="mb-1">Your registration for Rites of Spring (March 15-17) has been confirmed. Payment received.</p>
+          <small class="text-muted">3 days ago</small>
+        </div>
+        <div class="notification-actions">
+          <button class="btn btn-sm btn-outline-secondary" title="Delete"><i class="bi bi-trash"></i></button>
+        </div>
+      </div>
+
+      <div class="notification-item">
+        <div class="notification-icon" style="background-color: var(--color-warning);">
+          <i class="bi bi-calendar-event text-dark"></i>
+        </div>
+        <div class="notification-content">
+          <p class="mb-1"><strong>Event Reminder</strong></p>
+          <p class="mb-1">Rites of Spring is in 3 weeks! Don't forget to review the event details and packing list.</p>
+          <small class="text-muted">5 days ago</small>
+        </div>
+        <div class="notification-actions">
+          <button class="btn btn-sm btn-outline-secondary" title="Delete"><i class="bi bi-trash"></i></button>
+        </div>
+      </div>
+
+      <div class="notification-item">
+        <div class="notification-icon" style="background-color: var(--color-secondary);">
+          <i class="bi bi-people text-white"></i>
+        </div>
+        <div class="notification-content">
+          <p class="mb-1"><strong>Northern Alliance Update</strong></p>
+          <p class="mb-1">Lady Mira has been elected as the new Speaker. Read her welcome message in the faction forum.</p>
+          <small class="text-muted">1 week ago</small>
+        </div>
+        <div class="notification-actions">
+          <button class="btn btn-sm btn-outline-secondary" title="Delete"><i class="bi bi-trash"></i></button>
+        </div>
+      </div>
+
+      <div class="notification-item">
+        <div class="notification-icon" style="background-color: var(--color-info);">
+          <i class="bi bi-star text-white"></i>
+        </div>
+        <div class="notification-content">
+          <p class="mb-1"><strong>Achievement Unlocked!</strong></p>
+          <p class="mb-1">You've earned the "Veteran" badge for attending 10+ events. Congratulations!</p>
+          <small class="text-muted">2 weeks ago</small>
+        </div>
+        <div class="notification-actions">
+          <button class="btn btn-sm btn-outline-secondary" title="Delete"><i class="bi bi-trash"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Load More -->
+    <div class="p-4 text-center">
+      <button class="btn btn-outline-primary">Load Older Notifications</button>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/theme-switcher.js"></script>
+</body>
+</html>

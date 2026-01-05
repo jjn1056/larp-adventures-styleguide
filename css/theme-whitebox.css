@@ -1,0 +1,710 @@
+/*
+ * Theme: White Box (Minimal/Stark)
+ * Inspired by original D&D white box booklets (1974)
+ * Pure white, single red accent, hairline rules, maximum whitespace
+ */
+
+[data-theme="whitebox"] {
+  /* ========================================
+     COLOR PALETTE
+     ======================================== */
+
+  /* Primary - Classic Red */
+  --color-primary: #c41e3a;
+  --color-primary-hover: #a3182f;
+  --color-primary-active: #821225;
+  --color-primary-light: #e8a3af;
+  --color-primary-subtle: #fdf2f4;
+
+  /* Secondary - Pure Black */
+  --color-secondary: #1a1a1a;
+  --color-secondary-hover: #333333;
+  --color-secondary-active: #000000;
+  --color-secondary-light: #999999;
+  --color-secondary-subtle: #f5f5f5;
+
+  /* Backgrounds - Pure White */
+  --color-bg-page: #ffffff;
+  --color-bg-surface: #ffffff;
+  --color-bg-elevated: #ffffff;
+  --color-bg-muted: #f8f8f8;
+  --color-bg-subtle: #fcfcfc;
+
+  /* Text */
+  --color-text-primary: #000000;
+  --color-text-secondary: #333333;
+  --color-text-muted: #666666;
+  --color-text-inverse: #ffffff;
+  --color-text-link: #c41e3a;
+  --color-text-link-hover: #a3182f;
+
+  /* Borders - Hairline */
+  --color-border: #e0e0e0;
+  --color-border-light: #f0f0f0;
+  --color-border-dark: #000000;
+
+  /* Status Colors - Muted, minimal */
+  --color-success: #1a5a1a;
+  --color-success-bg: #f0f8f0;
+  --color-success-border: #ccddcc;
+
+  --color-warning: #665500;
+  --color-warning-bg: #fffef0;
+  --color-warning-border: #eeddaa;
+
+  --color-danger: #c41e3a;
+  --color-danger-bg: #fdf2f4;
+  --color-danger-border: #e8a3af;
+
+  --color-info: #1a1a5a;
+  --color-info-bg: #f0f0f8;
+  --color-info-border: #ccccdd;
+
+  /* ========================================
+     TYPOGRAPHY OVERRIDES
+     ======================================== */
+
+  /* Mixed: Sans-serif headings, serif body (like original booklets) */
+  --font-heading: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-body: Georgia, 'Times New Roman', 'Liberation Serif', serif;
+
+  /* ========================================
+     BORDER STYLES (Hairline minimalism)
+     ======================================== */
+
+  --border-style: solid;
+  --border-color: var(--color-border);
+  --border-standard: 1px var(--border-style) var(--color-border);
+  --border-heavy: 1px var(--border-style) var(--color-border-dark);
+
+  /* ========================================
+     COMPONENT-SPECIFIC TOKENS
+     ======================================== */
+
+  /* Cards */
+  --card-bg: var(--color-bg-surface);
+  --card-border: var(--border-standard);
+  --card-shadow: none;
+  --card-radius: var(--radius-none);
+
+  /* Buttons */
+  --btn-radius: var(--radius-none);
+  --btn-font-weight: var(--font-normal);
+  --btn-text-transform: none;
+  --btn-letter-spacing: normal;
+
+  /* Tables */
+  --table-border: var(--border-standard);
+  --table-header-bg: transparent;
+  --table-stripe-bg: transparent;
+
+  /* Forms */
+  --input-bg: var(--color-bg-elevated);
+  --input-border: var(--border-standard);
+  --input-focus-border-color: var(--color-primary);
+  --input-radius: var(--radius-none);
+
+  /* Navigation */
+  --nav-bg: var(--color-bg-surface);
+  --nav-border: var(--border-heavy);
+  --nav-link-color: var(--color-text-primary);
+  --nav-link-hover-color: var(--color-primary);
+
+  /* Alerts/Callouts */
+  --alert-radius: var(--radius-none);
+  --alert-border-width: 1px;
+}
+
+/* ========================================
+   BASE STYLES
+   ======================================== */
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-loose);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-page);
+}
+
+/* Headings - Clean sans-serif, minimal */
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: var(--font-heading);
+  font-weight: var(--font-normal);
+  line-height: var(--leading-tight);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-4);
+}
+
+h1, .h1 {
+  font-size: var(--text-4xl);
+  font-weight: var(--font-light);
+  letter-spacing: var(--tracking-tight);
+  margin-bottom: var(--space-8);
+}
+
+h2, .h2 {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-normal);
+  color: var(--color-primary);
+  margin-top: var(--space-8);
+  margin-bottom: var(--space-4);
+}
+
+h3, .h3 {
+  font-size: var(--text-xl);
+  font-weight: var(--font-medium);
+}
+
+h4, .h4 {
+  font-size: var(--text-lg);
+  font-weight: var(--font-medium);
+}
+
+h5, .h5 {
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+}
+
+h6, .h6 {
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  color: var(--color-text-muted);
+}
+
+/* Links - Subtle, red on hover */
+a {
+  color: var(--color-text-primary);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-border);
+  transition: all var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
+/* Paragraphs - Generous spacing */
+p {
+  margin-bottom: var(--space-5);
+  max-width: 65ch;
+}
+
+/* Lists */
+ul, ol {
+  margin-bottom: var(--space-5);
+  padding-left: var(--space-6);
+}
+
+li {
+  margin-bottom: var(--space-2);
+  line-height: var(--leading-relaxed);
+}
+
+/* Blockquotes - Simple, indented */
+blockquote {
+  font-style: italic;
+  margin: var(--space-6) var(--space-8);
+  padding-left: var(--space-4);
+  border-left: 2px solid var(--color-primary);
+  color: var(--color-text-secondary);
+}
+
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* Horizontal Rules - Hairline */
+hr {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: var(--space-8) 0;
+}
+
+/* Code - Minimal styling */
+code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  color: var(--color-primary);
+}
+
+pre {
+  font-family: var(--font-mono);
+  padding: var(--space-4);
+  overflow-x: auto;
+  border: var(--border-standard);
+  margin-bottom: var(--space-5);
+  background-color: var(--color-bg-muted);
+}
+
+pre code {
+  color: var(--color-text-primary);
+}
+
+/* ========================================
+   BOOTSTRAP OVERRIDES
+   ======================================== */
+
+/* Buttons - Minimal, flat */
+.btn-primary {
+  --bs-btn-bg: var(--color-primary);
+  --bs-btn-border-color: var(--color-primary);
+  --bs-btn-hover-bg: var(--color-primary-hover);
+  --bs-btn-hover-border-color: var(--color-primary-hover);
+  --bs-btn-active-bg: var(--color-primary-active);
+  --bs-btn-active-border-color: var(--color-primary-active);
+  font-weight: var(--btn-font-weight);
+  border-radius: var(--btn-radius);
+}
+
+.btn-secondary {
+  --bs-btn-bg: var(--color-secondary);
+  --bs-btn-border-color: var(--color-secondary);
+  --bs-btn-hover-bg: var(--color-secondary-hover);
+  --bs-btn-hover-border-color: var(--color-secondary-hover);
+  --bs-btn-active-bg: var(--color-secondary-active);
+  --bs-btn-active-border-color: var(--color-secondary-active);
+  font-weight: var(--btn-font-weight);
+  border-radius: var(--btn-radius);
+}
+
+.btn-outline-primary {
+  --bs-btn-color: var(--color-primary);
+  --bs-btn-border-color: var(--color-primary);
+  --bs-btn-hover-bg: var(--color-primary);
+  --bs-btn-hover-border-color: var(--color-primary);
+  --bs-btn-active-bg: var(--color-primary-hover);
+  --bs-btn-active-border-color: var(--color-primary-hover);
+  font-weight: var(--btn-font-weight);
+  border-radius: var(--btn-radius);
+}
+
+.btn-outline-secondary {
+  --bs-btn-color: var(--color-secondary);
+  --bs-btn-border-color: var(--color-border);
+  --bs-btn-hover-bg: var(--color-secondary);
+  --bs-btn-hover-border-color: var(--color-secondary);
+  border-radius: var(--btn-radius);
+}
+
+.btn {
+  border-radius: var(--btn-radius);
+}
+
+/* Cards - Minimal borders */
+.card {
+  --bs-card-bg: var(--card-bg);
+  --bs-card-border-color: var(--color-border);
+  --bs-card-border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  border-radius: var(--card-radius);
+}
+
+.card-header {
+  background-color: transparent;
+  border-bottom: var(--border-standard);
+  font-family: var(--font-heading);
+  font-weight: var(--font-medium);
+  border-radius: 0;
+}
+
+.card-footer {
+  padding: var(--space-3) var(--space-4);
+  background-color: transparent;
+  border-top: var(--border-standard);
+}
+
+/* Tables - Clean, minimal lines */
+.table {
+  --bs-table-bg: transparent;
+  --bs-table-border-color: var(--color-border);
+}
+
+.table > thead {
+  font-family: var(--font-heading);
+  font-weight: var(--font-medium);
+  border-bottom: 2px solid var(--color-border-dark);
+}
+
+.table > thead th {
+  font-weight: var(--font-medium);
+  text-transform: uppercase;
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-wide);
+}
+
+.table > tbody > tr {
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.table > tbody > tr:last-child {
+  border-bottom: none;
+}
+
+/* No striping by default - cleaner */
+.table-striped > tbody > tr:nth-of-type(odd) {
+  --bs-table-striped-bg: transparent;
+}
+
+/* Forms - Minimal */
+.form-control, .form-select {
+  background-color: var(--input-bg);
+  border: var(--input-border);
+  border-radius: var(--input-radius);
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: var(--input-focus-border-color);
+  box-shadow: none;
+}
+
+.form-label {
+  font-family: var(--font-heading);
+  font-weight: var(--font-medium);
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-2);
+}
+
+/* Alerts - Minimal, text-focused */
+.alert {
+  border-radius: var(--alert-radius);
+  border-width: var(--alert-border-width);
+  border-left-width: 3px;
+}
+
+.alert-success {
+  --bs-alert-bg: var(--color-success-bg);
+  --bs-alert-border-color: var(--color-success-border);
+  --bs-alert-color: var(--color-success);
+  border-left-color: var(--color-success);
+}
+
+.alert-warning {
+  --bs-alert-bg: var(--color-warning-bg);
+  --bs-alert-border-color: var(--color-warning-border);
+  --bs-alert-color: var(--color-warning);
+  border-left-color: var(--color-warning);
+}
+
+.alert-danger {
+  --bs-alert-bg: var(--color-danger-bg);
+  --bs-alert-border-color: var(--color-danger-border);
+  --bs-alert-color: var(--color-danger);
+  border-left-color: var(--color-primary);
+}
+
+.alert-info {
+  --bs-alert-bg: var(--color-info-bg);
+  --bs-alert-border-color: var(--color-info-border);
+  --bs-alert-color: var(--color-info);
+  border-left-color: var(--color-info);
+}
+
+/* Navbar - Clean white */
+.navbar {
+  background-color: var(--color-bg-surface);
+  border-bottom: var(--border-heavy);
+}
+
+.navbar-brand {
+  font-family: var(--font-heading);
+  font-weight: var(--font-light);
+  font-size: var(--text-xl);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text-primary);
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: var(--color-text-secondary);
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+  color: var(--color-primary);
+}
+
+/* Badges - Minimal */
+.badge {
+  font-family: var(--font-heading);
+  font-weight: var(--font-medium);
+  font-size: var(--text-xs);
+  border-radius: 0;
+  padding: var(--space-1) var(--space-2);
+}
+
+.badge.bg-primary {
+  background-color: var(--color-primary) !important;
+}
+
+.badge.bg-secondary {
+  background-color: var(--color-secondary) !important;
+}
+
+/* Breadcrumbs */
+.breadcrumb {
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+}
+
+/* Pagination */
+.page-link {
+  border-radius: 0;
+  font-family: var(--font-heading);
+}
+
+.page-item.active .page-link {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+/* ========================================
+   CUSTOM COMPONENTS
+   ======================================== */
+
+/* Callout - Simple boxed text */
+.callout {
+  background-color: var(--color-bg-muted);
+  border: none;
+  border-left: 3px solid var(--color-primary);
+  padding: var(--space-4) var(--space-5);
+  margin-bottom: var(--space-5);
+}
+
+.callout-title {
+  font-family: var(--font-heading);
+  font-weight: var(--font-medium);
+  font-size: var(--text-base);
+  margin-bottom: var(--space-2);
+  color: var(--color-primary);
+}
+
+/* Stat block (Original D&D style - minimal) */
+.stat-block {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border-dark);
+  padding: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+.stat-block-header {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: var(--font-normal);
+  border-bottom: 1px solid var(--color-border-dark);
+  padding-bottom: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.stat-block-subheader {
+  font-style: italic;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-3);
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--space-1) 0;
+}
+
+.stat-label {
+  font-family: var(--font-heading);
+  font-weight: var(--font-medium);
+  font-size: var(--text-sm);
+}
+
+.stat-value {
+  font-weight: var(--font-normal);
+}
+
+/* Section divider with text */
+.divider-text {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: var(--space-8) 0;
+}
+
+.divider-text::before,
+.divider-text::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.divider-text span {
+  padding: 0 var(--space-4);
+  font-family: var(--font-heading);
+  font-weight: var(--font-medium);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+/* Two-column layout */
+.two-column {
+  column-count: 2;
+  column-gap: var(--space-10);
+}
+
+@media (max-width: 768px) {
+  .two-column {
+    column-count: 1;
+  }
+}
+
+/* Toast notifications */
+.toast-container {
+  position: fixed;
+  top: var(--space-4);
+  right: var(--space-4);
+  z-index: var(--z-toast);
+}
+
+.toast {
+  border-radius: 0;
+  border: 1px solid var(--color-border);
+}
+
+.toast-header {
+  background-color: transparent;
+  border-bottom: 1px solid var(--color-border);
+  font-family: var(--font-heading);
+  font-weight: var(--font-medium);
+  border-radius: 0;
+}
+
+/* Activity feed item */
+.feed-item {
+  display: flex;
+  gap: var(--space-4);
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.feed-item:last-child {
+  border-bottom: none;
+}
+
+.feed-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-bg-muted);
+  flex-shrink: 0;
+  border: 1px solid var(--color-border);
+}
+
+.feed-content {
+  flex: 1;
+}
+
+.feed-meta {
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+/* Character card */
+.character-card {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border-dark);
+  padding: var(--space-4);
+}
+
+.character-card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.character-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border-dark);
+}
+
+.character-name {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: var(--font-normal);
+  margin: 0;
+}
+
+.character-class {
+  font-style: italic;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+/* Original D&D style stat array */
+.stat-array {
+  display: flex;
+  justify-content: space-between;
+  max-width: 400px;
+  margin: var(--space-4) 0;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-item-label {
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-1);
+}
+
+.stat-item-value {
+  font-size: var(--text-xl);
+  font-weight: var(--font-medium);
+}
+
+/* Simple list with red bullets */
+.redlist {
+  list-style: none;
+  padding-left: 0;
+}
+
+.redlist li {
+  padding-left: var(--space-4);
+  position: relative;
+}
+
+.redlist li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-primary);
+}
+
+/* Drop cap for flavor text */
+.drop-cap::first-letter {
+  float: left;
+  font-family: var(--font-heading);
+  font-size: var(--text-5xl);
+  font-weight: var(--font-light);
+  line-height: 1;
+  margin-right: var(--space-2);
+  color: var(--color-primary);
+}
+
+/* Sidebar for portal layouts */
+--sidebar-width: 240px;

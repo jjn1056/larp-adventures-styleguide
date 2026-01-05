@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dungeon">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forums - LARP Adventures Portal</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="../css/variables.css" rel="stylesheet">
+  <link href="../css/theme-dungeon.css" rel="stylesheet" id="theme-css">
+  <style>
+    .portal-sidebar { width: var(--sidebar-width); min-height: 100vh; background-color: var(--color-bg-muted); border-right: var(--border-heavy); position: fixed; left: 0; top: 0; padding-top: var(--space-4); }
+    .portal-main { margin-left: var(--sidebar-width); min-height: 100vh; }
+    .portal-header { background-color: var(--color-bg-surface); border-bottom: var(--border-standard); padding: var(--space-3) var(--space-4); }
+    .portal-sidebar .nav-link { color: var(--color-text-secondary); padding: var(--space-2) var(--space-4); border-left: 3px solid transparent; }
+    .portal-sidebar .nav-link:hover, .portal-sidebar .nav-link.active { color: var(--color-primary); background-color: var(--color-bg-subtle); border-left-color: var(--color-primary); }
+    @media (max-width: 991px) { .portal-sidebar { display: none; } .portal-main { margin-left: 0; } }
+
+    .forum-category {
+      background-color: var(--color-bg-surface);
+      border: var(--border-standard);
+      margin-bottom: var(--space-4);
+    }
+
+    .forum-category-header {
+      background-color: var(--color-bg-muted);
+      padding: var(--space-3) var(--space-4);
+      border-bottom: var(--border-standard);
+      font-weight: var(--font-semibold);
+    }
+
+    .forum-item {
+      display: flex;
+      align-items: center;
+      padding: var(--space-3) var(--space-4);
+      border-bottom: var(--border-standard);
+    }
+
+    .forum-item:last-child {
+      border-bottom: none;
+    }
+
+    .forum-item:hover {
+      background-color: var(--color-bg-subtle);
+    }
+
+    .forum-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      background-color: var(--color-bg-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: var(--space-3);
+      flex-shrink: 0;
+    }
+
+    .forum-info {
+      flex: 1;
+    }
+
+    .forum-stats {
+      text-align: right;
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+    }
+
+    .forum-latest {
+      width: 200px;
+      font-size: var(--text-sm);
+      padding-left: var(--space-4);
+      border-left: var(--border-standard);
+      margin-left: var(--space-4);
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <nav class="portal-sidebar d-none d-lg-block">
+    <div class="px-4 mb-4">
+      <a href="../public/landing.html" class="text-decoration-none"><h1 class="h5 mb-0">LARP Adventures</h1></a>
+      <small class="text-muted">Player Portal</small>
+    </div>
+    <ul class="nav flex-column">
+      <li class="nav-item"><a class="nav-link" href="dashboard.html"><i class="bi bi-house me-2"></i>Dashboard</a></li>
+      <li class="nav-item"><a class="nav-link" href="world.html"><i class="bi bi-globe me-2"></i>My World</a></li>
+      <li class="nav-item"><a class="nav-link" href="feed.html"><i class="bi bi-rss me-2"></i>Activity Feed</a></li>
+      <li class="nav-item"><a class="nav-link active" href="forum-index.html"><i class="bi bi-chat-dots me-2"></i>Forums</a></li>
+      <li class="nav-item"><a class="nav-link" href="lore.html"><i class="bi bi-scroll me-2"></i>Lore Drops</a></li>
+    </ul>
+  </nav>
+
+  <main class="portal-main">
+    <header class="portal-header d-flex justify-content-between align-items-center">
+      <h1 class="h4 mb-0">Community Forums</h1>
+      <div class="d-flex gap-2">
+        <div class="input-group" style="width: 250px;">
+          <input type="text" class="form-control form-control-sm" placeholder="Search forums...">
+          <button class="btn btn-outline-secondary btn-sm"><i class="bi bi-search"></i></button>
+        </div>
+        <button class="btn btn-primary btn-sm"><i class="bi bi-plus me-2"></i>New Thread</button>
+      </div>
+    </header>
+
+    <div class="p-4">
+      <!-- Announcements -->
+      <div class="forum-category">
+        <div class="forum-category-header">
+          <i class="bi bi-megaphone me-2"></i>Announcements
+        </div>
+        <div class="forum-item">
+          <div class="forum-icon">
+            <i class="bi bi-pin-angle text-primary"></i>
+          </div>
+          <div class="forum-info">
+            <a href="forum-thread.html" class="text-decoration-none"><strong>Official Announcements</strong></a>
+            <p class="text-muted mb-0 small">Important news, rules updates, and event information from the organizers</p>
+          </div>
+          <div class="forum-stats">
+            <div>47 threads</div>
+            <div>312 posts</div>
+          </div>
+          <div class="forum-latest d-none d-lg-block">
+            <a href="#" class="text-decoration-none">Combat Rules v3.2</a>
+            <p class="text-muted mb-0 small">by Rules Committee, 2h ago</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- General Discussion -->
+      <div class="forum-category">
+        <div class="forum-category-header">
+          <i class="bi bi-chat-dots me-2"></i>General Discussion
+        </div>
+        <div class="forum-item">
+          <div class="forum-icon">
+            <i class="bi bi-chat-left-text"></i>
+          </div>
+          <div class="forum-info">
+            <a href="#" class="text-decoration-none"><strong>General Discussion</strong></a>
+            <p class="text-muted mb-0 small">Talk about anything related to LARP Adventures</p>
+          </div>
+          <div class="forum-stats">
+            <div>234 threads</div>
+            <div>1,847 posts</div>
+          </div>
+          <div class="forum-latest d-none d-lg-block">
+            <a href="#" class="text-decoration-none">Best snacks for events?</a>
+            <p class="text-muted mb-0 small">by Thornwick, 4h ago</p>
+          </div>
+        </div>
+        <div class="forum-item">
+          <div class="forum-icon">
+            <i class="bi bi-question-circle"></i>
+          </div>
+          <div class="forum-info">
+            <a href="#" class="text-decoration-none"><strong>New Player Questions</strong></a>
+            <p class="text-muted mb-0 small">Ask anything! No question is too basic</p>
+          </div>
+          <div class="forum-stats">
+            <div>156 threads</div>
+            <div>892 posts</div>
+          </div>
+          <div class="forum-latest d-none d-lg-block">
+            <a href="#" class="text-decoration-none">What to expect at first event?</a>
+            <p class="text-muted mb-0 small">by NewAdventurer, 1d ago</p>
+          </div>
+        </div>
+        <div class="forum-item">
+          <div class="forum-icon">
+            <i class="bi bi-calendar-event"></i>
+          </div>
+          <div class="forum-info">
+            <a href="#" class="text-decoration-none"><strong>Event Discussion</strong></a>
+            <p class="text-muted mb-0 small">Pre-event hype, post-event recaps, and everything in between</p>
+          </div>
+          <div class="forum-stats">
+            <div>89 threads</div>
+            <div>723 posts</div>
+          </div>
+          <div class="forum-latest d-none d-lg-block">
+            <a href="#" class="text-decoration-none">Rites of Spring - Who's going?</a>
+            <p class="text-muted mb-0 small">by Lady Mira, 2d ago</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rules & Gameplay -->
+      <div class="forum-category">
+        <div class="forum-category-header">
+          <i class="bi bi-book me-2"></i>Rules & Gameplay
+        </div>
+        <div class="forum-item">
+          <div class="forum-icon">
+            <i class="bi bi-journal-text"></i>
+          </div>
+          <div class="forum-info">
+            <a href="forum-thread.html" class="text-decoration-none"><strong>Rules Discussion</strong></a>
+            <p class="text-muted mb-0 small">Clarifications, interpretations, and rules questions</p>
+          </div>
+          <div class="forum-stats">
+            <div>178 threads</div>
+            <div>1,234 posts</div>
+          </div>
+          <div class="forum-latest d-none d-lg-block">
+            <a href="forum-thread.html" class="text-decoration-none">Shield Bash Clarification</a>
+            <p class="text-muted mb-0 small">by Sir Aldric, 5d ago</p>
+          </div>
+        </div>
+        <div class="forum-item">
+          <div class="forum-icon">
+            <i class="bi bi-lightbulb"></i>
+          </div>
+          <div class="forum-info">
+            <a href="#" class="text-decoration-none"><strong>Rules Suggestions</strong></a>
+            <p class="text-muted mb-0 small">Propose changes and improvements to the rule system</p>
+          </div>
+          <div class="forum-stats">
+            <div>67 threads</div>
+            <div>456 posts</div>
+          </div>
+          <div class="forum-latest d-none d-lg-block">
+            <a href="#" class="text-decoration-none">Proposal: New crafting system</a>
+            <p class="text-muted mb-0 small">by Ironforge, 1w ago</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Factions -->
+      <div class="forum-category">
+        <div class="forum-category-header">
+          <i class="bi bi-flag me-2"></i>Faction Forums
+        </div>
+        <div class="forum-item">
+          <div class="forum-icon" style="background-color: var(--color-primary-subtle);">
+            <i class="bi bi-shield text-primary"></i>
+          </div>
+          <div class="forum-info">
+            <a href="#" class="text-decoration-none"><strong>Northern Alliance</strong></a>
+            <span class="badge bg-primary ms-2">Your Faction</span>
+            <p class="text-muted mb-0 small">Private discussions for Northern Alliance members</p>
+          </div>
+          <div class="forum-stats">
+            <div>45 threads</div>
+            <div>312 posts</div>
+          </div>
+          <div class="forum-latest d-none d-lg-block">
+            <a href="#" class="text-decoration-none">Strategy meeting agenda</a>
+            <p class="text-muted mb-0 small">by Lady Mira, 2d ago</p>
+          </div>
+        </div>
+        <div class="forum-item">
+          <div class="forum-icon">
+            <i class="bi bi-sun"></i>
+          </div>
+          <div class="forum-info">
+            <a href="#" class="text-decoration-none text-muted"><strong>Southern Kingdoms</strong></a>
+            <span class="badge bg-secondary ms-2">Members Only</span>
+            <p class="text-muted mb-0 small">Private discussions for Southern Kingdoms members</p>
+          </div>
+          <div class="forum-stats text-muted">
+            <div>--</div>
+            <div>--</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Crafts & Gear -->
+      <div class="forum-category">
+        <div class="forum-category-header">
+          <i class="bi bi-hammer me-2"></i>Crafts & Gear
+        </div>
+        <div class="forum-item">
+          <div class="forum-icon">
+            <i class="bi bi-scissors"></i>
+          </div>
+          <div class="forum-info">
+            <a href="#" class="text-decoration-none"><strong>Crafts & Costumes</strong></a>
+            <p class="text-muted mb-0 small">DIY tutorials, costume advice, and prop-making</p>
+          </div>
+          <div class="forum-stats">
+            <div>123 threads</div>
+            <div>678 posts</div>
+          </div>
+          <div class="forum-latest d-none d-lg-block">
+            <a href="#" class="text-decoration-none">Budget tabard tutorial</a>
+            <p class="text-muted mb-0 small">by Seamstress, 3d ago</p>
+          </div>
+        </div>
+        <div class="forum-item">
+          <div class="forum-icon">
+            <i class="bi bi-bag"></i>
+          </div>
+          <div class="forum-info">
+            <a href="#" class="text-decoration-none"><strong>Gear & Garb</strong></a>
+            <p class="text-muted mb-0 small">Buying, selling, and trading LARP gear</p>
+          </div>
+          <div class="forum-stats">
+            <div>89 threads</div>
+            <div>234 posts</div>
+          </div>
+          <div class="forum-latest d-none d-lg-block">
+            <a href="#" class="text-decoration-none">WTS: Calimacil sword</a>
+            <p class="text-muted mb-0 small">by Bladesman, 1d ago</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/theme-switcher.js"></script>
+</body>
+</html>

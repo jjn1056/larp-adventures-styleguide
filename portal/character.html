@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dungeon">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Character Sheet - LARP Adventures Portal</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="../css/variables.css" rel="stylesheet">
+  <link href="../css/theme-dungeon.css" rel="stylesheet" id="theme-css">
+  <style>
+    .portal-sidebar {
+      width: var(--sidebar-width);
+      min-height: 100vh;
+      background-color: var(--color-bg-muted);
+      border-right: var(--border-heavy);
+      position: fixed;
+      left: 0;
+      top: 0;
+      padding-top: var(--space-4);
+    }
+    .portal-main { margin-left: var(--sidebar-width); min-height: 100vh; }
+    .portal-header { background-color: var(--color-bg-surface); border-bottom: var(--border-standard); padding: var(--space-3) var(--space-4); }
+    .portal-sidebar .nav-link { color: var(--color-text-secondary); padding: var(--space-2) var(--space-4); border-left: 3px solid transparent; }
+    .portal-sidebar .nav-link:hover, .portal-sidebar .nav-link.active { color: var(--color-primary); background-color: var(--color-bg-subtle); border-left-color: var(--color-primary); }
+    @media (max-width: 991px) { .portal-sidebar { display: none; } .portal-main { margin-left: 0; } }
+
+    .skill-category {
+      background-color: var(--color-bg-muted);
+      padding: var(--space-2) var(--space-3);
+      font-weight: var(--font-semibold);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-wide);
+      font-size: var(--text-sm);
+      border-bottom: var(--border-standard);
+    }
+
+    .skill-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-2) var(--space-3);
+      border-bottom: 1px dotted var(--color-border);
+    }
+
+    .skill-item:last-child {
+      border-bottom: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <nav class="portal-sidebar d-none d-lg-block">
+    <div class="px-4 mb-4">
+      <a href="../public/landing.html" class="text-decoration-none"><h1 class="h5 mb-0">LARP Adventures</h1></a>
+      <small class="text-muted">Player Portal</small>
+    </div>
+    <ul class="nav flex-column">
+      <li class="nav-item"><a class="nav-link" href="dashboard.html"><i class="bi bi-house me-2"></i>Dashboard</a></li>
+      <li class="nav-item"><a class="nav-link" href="world.html"><i class="bi bi-globe me-2"></i>My World</a></li>
+      <li class="nav-item"><a class="nav-link" href="profile.html"><i class="bi bi-person me-2"></i>My Profile</a></li>
+      <li class="nav-item"><a class="nav-link active" href="character.html"><i class="bi bi-person-badge me-2"></i>Characters</a></li>
+      <li class="nav-item"><a class="nav-link" href="lore.html"><i class="bi bi-scroll me-2"></i>Lore Drops</a>
+      </li>
+      <li class="nav-item"><a class="nav-link" href="spellbook.html"><i class="bi bi-book me-2"></i>Spellbook</a></li>
+    </ul>
+  </nav>
+
+  <main class="portal-main">
+    <header class="portal-header d-flex justify-content-between align-items-center">
+      <div>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="dashboard.html">Portal</a></li>
+            <li class="breadcrumb-item"><a href="profile.html">My Profile</a></li>
+            <li class="breadcrumb-item active">Sir Aldric Stormwind</li>
+          </ol>
+        </nav>
+      </div>
+      <div class="d-flex gap-2">
+        <button class="btn btn-outline-secondary btn-sm"><i class="bi bi-printer me-2"></i>Print</button>
+        <button class="btn btn-primary btn-sm"><i class="bi bi-pencil me-2"></i>Edit Character</button>
+      </div>
+    </header>
+
+    <div class="p-4">
+      <!-- Character Header -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="row align-items-center">
+            <div class="col-auto">
+              <div class="character-avatar" style="width: 100px; height: 100px; background: var(--color-primary-light);"></div>
+            </div>
+            <div class="col">
+              <h1 class="h2 mb-1">Sir Aldric Stormwind</h1>
+              <p class="lead mb-2">Warrior of the Northern Alliance</p>
+              <div class="d-flex gap-2 flex-wrap">
+                <span class="badge bg-primary">Level 5</span>
+                <span class="badge bg-secondary">Warrior's Path</span>
+                <span class="badge bg-info">Human</span>
+              </div>
+            </div>
+            <div class="col-auto text-end">
+              <div class="mb-2">
+                <span class="text-muted">XP:</span>
+                <strong class="ms-1" style="font-size: var(--text-2xl);">47 / 60</strong>
+              </div>
+              <div class="progress" style="width: 150px; height: 8px;">
+                <div class="progress-bar" style="width: 78%; background-color: var(--color-primary);"></div>
+              </div>
+              <small class="text-muted">13 XP to Level 6</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <!-- Left Column -->
+        <div class="col-lg-4 mb-4">
+          <!-- Core Stats -->
+          <div class="card mb-4">
+            <div class="card-header"><strong>Core Stats</strong></div>
+            <div class="card-body">
+              <div class="stat-row">
+                <span class="stat-label">Hit Points</span>
+                <span><strong>5</strong> / 5</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">Armor Points</span>
+                <span><strong>3</strong> / 3</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">Resurrection Tokens</span>
+                <span><strong>3</strong></span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">Base Damage</span>
+                <span><strong>2</strong></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Economy -->
+          <div class="card mb-4">
+            <div class="card-header"><strong>Economy</strong></div>
+            <div class="card-body">
+              <div class="stat-row">
+                <span class="stat-label">Gold Coins</span>
+                <span>127</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">Faction Favor</span>
+                <span>15</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">Crafting Credits</span>
+                <span>8</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Equipment -->
+          <div class="card">
+            <div class="card-header"><strong>Equipment</strong></div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item d-flex justify-content-between">
+                <span>Longsword</span>
+                <span class="text-muted">2 damage</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between">
+                <span>Kite Shield</span>
+                <span class="text-muted">Block</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between">
+                <span>Chain Mail</span>
+                <span class="text-muted">3 AP</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between">
+                <span>Healing Potion x2</span>
+                <span class="text-muted">Consumable</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Right Column - Skills -->
+        <div class="col-lg-8 mb-4">
+          <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <strong>Skills & Abilities</strong>
+              <span class="badge bg-primary">23 XP Spent</span>
+            </div>
+            <div class="card-body p-0">
+              <!-- Combat Skills -->
+              <div class="skill-category">Combat Skills</div>
+              <div class="skill-item">
+                <div>
+                  <strong>Weapon Proficiency: Sword</strong>
+                  <p class="text-muted mb-0 small">May use swords in combat</p>
+                </div>
+                <span class="badge bg-secondary">2 XP</span>
+              </div>
+              <div class="skill-item">
+                <div>
+                  <strong>Shield Proficiency</strong>
+                  <p class="text-muted mb-0 small">May use shields to block attacks</p>
+                </div>
+                <span class="badge bg-secondary">2 XP</span>
+              </div>
+              <div class="skill-item">
+                <div>
+                  <strong>Shield Bash</strong>
+                  <p class="text-muted mb-0 small">Call "Shield Bash - Knockback!" to push opponent</p>
+                </div>
+                <span class="badge bg-secondary">2 XP</span>
+              </div>
+              <div class="skill-item">
+                <div>
+                  <strong>Disarm</strong>
+                  <p class="text-muted mb-0 small">Call "Disarm!" - target drops weapon for 3 seconds</p>
+                </div>
+                <span class="badge bg-secondary">3 XP</span>
+              </div>
+              <div class="skill-item">
+                <div>
+                  <strong>Parry</strong>
+                  <p class="text-muted mb-0 small">Call "Parry!" to negate one melee attack</p>
+                </div>
+                <span class="badge bg-secondary">2 XP</span>
+              </div>
+
+              <!-- Defensive Skills -->
+              <div class="skill-category">Defensive Skills</div>
+              <div class="skill-item">
+                <div>
+                  <strong>Armor Training I</strong>
+                  <p class="text-muted mb-0 small">+1 Armor Point</p>
+                </div>
+                <span class="badge bg-secondary">3 XP</span>
+              </div>
+              <div class="skill-item">
+                <div>
+                  <strong>Armor Training II</strong>
+                  <p class="text-muted mb-0 small">+1 Armor Point (requires Armor Training I)</p>
+                </div>
+                <span class="badge bg-secondary">3 XP</span>
+              </div>
+              <div class="skill-item">
+                <div>
+                  <strong>Toughness I</strong>
+                  <p class="text-muted mb-0 small">+1 Hit Point</p>
+                </div>
+                <span class="badge bg-secondary">2 XP</span>
+              </div>
+
+              <!-- Leadership Skills -->
+              <div class="skill-category">Leadership Skills</div>
+              <div class="skill-item">
+                <div>
+                  <strong>Rally</strong>
+                  <p class="text-muted mb-0 small">Call "Rally!" - allies within 10ft gain +1 damage for 30 sec</p>
+                </div>
+                <span class="badge bg-secondary">4 XP</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Character Biography -->
+      <div class="card">
+        <div class="card-header"><strong>Biography</strong></div>
+        <div class="card-body">
+          <blockquote class="mb-3">
+            <p><em>"Honor above all. Steel when honor fails."</em></p>
+          </blockquote>
+          <p>Sir Aldric Stormwind was born in the northern reaches of Osterra, son of a blacksmith and a healer. When raiders attacked his village during the Winter of Ash, young Aldric took up his father's hammer to defend his home.</p>
+          <p>Impressed by his bravery, a passing knight of the Northern Alliance took Aldric as his squire. After ten years of training and service, Aldric was granted knighthood and given the name "Stormwind" for his prowess in battle during the Tempest Campaign.</p>
+          <p class="mb-0">Now Sir Aldric serves as a champion of the Northern Alliance, defending the realm against threats both mundane and supernatural. His goals are to protect the innocent, bring honor to his family name, and one day discover what truly happened to his parents after the raid.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/theme-switcher.js"></script>
+</body>
+</html>

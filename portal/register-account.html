@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dungeon">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account - LARP Adventures Portal</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="../css/variables.css" rel="stylesheet">
+  <link href="../css/theme-dungeon.css" rel="stylesheet" id="theme-css">
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .register-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-4);
+      background-color: var(--color-bg-page);
+    }
+
+    .register-card {
+      width: 100%;
+      max-width: 480px;
+      background-color: var(--color-bg-surface);
+      border: var(--border-heavy);
+      padding: var(--space-6);
+    }
+
+    .register-header {
+      text-align: center;
+      margin-bottom: var(--space-5);
+    }
+
+    .register-logo {
+      font-family: var(--font-heading);
+      font-size: var(--text-2xl);
+      font-weight: var(--font-bold);
+      color: var(--color-primary);
+      margin-bottom: var(--space-2);
+    }
+
+    .register-subtitle {
+      color: var(--color-text-muted);
+      font-size: var(--text-sm);
+    }
+
+    .divider-text {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      margin: var(--space-4) 0;
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+    }
+
+    .divider-text::before,
+    .divider-text::after {
+      content: '';
+      flex: 1;
+      border-bottom: var(--border-standard);
+    }
+
+    .divider-text span {
+      padding: 0 var(--space-3);
+    }
+
+    .social-login {
+      display: flex;
+      gap: var(--space-3);
+      margin-bottom: var(--space-4);
+    }
+
+    .social-login .btn {
+      flex: 1;
+    }
+
+    .register-footer {
+      text-align: center;
+      margin-top: var(--space-4);
+      padding-top: var(--space-4);
+      border-top: var(--border-standard);
+      font-size: var(--text-sm);
+    }
+
+    .back-link {
+      position: absolute;
+      top: var(--space-4);
+      left: var(--space-4);
+    }
+
+    .password-requirements {
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      margin-top: var(--space-1);
+    }
+
+    .password-requirements li {
+      margin-bottom: 2px;
+    }
+
+    @media (max-width: 576px) {
+      .register-card {
+        border: none;
+        padding: var(--space-4);
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="login.html" class="back-link btn btn-outline-secondary btn-sm">
+    <i class="bi bi-arrow-left me-2"></i>Back to Sign In
+  </a>
+
+  <div class="register-container">
+    <div class="register-card">
+      <div class="register-header">
+        <div class="register-logo">LARP Adventures</div>
+        <p class="register-subtitle">Create your Player Portal account</p>
+      </div>
+
+      <!-- Social Registration Options -->
+      <div class="social-login">
+        <button class="btn btn-outline-secondary">
+          <i class="bi bi-google me-2"></i>Google
+        </button>
+        <button class="btn btn-outline-secondary">
+          <i class="bi bi-discord me-2"></i>Discord
+        </button>
+      </div>
+
+      <div class="divider-text">
+        <span>or register with email</span>
+      </div>
+
+      <!-- Registration Form -->
+      <form action="dashboard.html" method="get">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="firstName" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="firstName" placeholder="John" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="lastName" placeholder="Smith" required>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email Address</label>
+          <input type="email" class="form-control" id="email" placeholder="your@email.com" required>
+          <div class="form-text">We'll send a verification email to this address.</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="displayName" class="form-label">Display Name</label>
+          <input type="text" class="form-control" id="displayName" placeholder="How you'll appear to others">
+          <div class="form-text">You can use your real name or a nickname.</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" placeholder="Create a password" required>
+          <ul class="password-requirements list-unstyled mb-0">
+            <li><i class="bi bi-check-circle text-muted me-1"></i>At least 8 characters</li>
+            <li><i class="bi bi-check-circle text-muted me-1"></i>One uppercase letter</li>
+            <li><i class="bi bi-check-circle text-muted me-1"></i>One number</li>
+          </ul>
+        </div>
+
+        <div class="mb-4">
+          <label for="confirmPassword" class="form-label">Confirm Password</label>
+          <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password" required>
+        </div>
+
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" id="terms" required>
+          <label class="form-check-label" for="terms">
+            I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+          </label>
+        </div>
+
+        <div class="form-check mb-4">
+          <input class="form-check-input" type="checkbox" id="newsletter">
+          <label class="form-check-label" for="newsletter">
+            Send me news about upcoming events (optional)
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">
+          <i class="bi bi-person-plus me-2"></i>Create Account
+        </button>
+      </form>
+
+      <div class="register-footer">
+        <p class="mb-0">Already have an account? <a href="login.html">Sign in</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Simple Footer -->
+  <footer style="background-color: var(--color-bg-muted); border-top: var(--border-standard); padding: var(--space-3); text-align: center;">
+    <small class="text-muted">
+      <a href="../public/landing.html" class="text-decoration-none">LARP Adventures</a> |
+      <a href="#" class="text-decoration-none">Privacy Policy</a> |
+      <a href="#" class="text-decoration-none">Terms of Service</a>
+    </small>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/theme-switcher.js"></script>
+</body>
+</html>

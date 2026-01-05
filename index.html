@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dungeon">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LARP Adventures - Style Guide & Templates</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="css/variables.css" rel="stylesheet">
+  <link href="css/theme-dungeon.css" rel="stylesheet">
+  <link href="css/theme-traveller.css" rel="stylesheet">
+  <link href="css/theme-whitebox.css" rel="stylesheet">
+  <link href="css/theme-tavern.css" rel="stylesheet">
+  <link href="css/theme-phb.css" rel="stylesheet">
+  <link href="css/theme-arcane.css" rel="stylesheet">
+  <link href="css/theme-fey.css" rel="stylesheet">
+  <style>
+    body {
+      min-height: 100vh;
+    }
+    .project-header {
+      padding: var(--space-12) 0;
+      text-align: center;
+      border-bottom: var(--border-heavy);
+      margin-bottom: var(--space-8);
+    }
+    .project-header h1 {
+      border: none;
+      margin-bottom: var(--space-4);
+    }
+    .project-header .lead {
+      max-width: 600px;
+      margin: 0 auto;
+      color: var(--color-text-secondary);
+    }
+    .section-title {
+      font-size: var(--text-lg);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-wide);
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-4);
+      padding-bottom: var(--space-2);
+      border-bottom: var(--border-standard);
+    }
+    .page-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: var(--space-4);
+      margin-bottom: var(--space-8);
+    }
+    .page-card {
+      display: block;
+      padding: var(--space-4);
+      background: var(--color-bg-surface);
+      border: var(--border-standard);
+      text-decoration: none;
+      color: var(--color-text-primary);
+      transition: all var(--transition-fast);
+    }
+    .page-card:hover {
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+      transform: translateY(-2px);
+    }
+    .page-card .page-name {
+      font-weight: var(--font-semibold);
+      margin-bottom: var(--space-1);
+    }
+    .page-card .page-desc {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      margin: 0;
+    }
+    .page-card:hover .page-desc {
+      color: var(--color-text-secondary);
+    }
+    .styleguide-card {
+      background: var(--color-primary-subtle);
+      border: 2px solid var(--color-primary);
+    }
+    .styleguide-card .page-name {
+      color: var(--color-primary);
+    }
+    .theme-hint {
+      text-align: center;
+      padding: var(--space-6);
+      background: var(--color-bg-muted);
+      border-radius: var(--radius-md);
+      margin-bottom: var(--space-8);
+    }
+    .theme-hint i {
+      font-size: var(--text-2xl);
+      color: var(--color-primary);
+    }
+  </style>
+</head>
+<body>
+  <div class="container py-4">
+    <header class="project-header">
+      <h1>LARP Adventures</h1>
+      <p class="lead">Style Guide & Page Templates</p>
+    </header>
+
+    <div class="theme-hint">
+      <i class="bi bi-palette"></i>
+      <p class="mb-0 mt-2">Use the floating button in the bottom-right corner to switch between <strong>7 theme variations</strong></p>
+    </div>
+
+    <!-- Style Guide -->
+    <section class="mb-5">
+      <h2 class="section-title">Style Guide</h2>
+      <div class="page-grid">
+        <a href="styleguide.html" class="page-card styleguide-card">
+          <div class="page-name"><i class="bi bi-brush me-2"></i>Component Library</div>
+          <p class="page-desc">Colors, typography, buttons, forms, cards, and all UI components</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Public Pages -->
+    <section class="mb-5">
+      <h2 class="section-title">Public Website</h2>
+      <div class="page-grid">
+        <a href="public/landing.html" class="page-card">
+          <div class="page-name">Landing Page</div>
+          <p class="page-desc">Homepage introducing the game</p>
+        </a>
+        <a href="public/event-index.html" class="page-card">
+          <div class="page-name">Event Index</div>
+          <p class="page-desc">Browse upcoming events</p>
+        </a>
+        <a href="public/event-detail.html" class="page-card">
+          <div class="page-name">Event Detail</div>
+          <p class="page-desc">Single event information</p>
+        </a>
+        <a href="public/hub.html" class="page-card">
+          <div class="page-name">Rules Hub</div>
+          <p class="page-desc">Navigation to game documentation</p>
+        </a>
+        <a href="public/reference.html" class="page-card">
+          <div class="page-name">Reference Doc</div>
+          <p class="page-desc">Long-form rules content</p>
+        </a>
+        <a href="public/news.html" class="page-card">
+          <div class="page-name">News</div>
+          <p class="page-desc">Updates and announcements</p>
+        </a>
+        <a href="public/faq.html" class="page-card">
+          <div class="page-name">FAQ</div>
+          <p class="page-desc">Frequently asked questions</p>
+        </a>
+        <a href="public/organizers.html" class="page-card">
+          <div class="page-name">Organizers</div>
+          <p class="page-desc">Staff and team info</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Portal Pages -->
+    <section class="mb-5">
+      <h2 class="section-title">Player Portal</h2>
+      <div class="page-grid">
+        <a href="portal/login.html" class="page-card">
+          <div class="page-name">Login</div>
+          <p class="page-desc">Sign in page</p>
+        </a>
+        <a href="portal/register-account.html" class="page-card">
+          <div class="page-name">Register Account</div>
+          <p class="page-desc">Create new account</p>
+        </a>
+        <a href="portal/dashboard.html" class="page-card">
+          <div class="page-name">Dashboard</div>
+          <p class="page-desc">Player home with activity digest</p>
+        </a>
+        <a href="portal/world.html" class="page-card">
+          <div class="page-name">My World</div>
+          <p class="page-desc">Personal game world overview</p>
+        </a>
+        <a href="portal/feed.html" class="page-card">
+          <div class="page-name">Activity Feed</div>
+          <p class="page-desc">Social activity timeline</p>
+        </a>
+        <a href="portal/profile.html" class="page-card">
+          <div class="page-name">Profile</div>
+          <p class="page-desc">Player profile page</p>
+        </a>
+        <a href="portal/character.html" class="page-card">
+          <div class="page-name">Character Sheet</div>
+          <p class="page-desc">Character details and stats</p>
+        </a>
+        <a href="portal/spellbook.html" class="page-card">
+          <div class="page-name">Spellbook</div>
+          <p class="page-desc">Quick skill reference</p>
+        </a>
+        <a href="portal/lore.html" class="page-card">
+          <div class="page-name">Lore Drops</div>
+          <p class="page-desc">In-game story content</p>
+        </a>
+        <a href="portal/group.html" class="page-card">
+          <div class="page-name">Coalition</div>
+          <p class="page-desc">Group/faction management</p>
+        </a>
+        <a href="portal/marketplace.html" class="page-card">
+          <div class="page-name">Marketplace</div>
+          <p class="page-desc">Vendor listings</p>
+        </a>
+        <a href="portal/register.html" class="page-card">
+          <div class="page-name">Event Registration</div>
+          <p class="page-desc">Sign up for events</p>
+        </a>
+        <a href="portal/forum-index.html" class="page-card">
+          <div class="page-name">Forums</div>
+          <p class="page-desc">Discussion categories</p>
+        </a>
+        <a href="portal/forum-thread.html" class="page-card">
+          <div class="page-name">Forum Thread</div>
+          <p class="page-desc">Discussion with replies</p>
+        </a>
+        <a href="portal/notifications.html" class="page-card">
+          <div class="page-name">Notifications</div>
+          <p class="page-desc">Alerts and messages</p>
+        </a>
+        <a href="portal/settings.html" class="page-card">
+          <div class="page-name">Settings</div>
+          <p class="page-desc">Account preferences</p>
+        </a>
+      </div>
+    </section>
+
+    <footer class="text-center py-4 text-muted">
+      <small>LARP Adventures Style Guide - 7 Theme Variations</small>
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/theme-switcher.js"></script>
+</body>
+</html>

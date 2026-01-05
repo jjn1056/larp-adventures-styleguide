@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dungeon">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ - LARP Adventures</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="../css/variables.css" rel="stylesheet">
+  <link href="../css/theme-dungeon.css" rel="stylesheet" id="theme-css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="landing.html">LARP Adventures</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="landing.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="event-index.html">Events</a></li>
+          <li class="nav-item"><a class="nav-link" href="hub.html">Rules & Lore</a></li>
+          <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
+          <li class="nav-item"><a class="nav-link active" href="faq.html">FAQ</a></li>
+        </ul>
+        <a href="../portal/dashboard.html" class="btn btn-primary btn-sm">Player Portal</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="py-4" style="background-color: var(--color-bg-muted); border-bottom: var(--border-heavy);">
+    <div class="container">
+      <h1>Frequently Asked Questions</h1>
+      <p class="lead mb-0">Common questions about LARP Adventures</p>
+    </div>
+  </header>
+
+  <main class="container py-5">
+    <!-- Quick Links -->
+    <div class="row mb-5">
+      <div class="col-md-3 mb-3">
+        <a href="#getting-started" class="card text-center text-decoration-none h-100">
+          <div class="card-body">
+            <i class="bi bi-rocket-takeoff" style="font-size: 2rem; color: var(--color-primary);"></i>
+            <h3 class="h6 mt-2 mb-0">Getting Started</h3>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-3 mb-3">
+        <a href="#events" class="card text-center text-decoration-none h-100">
+          <div class="card-body">
+            <i class="bi bi-calendar-event" style="font-size: 2rem; color: var(--color-primary);"></i>
+            <h3 class="h6 mt-2 mb-0">Events</h3>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-3 mb-3">
+        <a href="#gear" class="card text-center text-decoration-none h-100">
+          <div class="card-body">
+            <i class="bi bi-backpack" style="font-size: 2rem; color: var(--color-primary);"></i>
+            <h3 class="h6 mt-2 mb-0">Gear & Costumes</h3>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-3 mb-3">
+        <a href="#gameplay" class="card text-center text-decoration-none h-100">
+          <div class="card-body">
+            <i class="bi bi-controller" style="font-size: 2rem; color: var(--color-primary);"></i>
+            <h3 class="h6 mt-2 mb-0">Gameplay</h3>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Getting Started -->
+    <section id="getting-started" class="mb-5">
+      <h2>Getting Started</h2>
+      <div class="accordion" id="accordionStart">
+        <div class="accordion-item">
+          <h3 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#start1">
+              What is LARP?
+            </button>
+          </h3>
+          <div id="start1" class="accordion-collapse collapse show" data-bs-parent="#accordionStart">
+            <div class="accordion-body">
+              <p>LARP stands for Live Action Roleplaying. It's a form of interactive storytelling where participants physically act out their characters' actions. Think of it as improv theater meets a tabletop RPG - instead of describing what your character does, you actually do it!</p>
+              <p class="mb-0">At LARP Adventures, we use foam-padded weapons for safe combat, wear costumes appropriate to our fantasy setting, and work together to tell stories in the world of Osterra.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#start2">
+              Do I need experience to join?
+            </button>
+          </h3>
+          <div id="start2" class="accordion-collapse collapse" data-bs-parent="#accordionStart">
+            <div class="accordion-body">
+              <p><strong>Absolutely not!</strong> We welcome complete beginners at every event. In fact, about 30% of our players started with no LARP experience at all.</p>
+              <p class="mb-0">Every event includes a new player orientation session where we teach you the rules, help you create a character, and pair you with experienced players who can show you the ropes.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#start3">
+              How do I sign up for my first event?
+            </button>
+          </h3>
+          <div id="start3" class="accordion-collapse collapse" data-bs-parent="#accordionStart">
+            <div class="accordion-body">
+              <ol>
+                <li>Browse our <a href="event-index.html">upcoming events</a> and pick one that works for you</li>
+                <li>Click "Register" and create an account in our Player Portal</li>
+                <li>Fill out the registration form and select your ticket type</li>
+                <li>Complete payment (credit card or PayPal accepted)</li>
+                <li>You'll receive a confirmation email with all the details!</li>
+              </ol>
+              <p class="mb-0">We recommend registering at least 2 weeks before an event so you have time to prepare.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#start4">
+              How much does it cost?
+            </button>
+          </h3>
+          <div id="start4" class="accordion-collapse collapse" data-bs-parent="#accordionStart">
+            <div class="accordion-body">
+              <p>Event costs vary by type:</p>
+              <ul>
+                <li><strong>Day events:</strong> $25-$35</li>
+                <li><strong>Weekend campouts:</strong> $85-$135 (includes meals and lodging)</li>
+                <li><strong>Special events:</strong> $25-$50</li>
+              </ul>
+              <p>We also offer:</p>
+              <ul class="mb-0">
+                <li>Early bird discounts (usually 15-20% off)</li>
+                <li>NPC pricing (reduced rate for playing monsters/NPCs)</li>
+                <li>Work-study options for those who can help with setup/cleanup</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Events -->
+    <section id="events" class="mb-5">
+      <h2>Events</h2>
+      <div class="accordion" id="accordionEvents">
+        <div class="accordion-item">
+          <h3 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#event1">
+              What's the difference between day events and campouts?
+            </button>
+          </h3>
+          <div id="event1" class="accordion-collapse collapse" data-bs-parent="#accordionEvents">
+            <div class="accordion-body">
+              <p><strong>Day Events</strong> run for a single day (usually Saturday, 10am-6pm). They're great for trying out LARP without committing a whole weekend.</p>
+              <p><strong>Campout Events</strong> run Friday evening through Sunday afternoon. You'll sleep at the event site (bunks or tents), and the game runs continuously with some overnight elements. These offer the most immersive experience.</p>
+              <p class="mb-0"><strong>Special Events</strong> like Winter Council or Bardstock have unique formats - check individual event descriptions for details.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#event2">
+              What should I bring to an event?
+            </button>
+          </h3>
+          <div id="event2" class="accordion-collapse collapse" data-bs-parent="#accordionEvents">
+            <div class="accordion-body">
+              <p><strong>For all events:</strong></p>
+              <ul>
+                <li>Costume/garb (we have loaner items if you don't have any)</li>
+                <li>Water bottle</li>
+                <li>Any medications you need</li>
+                <li>Sunscreen and bug spray (outdoor events)</li>
+              </ul>
+              <p><strong>For campouts, also bring:</strong></p>
+              <ul class="mb-0">
+                <li>Sleeping bag and pillow</li>
+                <li>Toiletries</li>
+                <li>Flashlight or headlamp (red filter preferred)</li>
+                <li>Weather-appropriate clothing for day and night</li>
+                <li>Alarm clock or phone charger</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#event3">
+              Can I bring my own food?
+            </button>
+          </h3>
+          <div id="event3" class="accordion-collapse collapse" data-bs-parent="#accordionEvents">
+            <div class="accordion-body">
+              <p>Weekend events include all meals (Friday dinner through Sunday lunch). However, you're welcome to bring:</p>
+              <ul>
+                <li>Personal snacks for between meals</li>
+                <li>Special dietary items if you have restrictions we can't accommodate</li>
+                <li>Beverages (alcohol is permitted for those 21+ but please drink responsibly)</li>
+              </ul>
+              <p class="mb-0">Please let us know about dietary restrictions during registration and we'll do our best to accommodate you!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gear & Costumes -->
+    <section id="gear" class="mb-5">
+      <h2>Gear & Costumes</h2>
+      <div class="accordion" id="accordionGear">
+        <div class="accordion-item">
+          <h3 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#gear1">
+              What should I wear?
+            </button>
+          </h3>
+          <div id="gear1" class="accordion-collapse collapse" data-bs-parent="#accordionGear">
+            <div class="accordion-body">
+              <p>We use a fantasy medieval setting. Good costume options include:</p>
+              <ul>
+                <li>Simple tunics or tabards</li>
+                <li>Loose-fitting pants (avoid jeans if possible)</li>
+                <li>Cloaks or capes</li>
+                <li>Boots or dark-colored closed-toe shoes</li>
+                <li>Belts and pouches</li>
+              </ul>
+              <p><strong>Don't have anything?</strong> We have a loaner costume closet! Just let us know when you register and we'll set something aside for you.</p>
+              <p class="mb-0"><strong>Avoid:</strong> Modern logos, bright colors not found in nature, athletic wear, and anything that breaks immersion.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#gear2">
+              Do I need to buy a weapon?
+            </button>
+          </h3>
+          <div id="gear2" class="accordion-collapse collapse" data-bs-parent="#accordionGear">
+            <div class="accordion-body">
+              <p><strong>No!</strong> We have loaner weapons available at every event. These are safe, functional foam weapons that are perfect for beginners.</p>
+              <p>If you want to buy your own weapons, we recommend:</p>
+              <ul>
+                <li>Waiting until after your first event so you know what style you like</li>
+                <li>Buying from reputable LARP weapon vendors (we have a list in the Player Portal)</li>
+                <li>Checking with us before purchasing to make sure it meets our safety standards</li>
+              </ul>
+              <p class="mb-0">All weapons must pass safety inspection before use at our events.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#gear3">
+              Where can I buy LARP gear?
+            </button>
+          </h3>
+          <div id="gear3" class="accordion-collapse collapse" data-bs-parent="#accordionGear">
+            <div class="accordion-body">
+              <p>We maintain a list of trusted vendors in the Player Portal. Popular options include:</p>
+              <ul>
+                <li><strong>Weapons:</strong> Calimacil, Epic Armoury, Forgotten Dreams</li>
+                <li><strong>Costumes:</strong> Medieval Collectibles, Armstreet, local Ren Faire vendors</li>
+                <li><strong>Accessories:</strong> Etsy (search for "LARP" + what you need)</li>
+              </ul>
+              <p class="mb-0">Many of our players also make their own gear! Check our Discord for crafting tips and tutorials.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gameplay -->
+    <section id="gameplay" class="mb-5">
+      <h2>Gameplay</h2>
+      <div class="accordion" id="accordionGameplay">
+        <div class="accordion-item">
+          <h3 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#game1">
+              Does it hurt to get hit?
+            </button>
+          </h3>
+          <div id="game1" class="accordion-collapse collapse" data-bs-parent="#accordionGameplay">
+            <div class="accordion-body">
+              <p><strong>No!</strong> Our weapons are made of foam and designed to be safe. You'll definitely feel the hit, but it shouldn't hurt. Think of it as being lightly tapped.</p>
+              <p class="mb-0">We have strict rules against hard swings, head shots, and other unsafe combat practices. If someone is hitting too hard, just let a staff member know and we'll address it immediately.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#game2">
+              What if I don't want to fight?
+            </button>
+          </h3>
+          <div id="game2" class="accordion-collapse collapse" data-bs-parent="#accordionGameplay">
+            <div class="accordion-body">
+              <p>Combat is just one part of the game! Many players focus on:</p>
+              <ul>
+                <li><strong>Roleplaying:</strong> Negotiating, politicking, and storytelling</li>
+                <li><strong>Crafting:</strong> Making in-game items and running shops</li>
+                <li><strong>Healing:</strong> Supporting fighters without fighting yourself</li>
+                <li><strong>Mystery solving:</strong> Investigating plots and solving puzzles</li>
+              </ul>
+              <p class="mb-0">We have a "non-combatant" ribbon you can wear to indicate you're not participating in combat. Other players will respect this.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#game3">
+              How do I learn the rules?
+            </button>
+          </h3>
+          <div id="game3" class="accordion-collapse collapse" data-bs-parent="#accordionGameplay">
+            <div class="accordion-body">
+              <p>Don't worry about memorizing everything before your first event! Here's our recommended approach:</p>
+              <ol>
+                <li>Read our <a href="hub.html">Quick Start Guide</a> (about 10 minutes)</li>
+                <li>Attend the new player orientation at your first event</li>
+                <li>Ask questions as you play - everyone was new once!</li>
+                <li>Learn more detailed rules as they become relevant to your character</li>
+              </ol>
+              <p class="mb-0">Experienced players and staff are always happy to answer questions during the game. Just ask "Hey, out of game question..." and they'll help you out.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#game4">
+              Can my character die?
+            </button>
+          </h3>
+          <div id="game4" class="accordion-collapse collapse" data-bs-parent="#accordionGameplay">
+            <div class="accordion-body">
+              <p>Yes, but don't worry - death is rarely permanent!</p>
+              <p>If your character dies, you can usually be resurrected at the resurrection circle. This takes about 10 minutes and uses one of your Resurrection Tokens (you start with 3 per event).</p>
+              <p class="mb-0"><strong>Permanent death</strong> only happens if you run out of tokens or choose to retire your character. Even then, you can always create a new character and keep playing!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Still have questions? -->
+    <section class="text-center py-5" style="background-color: var(--color-bg-subtle); border: var(--border-standard);">
+      <h2>Still Have Questions?</h2>
+      <p>We're happy to help! Reach out through any of these channels:</p>
+      <div class="d-flex justify-content-center gap-3 flex-wrap">
+        <a href="#" class="btn btn-outline-primary"><i class="bi bi-discord me-2"></i>Ask on Discord</a>
+        <a href="mailto:info@larpadventures.com" class="btn btn-outline-primary"><i class="bi bi-envelope me-2"></i>Email Us</a>
+        <a href="organizers.html" class="btn btn-outline-primary"><i class="bi bi-people me-2"></i>Meet the Organizers</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-5" style="background-color: var(--color-bg-page); border-top: var(--border-heavy);">
+    <div class="container">
+      <p class="text-muted text-center mb-0">&copy; 2024 LARP Adventures. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/theme-switcher.js"></script>
+</body>
+</html>
