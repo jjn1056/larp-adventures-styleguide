@@ -15,7 +15,8 @@
     { id: 'tavern', name: 'Tavern at Night', icon: 'moon' },
     { id: 'phb', name: "Player's Handbook", icon: 'book' },
     { id: 'arcane', name: 'Arcane Academy', icon: 'star' },
-    { id: 'fey', name: 'Fey Court', icon: 'flower' }
+    { id: 'fey', name: 'Fey Court', icon: 'flower' },
+    { id: 'highcontrast', name: 'High Contrast', icon: 'eye' }
   ];
 
   // Get saved theme or default
