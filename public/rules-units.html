@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dungeon">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unit & Land Rules - LARP Adventures</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="../css/variables.css" rel="stylesheet">
+  <link href="../css/theme-dungeon.css" rel="stylesheet" id="theme-css">
+  <style>
+    /* Reference document specific styles */
+    .ref-sidebar {
+      position: sticky;
+      top: 80px;
+      height: calc(100vh - 100px);
+      overflow-y: auto;
+      padding-right: var(--space-4);
+      font-size: var(--text-sm);
+    }
+
+    .ref-sidebar .nav-link {
+      color: var(--color-text-secondary);
+      padding: var(--space-1) var(--space-2);
+    }
+
+    .ref-sidebar .nav-link:hover,
+    .ref-sidebar .nav-link.active {
+      color: var(--color-primary);
+    }
+
+    .ref-content section {
+      padding-top: var(--space-6);
+      margin-bottom: var(--space-8);
+    }
+
+    .ref-content section:first-child {
+      padding-top: 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="landing.html">LARP Adventures</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="landing.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="event-index.html">Events</a></li>
+          <li class="nav-item"><a class="nav-link active" href="hub.html">Rules & Lore</a></li>
+          <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
+          <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+        </ul>
+        <a href="../portal/dashboard.html" class="btn btn-primary btn-sm">Player Portal</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Breadcrumb -->
+  <div class="container py-3">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><a href="landing.html">Home</a></li>
+        <li class="breadcrumb-item"><a href="hub.html">Rules & Lore</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Unit & Land Rules</li>
+      </ol>
+    </nav>
+  </div>
+
+  <!-- Page Header -->
+  <header class="py-4" style="background-color: var(--color-bg-muted); border-bottom: var(--border-heavy);">
+    <div class="container">
+      <h1>Unit & Land Rules</h1>
+      <p class="lead mb-0">Faction creation, territory management, and unit warfare in Osterra</p>
+      <p class="text-muted mt-2 mb-0"><small>Last updated: January 5, 2026 | Version 2.3</small></p>
+    </div>
+  </header>
+
+  <main class="container py-5">
+    <!-- Rules Navigation -->
+    <nav class="rules-nav mb-4 pb-3" style="border-bottom: var(--border-standard);">
+      <span class="text-muted me-2">Rules:</span>
+      <a href="rules-combat.html" class="btn btn-sm btn-outline-primary me-1">Combat</a>
+      <a href="rules-units.html" class="btn btn-sm btn-primary me-1">Units & Land</a>
+      <a href="rules-sea.html" class="btn btn-sm btn-outline-primary me-1">Law of the Sea</a>
+      <a href="hub.html" class="btn btn-sm btn-outline-secondary">All Rules</a>
+    </nav>
+
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-lg-3 d-none d-lg-block">
+        <nav class="ref-sidebar">
+          <h6 class="text-uppercase" style="letter-spacing: var(--tracking-wider);">Contents</h6>
+          <ul class="nav flex-column">
+            <li class="nav-item"><a class="nav-link" href="#creating-unit">Creating a Unit/Faction</a></li>
+            <li class="nav-item"><a class="nav-link" href="#land-ownership">Land Ownership</a></li>
+            <li class="nav-item"><a class="nav-link" href="#resource-management">Resource Management</a></li>
+            <li class="nav-item"><a class="nav-link" href="#unit-combat">Unit Combat</a></li>
+            <li class="nav-item"><a class="nav-link" href="#political-structures">Political Structures</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Main Content -->
+      <div class="col-lg-9 ref-content">
+        <!-- Creating a Unit/Faction -->
+        <section id="creating-unit">
+          <h2>Creating a Unit/Faction</h2>
+          <p>Units and factions are player-created organizations that shape the political landscape of Osterra. From mercenary companies to noble houses, from religious orders to criminal guilds, these groups drive much of the game's ongoing narrative.</p>
+
+          <blockquote>
+            <p>"The greatest battles in Osterra are not won with swords alone, but with alliances, resources, and the loyalty of those who follow your banner."</p>
+          </blockquote>
+
+          <h3 class="h4 mt-4">Unit Types</h3>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="stat-block mb-4">
+                <div class="stat-block-header">Warband</div>
+                <div class="stat-block-subheader">Minimum 5 Members</div>
+                <div class="stat-row">
+                  <span class="stat-label">Focus</span>
+                  <span>Combat and martial prowess</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">Benefits</span>
+                  <span>Unit combat bonuses, war camp</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">Leadership</span>
+                  <span>Warlord + Captains</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="stat-block mb-4">
+                <div class="stat-block-header">Guild</div>
+                <div class="stat-block-subheader">Minimum 5 Members</div>
+                <div class="stat-row">
+                  <span class="stat-label">Focus</span>
+                  <span>Trade, craft, or specialty skills</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">Benefits</span>
+                  <span>Crafting bonuses, trade rights</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">Leadership</span>
+                  <span>Guildmaster + Officers</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="stat-block mb-4">
+                <div class="stat-block-header">Noble House</div>
+                <div class="stat-block-subheader">Minimum 8 Members</div>
+                <div class="stat-row">
+                  <span class="stat-label">Focus</span>
+                  <span>Land ownership and politics</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">Benefits</span>
+                  <span>Territory claims, noble courts</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">Leadership</span>
+                  <span>Lord/Lady + Council</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="stat-block mb-4">
+                <div class="stat-block-header">Religious Order</div>
+                <div class="stat-block-subheader">Minimum 5 Members</div>
+                <div class="stat-row">
+                  <span class="stat-label">Focus</span>
+                  <span>Faith and divine service</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">Benefits</span>
+                  <span>Ritual bonuses, holy sites</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">Leadership</span>
+                  <span>High Priest + Clergy</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="h4 mt-4">Formation Requirements</h3>
+          <p>To officially form a unit, you must:</p>
+          <ol>
+            <li><strong>Gather Members:</strong> Meet the minimum membership requirement for your unit type</li>
+            <li><strong>Submit Charter:</strong> File a charter with game staff including your unit name, type, purpose, and leadership structure</li>
+            <li><strong>Design Heraldry:</strong> Create a unique banner, colors, or symbol for your unit</li>
+            <li><strong>Establish Headquarters:</strong> Claim an in-game location as your base of operations</li>
+            <li><strong>Pay Formation Fee:</strong> 50 gold pieces (in-game currency) or equivalent resources</li>
+          </ol>
+
+          <div class="callout">
+            <div class="callout-title">Coalition vs. Unit</div>
+            <p class="mb-0">A <strong>Coalition</strong> is an alliance of multiple units working together. Coalitions can claim larger territories and field larger armies, but require coordination between member units. Each unit retains its independence within the coalition.</p>
+          </div>
+        </section>
+
+        <hr class="heavy">
+
+        <!-- Land Ownership -->
+        <section id="land-ownership">
+          <h2>Land Ownership</h2>
+          <p>Territory in Osterra represents not just physical space but also political power, economic resources, and strategic advantage. Controlling land is essential for any unit with ambitions beyond mercenary work.</p>
+
+          <h3 class="h4 mt-4">Territory Types</h3>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Territory Type</th>
+                <th>Size</th>
+                <th>Primary Benefit</th>
+                <th>Defense Requirement</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Homestead</td>
+                <td>Small</td>
+                <td>Personal residence, small income</td>
+                <td>None (protected by law)</td>
+              </tr>
+              <tr>
+                <td>Village</td>
+                <td>Medium</td>
+                <td>Population, basic resources</td>
+                <td>Militia or guard presence</td>
+              </tr>
+              <tr>
+                <td>Town</td>
+                <td>Large</td>
+                <td>Trade hub, specialized craftsmen</td>
+                <td>Garrison (10+ warriors)</td>
+              </tr>
+              <tr>
+                <td>Fortress</td>
+                <td>Variable</td>
+                <td>Military stronghold, defensible</td>
+                <td>Standing army</td>
+              </tr>
+              <tr>
+                <td>Province</td>
+                <td>Vast</td>
+                <td>Multiple settlements, major resources</td>
+                <td>Army + political stability</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3 class="h4 mt-4">Claiming Territory</h3>
+          <p>Territory can be acquired through several means:</p>
+          <ul>
+            <li><strong>Conquest:</strong> Defeat the current holders in battle and hold the territory for one full event</li>
+            <li><strong>Purchase:</strong> Buy unclaimed land from the Crown or negotiate with current owners</li>
+            <li><strong>Grant:</strong> Receive territory as reward from higher authority (Crown, Covenant, etc.)</li>
+            <li><strong>Settlement:</strong> Develop unclaimed wilderness over multiple events</li>
+            <li><strong>Inheritance:</strong> Receive territory through in-game succession or marriage</li>
+          </ul>
+
+          <h3 class="h4 mt-4">Maintaining Territory</h3>
+          <p>Owning land comes with responsibilities:</p>
+          <ul>
+            <li><strong>Taxes:</strong> Pay quarterly taxes to your liege lord or the Crown</li>
+            <li><strong>Defense:</strong> Maintain sufficient military presence to protect your holdings</li>
+            <li><strong>Development:</strong> Invest resources to improve and maintain infrastructure</li>
+            <li><strong>Justice:</strong> Resolve disputes among your subjects and maintain order</li>
+            <li><strong>Fealty:</strong> Answer the call to arms when summoned by your liege</li>
+          </ul>
+
+          <div class="callout">
+            <div class="callout-title">Losing Territory</div>
+            <p class="mb-0">Territory can be lost through conquest, abandonment (failing to attend events), rebellion, or legal seizure (failing to pay taxes or answer feudal obligations). Lost territory reverts to the Crown or the conquering force.</p>
+          </div>
+        </section>
+
+        <hr>
+
+        <!-- Resource Management -->
+        <section id="resource-management">
+          <h2>Resource Management</h2>
+          <p>Resources are the lifeblood of any unit. They fund armies, build fortifications, craft equipment, and influence political outcomes. Managing resources effectively is key to unit success.</p>
+
+          <h3 class="h4 mt-4">Resource Types</h3>
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h4 class="h5"><i class="bi bi-coin me-2 text-primary"></i>Gold</h4>
+                  <p class="text-muted mb-0">Universal currency. Used for purchases, wages, taxes, and bribes. Earned through trade, taxation, and questing.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h4 class="h5"><i class="bi bi-tree me-2 text-primary"></i>Materials</h4>
+                  <p class="text-muted mb-0">Raw goods like lumber, stone, ore, and food. Required for construction, crafting, and army upkeep.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h4 class="h5"><i class="bi bi-stars me-2 text-primary"></i>Influence</h4>
+                  <p class="text-muted mb-0">Political capital. Spent to sway votes, gain favors, or manipulate court proceedings.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="h4 mt-4">Income Sources</h3>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Source</th>
+                <th>Yield</th>
+                <th>Requirements</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Farmland</td>
+                <td>Food + small gold</td>
+                <td>Peasant population, arable land</td>
+              </tr>
+              <tr>
+                <td>Mine</td>
+                <td>Ore + stone</td>
+                <td>Mountains/hills, miners</td>
+              </tr>
+              <tr>
+                <td>Forest</td>
+                <td>Lumber + game</td>
+                <td>Woodland territory, woodsmen</td>
+              </tr>
+              <tr>
+                <td>Market</td>
+                <td>Gold (trade tax)</td>
+                <td>Town+ size, trade routes</td>
+              </tr>
+              <tr>
+                <td>Temple</td>
+                <td>Influence + tithes</td>
+                <td>Religious order, congregation</td>
+              </tr>
+              <tr>
+                <td>Academy</td>
+                <td>Influence + skilled labor</td>
+                <td>Large settlement, scholars</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3 class="h4 mt-4">Expenditures</h3>
+          <ul>
+            <li><strong>Army Upkeep:</strong> 5 gold per soldier per event (10 for elite troops)</li>
+            <li><strong>Building Construction:</strong> Variable based on structure type</li>
+            <li><strong>Territory Taxes:</strong> 10% of income to liege, 5% to Crown</li>
+            <li><strong>Equipment:</strong> Weapons, armor, siege equipment</li>
+            <li><strong>Bribes and Gifts:</strong> Political maneuvering costs</li>
+          </ul>
+        </section>
+
+        <hr>
+
+        <!-- Unit Combat -->
+        <section id="unit-combat">
+          <h2>Unit Combat</h2>
+          <p>When units clash in large-scale battles, individual combat rules are supplemented by unit warfare mechanics. These rules abstract larger engagements while still allowing personal heroics to influence outcomes.</p>
+
+          <h3 class="h4 mt-4">Army Composition</h3>
+          <p>Armies are composed of different troop types, each with strengths and weaknesses:</p>
+
+          <div class="stat-block mb-4">
+            <div class="stat-block-header">Infantry</div>
+            <div class="stat-block-subheader">The backbone of any army</div>
+            <div class="stat-row">
+              <span class="stat-label">Combat Value</span>
+              <span>1 per soldier</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Cost</span>
+              <span>5 gold per event</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Strengths</span>
+              <span>Holding ground, sieges</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Weaknesses</span>
+              <span>Slow, vulnerable to cavalry</span>
+            </div>
+          </div>
+
+          <div class="stat-block mb-4">
+            <div class="stat-block-header">Cavalry</div>
+            <div class="stat-block-subheader">Mobile shock troops</div>
+            <div class="stat-row">
+              <span class="stat-label">Combat Value</span>
+              <span>3 per rider</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Cost</span>
+              <span>15 gold per event</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Strengths</span>
+              <span>Charges, pursuit, flanking</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Weaknesses</span>
+              <span>Expensive, weak in rough terrain</span>
+            </div>
+          </div>
+
+          <div class="stat-block mb-4">
+            <div class="stat-block-header">Archers</div>
+            <div class="stat-block-subheader">Ranged support</div>
+            <div class="stat-row">
+              <span class="stat-label">Combat Value</span>
+              <span>2 per archer (ranged only)</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Cost</span>
+              <span>8 gold per event</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Strengths</span>
+              <span>Pre-battle volleys, defensive positions</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Weaknesses</span>
+              <span>Poor in melee, needs protection</span>
+            </div>
+          </div>
+
+          <h3 class="h4 mt-4">Battle Resolution</h3>
+          <p>Large battles are resolved using a combination of:</p>
+          <ol>
+            <li><strong>Strategic Layer:</strong> Commanders make tactical decisions before battle</li>
+            <li><strong>Combat Values:</strong> Total army strength compared</li>
+            <li><strong>Champion Duels:</strong> Player combats that modify battle outcome</li>
+            <li><strong>Modifiers:</strong> Terrain, fortifications, magic, morale</li>
+            <li><strong>Random Element:</strong> Dice or card draws for fortune of war</li>
+          </ol>
+
+          <div class="callout">
+            <div class="callout-title">Player Participation</div>
+            <p class="mb-0">Players can directly participate in unit battles through champion duels, special missions (assassinate enemy commander, capture the banner), and rallying troops. These personal actions provide bonuses or penalties to the overall battle resolution.</p>
+          </div>
+        </section>
+
+        <hr>
+
+        <!-- Political Structures -->
+        <section id="political-structures">
+          <h2>Political Structures</h2>
+          <p>Osterra has a complex political landscape with multiple layers of authority, from local lords to the High Crown. Understanding these structures is essential for navigating the game's political intrigue.</p>
+
+          <h3 class="h4 mt-4">The Feudal Hierarchy</h3>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Title Examples</th>
+                <th>Typical Holdings</th>
+                <th>Responsibilities</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>High Crown</td>
+                <td>King/Queen, Emperor</td>
+                <td>Entire realm</td>
+                <td>Supreme authority, final arbiter</td>
+              </tr>
+              <tr>
+                <td>Great Lord</td>
+                <td>Duke, Duchess, Marquis</td>
+                <td>Province or region</td>
+                <td>Regional governance, Crown vassal</td>
+              </tr>
+              <tr>
+                <td>Lord</td>
+                <td>Baron, Count, Earl</td>
+                <td>Town or territory</td>
+                <td>Local governance, military levy</td>
+              </tr>
+              <tr>
+                <td>Knight</td>
+                <td>Sir, Dame, Banneret</td>
+                <td>Village or estate</td>
+                <td>Military service, local protection</td>
+              </tr>
+              <tr>
+                <td>Commoner</td>
+                <td>Freeman, Merchant</td>
+                <td>Property only</td>
+                <td>Taxes and service</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3 class="h4 mt-4">The Council System</h3>
+          <p>Major political decisions in Osterra are made through a council system:</p>
+          <ul>
+            <li><strong>The High Council:</strong> Great Lords meet quarterly to advise the Crown on realm matters</li>
+            <li><strong>Regional Moots:</strong> Local lords gather to resolve disputes and coordinate defense</li>
+            <li><strong>Guild Assemblies:</strong> Trade guilds meet to set standards and negotiate agreements</li>
+            <li><strong>The Covenant:</strong> Religious orders convene to address spiritual matters</li>
+          </ul>
+
+          <h3 class="h4 mt-4">Political Actions</h3>
+          <p>Units can take various political actions between and during events:</p>
+          <ul>
+            <li><strong>Petition:</strong> Request action from a higher authority</li>
+            <li><strong>Treaty:</strong> Formalize agreements with other units</li>
+            <li><strong>Accusation:</strong> Bring charges against another noble or unit</li>
+            <li><strong>Betrothal:</strong> Arrange political marriages</li>
+            <li><strong>Fealty:</strong> Swear or break allegiance to a liege</li>
+            <li><strong>Claim:</strong> Assert right to territory or title</li>
+          </ul>
+
+          <div class="callout">
+            <div class="callout-title">Intrigue and Espionage</div>
+            <p class="mb-0">Not all political actions are public. Units can employ spies, assassins, and agents to gather information, sabotage rivals, or eliminate threats. These covert actions are resolved through staff moderation and can have dramatic consequences if discovered.</p>
+          </div>
+        </section>
+
+        <!-- Navigation -->
+        <div class="d-flex justify-content-between mt-5 pt-4" style="border-top: var(--border-standard);">
+          <a href="rules-combat.html" class="btn btn-outline-primary"><i class="bi bi-arrow-left me-2"></i>Combat Rules</a>
+          <a href="rules-sea.html" class="btn btn-outline-primary">Law of the Sea <i class="bi bi-arrow-right ms-2"></i></a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-5" style="background-color: var(--color-bg-page); border-top: var(--border-heavy);">
+    <div class="container">
+      <p class="text-muted text-center mb-0">&copy; 2026 LARP Adventures. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/theme-switcher.js"></script>
+</body>
+</html>

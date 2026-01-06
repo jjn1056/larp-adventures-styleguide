@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dungeon">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - LARP Adventures</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="../css/variables.css" rel="stylesheet">
+  <link href="../css/theme-dungeon.css" rel="stylesheet" id="theme-css">
+  <style>
+    .contact-card {
+      height: 100%;
+      transition: transform var(--transition-fast), border-color var(--transition-fast);
+    }
+    .contact-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--color-primary);
+    }
+    .contact-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--text-2xl);
+      margin: 0 auto var(--space-3);
+    }
+    .quick-link {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-3);
+      border: var(--border-standard);
+      background: var(--color-bg-surface);
+      text-decoration: none;
+      color: var(--color-text-primary);
+      transition: all var(--transition-fast);
+      margin-bottom: var(--space-3);
+    }
+    .quick-link:hover {
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+    }
+    .quick-link i {
+      font-size: var(--text-2xl);
+      color: var(--color-primary);
+    }
+    .response-time {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-1);
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      padding: var(--space-1) var(--space-2);
+      background: var(--color-bg-subtle);
+      border-radius: var(--radius-sm);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="landing.html">LARP Adventures</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="landing.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="event-index.html">Events</a></li>
+          <li class="nav-item"><a class="nav-link" href="hub.html">Rules & Lore</a></li>
+          <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
+          <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+        </ul>
+        <a href="../portal/dashboard.html" class="btn btn-primary btn-sm">Player Portal</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="py-5" style="background-color: var(--color-bg-muted); border-bottom: var(--border-heavy);">
+    <div class="container text-center">
+      <h1>Contact Us</h1>
+      <p class="lead mb-0">We'd love to hear from you! Reach out with questions, feedback, or just to say hello.</p>
+    </div>
+  </header>
+
+  <main class="container py-5">
+    <!-- Quick Contact Options -->
+    <section class="mb-5">
+      <h2 class="text-center mb-4">How Can We Help?</h2>
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="card contact-card text-center">
+            <div class="card-body">
+              <div class="contact-icon" style="background: var(--color-primary-subtle); color: var(--color-primary);">
+                <i class="bi bi-question-circle"></i>
+              </div>
+              <h3 class="h5">General Questions</h3>
+              <p class="text-muted">New to LARP? Have a question about how things work?</p>
+              <a href="mailto:LARPAdventures@gmail.com?subject=General Question" class="btn btn-outline-primary">
+                <i class="bi bi-envelope me-1"></i>Email Us
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card contact-card text-center">
+            <div class="card-body">
+              <div class="contact-icon" style="background: var(--color-success-bg); color: var(--color-success);">
+                <i class="bi bi-calendar-event"></i>
+              </div>
+              <h3 class="h5">Event Registration</h3>
+              <p class="text-muted">Need help with sign-ups, payments, or accommodations?</p>
+              <a href="mailto:LARPAdventures@gmail.com?subject=Event Registration Help" class="btn btn-outline-primary">
+                <i class="bi bi-envelope me-1"></i>Get Help
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card contact-card text-center">
+            <div class="card-body">
+              <div class="contact-icon" style="background: var(--color-info-bg); color: var(--color-info);">
+                <i class="bi bi-book"></i>
+              </div>
+              <h3 class="h5">Rules Questions</h3>
+              <p class="text-muted">Clarification on game mechanics or character builds?</p>
+              <a href="mailto:LARPAdventures@gmail.com?subject=Rules Question" class="btn btn-outline-primary">
+                <i class="bi bi-envelope me-1"></i>Ask Rules Team
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="heavy">
+
+    <div class="row">
+      <!-- Contact Form -->
+      <div class="col-lg-7 mb-5">
+        <section>
+          <h2>Send Us a Message</h2>
+          <p class="text-muted mb-4">
+            Fill out the form below and we'll get back to you as soon as possible.
+            <span class="response-time"><i class="bi bi-clock"></i>Typical response: 24-48 hours</span>
+          </p>
+
+          <form>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="contactName" class="form-label">Your Name <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="contactName" placeholder="Enter your name" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="contactEmail" class="form-label">Email Address <span class="text-danger">*</span></label>
+                <input type="email" class="form-control" id="contactEmail" placeholder="your@email.com" required>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="contactSubject" class="form-label">What's this about?</label>
+              <select class="form-select" id="contactSubject">
+                <option value="" selected>Select a topic...</option>
+                <option value="new-player">I'm new and want to learn more</option>
+                <option value="registration">Event registration help</option>
+                <option value="rules">Rules question or clarification</option>
+                <option value="character">Character creation help</option>
+                <option value="accessibility">Accessibility accommodations</option>
+                <option value="feedback">Feedback or suggestions</option>
+                <option value="volunteer">I want to volunteer/staff</option>
+                <option value="partnership">Partnership or sponsorship</option>
+                <option value="media">Media or press inquiry</option>
+                <option value="other">Something else</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="playerName" class="form-label">Character/Player Name (if applicable)</label>
+              <input type="text" class="form-control" id="playerName" placeholder="Your in-game name">
+              <div class="form-text">This helps us find your records if you're an existing player.</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="contactMessage" class="form-label">Your Message <span class="text-danger">*</span></label>
+              <textarea class="form-control" id="contactMessage" rows="6" placeholder="How can we help you?" required></textarea>
+            </div>
+
+            <div class="mb-4">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="subscribeNewsletter">
+                <label class="form-check-label" for="subscribeNewsletter">
+                  Sign me up for news and event announcements
+                </label>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg">
+              <i class="bi bi-send me-2"></i>Send Message
+            </button>
+          </form>
+        </section>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="col-lg-5">
+        <!-- Direct Contact -->
+        <section class="mb-5">
+          <h3>Direct Contact</h3>
+          <div class="quick-link">
+            <i class="bi bi-envelope-fill"></i>
+            <div>
+              <strong>Email Us Directly</strong><br>
+              <a href="mailto:LARPAdventures@gmail.com">LARPAdventures@gmail.com</a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Community -->
+        <section class="mb-5">
+          <h3>Join the Community</h3>
+          <p class="text-muted">The fastest way to get answers is often through our community channels:</p>
+
+          <a href="#" class="quick-link">
+            <i class="bi bi-discord"></i>
+            <div>
+              <strong>Discord Server</strong><br>
+              <small class="text-muted">Real-time chat with players and staff</small>
+            </div>
+          </a>
+
+          <a href="#" class="quick-link">
+            <i class="bi bi-facebook"></i>
+            <div>
+              <strong>Facebook Group</strong><br>
+              <small class="text-muted">Announcements and discussions</small>
+            </div>
+          </a>
+
+          <a href="#" class="quick-link">
+            <i class="bi bi-instagram"></i>
+            <div>
+              <strong>Instagram</strong><br>
+              <small class="text-muted">Event photos and behind-the-scenes</small>
+            </div>
+          </a>
+        </section>
+
+        <!-- Meet the Team -->
+        <section class="mb-5">
+          <div class="card" style="background: var(--color-bg-subtle);">
+            <div class="card-body">
+              <h4 class="h5"><i class="bi bi-people me-2"></i>Meet Our Team</h4>
+              <p class="mb-3">Want to know who runs LARP Adventures? Learn about our organizers, staff roles, and how to get involved.</p>
+              <a href="organizers.html" class="btn btn-outline-primary btn-sm">
+                View Organizers<i class="bi bi-arrow-right ms-2"></i>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- FAQ Callout -->
+        <section>
+          <div class="callout">
+            <div class="callout-title"><i class="bi bi-lightbulb me-2"></i>Check the FAQ First</div>
+            <p class="mb-2">Many common questions are already answered in our FAQ. You might find what you're looking for there!</p>
+            <a href="faq.html" class="btn btn-outline-primary btn-sm">Browse FAQ</a>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- Safety & Reporting -->
+    <section class="mt-5 p-4" style="background-color: var(--color-warning-bg); border: 2px solid var(--color-warning); border-radius: var(--radius-md);">
+      <div class="row align-items-center">
+        <div class="col-md-8">
+          <h3 class="h5 mb-2"><i class="bi bi-shield-check me-2"></i>Safety Concerns or Code of Conduct Issues</h3>
+          <p class="mb-md-0">If you need to report a safety concern or code of conduct violation, please contact us directly. All reports are handled confidentially.</p>
+        </div>
+        <div class="col-md-4 text-md-end">
+          <a href="mailto:LARPAdventures@gmail.com?subject=Safety Report - Confidential" class="btn btn-warning">
+            <i class="bi bi-shield-exclamation me-1"></i>Report Safely
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-5" style="background-color: var(--color-bg-page); border-top: var(--border-heavy);">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <h4 class="h5">LARP Adventures</h4>
+          <p class="text-muted">Live action roleplaying in the realm of Osterra since 2015.</p>
+        </div>
+        <div class="col-md-4 mb-4">
+          <h4 class="h5">Quick Links</h4>
+          <ul class="list-unstyled">
+            <li><a href="event-index.html">Events</a></li>
+            <li><a href="hub.html">Rules & Lore</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="organizers.html">Our Team</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4 mb-4">
+          <h4 class="h5">Connect</h4>
+          <ul class="list-unstyled">
+            <li><a href="#"><i class="bi bi-discord me-2"></i>Discord Community</a></li>
+            <li><a href="#"><i class="bi bi-facebook me-2"></i>Facebook Group</a></li>
+            <li><a href="#"><i class="bi bi-instagram me-2"></i>Instagram</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+      <p class="text-muted text-center mb-0">&copy; 2026 LARP Adventures. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/theme-switcher.js"></script>
+</body>
+</html>

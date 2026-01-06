@@ -136,6 +136,7 @@
             <li class="nav-item"><a class="nav-link" href="#inputs">Inputs</a></li>
             <li class="nav-item"><a class="nav-link" href="#buttons">Buttons</a></li>
             <li class="nav-item"><a class="nav-link" href="#validation">Validation</a></li>
+            <li class="nav-item"><a class="nav-link" href="#newsletter">Newsletter Signup</a></li>
 
             <li class="nav-item"><strong class="d-block py-2 mt-3">Components</strong></li>
             <li class="nav-item"><a class="nav-link" href="#cards">Cards</a></li>
@@ -153,6 +154,7 @@
             <li class="nav-item"><a class="nav-link" href="#stats">Stat Blocks</a></li>
             <li class="nav-item"><a class="nav-link" href="#progress">Progress</a></li>
             <li class="nav-item"><a class="nav-link" href="#empty-states">Empty States</a></li>
+            <li class="nav-item"><a class="nav-link" href="#reactions">Reactions</a></li>
           </ul>
         </nav>
       </div>
@@ -565,6 +567,94 @@
               <div class="invalid-feedback">Please enter a character name.</div>
             </div>
           </div>
+        </section>
+
+        <!-- Newsletter Signup -->
+        <section id="newsletter" class="sg-section">
+          <h2>Newsletter Signup</h2>
+          <p>Two patterns for collecting email subscriptions: a prominent full-width CTA for landing pages and a compact sidebar card for content pages.</p>
+
+          <h3 class="h5">Pattern 1: Full-width CTA (Landing Pages)</h3>
+          <p>Use this prominent section on landing pages to drive newsletter signups. Features a primary color background with white text and a centered form.</p>
+          <div class="sg-example" style="margin: 0 calc(var(--space-4) * -1); padding: 0;">
+            <section class="py-5 text-center" style="background-color: var(--color-primary); color: white;">
+              <div class="container">
+                <h2 style="color: white; border: none;">Join Our Mailing List</h2>
+                <p class="lead mb-4" style="color: rgba(255,255,255,0.9);">Get news, event announcements, and lore drops delivered to your inbox.</p>
+                <form class="row g-2 justify-content-center" style="max-width: 500px; margin: 0 auto;">
+                  <div class="col-8">
+                    <input type="email" class="form-control form-control-lg" placeholder="Enter your email" required>
+                  </div>
+                  <div class="col-auto">
+                    <button type="submit" class="btn btn-light btn-lg">Subscribe</button>
+                  </div>
+                </form>
+                <p class="small mt-3 mb-0" style="color: rgba(255,255,255,0.7);">We respect your privacy. Unsubscribe anytime.</p>
+              </div>
+            </section>
+          </div>
+
+          <div class="sg-code">
+            <pre><code>&lt;!-- Mailing List Section --&gt;
+&lt;section class="py-5 text-center" style="background-color: var(--color-primary); color: white;"&gt;
+  &lt;div class="container"&gt;
+    &lt;h2 style="color: white; border: none;"&gt;Join Our Mailing List&lt;/h2&gt;
+    &lt;p class="lead mb-4" style="color: rgba(255,255,255,0.9);"&gt;Get news, event announcements, and lore drops delivered to your inbox.&lt;/p&gt;
+    &lt;form class="row g-2 justify-content-center" style="max-width: 500px; margin: 0 auto;"&gt;
+      &lt;div class="col-8"&gt;
+        &lt;input type="email" class="form-control form-control-lg" placeholder="Enter your email" required&gt;
+      &lt;/div&gt;
+      &lt;div class="col-auto"&gt;
+        &lt;button type="submit" class="btn btn-light btn-lg"&gt;Subscribe&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/form&gt;
+    &lt;p class="small mt-3 mb-0" style="color: rgba(255,255,255,0.7);"&gt;We respect your privacy. Unsubscribe anytime.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+          </div>
+
+          <h3 class="h5 mt-5">Pattern 2: Sidebar Card (Content Pages)</h3>
+          <p>Use this compact card in sidebars on content pages like news, blog posts, or documentation. Features a card with header, description, and subscription form.</p>
+          <div class="sg-example">
+            <div style="max-width: 300px;">
+              <div class="card">
+                <div class="card-header"><strong>Stay Updated</strong></div>
+                <div class="card-body">
+                  <p class="card-text">Get news and announcements delivered to your inbox.</p>
+                  <form>
+                    <div class="mb-3">
+                      <input type="email" class="form-control" placeholder="Enter your email">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Subscribe</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sg-code">
+            <pre><code>&lt;!-- Subscribe Sidebar Card --&gt;
+&lt;div class="card"&gt;
+  &lt;div class="card-header"&gt;&lt;strong&gt;Stay Updated&lt;/strong&gt;&lt;/div&gt;
+  &lt;div class="card-body"&gt;
+    &lt;p class="card-text"&gt;Get news and announcements delivered to your inbox.&lt;/p&gt;
+    &lt;form&gt;
+      &lt;div class="mb-3"&gt;
+        &lt;input type="email" class="form-control" placeholder="Enter your email"&gt;
+      &lt;/div&gt;
+      &lt;button type="submit" class="btn btn-primary w-100"&gt;Subscribe&lt;/button&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+
+          <h3 class="h5 mt-5">Usage Guidelines</h3>
+          <ul>
+            <li><strong>Full-width CTA:</strong> Place before the footer on landing pages. Use sparingly - one per page maximum.</li>
+            <li><strong>Sidebar Card:</strong> Use on content-heavy pages (news, articles, documentation) in the sidebar.</li>
+            <li><strong>Theming:</strong> Both patterns use CSS variables (<code>--color-primary</code>) so they adapt to different themes automatically.</li>
+            <li><strong>Privacy:</strong> Always include a privacy statement or link to privacy policy.</li>
+          </ul>
         </section>
 
         <!-- ============================================
@@ -1095,6 +1185,205 @@
               <a href="#" class="btn btn-outline-primary">View Past Events</a>
             </div>
           </div>
+        </section>
+
+        <!-- Reactions -->
+        <section id="reactions" class="sg-section">
+          <h2>Reactions</h2>
+          <p>LARP-themed reaction buttons for lore articles, forum posts, and other community content. Reactions provide a quick way for players to engage with content without writing comments.</p>
+
+          <h3 class="h5">Full Reaction Bar</h3>
+          <p>The complete set of four LARP-themed reactions for primary content like lore articles and forum original posts.</p>
+          <div class="sg-example">
+            <style>
+              .sg-reactions {
+                display: flex;
+                gap: var(--space-2);
+                padding: var(--space-3) 0;
+              }
+              .sg-reaction-btn {
+                display: inline-flex;
+                align-items: center;
+                gap: var(--space-1);
+                padding: var(--space-1) var(--space-2);
+                background: var(--color-bg-subtle);
+                border: var(--border-standard);
+                border-radius: var(--radius-full);
+                color: var(--color-text-muted);
+                cursor: pointer;
+                transition: all var(--transition-fast);
+              }
+              .sg-reaction-btn:hover {
+                background: var(--color-bg-surface);
+                color: var(--color-primary);
+                border-color: var(--color-primary);
+              }
+              .sg-reaction-btn.active {
+                background: var(--color-primary-subtle);
+                color: var(--color-primary);
+                border-color: var(--color-primary);
+              }
+              .sg-reaction-count {
+                font-size: var(--text-sm);
+                font-weight: var(--font-medium);
+              }
+            </style>
+            <div class="sg-reactions">
+              <button class="sg-reaction-btn" title="Cheer">
+                <i class="bi bi-trophy"></i>
+                <span class="sg-reaction-count">12</span>
+              </button>
+              <button class="sg-reaction-btn" title="Lore Scroll">
+                <i class="bi bi-scroll"></i>
+                <span class="sg-reaction-count">8</span>
+              </button>
+              <button class="sg-reaction-btn" title="Supply Crate">
+                <i class="bi bi-box"></i>
+                <span class="sg-reaction-count">3</span>
+              </button>
+              <button class="sg-reaction-btn active" title="Heart">
+                <i class="bi bi-heart-fill"></i>
+                <span class="sg-reaction-count">24</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="sg-code">
+            <pre><code>&lt;div class="reactions"&gt;
+  &lt;button class="reaction-btn" title="Cheer"&gt;
+    &lt;i class="bi bi-trophy"&gt;&lt;/i&gt;
+    &lt;span class="reaction-count"&gt;12&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;button class="reaction-btn" title="Lore Scroll"&gt;
+    &lt;i class="bi bi-scroll"&gt;&lt;/i&gt;
+    &lt;span class="reaction-count"&gt;8&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;button class="reaction-btn" title="Supply Crate"&gt;
+    &lt;i class="bi bi-box"&gt;&lt;/i&gt;
+    &lt;span class="reaction-count"&gt;3&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;button class="reaction-btn active" title="Heart"&gt;
+    &lt;i class="bi bi-heart-fill"&gt;&lt;/i&gt;
+    &lt;span class="reaction-count"&gt;24&lt;/span&gt;
+  &lt;/button&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+
+          <h3 class="h5">Button States</h3>
+          <div class="sg-example">
+            <div class="d-flex gap-4 align-items-start flex-wrap">
+              <div class="text-center">
+                <button class="sg-reaction-btn" title="Default State">
+                  <i class="bi bi-trophy"></i>
+                  <span class="sg-reaction-count">5</span>
+                </button>
+                <p class="small text-muted mt-2 mb-0">Default</p>
+              </div>
+              <div class="text-center">
+                <button class="sg-reaction-btn" style="background: var(--color-bg-surface); color: var(--color-primary); border-color: var(--color-primary);" title="Hover State">
+                  <i class="bi bi-trophy"></i>
+                  <span class="sg-reaction-count">5</span>
+                </button>
+                <p class="small text-muted mt-2 mb-0">Hover</p>
+              </div>
+              <div class="text-center">
+                <button class="sg-reaction-btn active" title="Active State">
+                  <i class="bi bi-trophy"></i>
+                  <span class="sg-reaction-count">6</span>
+                </button>
+                <p class="small text-muted mt-2 mb-0">Active (user reacted)</p>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="h5">Reaction Types</h3>
+          <div class="sg-example">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Icon</th>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Use Case</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><i class="bi bi-trophy text-primary"></i></td>
+                  <td><strong>Cheer</strong></td>
+                  <td>Trophy icon representing celebration</td>
+                  <td>Celebrating achievements, victories, great ideas</td>
+                </tr>
+                <tr>
+                  <td><i class="bi bi-scroll text-primary"></i></td>
+                  <td><strong>Lore Scroll</strong></td>
+                  <td>Scroll icon for interesting lore</td>
+                  <td>Deep lore content, worldbuilding, story-focused posts</td>
+                </tr>
+                <tr>
+                  <td><i class="bi bi-box text-primary"></i></td>
+                  <td><strong>Supply Crate</strong></td>
+                  <td>Box icon for useful resources</td>
+                  <td>Helpful answers, resources, practical advice</td>
+                </tr>
+                <tr>
+                  <td><i class="bi bi-heart-fill text-primary"></i></td>
+                  <td><strong>Heart</strong></td>
+                  <td>Heart icon for love/appreciation</td>
+                  <td>General appreciation, emotional content, favorites</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="h5">CSS</h3>
+          <div class="sg-code">
+            <pre><code>.reactions {
+  display: flex;
+  gap: var(--space-2);
+  padding: var(--space-3) 0;
+}
+
+.reaction-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-2);
+  background: var(--color-bg-subtle);
+  border: var(--border-standard);
+  border-radius: var(--radius-full);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.reaction-btn:hover {
+  background: var(--color-bg-surface);
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.reaction-btn.active {
+  background: var(--color-primary-subtle);
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.reaction-count {
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+}</code></pre>
+          </div>
+
+          <h3 class="h5">Usage Guidelines</h3>
+          <ul>
+            <li><strong>Lore Articles:</strong> Place the full reaction bar after the article content, before navigation buttons.</li>
+            <li><strong>Forum Posts:</strong> Use the full reaction bar for original posts; use a compact version (2 buttons) for replies.</li>
+            <li><strong>Theming:</strong> Reactions use CSS variables and automatically adapt to different themes.</li>
+            <li><strong>Accessibility:</strong> Always include the <code>title</code> attribute for tooltip text describing the reaction.</li>
+            <li><strong>Interactive State:</strong> Add the <code>.active</code> class when a user has reacted, and update the count accordingly.</li>
+            <li><strong>Compact Mode:</strong> For replies and secondary content, use only 2 reactions (Cheer and Heart) to reduce visual noise.</li>
+          </ul>
         </section>
 
         <!-- Divider Text -->

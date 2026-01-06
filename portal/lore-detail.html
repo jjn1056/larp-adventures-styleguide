@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dungeon">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Fall of Ironhold - Lore Drop - LARP Adventures</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="../css/variables.css" rel="stylesheet">
+  <link href="../css/theme-dungeon.css" rel="stylesheet" id="theme-css">
+  <style>
+    body {
+      min-height: 100vh;
+      background-color: var(--color-bg-page);
+    }
+
+    .lore-header {
+      background: linear-gradient(180deg, var(--color-bg-muted) 0%, var(--color-bg-page) 100%);
+      border-bottom: var(--border-heavy);
+      padding: var(--space-8) 0;
+    }
+
+    .lore-category {
+      font-size: var(--text-sm);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-wide);
+      color: var(--color-primary);
+      margin-bottom: var(--space-2);
+    }
+
+    .lore-title {
+      font-size: var(--text-4xl);
+      margin-bottom: var(--space-3);
+      line-height: 1.2;
+    }
+
+    .lore-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      color: var(--color-text-muted);
+      font-size: var(--text-sm);
+    }
+
+    .lore-meta-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    /* Article Content */
+    .lore-content {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: var(--space-6) var(--space-4);
+    }
+
+    .lore-content p {
+      font-size: var(--text-lg);
+      line-height: 1.8;
+      margin-bottom: var(--space-5);
+    }
+
+    .lore-content p:first-of-type::first-letter {
+      font-size: 3.5em;
+      float: left;
+      line-height: 0.8;
+      padding-right: var(--space-2);
+      font-family: var(--font-heading);
+      color: var(--color-primary);
+    }
+
+    .lore-content blockquote {
+      font-style: italic;
+      font-size: var(--text-xl);
+      color: var(--color-text-secondary);
+      border-left: var(--border-width-thick) solid var(--color-primary);
+      padding-left: var(--space-4);
+      margin: var(--space-6) 0;
+    }
+
+    .lore-content blockquote cite {
+      display: block;
+      font-size: var(--text-sm);
+      font-style: normal;
+      color: var(--color-text-muted);
+      margin-top: var(--space-2);
+    }
+
+    .lore-content h2 {
+      font-size: var(--text-2xl);
+      margin-top: var(--space-8);
+      margin-bottom: var(--space-4);
+      padding-bottom: var(--space-2);
+      border-bottom: var(--border-standard);
+    }
+
+    .lore-content h3 {
+      font-size: var(--text-xl);
+      margin-top: var(--space-6);
+      margin-bottom: var(--space-3);
+    }
+
+    /* Story Image */
+    .lore-image {
+      margin: var(--space-6) calc(var(--space-4) * -1);
+      position: relative;
+    }
+
+    .lore-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .lore-image-placeholder {
+      background: var(--color-bg-muted);
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-text-muted);
+    }
+
+    .lore-image-caption {
+      text-align: center;
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      padding: var(--space-2) var(--space-4);
+      background: var(--color-bg-muted);
+    }
+
+    /* Tags & Related */
+    .lore-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      margin-top: var(--space-6);
+      padding-top: var(--space-4);
+      border-top: var(--border-standard);
+    }
+
+    .lore-tag {
+      padding: var(--space-1) var(--space-3);
+      background: var(--color-bg-muted);
+      border: var(--border-standard);
+      font-size: var(--text-sm);
+      text-decoration: none;
+      color: var(--color-text-secondary);
+      transition: all var(--transition-fast);
+    }
+
+    .lore-tag:hover {
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+    }
+
+    /* Sidebar */
+    .lore-sidebar {
+      position: sticky;
+      top: var(--space-4);
+    }
+
+    .related-lore {
+      background: var(--color-bg-surface);
+      border: var(--border-standard);
+      padding: var(--space-4);
+      margin-bottom: var(--space-4);
+    }
+
+    .related-lore h4 {
+      font-size: var(--text-base);
+      margin-bottom: var(--space-3);
+      padding-bottom: var(--space-2);
+      border-bottom: var(--border-standard);
+    }
+
+    .related-item {
+      display: block;
+      padding: var(--space-2) 0;
+      border-bottom: var(--border-standard);
+      text-decoration: none;
+      color: var(--color-text-primary);
+    }
+
+    .related-item:last-child {
+      border-bottom: none;
+    }
+
+    .related-item:hover {
+      color: var(--color-primary);
+    }
+
+    .related-item small {
+      display: block;
+      color: var(--color-text-muted);
+    }
+
+    /* Navigation */
+    .lore-nav {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-4);
+      padding: var(--space-6) 0;
+      border-top: var(--border-heavy);
+      margin-top: var(--space-6);
+    }
+
+    .lore-nav-item {
+      flex: 1;
+      padding: var(--space-4);
+      background: var(--color-bg-surface);
+      border: var(--border-standard);
+      text-decoration: none;
+      color: var(--color-text-primary);
+      transition: all var(--transition-fast);
+    }
+
+    .lore-nav-item:hover {
+      border-color: var(--color-primary);
+    }
+
+    .lore-nav-item.next {
+      text-align: right;
+    }
+
+    .lore-nav-label {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      display: block;
+      margin-bottom: var(--space-1);
+    }
+
+    .lore-nav-title {
+      font-weight: var(--font-semibold);
+    }
+
+    /* Reactions */
+    .reactions {
+      display: flex;
+      gap: var(--space-2);
+      padding: var(--space-3) 0;
+    }
+
+    .reaction-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-1);
+      padding: var(--space-1) var(--space-2);
+      background: var(--color-bg-subtle);
+      border: var(--border-standard);
+      border-radius: var(--radius-full);
+      color: var(--color-text-muted);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .reaction-btn:hover {
+      background: var(--color-bg-surface);
+      color: var(--color-primary);
+      border-color: var(--color-primary);
+    }
+
+    .reaction-btn.active {
+      background: var(--color-primary-subtle);
+      color: var(--color-primary);
+      border-color: var(--color-primary);
+    }
+
+    .reaction-count {
+      font-size: var(--text-sm);
+      font-weight: var(--font-medium);
+    }
+
+    @media (max-width: 991px) {
+      .lore-title {
+        font-size: var(--text-3xl);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Nav -->
+  <nav class="navbar navbar-expand-lg" style="background-color: var(--color-bg-surface); border-bottom: var(--border-standard);">
+    <div class="container">
+      <a class="navbar-brand" href="../public/landing.html" style="font-family: var(--font-heading);">LARP Adventures</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link active" href="lore.html">Lore Drops</a></li>
+          <li class="nav-item"><a class="nav-link" href="feed.html">Feed</a></li>
+        </ul>
+        <div class="d-flex gap-2">
+          <a href="notifications.html" class="btn btn-outline-secondary position-relative">
+            <i class="bi bi-bell"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">3</span>
+          </a>
+          <a href="profile.html" class="btn btn-outline-secondary">
+            <i class="bi bi-person-circle"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Breadcrumb -->
+  <div class="container">
+    <nav aria-label="breadcrumb" class="py-3">
+      <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><a href="dashboard.html">Portal</a></li>
+        <li class="breadcrumb-item"><a href="lore.html">Lore Drops</a></li>
+        <li class="breadcrumb-item active">The Fall of Ironhold</li>
+      </ol>
+    </nav>
+  </div>
+
+  <!-- Lore Header -->
+  <header class="lore-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="lore-category">
+            <i class="bi bi-map me-1"></i>World Event
+          </div>
+          <h1 class="lore-title">The Fall of Ironhold</h1>
+          <div class="lore-meta">
+            <span class="lore-meta-item">
+              <i class="bi bi-person"></i>Written by the Lore Council
+            </span>
+            <span class="lore-meta-item">
+              <i class="bi bi-calendar"></i>January 3, 2026
+            </span>
+            <span class="lore-meta-item">
+              <i class="bi bi-clock"></i>8 min read
+            </span>
+            <span class="lore-meta-item">
+              <i class="bi bi-eye"></i>1,247 views
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <!-- Article -->
+      <div class="col-lg-8">
+        <article class="lore-content">
+          <p>The great dwarven citadel of Ironhold, standing sentinel over the Eastern Mountains for more than a thousand years, has fallen. On the eve of the winter solstice, as the people of Osterra celebrated the longest night, an ancient darkness awakened beneath the mountain and consumed all that dwelt within its halls.</p>
+
+          <p>Refugees fleeing westward bring tales of shadow and flame, of stone itself crying out in anguish. The few survivors speak of King Thorgrim's final stand in the Hall of Ancestors, where the mountain lords of old are entombed. None know his fate, nor that of the legendary Hammer of Making, said to have forged the first walls of Ironhold itself.</p>
+
+          <div class="lore-image">
+            <div class="lore-image-placeholder">
+              <div class="text-center">
+                <i class="bi bi-image" style="font-size: 3rem;"></i>
+                <p class="mb-0 mt-2">Artwork: The Last Stand at Ironhold</p>
+              </div>
+            </div>
+            <div class="lore-image-caption">
+              <em>Artist's interpretation of King Thorgrim's final defense. Illustration by A. Stoneheart.</em>
+            </div>
+          </div>
+
+          <blockquote>
+            "The mountain wept fire and shadow. I saw the great gates buckle inward as if struck by the fist of a god. Then came the darkness, and with it, silence."
+            <cite>— Bran Copperbeard, Refugee of Ironhold</cite>
+          </blockquote>
+
+          <h2>What This Means for Osterra</h2>
+
+          <p>The fall of Ironhold sends shockwaves through every realm. The Eastern trade routes, long protected by dwarven patrols, now lie vulnerable. The Golden Compass Guild has already reported a surge in banditry along the mountain passes, and rumors of darker things moving in the shadows grow with each passing day.</p>
+
+          <p>The Northern Alliance has called an emergency council, recognizing that whatever consumed Ironhold may not be content to remain within the mountain. High Commander Aldric Stormwind has been dispatched to establish a forward watch along the eastern border, though many question whether any force of arms can stand against what the refugees describe.</p>
+
+          <h3>The Arcane Covenant's Response</h3>
+
+          <p>The mages of the Arcane Covenant have been notably silent since the fall. Those few who will speak claim that the Covenant's seers detected the awakening too late to warn the dwarves. Others whisper that the Covenant knew more than they revealed, and that their silence now is born of guilt—or fear.</p>
+
+          <p>What is known is that Grand Arcanist Velora has closed the Tower of Stars to all visitors and recalled every field operative. Such a lockdown has not occurred since the Sundering, nearly three centuries past.</p>
+
+          <h2>Implications for Your Character</h2>
+
+          <p>The fall of Ironhold opens new story possibilities for characters of all backgrounds:</p>
+
+          <ul>
+            <li><strong>Dwarven characters</strong> may have ties to Ironhold—family, friends, or business connections now lost or uncertain</li>
+            <li><strong>Merchants and traders</strong> face disrupted supply chains and dangerous roads</li>
+            <li><strong>Warriors</strong> may be called to reinforce the eastern watch</li>
+            <li><strong>Mages</strong> may seek to understand what ancient force has awakened</li>
+            <li><strong>Rogues</strong> find opportunity in chaos—information is currency, and desperate people pay well</li>
+          </ul>
+
+          <p>Speak with staff at your next event if you wish to incorporate Ironhold's fall into your character's personal story. We have special plot hooks prepared for those interested in exploring this storyline.</p>
+
+          <div class="alert alert-info">
+            <strong><i class="bi bi-calendar-event me-2"></i>Coming at Rites of Spring:</strong>
+            The consequences of Ironhold's fall will be a major plot element at our March event. Expect refugees, political intrigue, and perhaps... darker visitors.
+          </div>
+
+          <!-- Tags -->
+          <div class="lore-tags">
+            <span class="lore-tag-label me-2"><strong>Tags:</strong></span>
+            <a href="#" class="lore-tag">World Event</a>
+            <a href="#" class="lore-tag">Ironhold</a>
+            <a href="#" class="lore-tag">Dwarves</a>
+            <a href="#" class="lore-tag">Eastern Mountains</a>
+            <a href="#" class="lore-tag">Major Plot</a>
+          </div>
+
+          <!-- Reactions -->
+          <div class="reactions">
+            <button class="reaction-btn" title="Cheer" onclick="toggleReaction(this)">
+              <i class="bi bi-trophy"></i>
+              <span class="reaction-count">47</span>
+            </button>
+            <button class="reaction-btn active" title="Lore Scroll" onclick="toggleReaction(this)">
+              <i class="bi bi-scroll"></i>
+              <span class="reaction-count">89</span>
+            </button>
+            <button class="reaction-btn" title="Supply Crate" onclick="toggleReaction(this)">
+              <i class="bi bi-box"></i>
+              <span class="reaction-count">12</span>
+            </button>
+            <button class="reaction-btn" title="Heart" onclick="toggleReaction(this)">
+              <i class="bi bi-heart-fill"></i>
+              <span class="reaction-count">156</span>
+            </button>
+          </div>
+        </article>
+
+        <!-- Navigation -->
+        <nav class="lore-nav">
+          <a href="#" class="lore-nav-item prev">
+            <span class="lore-nav-label"><i class="bi bi-arrow-left me-1"></i>Previous Entry</span>
+            <span class="lore-nav-title">Whispers from the East</span>
+          </a>
+          <a href="#" class="lore-nav-item next">
+            <span class="lore-nav-label">Next Entry<i class="bi bi-arrow-right ms-1"></i></span>
+            <span class="lore-nav-title">The Refugee Crisis Begins</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="col-lg-4">
+        <aside class="lore-sidebar">
+          <!-- Related Lore -->
+          <div class="related-lore">
+            <h4><i class="bi bi-collection me-2"></i>Related Lore</h4>
+            <a href="#" class="related-item">
+              <strong>The Founding of Ironhold</strong>
+              <small>Background • 15 min read</small>
+            </a>
+            <a href="#" class="related-item">
+              <strong>King Thorgrim Stonehelm</strong>
+              <small>Character Profile • 8 min read</small>
+            </a>
+            <a href="#" class="related-item">
+              <strong>The Hammer of Making</strong>
+              <small>Artifact • 5 min read</small>
+            </a>
+            <a href="#" class="related-item">
+              <strong>Dwarven Trade Routes</strong>
+              <small>Geography • 10 min read</small>
+            </a>
+          </div>
+
+          <!-- Timeline Position -->
+          <div class="related-lore">
+            <h4><i class="bi bi-clock-history me-2"></i>Timeline</h4>
+            <div class="timeline-position">
+              <div class="d-flex justify-content-between small text-muted mb-2">
+                <span>1024 AO</span>
+                <span>1026 AO</span>
+              </div>
+              <div class="progress" style="height: 8px;">
+                <div class="progress-bar" style="width: 95%; background: var(--color-primary);"></div>
+              </div>
+              <p class="small text-muted mt-2 mb-0">
+                <i class="bi bi-geo-alt me-1"></i>Winter Solstice, 1025 AO
+              </p>
+            </div>
+          </div>
+
+          <!-- Map Link -->
+          <div class="related-lore">
+            <h4><i class="bi bi-map me-2"></i>Location</h4>
+            <a href="../public/map.html" class="btn btn-outline-primary w-100">
+              <i class="bi bi-pin-map me-2"></i>View on Map
+            </a>
+            <p class="small text-muted mt-2 mb-0">
+              Eastern Mountains, approximately 200 leagues east of the Northern Alliance capital.
+            </p>
+          </div>
+
+          <!-- Share -->
+          <div class="related-lore">
+            <h4><i class="bi bi-share me-2"></i>Share</h4>
+            <div class="d-flex gap-2">
+              <button class="btn btn-outline-secondary flex-grow-1" onclick="copyLink()">
+                <i class="bi bi-link-45deg"></i>
+              </button>
+              <a href="#" class="btn btn-outline-secondary flex-grow-1">
+                <i class="bi bi-discord"></i>
+              </a>
+              <a href="#" class="btn btn-outline-secondary flex-grow-1">
+                <i class="bi bi-facebook"></i>
+              </a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer style="background-color: var(--color-bg-muted); border-top: var(--border-heavy); padding: var(--space-6); margin-top: var(--space-8);">
+    <div class="container text-center">
+      <p class="mb-2">&copy; 2026 LARP Adventures. All rights reserved.</p>
+      <p class="text-muted small mb-0">
+        Lore content is official game canon and may be referenced in gameplay.
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function toggleReaction(btn) {
+      btn.classList.toggle('active');
+      const count = btn.querySelector('.reaction-count');
+      if (btn.classList.contains('active')) {
+        count.textContent = parseInt(count.textContent) + 1;
+      } else {
+        count.textContent = parseInt(count.textContent) - 1;
+      }
+    }
+
+    function copyLink() {
+      navigator.clipboard.writeText(window.location.href);
+      alert('Link copied to clipboard!');
+    }
+  </script>
+  <script src="../js/theme-switcher.js"></script>
+</body>
+</html>

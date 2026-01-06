@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dungeon">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Law of the Sea - LARP Adventures</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="../css/variables.css" rel="stylesheet">
+  <link href="../css/theme-dungeon.css" rel="stylesheet" id="theme-css">
+  <style>
+    /* Reference document specific styles */
+    .ref-sidebar {
+      position: sticky;
+      top: 80px;
+      height: calc(100vh - 100px);
+      overflow-y: auto;
+      padding-right: var(--space-4);
+      font-size: var(--text-sm);
+    }
+
+    .ref-sidebar .nav-link {
+      color: var(--color-text-secondary);
+      padding: var(--space-1) var(--space-2);
+    }
+
+    .ref-sidebar .nav-link:hover,
+    .ref-sidebar .nav-link.active {
+      color: var(--color-primary);
+    }
+
+    .ref-content section {
+      padding-top: var(--space-6);
+      margin-bottom: var(--space-8);
+    }
+
+    .ref-content section:first-child {
+      padding-top: 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="landing.html">LARP Adventures</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="landing.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="event-index.html">Events</a></li>
+          <li class="nav-item"><a class="nav-link active" href="hub.html">Rules & Lore</a></li>
+          <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
+          <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+        </ul>
+        <a href="../portal/dashboard.html" class="btn btn-primary btn-sm">Player Portal</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Breadcrumb -->
+  <div class="container py-3">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><a href="landing.html">Home</a></li>
+        <li class="breadcrumb-item"><a href="hub.html">Rules & Lore</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Law of the Sea</li>
+      </ol>
+    </nav>
+  </div>
+
+  <!-- Page Header -->
+  <header class="py-4" style="background-color: var(--color-bg-muted); border-bottom: var(--border-heavy);">
+    <div class="container">
+      <h1>Law of the Sea</h1>
+      <p class="lead mb-0">Naval combat, maritime trade, and the pirate's code in Osterra</p>
+      <p class="text-muted mt-2 mb-0"><small>Last updated: January 5, 2026 | Version 1.5</small></p>
+    </div>
+  </header>
+
+  <main class="container py-5">
+    <!-- Rules Navigation -->
+    <nav class="rules-nav mb-4 pb-3" style="border-bottom: var(--border-standard);">
+      <span class="text-muted me-2">Rules:</span>
+      <a href="rules-combat.html" class="btn btn-sm btn-outline-primary me-1">Combat</a>
+      <a href="rules-units.html" class="btn btn-sm btn-outline-primary me-1">Units & Land</a>
+      <a href="rules-sea.html" class="btn btn-sm btn-primary me-1">Law of the Sea</a>
+      <a href="hub.html" class="btn btn-sm btn-outline-secondary">All Rules</a>
+    </nav>
+
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-lg-3 d-none d-lg-block">
+        <nav class="ref-sidebar">
+          <h6 class="text-uppercase" style="letter-spacing: var(--tracking-wider);">Contents</h6>
+          <ul class="nav flex-column">
+            <li class="nav-item"><a class="nav-link" href="#naval-overview">Naval Combat Overview</a></li>
+            <li class="nav-item"><a class="nav-link" href="#ship-types">Ship Types</a></li>
+            <li class="nav-item"><a class="nav-link" href="#crew-requirements">Crew Requirements</a></li>
+            <li class="nav-item"><a class="nav-link" href="#trade-piracy">Trade and Piracy</a></li>
+            <li class="nav-item"><a class="nav-link" href="#port-rules">Port Rules</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Main Content -->
+      <div class="col-lg-9 ref-content">
+        <!-- Naval Combat Overview -->
+        <section id="naval-overview">
+          <h2>Naval Combat Overview</h2>
+          <p>The seas of Osterra are highways for trade, invasion, and adventure. From the merchant fleets of the Silver Coast to the dreaded pirate havens of the Shattered Isles, naval power shapes the fate of nations.</p>
+
+          <blockquote>
+            <p>"The sea cares nothing for titles or gold. She respects only strength, cunning, and those who know her moods. Master the waves, and the world is yours."</p>
+            <cite>- Admiral Thessa Stormwright, Founder of the Maritime Guild</cite>
+          </blockquote>
+
+          <h3 class="h4 mt-4">How Naval Combat Works</h3>
+          <p>Naval combat in LARP Adventures combines strategic ship-to-ship mechanics with live-action boarding actions:</p>
+
+          <ol>
+            <li><strong>Encounter Phase:</strong> Ships spot each other and commanders decide to engage, flee, or negotiate</li>
+            <li><strong>Maneuvering Phase:</strong> Strategic decisions about positioning, wind advantage, and distance</li>
+            <li><strong>Ranged Phase:</strong> Catapults, ballistae, and magic volleys exchange between ships</li>
+            <li><strong>Boarding Phase:</strong> Crews engage in live-action combat if ships come alongside</li>
+            <li><strong>Resolution Phase:</strong> Capture, sinking, or escape determined</li>
+          </ol>
+
+          <div class="callout">
+            <div class="callout-title">Representing Ships</div>
+            <p class="mb-0">At events, ships are represented by designated areas on the field, marked banners, or constructed set pieces. Movement between "ships" represents swimming, grappling lines, or gangways. Staff will brief players on the specific setup at each event featuring naval content.</p>
+          </div>
+
+          <h3 class="h4 mt-4">Naval Skills</h3>
+          <p>Characters can invest XP in naval-specific skills:</p>
+          <ul>
+            <li><strong>Seamanship:</strong> Basic sailing, navigation, and ship maintenance</li>
+            <li><strong>Ship Combat:</strong> Operating siege weapons and understanding naval tactics</li>
+            <li><strong>Navigation:</strong> Chart reading, weather prediction, and finding safe routes</li>
+            <li><strong>Command:</strong> Leadership bonuses when captaining a vessel</li>
+            <li><strong>Swimming:</strong> Survival and mobility in water</li>
+          </ul>
+        </section>
+
+        <hr class="heavy">
+
+        <!-- Ship Types -->
+        <section id="ship-types">
+          <h2>Ship Types</h2>
+          <p>Osterra's fleets include vessels of all sizes, from humble fishing boats to mighty warships. Each ship type has distinct capabilities, costs, and crew requirements.</p>
+
+          <div class="stat-block mb-4">
+            <div class="stat-block-header">Skiff / Fishing Boat</div>
+            <div class="stat-block-subheader">Small Personal Vessel</div>
+            <div class="stat-row">
+              <span class="stat-label">Hull Points</span>
+              <span>10</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Speed</span>
+              <span>Fast (coastal only)</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Crew</span>
+              <span>1-3</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Cargo</span>
+              <span>5 units</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Weapons</span>
+              <span>None</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Cost</span>
+              <span>100 gold</span>
+            </div>
+            <hr class="my-3">
+            <p class="mb-0"><em>Perfect for short coastal trips, fishing, and smuggling. Cannot survive open ocean storms. No combat capability - flee or surrender.</em></p>
+          </div>
+
+          <div class="stat-block mb-4">
+            <div class="stat-block-header">Cog / Merchant Vessel</div>
+            <div class="stat-block-subheader">Medium Trade Ship</div>
+            <div class="stat-row">
+              <span class="stat-label">Hull Points</span>
+              <span>30</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Speed</span>
+              <span>Moderate</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Crew</span>
+              <span>8-15</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Cargo</span>
+              <span>50 units</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Weapons</span>
+              <span>1 light ballista</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Cost</span>
+              <span>500 gold</span>
+            </div>
+            <hr class="my-3">
+            <p class="mb-0"><em>The workhorse of maritime trade. Reliable for ocean crossings with adequate crew. Light armament deters casual piracy but cannot fight warships.</em></p>
+          </div>
+
+          <div class="stat-block mb-4">
+            <div class="stat-block-header">Longship / Raider</div>
+            <div class="stat-block-subheader">Fast Attack Vessel</div>
+            <div class="stat-row">
+              <span class="stat-label">Hull Points</span>
+              <span>25</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Speed</span>
+              <span>Very Fast</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Crew</span>
+              <span>20-40 (rowers)</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Cargo</span>
+              <span>15 units</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Weapons</span>
+              <span>Boarding ramps, grapples</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Cost</span>
+              <span>400 gold</span>
+            </div>
+            <hr class="my-3">
+            <p class="mb-0"><em>Built for speed and boarding actions. Shallow draft allows beach landings and river navigation. Low cargo capacity limits range without coastal resupply.</em></p>
+          </div>
+
+          <div class="stat-block mb-4">
+            <div class="stat-block-header">Galleon / Warship</div>
+            <div class="stat-block-subheader">Heavy Combat Vessel</div>
+            <div class="stat-row">
+              <span class="stat-label">Hull Points</span>
+              <span>75</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Speed</span>
+              <span>Slow</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Crew</span>
+              <span>50-100</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Cargo</span>
+              <span>80 units</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Weapons</span>
+              <span>4 ballistae, 2 catapults</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Cost</span>
+              <span>2000 gold</span>
+            </div>
+            <hr class="my-3">
+            <p class="mb-0"><em>The ultimate expression of naval power. Can engage multiple smaller vessels, transport armies, and project force anywhere with ocean access. Requires significant crew and resources to maintain.</em></p>
+          </div>
+
+          <h3 class="h4 mt-4">Ship Modifications</h3>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Modification</th>
+                <th>Cost</th>
+                <th>Effect</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Reinforced Hull</td>
+                <td>200 gold</td>
+                <td>+10 Hull Points</td>
+              </tr>
+              <tr>
+                <td>Extra Sail</td>
+                <td>100 gold</td>
+                <td>+1 Speed category</td>
+              </tr>
+              <tr>
+                <td>Hidden Compartments</td>
+                <td>150 gold</td>
+                <td>10 units of hidden cargo</td>
+              </tr>
+              <tr>
+                <td>Siege Weapon</td>
+                <td>300 gold</td>
+                <td>Add ballista or catapult</td>
+              </tr>
+              <tr>
+                <td>Ram</td>
+                <td>250 gold</td>
+                <td>Deal damage when ramming</td>
+              </tr>
+              <tr>
+                <td>Fire Resistance</td>
+                <td>400 gold</td>
+                <td>Half damage from fire attacks</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <hr>
+
+        <!-- Crew Requirements -->
+        <section id="crew-requirements">
+          <h2>Crew Requirements</h2>
+          <p>A ship is only as good as its crew. Proper manning ensures safe voyages, effective combat, and profitable trade.</p>
+
+          <h3 class="h4 mt-4">Crew Roles</h3>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <h4 class="h5"><i class="bi bi-compass me-2 text-primary"></i>Captain</h4>
+                  <p class="text-muted">Commands the vessel and makes tactical decisions. Requires Command skill. One per ship.</p>
+                  <p class="mb-0"><strong>Benefit:</strong> Leadership bonuses apply to entire crew</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <h4 class="h5"><i class="bi bi-map me-2 text-primary"></i>Navigator</h4>
+                  <p class="text-muted">Plots course and reads stars/charts. Requires Navigation skill. One per ship.</p>
+                  <p class="mb-0"><strong>Benefit:</strong> Avoid hazards, find optimal routes</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <h4 class="h5"><i class="bi bi-hammer me-2 text-primary"></i>Bosun</h4>
+                  <p class="text-muted">Maintains the ship and supervises repairs. Requires Crafting skill. One per ship.</p>
+                  <p class="mb-0"><strong>Benefit:</strong> Repair hull damage during voyage</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <h4 class="h5"><i class="bi bi-heart-pulse me-2 text-primary"></i>Ship's Surgeon</h4>
+                  <p class="text-muted">Treats injuries and illness. Requires Healing skill. One per ship.</p>
+                  <p class="mb-0"><strong>Benefit:</strong> Heal crew during voyage</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <h4 class="h5"><i class="bi bi-bullseye me-2 text-primary"></i>Master Gunner</h4>
+                  <p class="text-muted">Commands siege weapons. Requires Ship Combat skill. One per weapon.</p>
+                  <p class="mb-0"><strong>Benefit:</strong> +2 to siege weapon accuracy</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <h4 class="h5"><i class="bi bi-people me-2 text-primary"></i>Sailors</h4>
+                  <p class="text-muted">General crew. Requires Seamanship skill (or training aboard). Variable number.</p>
+                  <p class="mb-0"><strong>Benefit:</strong> Required to operate ship</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="h4 mt-4">Undermanning Penalties</h3>
+          <p>Ships can sail with reduced crew, but suffer penalties:</p>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Crew Level</th>
+                <th>Effect</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Full Crew (100%)</td>
+                <td>Normal operation</td>
+              </tr>
+              <tr>
+                <td>Skeleton Crew (50-99%)</td>
+                <td>-1 Speed, no repairs during voyage</td>
+              </tr>
+              <tr>
+                <td>Minimal Crew (25-49%)</td>
+                <td>-2 Speed, cannot fight, no siege weapons</td>
+              </tr>
+              <tr>
+                <td>Critical (<25%)</td>
+                <td>Emergency sailing only, risk of disaster each day</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="callout">
+            <div class="callout-title">Hiring Crew</div>
+            <p class="mb-0">NPC crew can be hired at ports for 2 gold per sailor per voyage. They follow orders but won't take exceptional risks. Player crew provides better combat capability and loyalty.</p>
+          </div>
+        </section>
+
+        <hr>
+
+        <!-- Trade and Piracy -->
+        <section id="trade-piracy">
+          <h2>Trade and Piracy</h2>
+          <p>The seas offer both legitimate trade routes and opportunities for those with more... flexible morality. Both paths can lead to fortune or ruin.</p>
+
+          <h3 class="h4 mt-4">Maritime Trade</h3>
+          <p>Trade goods gain value when moved between different port types:</p>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Goods</th>
+                <th>Source Port</th>
+                <th>Destination</th>
+                <th>Profit Margin</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Grain & Food</td>
+                <td>Farming regions</td>
+                <td>Cities, Armies</td>
+                <td>50-100%</td>
+              </tr>
+              <tr>
+                <td>Ore & Metals</td>
+                <td>Mining regions</td>
+                <td>Crafting centers</td>
+                <td>75-150%</td>
+              </tr>
+              <tr>
+                <td>Luxury Goods</td>
+                <td>Exotic ports</td>
+                <td>Noble courts</td>
+                <td>100-300%</td>
+              </tr>
+              <tr>
+                <td>Weapons & Armor</td>
+                <td>Crafting centers</td>
+                <td>War zones</td>
+                <td>100-200%</td>
+              </tr>
+              <tr>
+                <td>Magical Components</td>
+                <td>Wizard towers</td>
+                <td>Anywhere</td>
+                <td>150-400%</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3 class="h4 mt-4">The Pirate's Life</h3>
+          <p>Those who prey on shipping live outside the law but can accumulate great wealth:</p>
+
+          <div class="stat-block mb-4">
+            <div class="stat-block-header">Letters of Marque</div>
+            <div class="stat-block-subheader">Legitimized Piracy</div>
+            <hr class="my-3">
+            <p>A nation at war may issue Letters of Marque, authorizing ships to attack enemy merchants. Privateers operate legally (in their sponsor's eyes) and can sell captured goods openly in friendly ports.</p>
+            <p class="mb-0"><strong>Cost:</strong> 10% of all plunder paid to sponsoring nation</p>
+          </div>
+
+          <h3 class="h4 mt-4">Capturing Ships</h3>
+          <p>To capture rather than sink an enemy vessel:</p>
+          <ol>
+            <li>Reduce target to less than 25% Hull Points OR defeat all defenders</li>
+            <li>Board the vessel and secure it (kill or capture remaining crew)</li>
+            <li>Assign prize crew (minimum skeleton crew from your own ship)</li>
+            <li>Sail captured ship to port for sale or personal use</li>
+          </ol>
+
+          <div class="callout">
+            <div class="callout-title">The Black Spot</div>
+            <p class="mb-0">Pirates who become too notorious may receive the Black Spot - a bounty from the Maritime Guild. Bounty hunters and naval vessels will actively seek them, and most ports will refuse them entry. The only safe harbors become pirate havens like Freeport.</p>
+          </div>
+
+          <h3 class="h4 mt-4">Sharing Plunder</h3>
+          <p>Traditional pirate shares:</p>
+          <ul>
+            <li><strong>Captain:</strong> 2 shares</li>
+            <li><strong>Officers (Navigator, Bosun, etc.):</strong> 1.5 shares</li>
+            <li><strong>Sailors:</strong> 1 share</li>
+            <li><strong>Ship's Fund:</strong> 1 share (repairs, supplies)</li>
+          </ul>
+        </section>
+
+        <hr>
+
+        <!-- Port Rules -->
+        <section id="port-rules">
+          <h2>Port Rules</h2>
+          <p>Ports are hubs of commerce, intrigue, and adventure. Each port has its own character, laws, and opportunities.</p>
+
+          <h3 class="h4 mt-4">Port Types</h3>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="stat-block mb-4">
+                <div class="stat-block-header">Crown Port</div>
+                <div class="stat-block-subheader">Major trading hub</div>
+                <div class="stat-row">
+                  <span class="stat-label">Law Level</span>
+                  <span>High - Guards enforce peace</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">Services</span>
+                  <span>Full repairs, all goods, hiring</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">Docking Fee</span>
+                  <span>10 gold per day</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">Trade Tax</span>
+                  <span>5% of transactions</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="stat-block mb-4">
+                <div class="stat-block-header">Free Port</div>
+                <div class="stat-block-subheader">Independent trading post</div>
+                <div class="stat-row">
+                  <span class="stat-label">Law Level</span>
+                  <span>Moderate - Merchant law only</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">Services</span>
+                  <span>Basic repairs, common goods</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">Docking Fee</span>
+                  <span>5 gold per day</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">Trade Tax</span>
+                  <span>None</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="stat-block mb-4">
+                <div class="stat-block-header">Pirate Haven</div>
+                <div class="stat-block-subheader">Outlaw sanctuary</div>
+                <div class="stat-row">
+                  <span class="stat-label">Law Level</span>
+                  <span>Low - Pirate code only</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">Services</span>
+                  <span>Repairs, fencing, black market</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">Docking Fee</span>
+                  <span>Tribute to Port Captain</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">Trade Tax</span>
+                  <span>Protection money varies</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="stat-block mb-4">
+                <div class="stat-block-header">Naval Base</div>
+                <div class="stat-block-subheader">Military installation</div>
+                <div class="stat-row">
+                  <span class="stat-label">Law Level</span>
+                  <span>Martial - Military jurisdiction</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">Services</span>
+                  <span>Military supplies, recruitment</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">Docking Fee</span>
+                  <span>By permission only</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">Trade Tax</span>
+                  <span>No civilian trade</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="h4 mt-4">Port Activities</h3>
+          <p>While in port, characters can engage in various activities:</p>
+          <ul>
+            <li><strong>Resupply:</strong> Purchase food, water, and equipment for the next voyage</li>
+            <li><strong>Repairs:</strong> Fix hull damage and replace broken equipment</li>
+            <li><strong>Recruitment:</strong> Hire new crew members or replace losses</li>
+            <li><strong>Trade:</strong> Buy and sell cargo for profit</li>
+            <li><strong>Gather Information:</strong> Learn about shipping routes, targets, or dangers</li>
+            <li><strong>Shore Leave:</strong> Crew morale improves with time in port</li>
+            <li><strong>Intrigue:</strong> Meet contacts, make deals, plot schemes</li>
+          </ul>
+
+          <h3 class="h4 mt-4">Major Ports of Osterra</h3>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Port Name</th>
+                <th>Type</th>
+                <th>Notable Features</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Silverhaven</td>
+                <td>Crown Port</td>
+                <td>Largest market, Royal Navy headquarters</td>
+              </tr>
+              <tr>
+                <td>Trader's Rest</td>
+                <td>Free Port</td>
+                <td>Neutral ground, no questions asked</td>
+              </tr>
+              <tr>
+                <td>Freeport</td>
+                <td>Pirate Haven</td>
+                <td>Black market, Pirate Council</td>
+              </tr>
+              <tr>
+                <td>Storm's End</td>
+                <td>Naval Base</td>
+                <td>Drydocks, siege weapon production</td>
+              </tr>
+              <tr>
+                <td>The Shallows</td>
+                <td>Free Port</td>
+                <td>Smuggler's paradise, hidden coves</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="callout">
+            <div class="callout-title">Sanctuary and Pursuit</div>
+            <p class="mb-0">Crown ports will not harbor known pirates. Pirate havens will not surrender criminals to authorities. Free ports observe neutrality - combat within port limits is forbidden, but what happens outside is not their concern. Naval bases only accept military or authorized vessels.</p>
+          </div>
+        </section>
+
+        <!-- Navigation -->
+        <div class="d-flex justify-content-between mt-5 pt-4" style="border-top: var(--border-standard);">
+          <a href="rules-units.html" class="btn btn-outline-primary"><i class="bi bi-arrow-left me-2"></i>Unit & Land Rules</a>
+          <a href="hub.html" class="btn btn-outline-primary">Back to Hub <i class="bi bi-arrow-right ms-2"></i></a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-5" style="background-color: var(--color-bg-page); border-top: var(--border-heavy);">
+    <div class="container">
+      <p class="text-muted text-center mb-0">&copy; 2026 LARP Adventures. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/theme-switcher.js"></script>
+</body>
+</html>

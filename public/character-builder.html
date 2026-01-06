@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dungeon">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Character Builder - LARP Adventures</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="../css/variables.css" rel="stylesheet">
+  <link href="../css/theme-dungeon.css" rel="stylesheet" id="theme-css">
+  <style>
+    body {
+      min-height: 100vh;
+      background-color: var(--color-bg-page);
+    }
+
+    /* Progress Tracker */
+    .builder-progress {
+      background: var(--color-bg-surface);
+      border-bottom: var(--border-heavy);
+      padding: var(--space-4) 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .progress-steps {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .progress-step {
+      flex: 1;
+      text-align: center;
+      position: relative;
+    }
+
+    .progress-step::before {
+      content: '';
+      position: absolute;
+      top: 16px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--color-border-default);
+      z-index: 0;
+    }
+
+    .progress-step:first-child::before {
+      left: 50%;
+    }
+
+    .progress-step:last-child::before {
+      right: 50%;
+    }
+
+    .progress-step.completed::before {
+      background: var(--color-success);
+    }
+
+    .progress-step.active::before {
+      background: linear-gradient(90deg, var(--color-success) 0%, var(--color-border-default) 50%);
+    }
+
+    .step-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--color-bg-muted);
+      border: 2px solid var(--color-border-default);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: var(--font-semibold);
+      font-size: var(--text-sm);
+      position: relative;
+      z-index: 1;
+      transition: all var(--transition-fast);
+    }
+
+    .progress-step.active .step-circle {
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+      color: white;
+    }
+
+    .progress-step.completed .step-circle {
+      background: var(--color-success);
+      border-color: var(--color-success);
+      color: white;
+    }
+
+    .step-label {
+      display: block;
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      margin-top: var(--space-1);
+    }
+
+    .progress-step.active .step-label {
+      color: var(--color-text-primary);
+      font-weight: var(--font-medium);
+    }
+
+    /* Builder Content */
+    .builder-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: var(--space-6) var(--space-4);
+    }
+
+    .builder-panel {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .builder-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .builder-panel h2 {
+      font-size: var(--text-2xl);
+      margin-bottom: var(--space-2);
+    }
+
+    .builder-panel .lead {
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-6);
+    }
+
+    /* Path Selection Cards */
+    .path-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--space-4);
+      margin-bottom: var(--space-6);
+    }
+
+    .path-card {
+      background: var(--color-bg-surface);
+      border: var(--border-heavy);
+      padding: var(--space-5);
+      text-align: center;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      position: relative;
+    }
+
+    .path-card:hover {
+      border-color: var(--color-primary);
+      transform: translateY(-4px);
+    }
+
+    .path-card.selected {
+      border-color: var(--color-primary);
+      background: var(--color-primary-subtle);
+    }
+
+    .path-card.selected::after {
+      content: '\f26b';
+      font-family: 'bootstrap-icons';
+      position: absolute;
+      top: var(--space-2);
+      right: var(--space-2);
+      color: var(--color-primary);
+      font-size: var(--text-lg);
+    }
+
+    .path-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--color-primary-subtle);
+      color: var(--color-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--space-3);
+      font-size: 1.75rem;
+    }
+
+    .path-card h4 {
+      font-size: var(--text-lg);
+      margin-bottom: var(--space-2);
+    }
+
+    .path-card p {
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-3);
+    }
+
+    .path-stats {
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+    }
+
+    /* Skill Tree */
+    .skill-tree {
+      background: var(--color-bg-surface);
+      border: var(--border-standard);
+      padding: var(--space-4);
+      margin-bottom: var(--space-4);
+    }
+
+    .skill-tree-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-4);
+      padding-bottom: var(--space-3);
+      border-bottom: var(--border-standard);
+    }
+
+    .skill-tier {
+      margin-bottom: var(--space-4);
+    }
+
+    .skill-tier-label {
+      font-size: var(--text-sm);
+      font-weight: var(--font-semibold);
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-2);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-wide);
+    }
+
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+    }
+
+    .skill-badge {
+      padding: var(--space-2) var(--space-3);
+      background: var(--color-bg-muted);
+      border: var(--border-standard);
+      font-size: var(--text-sm);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .skill-badge:hover {
+      border-color: var(--color-primary);
+    }
+
+    .skill-badge.selected {
+      background: var(--color-primary-subtle);
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+    }
+
+    .skill-badge.locked {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* Faction Cards */
+    .faction-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-3);
+    }
+
+    .faction-card {
+      background: var(--color-bg-surface);
+      border: var(--border-standard);
+      padding: var(--space-4);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .faction-card:hover {
+      border-color: var(--color-primary);
+    }
+
+    .faction-card.selected {
+      border-color: var(--color-primary);
+      background: var(--color-primary-subtle);
+    }
+
+    .faction-banner {
+      height: 4px;
+      margin: calc(var(--space-4) * -1);
+      margin-bottom: var(--space-3);
+    }
+
+    .faction-card h5 {
+      font-size: var(--text-base);
+      margin-bottom: var(--space-1);
+    }
+
+    .faction-card p {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      margin: 0;
+    }
+
+    /* Backstory */
+    .backstory-section {
+      background: var(--color-bg-surface);
+      border: var(--border-standard);
+      padding: var(--space-5);
+      margin-bottom: var(--space-4);
+    }
+
+    .prompt-card {
+      background: var(--color-bg-page);
+      border: var(--border-standard);
+      padding: var(--space-4);
+      margin-bottom: var(--space-3);
+    }
+
+    .prompt-card h5 {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-2);
+    }
+
+    /* Character Preview */
+    .character-preview {
+      background: var(--color-bg-surface);
+      border: var(--border-heavy);
+      padding: var(--space-5);
+      position: sticky;
+      top: 80px;
+    }
+
+    .preview-header {
+      text-align: center;
+      padding-bottom: var(--space-4);
+      border-bottom: var(--border-standard);
+      margin-bottom: var(--space-4);
+    }
+
+    .preview-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--color-primary-subtle);
+      color: var(--color-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--space-3);
+      font-size: 2rem;
+    }
+
+    .preview-stat {
+      display: flex;
+      justify-content: space-between;
+      padding: var(--space-2) 0;
+      border-bottom: var(--border-standard);
+      font-size: var(--text-sm);
+    }
+
+    .preview-stat:last-child {
+      border-bottom: none;
+    }
+
+    /* Navigation */
+    .builder-nav {
+      display: flex;
+      justify-content: space-between;
+      padding-top: var(--space-4);
+      border-top: var(--border-standard);
+      margin-top: var(--space-6);
+    }
+
+    /* Tooltip */
+    .lore-tooltip {
+      position: relative;
+      cursor: help;
+      border-bottom: 1px dashed var(--color-text-muted);
+    }
+
+    .lore-tooltip:hover::after {
+      content: attr(data-lore);
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--color-bg-surface);
+      border: var(--border-standard);
+      padding: var(--space-2) var(--space-3);
+      font-size: var(--text-sm);
+      white-space: nowrap;
+      z-index: 10;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    @media (max-width: 768px) {
+      .progress-step .step-label {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <nav class="navbar navbar-expand-lg" style="background-color: var(--color-bg-surface); border-bottom: var(--border-heavy);">
+    <div class="container">
+      <a class="navbar-brand" href="landing.html" style="font-family: var(--font-heading);">LARP Adventures</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="landing.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="hub.html">Rules</a></li>
+          <li class="nav-item"><a class="nav-link" href="reference.html">Skills Reference</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Progress Tracker -->
+  <div class="builder-progress">
+    <div class="container">
+      <div class="progress-steps">
+        <div class="progress-step active" data-step="1">
+          <span class="step-circle">1</span>
+          <span class="step-label">Path</span>
+        </div>
+        <div class="progress-step" data-step="2">
+          <span class="step-circle">2</span>
+          <span class="step-label">Skills</span>
+        </div>
+        <div class="progress-step" data-step="3">
+          <span class="step-circle">3</span>
+          <span class="step-label">Faction</span>
+        </div>
+        <div class="progress-step" data-step="4">
+          <span class="step-circle">4</span>
+          <span class="step-label">Story</span>
+        </div>
+        <div class="progress-step" data-step="5">
+          <span class="step-circle">5</span>
+          <span class="step-label">Review</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Builder Content -->
+  <div class="container py-4">
+    <div class="row">
+      <div class="col-lg-8">
+        <!-- Step 1: Choose Path -->
+        <div class="builder-panel active" id="step1">
+          <h2><i class="bi bi-signpost-split me-2"></i>Choose Your Path</h2>
+          <p class="lead">Your path determines your starting abilities and how your character approaches challenges in Osterra.</p>
+
+          <div class="path-grid">
+            <div class="path-card" onclick="selectPath(this, 'warrior')">
+              <div class="path-icon">
+                <i class="bi bi-shield-fill"></i>
+              </div>
+              <h4>Warrior</h4>
+              <p>Masters of combat who protect their allies and vanquish their foes.</p>
+              <div class="path-stats">
+                <i class="bi bi-heart-fill text-danger me-1"></i>+3 HP |
+                <i class="bi bi-lightning-fill text-warning me-1"></i>+1 Stamina
+              </div>
+            </div>
+
+            <div class="path-card" onclick="selectPath(this, 'rogue')">
+              <div class="path-icon">
+                <i class="bi bi-eye-fill"></i>
+              </div>
+              <h4>Rogue</h4>
+              <p>Cunning operatives skilled in stealth, subterfuge, and precision strikes.</p>
+              <div class="path-stats">
+                <i class="bi bi-heart-fill text-danger me-1"></i>+1 HP |
+                <i class="bi bi-lightning-fill text-warning me-1"></i>+3 Stamina
+              </div>
+            </div>
+
+            <div class="path-card" onclick="selectPath(this, 'mage')">
+              <div class="path-icon">
+                <i class="bi bi-stars"></i>
+              </div>
+              <h4>Mage</h4>
+              <p>Wielders of arcane power who bend reality to their will.</p>
+              <div class="path-stats">
+                <i class="bi bi-heart-fill text-danger me-1"></i>+1 HP |
+                <i class="bi bi-droplet-fill text-primary me-1"></i>+4 Mana
+              </div>
+            </div>
+
+            <div class="path-card" onclick="selectPath(this, 'healer')">
+              <div class="path-icon">
+                <i class="bi bi-plus-circle-fill"></i>
+              </div>
+              <h4>Healer</h4>
+              <p>Devoted servants of life who mend wounds and restore the fallen.</p>
+              <div class="path-stats">
+                <i class="bi bi-heart-fill text-danger me-1"></i>+2 HP |
+                <i class="bi bi-droplet-fill text-primary me-1"></i>+3 Mana
+              </div>
+            </div>
+
+            <div class="path-card" onclick="selectPath(this, 'crafter')">
+              <div class="path-icon">
+                <i class="bi bi-hammer"></i>
+              </div>
+              <h4>Crafter</h4>
+              <p>Artisans who create magical items, potions, and equipment.</p>
+              <div class="path-stats">
+                <i class="bi bi-heart-fill text-danger me-1"></i>+2 HP |
+                <i class="bi bi-gem text-info me-1"></i>+2 Craft Points
+              </div>
+            </div>
+
+            <div class="path-card" onclick="selectPath(this, 'diplomat')">
+              <div class="path-icon">
+                <i class="bi bi-chat-heart-fill"></i>
+              </div>
+              <h4>Diplomat</h4>
+              <p>Charismatic leaders who inspire allies and negotiate with enemies.</p>
+              <div class="path-stats">
+                <i class="bi bi-heart-fill text-danger me-1"></i>+2 HP |
+                <i class="bi bi-people-fill text-success me-1"></i>+2 Influence
+              </div>
+            </div>
+          </div>
+
+          <div class="alert alert-info">
+            <i class="bi bi-info-circle me-2"></i>
+            <strong>Tip:</strong> Your path is just a starting point! You can learn skills from other paths as you gain experience.
+          </div>
+
+          <div class="builder-nav">
+            <a href="intro.html" class="btn btn-outline-secondary">
+              <i class="bi bi-arrow-left me-2"></i>Back
+            </a>
+            <button class="btn btn-primary" onclick="goToStep(2)" id="step1Next" disabled>
+              Choose Skills<i class="bi bi-arrow-right ms-2"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 2: Choose Skills -->
+        <div class="builder-panel" id="step2">
+          <h2><i class="bi bi-journal-bookmark me-2"></i>Choose Starting Skills</h2>
+          <p class="lead">Select 3 skills from your path's skill tree. Additional skills can be learned through gameplay.</p>
+
+          <div class="skill-tree" id="skillTree">
+            <div class="skill-tree-header">
+              <h4 class="mb-0" id="pathSkillsTitle">Warrior Skills</h4>
+              <span class="badge bg-primary" id="skillCount">0 / 3 selected</span>
+            </div>
+
+            <div class="skill-tier">
+              <div class="skill-tier-label">Tier 1 (Starting)</div>
+              <div class="skill-list">
+                <span class="skill-badge" onclick="toggleSkill(this)" data-skill="weapon-proficiency" data-tooltip="Proficiency with one weapon type">
+                  <i class="bi bi-sword me-1"></i>Weapon Proficiency
+                </span>
+                <span class="skill-badge" onclick="toggleSkill(this)" data-skill="armor-training" data-tooltip="Wear light armor without penalty">
+                  <i class="bi bi-shield me-1"></i>Armor Training
+                </span>
+                <span class="skill-badge" onclick="toggleSkill(this)" data-skill="battle-cry" data-tooltip="Rally nearby allies">
+                  <i class="bi bi-megaphone me-1"></i>Battle Cry
+                </span>
+                <span class="skill-badge" onclick="toggleSkill(this)" data-skill="parry" data-tooltip="Block one attack per encounter">
+                  <i class="bi bi-x-circle me-1"></i>Parry
+                </span>
+              </div>
+            </div>
+
+            <div class="skill-tier">
+              <div class="skill-tier-label">Tier 2 (Unlockable)</div>
+              <div class="skill-list">
+                <span class="skill-badge locked" data-skill="shield-bash" data-tooltip="Requires Armor Training">
+                  <i class="bi bi-shield-fill me-1"></i>Shield Bash
+                  <i class="bi bi-lock-fill ms-1"></i>
+                </span>
+                <span class="skill-badge locked" data-skill="dual-wield" data-tooltip="Requires Weapon Proficiency">
+                  <i class="bi bi-diagram-2 me-1"></i>Dual Wield
+                  <i class="bi bi-lock-fill ms-1"></i>
+                </span>
+                <span class="skill-badge locked" data-skill="intimidate" data-tooltip="Requires Battle Cry">
+                  <i class="bi bi-exclamation-triangle me-1"></i>Intimidate
+                  <i class="bi bi-lock-fill ms-1"></i>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="alert alert-secondary">
+            <i class="bi bi-lightbulb me-2"></i>
+            <strong>How skills work:</strong> Skills in LARP Adventures are called during combat or roleplay. For example, calling "PARRY" when struck will negate one attack per encounter.
+          </div>
+
+          <div class="builder-nav">
+            <button class="btn btn-outline-secondary" onclick="goToStep(1)">
+              <i class="bi bi-arrow-left me-2"></i>Back
+            </button>
+            <button class="btn btn-primary" onclick="goToStep(3)" id="step2Next" disabled>
+              Choose Faction<i class="bi bi-arrow-right ms-2"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 3: Choose Faction -->
+        <div class="builder-panel" id="step3">
+          <h2><i class="bi bi-flag me-2"></i>Choose Your Faction</h2>
+          <p class="lead">Factions provide story hooks, allies, and enemies. Your choice affects your character's role in the world.</p>
+
+          <div class="faction-grid mb-4">
+            <div class="faction-card" onclick="selectFaction(this, 'northern')">
+              <div class="faction-banner" style="background: linear-gradient(90deg, #8b5cf6, #6366f1);"></div>
+              <h5><i class="bi bi-shield-fill me-2"></i>Northern Alliance</h5>
+              <p>Honor and duty guide us. We stand against the darkness.</p>
+            </div>
+
+            <div class="faction-card" onclick="selectFaction(this, 'arcane')">
+              <div class="faction-banner" style="background: linear-gradient(90deg, #3b82f6, #0ea5e9);"></div>
+              <h5><i class="bi bi-stars me-2"></i>Arcane Covenant</h5>
+              <p>Knowledge is the greatest power. We seek the truths of the universe.</p>
+            </div>
+
+            <div class="faction-card" onclick="selectFaction(this, 'golden')">
+              <div class="faction-banner" style="background: linear-gradient(90deg, #f59e0b, #eab308);"></div>
+              <h5><i class="bi bi-coin me-2"></i>Golden Compass</h5>
+              <p>Trade builds bridges. Prosperity brings peace to all.</p>
+            </div>
+
+            <div class="faction-card" onclick="selectFaction(this, 'wardens')">
+              <div class="faction-banner" style="background: linear-gradient(90deg, #22c55e, #10b981);"></div>
+              <h5><i class="bi bi-tree-fill me-2"></i>Wardens of the Wild</h5>
+              <p>Nature's guardians. We protect the balance of the world.</p>
+            </div>
+
+            <div class="faction-card" onclick="selectFaction(this, 'shadow')">
+              <div class="faction-banner" style="background: linear-gradient(90deg, #ef4444, #dc2626);"></div>
+              <h5><i class="bi bi-moon-stars-fill me-2"></i>Shadow Court</h5>
+              <p>Power through any means. The ends justify our methods.</p>
+            </div>
+
+            <div class="faction-card" onclick="selectFaction(this, 'unaligned')">
+              <div class="faction-banner" style="background: linear-gradient(90deg, #6b7280, #9ca3af);"></div>
+              <h5><i class="bi bi-question-circle me-2"></i>Unaligned</h5>
+              <p>I walk my own path. Let the factions vie for my loyalty.</p>
+            </div>
+          </div>
+
+          <div class="alert alert-info">
+            <i class="bi bi-info-circle me-2"></i>
+            <strong>Note:</strong> Faction allegiance can change through gameplay. Many characters start unaligned and join a faction after their first event.
+          </div>
+
+          <div class="builder-nav">
+            <button class="btn btn-outline-secondary" onclick="goToStep(2)">
+              <i class="bi bi-arrow-left me-2"></i>Back
+            </button>
+            <button class="btn btn-primary" onclick="goToStep(4)" id="step3Next" disabled>
+              Write Backstory<i class="bi bi-arrow-right ms-2"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 4: Backstory -->
+        <div class="builder-panel" id="step4">
+          <h2><i class="bi bi-book me-2"></i>Tell Your Story</h2>
+          <p class="lead">Give your character depth with a backstory. This helps you roleplay and gives staff hooks for involving you in plots.</p>
+
+          <div class="backstory-section">
+            <div class="mb-4">
+              <label for="charName" class="form-label">Character Name</label>
+              <input type="text" class="form-control" id="charName" placeholder="Enter your character's name" oninput="updatePreview()">
+              <div class="form-text">This is the name others will call you in-game.</div>
+            </div>
+
+            <div class="prompt-card">
+              <h5><i class="bi bi-geo-alt me-2"></i>Where are you from?</h5>
+              <select class="form-select" id="homeland" oninput="updatePreview()">
+                <option value="">Select a homeland...</option>
+                <option value="Northern Reaches">The Northern Reaches (cold, hardy, honor-bound)</option>
+                <option value="Eastern Kingdoms">The Eastern Kingdoms (cultured, political, wealthy)</option>
+                <option value="Southern Wilds">The Southern Wilds (tribal, spiritual, fierce)</option>
+                <option value="Western Seas">The Western Seas (seafaring, adventurous, mercantile)</option>
+                <option value="Unknown">Unknown/Mysterious (amnesia, portal traveler, etc.)</option>
+              </select>
+            </div>
+
+            <div class="prompt-card">
+              <h5><i class="bi bi-heart me-2"></i>What drives you?</h5>
+              <textarea class="form-control" id="motivation" rows="3" placeholder="Why did your character come to Osterra? What do they seek?" oninput="updatePreview()"></textarea>
+            </div>
+
+            <div class="prompt-card">
+              <h5><i class="bi bi-lightning me-2"></i>What's your greatest flaw?</h5>
+              <select class="form-select" id="flaw">
+                <option value="">Select a character flaw...</option>
+                <option value="Prideful">Prideful - You struggle to admit when you're wrong</option>
+                <option value="Greedy">Greedy - Gold and treasures tempt you beyond reason</option>
+                <option value="Vengeful">Vengeful - Wrongs against you must be repaid</option>
+                <option value="Reckless">Reckless - You rush in where others fear to tread</option>
+                <option value="Secretive">Secretive - You keep your true self hidden</option>
+                <option value="Naive">Naive - You trust too easily</option>
+              </select>
+            </div>
+
+            <div class="prompt-card">
+              <h5><i class="bi bi-journal-text me-2"></i>Additional backstory (optional)</h5>
+              <textarea class="form-control" id="backstory" rows="4" placeholder="Any additional details about your character's history, relationships, or goals..."></textarea>
+            </div>
+          </div>
+
+          <div class="builder-nav">
+            <button class="btn btn-outline-secondary" onclick="goToStep(3)">
+              <i class="bi bi-arrow-left me-2"></i>Back
+            </button>
+            <button class="btn btn-primary" onclick="goToStep(5)">
+              Review Character<i class="bi bi-arrow-right ms-2"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 5: Review -->
+        <div class="builder-panel" id="step5">
+          <h2><i class="bi bi-check-circle me-2"></i>Review Your Character</h2>
+          <p class="lead">Make sure everything looks right before creating your character.</p>
+
+          <div class="card mb-4">
+            <div class="card-header">
+              <strong>Character Summary</strong>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <p><strong>Name:</strong> <span id="reviewName">Not set</span></p>
+                  <p><strong>Path:</strong> <span id="reviewPath">Not selected</span></p>
+                  <p><strong>Faction:</strong> <span id="reviewFaction">Not selected</span></p>
+                  <p><strong>Homeland:</strong> <span id="reviewHomeland">Not selected</span></p>
+                </div>
+                <div class="col-md-6">
+                  <p><strong>Skills:</strong></p>
+                  <ul id="reviewSkills" class="mb-0">
+                    <li class="text-muted">No skills selected</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="alert alert-warning">
+            <i class="bi bi-exclamation-triangle me-2"></i>
+            <strong>Remember:</strong> Your character will start at Level 1. Path, skills, and faction can be adjusted during your first few events as you learn the game.
+          </div>
+
+          <div class="form-check mb-4">
+            <input class="form-check-input" type="checkbox" id="confirmCreate">
+            <label class="form-check-label" for="confirmCreate">
+              I understand this character is a starting point and I can adjust choices as I learn the game.
+            </label>
+          </div>
+
+          <div class="builder-nav">
+            <button class="btn btn-outline-secondary" onclick="goToStep(4)">
+              <i class="bi bi-arrow-left me-2"></i>Back
+            </button>
+            <button class="btn btn-success btn-lg" onclick="createCharacter()" id="createBtn" disabled>
+              <i class="bi bi-person-plus me-2"></i>Create Character
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Character Preview Sidebar -->
+      <div class="col-lg-4 d-none d-lg-block">
+        <div class="character-preview">
+          <div class="preview-header">
+            <div class="preview-avatar" id="previewAvatar">
+              <i class="bi bi-person"></i>
+            </div>
+            <h4 id="previewName">New Character</h4>
+            <p class="text-muted mb-0" id="previewSubtitle">Choose a path to begin</p>
+          </div>
+
+          <div class="preview-stat">
+            <span>Path</span>
+            <span id="previewPath">-</span>
+          </div>
+          <div class="preview-stat">
+            <span>Faction</span>
+            <span id="previewFaction">-</span>
+          </div>
+          <div class="preview-stat">
+            <span>Homeland</span>
+            <span id="previewHomeland">-</span>
+          </div>
+          <div class="preview-stat">
+            <span>Skills</span>
+            <span id="previewSkillCount">0 / 3</span>
+          </div>
+
+          <hr>
+
+          <div class="preview-stat">
+            <span><i class="bi bi-heart-fill text-danger me-1"></i>Health</span>
+            <span id="previewHP">10</span>
+          </div>
+          <div class="preview-stat">
+            <span><i class="bi bi-lightning-fill text-warning me-1"></i>Stamina</span>
+            <span id="previewStamina">5</span>
+          </div>
+          <div class="preview-stat">
+            <span><i class="bi bi-droplet-fill text-primary me-1"></i>Mana</span>
+            <span id="previewMana">0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/theme-switcher.js"></script>
+  <script>
+    // Character state
+    let character = {
+      path: null,
+      skills: [],
+      faction: null,
+      name: '',
+      homeland: '',
+      motivation: '',
+      flaw: '',
+      backstory: ''
+    };
+
+    // Path bonuses
+    const pathBonuses = {
+      warrior: { hp: 3, stamina: 1, mana: 0 },
+      rogue: { hp: 1, stamina: 3, mana: 0 },
+      mage: { hp: 1, stamina: 0, mana: 4 },
+      healer: { hp: 2, stamina: 0, mana: 3 },
+      crafter: { hp: 2, stamina: 0, mana: 0 },
+      diplomat: { hp: 2, stamina: 0, mana: 0 }
+    };
+
+    function goToStep(step) {
+      // Update panels
+      document.querySelectorAll('.builder-panel').forEach(panel => {
+        panel.classList.remove('active');
+      });
+      document.getElementById('step' + step).classList.add('active');
+
+      // Update progress
+      document.querySelectorAll('.progress-step').forEach((el, idx) => {
+        const stepNum = idx + 1;
+        el.classList.remove('active', 'completed');
+        if (stepNum < step) {
+          el.classList.add('completed');
+        } else if (stepNum === step) {
+          el.classList.add('active');
+        }
+      });
+
+      // Update review if on step 5
+      if (step === 5) {
+        updateReview();
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function selectPath(element, path) {
+      document.querySelectorAll('.path-card').forEach(card => {
+        card.classList.remove('selected');
+      });
+      element.classList.add('selected');
+      character.path = path;
+      document.getElementById('step1Next').disabled = false;
+
+      // Update preview
+      document.getElementById('previewPath').textContent = element.querySelector('h4').textContent;
+      document.getElementById('previewSubtitle').textContent = 'Level 1 ' + element.querySelector('h4').textContent;
+
+      const bonuses = pathBonuses[path];
+      document.getElementById('previewHP').textContent = 10 + bonuses.hp;
+      document.getElementById('previewStamina').textContent = 5 + bonuses.stamina;
+      document.getElementById('previewMana').textContent = bonuses.mana;
+
+      // Update avatar icon based on path
+      const icons = {
+        warrior: 'bi-shield-fill',
+        rogue: 'bi-eye-fill',
+        mage: 'bi-stars',
+        healer: 'bi-plus-circle-fill',
+        crafter: 'bi-hammer',
+        diplomat: 'bi-chat-heart-fill'
+      };
+      document.getElementById('previewAvatar').innerHTML = `<i class="bi ${icons[path]}"></i>`;
+    }
+
+    function toggleSkill(element) {
+      if (element.classList.contains('locked')) return;
+
+      if (element.classList.contains('selected')) {
+        element.classList.remove('selected');
+        character.skills = character.skills.filter(s => s !== element.dataset.skill);
+      } else if (character.skills.length < 3) {
+        element.classList.add('selected');
+        character.skills.push(element.dataset.skill);
+      }
+
+      const count = character.skills.length;
+      document.getElementById('skillCount').textContent = count + ' / 3 selected';
+      document.getElementById('previewSkillCount').textContent = count + ' / 3';
+      document.getElementById('step2Next').disabled = count < 3;
+    }
+
+    function selectFaction(element, faction) {
+      document.querySelectorAll('.faction-card').forEach(card => {
+        card.classList.remove('selected');
+      });
+      element.classList.add('selected');
+      character.faction = faction;
+      document.getElementById('step3Next').disabled = false;
+
+      document.getElementById('previewFaction').textContent = element.querySelector('h5').textContent.replace(/^.+?\s/, '');
+    }
+
+    function updatePreview() {
+      const name = document.getElementById('charName').value;
+      const homeland = document.getElementById('homeland').value;
+
+      if (name) {
+        document.getElementById('previewName').textContent = name;
+        character.name = name;
+      }
+      if (homeland) {
+        document.getElementById('previewHomeland').textContent = homeland;
+        character.homeland = homeland;
+      }
+    }
+
+    function updateReview() {
+      document.getElementById('reviewName').textContent = character.name || 'Not set';
+      document.getElementById('reviewPath').textContent = character.path ?
+        document.querySelector('.path-card.selected h4').textContent : 'Not selected';
+      document.getElementById('reviewFaction').textContent = character.faction ?
+        document.querySelector('.faction-card.selected h5').textContent.replace(/^.+?\s/, '') : 'Not selected';
+      document.getElementById('reviewHomeland').textContent = character.homeland || 'Not selected';
+
+      const skillsList = document.getElementById('reviewSkills');
+      if (character.skills.length > 0) {
+        skillsList.innerHTML = character.skills.map(s =>
+          `<li>${s.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</li>`
+        ).join('');
+      } else {
+        skillsList.innerHTML = '<li class="text-muted">No skills selected</li>';
+      }
+    }
+
+    // Enable create button when checkbox is checked
+    document.getElementById('confirmCreate').addEventListener('change', function() {
+      document.getElementById('createBtn').disabled = !this.checked;
+    });
+
+    function createCharacter() {
+      // In production, this would save to the server
+      alert('Character created! In production, this would save to your account and redirect to your character sheet.');
+      window.location.href = '../portal/character.html';
+    }
+  </script>
+</body>
+</html>

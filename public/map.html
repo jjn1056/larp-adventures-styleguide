@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dungeon">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Map of Osterra - LARP Adventures</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="../css/variables.css" rel="stylesheet">
+  <link href="../css/theme-dungeon.css" rel="stylesheet" id="theme-css">
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .map-container {
+      flex: 1;
+      display: flex;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Sidebar Controls */
+    .map-sidebar {
+      width: 320px;
+      background: var(--color-bg-surface);
+      border-right: var(--border-heavy);
+      display: flex;
+      flex-direction: column;
+      z-index: 10;
+    }
+
+    .map-sidebar-header {
+      padding: var(--space-4);
+      border-bottom: var(--border-standard);
+    }
+
+    .map-sidebar-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: var(--space-4);
+    }
+
+    .layer-group {
+      margin-bottom: var(--space-4);
+    }
+
+    .layer-group-title {
+      font-size: var(--text-sm);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-wide);
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-2);
+    }
+
+    .layer-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-2) var(--space-3);
+      background: var(--color-bg-page);
+      border: var(--border-standard);
+      margin-bottom: var(--space-2);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .layer-toggle:hover {
+      border-color: var(--color-primary);
+    }
+
+    .layer-toggle.active {
+      border-color: var(--color-primary);
+      background: var(--color-primary-subtle);
+    }
+
+    .layer-toggle .layer-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: var(--space-2);
+    }
+
+    .layer-toggle .layer-name {
+      flex: 1;
+      font-size: var(--text-sm);
+    }
+
+    /* Map Area */
+    .map-viewport {
+      flex: 1;
+      position: relative;
+      background: var(--color-bg-muted);
+    }
+
+    .map-placeholder {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg,
+        var(--color-bg-muted) 0%,
+        var(--color-primary-subtle) 50%,
+        var(--color-bg-muted) 100%);
+    }
+
+    .map-placeholder-content {
+      text-align: center;
+      padding: var(--space-6);
+      background: var(--color-bg-surface);
+      border: var(--border-heavy);
+      max-width: 400px;
+    }
+
+    .map-placeholder i {
+      font-size: 4rem;
+      color: var(--color-primary);
+      margin-bottom: var(--space-4);
+    }
+
+    /* Map Controls Overlay */
+    .map-controls {
+      position: absolute;
+      top: var(--space-4);
+      right: var(--space-4);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      z-index: 5;
+    }
+
+    .map-control-btn {
+      width: 40px;
+      height: 40px;
+      background: var(--color-bg-surface);
+      border: var(--border-standard);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .map-control-btn:hover {
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+    }
+
+    /* Timeline Slider */
+    .timeline-panel {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--color-bg-surface);
+      border-top: var(--border-heavy);
+      padding: var(--space-4);
+      z-index: 5;
+    }
+
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-3);
+    }
+
+    .timeline-title {
+      font-weight: var(--font-semibold);
+      font-size: var(--text-sm);
+    }
+
+    .timeline-date {
+      font-size: var(--text-sm);
+      color: var(--color-primary);
+      font-weight: var(--font-semibold);
+    }
+
+    .timeline-slider {
+      width: 100%;
+      height: 8px;
+      -webkit-appearance: none;
+      appearance: none;
+      background: var(--color-bg-muted);
+      border-radius: var(--radius-full);
+      outline: none;
+    }
+
+    .timeline-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      background: var(--color-primary);
+      border-radius: 50%;
+      cursor: pointer;
+      border: 3px solid var(--color-bg-surface);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .timeline-markers {
+      display: flex;
+      justify-content: space-between;
+      margin-top: var(--space-2);
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+    }
+
+    /* Info Panel */
+    .info-panel {
+      position: absolute;
+      top: var(--space-4);
+      left: var(--space-4);
+      width: 300px;
+      background: var(--color-bg-surface);
+      border: var(--border-heavy);
+      z-index: 5;
+      display: none;
+    }
+
+    .info-panel.show {
+      display: block;
+    }
+
+    .info-panel-header {
+      padding: var(--space-3) var(--space-4);
+      border-bottom: var(--border-standard);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .info-panel-content {
+      padding: var(--space-4);
+    }
+
+    .info-panel-close {
+      background: none;
+      border: none;
+      padding: var(--space-1);
+      cursor: pointer;
+      color: var(--color-text-muted);
+    }
+
+    .info-panel-close:hover {
+      color: var(--color-text-primary);
+    }
+
+    /* Legend */
+    .legend {
+      padding: var(--space-3);
+      background: var(--color-bg-page);
+      border: var(--border-standard);
+      margin-top: var(--space-4);
+    }
+
+    .legend-title {
+      font-size: var(--text-sm);
+      font-weight: var(--font-semibold);
+      margin-bottom: var(--space-2);
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: var(--text-xs);
+      margin-bottom: var(--space-1);
+    }
+
+    .legend-marker {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 991px) {
+      .map-sidebar {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        transform: translateX(-100%);
+        transition: transform var(--transition-normal);
+        z-index: 20;
+      }
+
+      .map-sidebar.show {
+        transform: translateX(0);
+      }
+
+      .sidebar-toggle {
+        position: absolute;
+        top: var(--space-4);
+        left: var(--space-4);
+        z-index: 10;
+        background: var(--color-bg-surface);
+        border: var(--border-standard);
+        padding: var(--space-2) var(--space-3);
+      }
+
+      .info-panel {
+        width: calc(100% - var(--space-8));
+        left: var(--space-4);
+        right: var(--space-4);
+      }
+    }
+
+    /* Accessibility */
+    .high-contrast-toggle {
+      margin-top: var(--space-4);
+      padding-top: var(--space-4);
+      border-top: var(--border-standard);
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <nav class="navbar navbar-expand-lg" style="background-color: var(--color-bg-surface); border-bottom: var(--border-heavy);">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="landing.html" style="font-family: var(--font-heading);">LARP Adventures</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="landing.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="event-index.html">Events</a></li>
+          <li class="nav-item"><a class="nav-link" href="hub.html">Rules</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" href="#" data-bs-toggle="dropdown">Lore</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item active" href="map.html">Map of Osterra</a></li>
+              <li><a class="dropdown-item" href="reference.html">World History</a></li>
+              <li><a class="dropdown-item" href="../portal/lore.html">Lore Drops</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
+        </ul>
+        <div class="d-flex gap-2">
+          <a href="../portal/login.html" class="btn btn-outline-primary">Sign In</a>
+          <a href="join.html" class="btn btn-primary">Join</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="map-container">
+    <!-- Sidebar -->
+    <aside class="map-sidebar" id="mapSidebar">
+      <div class="map-sidebar-header">
+        <h1 class="h5 mb-1"><i class="bi bi-map me-2"></i>Map of Osterra</h1>
+        <p class="text-muted mb-0 small">Explore the realm and its territories</p>
+      </div>
+
+      <div class="map-sidebar-content">
+        <!-- Search -->
+        <div class="mb-4">
+          <div class="input-group">
+            <input type="text" class="form-control form-control-sm" placeholder="Search locations...">
+            <button class="btn btn-outline-secondary btn-sm" type="button">
+              <i class="bi bi-search"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Layer Toggles -->
+        <div class="layer-group">
+          <div class="layer-group-title">Map Layers</div>
+
+          <div class="layer-toggle active" onclick="toggleLayer(this)">
+            <span class="layer-icon" style="background: var(--color-success-subtle); color: var(--color-success);">
+              <i class="bi bi-geo-alt-fill"></i>
+            </span>
+            <span class="layer-name">Event Locations</span>
+            <div class="form-check form-switch mb-0">
+              <input class="form-check-input" type="checkbox" checked>
+            </div>
+          </div>
+
+          <div class="layer-toggle active" onclick="toggleLayer(this)">
+            <span class="layer-icon" style="background: var(--color-primary-subtle); color: var(--color-primary);">
+              <i class="bi bi-flag-fill"></i>
+            </span>
+            <span class="layer-name">Faction Territories</span>
+            <div class="form-check form-switch mb-0">
+              <input class="form-check-input" type="checkbox" checked>
+            </div>
+          </div>
+
+          <div class="layer-toggle" onclick="toggleLayer(this)">
+            <span class="layer-icon" style="background: var(--color-warning-subtle); color: var(--color-warning);">
+              <i class="bi bi-gem"></i>
+            </span>
+            <span class="layer-name">Resources</span>
+            <div class="form-check form-switch mb-0">
+              <input class="form-check-input" type="checkbox">
+            </div>
+          </div>
+
+          <div class="layer-toggle" onclick="toggleLayer(this)">
+            <span class="layer-icon" style="background: var(--color-danger-subtle); color: var(--color-danger);">
+              <i class="bi bi-exclamation-triangle-fill"></i>
+            </span>
+            <span class="layer-name">Travel Advisories</span>
+            <div class="form-check form-switch mb-0">
+              <input class="form-check-input" type="checkbox">
+            </div>
+          </div>
+
+          <div class="layer-toggle" onclick="toggleLayer(this)">
+            <span class="layer-icon" style="background: var(--color-info-subtle); color: var(--color-info);">
+              <i class="bi bi-shop"></i>
+            </span>
+            <span class="layer-name">Trade Routes</span>
+            <div class="form-check form-switch mb-0">
+              <input class="form-check-input" type="checkbox">
+            </div>
+          </div>
+        </div>
+
+        <!-- Legend -->
+        <div class="legend">
+          <div class="legend-title">Legend</div>
+          <div class="legend-item">
+            <span class="legend-marker" style="background: #22c55e;"></span>
+            <span>Upcoming Event</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-marker" style="background: #3b82f6;"></span>
+            <span>Past Event Location</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-marker" style="background: #8b5cf6;"></span>
+            <span>Northern Alliance Territory</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-marker" style="background: #ef4444;"></span>
+            <span>Shadow Court Territory</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-marker" style="background: #f59e0b;"></span>
+            <span>Contested Zone</span>
+          </div>
+        </div>
+
+        <!-- Accessibility Options -->
+        <div class="high-contrast-toggle">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="highContrastMap">
+            <label class="form-check-label" for="highContrastMap">
+              <i class="bi bi-eye me-1"></i>High Contrast Mode
+            </label>
+          </div>
+          <small class="text-muted d-block mt-1">Improve visibility for color blindness</small>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Mobile Sidebar Toggle -->
+    <button class="sidebar-toggle d-lg-none" onclick="toggleSidebar()">
+      <i class="bi bi-layers me-1"></i>Layers
+    </button>
+
+    <!-- Map Viewport -->
+    <div class="map-viewport">
+      <!-- Placeholder for actual map integration -->
+      <div class="map-placeholder">
+        <div class="map-placeholder-content">
+          <i class="bi bi-map"></i>
+          <h3>Interactive Map</h3>
+          <p class="text-muted mb-3">This is a placeholder for the Mapbox-powered interactive map of Osterra.</p>
+          <p class="text-muted small mb-0">The production version will feature:</p>
+          <ul class="text-start text-muted small mt-2">
+            <li>Zoomable, pannable map</li>
+            <li>Clickable location markers</li>
+            <li>Faction territory overlays</li>
+            <li>Historical timeline replay</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Sample Map Markers (visual representation) -->
+      <div class="position-absolute" style="top: 30%; left: 40%;">
+        <button class="btn btn-success btn-sm rounded-circle" style="width: 32px; height: 32px;" onclick="showInfoPanel('event')" title="Rites of Spring">
+          <i class="bi bi-geo-alt-fill"></i>
+        </button>
+      </div>
+      <div class="position-absolute" style="top: 45%; left: 55%;">
+        <button class="btn btn-primary btn-sm rounded-circle" style="width: 32px; height: 32px;" onclick="showInfoPanel('location')" title="Ironhold">
+          <i class="bi bi-building"></i>
+        </button>
+      </div>
+      <div class="position-absolute" style="top: 60%; left: 35%;">
+        <button class="btn btn-warning btn-sm rounded-circle" style="width: 32px; height: 32px;" onclick="showInfoPanel('contested')" title="Contested Zone">
+          <i class="bi bi-exclamation-triangle-fill"></i>
+        </button>
+      </div>
+
+      <!-- Map Controls -->
+      <div class="map-controls">
+        <button class="map-control-btn" title="Zoom In">
+          <i class="bi bi-plus-lg"></i>
+        </button>
+        <button class="map-control-btn" title="Zoom Out">
+          <i class="bi bi-dash-lg"></i>
+        </button>
+        <button class="map-control-btn" title="Reset View">
+          <i class="bi bi-arrows-fullscreen"></i>
+        </button>
+        <button class="map-control-btn" title="My Location">
+          <i class="bi bi-crosshair"></i>
+        </button>
+      </div>
+
+      <!-- Info Panel -->
+      <div class="info-panel" id="infoPanel">
+        <div class="info-panel-header">
+          <strong id="infoPanelTitle">Location Name</strong>
+          <button class="info-panel-close" onclick="hideInfoPanel()">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+        <div class="info-panel-content" id="infoPanelContent">
+          <!-- Content loaded dynamically -->
+        </div>
+      </div>
+
+      <!-- Timeline Slider -->
+      <div class="timeline-panel">
+        <div class="timeline-header">
+          <span class="timeline-title"><i class="bi bi-clock-history me-2"></i>Historical Timeline</span>
+          <span class="timeline-date" id="timelineDate">Spring 1026 AO</span>
+        </div>
+        <input type="range" class="timeline-slider" min="0" max="100" value="100" oninput="updateTimeline(this.value)">
+        <div class="timeline-markers">
+          <span>Fall 1024 AO</span>
+          <span>Winter 1025 AO</span>
+          <span>Summer 1025 AO</span>
+          <span>Present</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/theme-switcher.js"></script>
+  <script>
+    // Toggle layer visibility
+    function toggleLayer(element) {
+      element.classList.toggle('active');
+      const checkbox = element.querySelector('input[type="checkbox"]');
+      checkbox.checked = !checkbox.checked;
+    }
+
+    // Toggle mobile sidebar
+    function toggleSidebar() {
+      document.getElementById('mapSidebar').classList.toggle('show');
+    }
+
+    // Show info panel with location details
+    function showInfoPanel(type) {
+      const panel = document.getElementById('infoPanel');
+      const title = document.getElementById('infoPanelTitle');
+      const content = document.getElementById('infoPanelContent');
+
+      if (type === 'event') {
+        title.innerHTML = '<i class="bi bi-calendar-event text-success me-2"></i>Rites of Spring';
+        content.innerHTML = `
+          <p class="mb-2"><strong>Event Date:</strong> March 15-17, 2026</p>
+          <p class="mb-2"><strong>Location:</strong> Camp Evergreen, PA</p>
+          <p class="mb-3"><strong>Status:</strong> <span class="badge bg-success">Registration Open</span></p>
+          <p class="text-muted small mb-3">A celebration of the new season brings allies and enemies together in uneasy truce...</p>
+          <a href="event-detail.html" class="btn btn-primary btn-sm w-100">View Event Details</a>
+        `;
+      } else if (type === 'location') {
+        title.innerHTML = '<i class="bi bi-building text-primary me-2"></i>Ironhold';
+        content.innerHTML = `
+          <p class="mb-2"><strong>Type:</strong> Dwarven Stronghold</p>
+          <p class="mb-2"><strong>Control:</strong> <span class="badge bg-secondary">Fallen</span></p>
+          <p class="text-muted small mb-3">Once the greatest dwarven citadel in Osterra, Ironhold fell to an ancient darkness in the winter of 1025 AO. Its halls now echo with whispers of the void...</p>
+          <a href="../portal/lore.html" class="btn btn-outline-primary btn-sm w-100">Read Lore Entry</a>
+        `;
+      } else if (type === 'contested') {
+        title.innerHTML = '<i class="bi bi-exclamation-triangle text-warning me-2"></i>Contested Zone';
+        content.innerHTML = `
+          <p class="mb-2"><strong>Region:</strong> The Borderlands</p>
+          <p class="mb-2"><strong>Factions:</strong> Northern Alliance vs Shadow Court</p>
+          <div class="progress mb-2" style="height: 20px;">
+            <div class="progress-bar" style="width: 55%; background: #8b5cf6;">NA 55%</div>
+            <div class="progress-bar" style="width: 45%; background: #ef4444;">SC 45%</div>
+          </div>
+          <p class="text-muted small mb-0">Control shifts based on event outcomes. The upcoming Rites of Spring may decide the fate of this region.</p>
+        `;
+      }
+
+      panel.classList.add('show');
+    }
+
+    // Hide info panel
+    function hideInfoPanel() {
+      document.getElementById('infoPanel').classList.remove('show');
+    }
+
+    // Update timeline display
+    function updateTimeline(value) {
+      const dates = [
+        'Fall 1024 AO',
+        'Winter 1024 AO',
+        'Spring 1025 AO',
+        'Summer 1025 AO',
+        'Fall 1025 AO',
+        'Winter 1025 AO',
+        'Spring 1026 AO'
+      ];
+      const index = Math.floor((value / 100) * (dates.length - 1));
+      document.getElementById('timelineDate').textContent = dates[index];
+    }
+
+    // Close sidebar when clicking outside on mobile
+    document.addEventListener('click', function(e) {
+      const sidebar = document.getElementById('mapSidebar');
+      const toggle = document.querySelector('.sidebar-toggle');
+      if (window.innerWidth < 992 &&
+          sidebar.classList.contains('show') &&
+          !sidebar.contains(e.target) &&
+          !toggle.contains(e.target)) {
+        sidebar.classList.remove('show');
+      }
+    });
+  </script>
+</body>
+</html>

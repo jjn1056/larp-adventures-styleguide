@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dungeon">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Combat Rules - C.O.M.B.a.T. System - LARP Adventures</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="../css/variables.css" rel="stylesheet">
+  <link href="../css/theme-dungeon.css" rel="stylesheet" id="theme-css">
+  <style>
+    /* Reference document specific styles */
+    .ref-sidebar {
+      position: sticky;
+      top: 80px;
+      height: calc(100vh - 100px);
+      overflow-y: auto;
+      padding-right: var(--space-4);
+      font-size: var(--text-sm);
+    }
+
+    .ref-sidebar .nav-link {
+      color: var(--color-text-secondary);
+      padding: var(--space-1) var(--space-2);
+    }
+
+    .ref-sidebar .nav-link:hover,
+    .ref-sidebar .nav-link.active {
+      color: var(--color-primary);
+    }
+
+    .ref-content section {
+      padding-top: var(--space-6);
+      margin-bottom: var(--space-8);
+    }
+
+    .ref-content section:first-child {
+      padding-top: 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="landing.html">LARP Adventures</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="landing.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="event-index.html">Events</a></li>
+          <li class="nav-item"><a class="nav-link active" href="hub.html">Rules & Lore</a></li>
+          <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
+          <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+        </ul>
+        <a href="../portal/dashboard.html" class="btn btn-primary btn-sm">Player Portal</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Breadcrumb -->
+  <div class="container py-3">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><a href="landing.html">Home</a></li>
+        <li class="breadcrumb-item"><a href="hub.html">Rules & Lore</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Combat Rules</li>
+      </ol>
+    </nav>
+  </div>
+
+  <!-- Page Header -->
+  <header class="py-4" style="background-color: var(--color-bg-muted); border-bottom: var(--border-heavy);">
+    <div class="container">
+      <h1>Combat Rules - C.O.M.B.a.T. System</h1>
+      <p class="lead mb-0">Comprehensive Osterra Melee, Battle, and Tactical System</p>
+      <p class="text-muted mt-2 mb-0"><small>Last updated: January 5, 2026 | Version 4.0</small></p>
+    </div>
+  </header>
+
+  <main class="container py-5">
+    <!-- Rules Navigation -->
+    <nav class="rules-nav mb-4 pb-3" style="border-bottom: var(--border-standard);">
+      <span class="text-muted me-2">Rules:</span>
+      <a href="rules-combat.html" class="btn btn-sm btn-primary me-1">Combat</a>
+      <a href="rules-units.html" class="btn btn-sm btn-outline-primary me-1">Units & Land</a>
+      <a href="rules-sea.html" class="btn btn-sm btn-outline-primary me-1">Law of the Sea</a>
+      <a href="hub.html" class="btn btn-sm btn-outline-secondary">All Rules</a>
+    </nav>
+
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-lg-3 d-none d-lg-block">
+        <nav class="ref-sidebar">
+          <h6 class="text-uppercase" style="letter-spacing: var(--tracking-wider);">Contents</h6>
+          <ul class="nav flex-column">
+            <li class="nav-item"><a class="nav-link" href="#overview">Overview</a></li>
+            <li class="nav-item"><a class="nav-link" href="#weapon-safety">Weapon Safety</a></li>
+            <li class="nav-item"><a class="nav-link" href="#damage-calls">Damage Calls</a></li>
+            <li class="nav-item"><a class="nav-link" href="#hit-locations">Hit Locations</a></li>
+            <li class="nav-item"><a class="nav-link" href="#special-abilities">Special Abilities</a></li>
+            <li class="nav-item"><a class="nav-link" href="#death-dying">Death and Dying</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Main Content -->
+      <div class="col-lg-9 ref-content">
+        <!-- Overview -->
+        <section id="overview">
+          <h2>Overview</h2>
+          <p>The C.O.M.B.a.T. System (Comprehensive Osterra Melee, Battle, and Tactical) provides the framework for all physical combat encounters in LARP Adventures. This system emphasizes safety, fairness, and dramatic storytelling while allowing players to engage in exciting martial confrontations.</p>
+
+          <blockquote>
+            <p>"Combat in Osterra is not about winning at all costs - it's about creating memorable moments of heroism, tension, and adventure for everyone involved."</p>
+          </blockquote>
+
+          <p>The C.O.M.B.a.T. System is built on five core principles:</p>
+          <ul>
+            <li><strong>Safety First:</strong> All combat must be conducted safely using approved equipment and techniques</li>
+            <li><strong>Clear Communication:</strong> Damage calls and effect announcements must be audible and understood</li>
+            <li><strong>Honor System:</strong> Players are responsible for honestly tracking their own damage and effects</li>
+            <li><strong>Dramatic Play:</strong> Emphasize roleplay and dramatic reactions over mechanical efficiency</li>
+            <li><strong>Inclusive Design:</strong> Combat roles and effectiveness are available to all player types</li>
+          </ul>
+
+          <div class="callout">
+            <div class="callout-title">New to Combat?</div>
+            <p class="mb-0">Every event includes a combat training session during check-in. Experienced marshals will teach you proper technique, weapon handling, and the calls you need to know. Don't worry about memorizing everything before your first event!</p>
+          </div>
+        </section>
+
+        <hr class="heavy">
+
+        <!-- Weapon Safety -->
+        <section id="weapon-safety">
+          <h2>Weapon Safety</h2>
+          <p>All weapons used in LARP Adventures must meet strict safety standards. These requirements protect all participants and ensure fair, enjoyable combat for everyone.</p>
+
+          <h3 class="h4 mt-4">Weapon Inspection</h3>
+          <p>All weapons must pass safety inspection before each event. Weapons that fail inspection may not be used until repaired and re-inspected. The inspection process checks:</p>
+          <ul>
+            <li>Foam padding integrity and minimum thickness</li>
+            <li>Core material safety and stability</li>
+            <li>Tip construction for thrusting weapons</li>
+            <li>Overall construction and durability</li>
+            <li>Appropriate weight and balance</li>
+          </ul>
+
+          <h3 class="h4 mt-4">Approved Weapon Types</h3>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Weapon Type</th>
+                <th>Max Length</th>
+                <th>Base Damage</th>
+                <th>Requirements</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>One-Handed Melee</td>
+                <td>42"</td>
+                <td>1</td>
+                <td>Standard foam construction</td>
+              </tr>
+              <tr>
+                <td>Two-Handed Melee</td>
+                <td>72"</td>
+                <td>2</td>
+                <td>Must be wielded with both hands</td>
+              </tr>
+              <tr>
+                <td>Polearms</td>
+                <td>84"</td>
+                <td>2</td>
+                <td>Padded striking head, flexible shaft</td>
+              </tr>
+              <tr>
+                <td>Thrown Weapons</td>
+                <td>12"</td>
+                <td>1</td>
+                <td>Entirely foam, no rigid core</td>
+              </tr>
+              <tr>
+                <td>Bows/Crossbows</td>
+                <td>N/A</td>
+                <td>2</td>
+                <td>Max 25 lb draw, LARP-safe arrows only</td>
+              </tr>
+              <tr>
+                <td>Shields</td>
+                <td>36" diameter</td>
+                <td>0</td>
+                <td>Padded edges, no metal hardware</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3 class="h4 mt-4">Prohibited Techniques</h3>
+          <div class="callout">
+            <div class="callout-title">Never Do These</div>
+            <ul class="mb-0">
+              <li><strong>Head Shots:</strong> Never intentionally strike the head, neck, or throat</li>
+              <li><strong>Groin Shots:</strong> Avoid targeting the groin area</li>
+              <li><strong>Shield Punching:</strong> Do not use shields as offensive weapons</li>
+              <li><strong>Charging:</strong> Do not run full speed into opponents</li>
+              <li><strong>Grappling:</strong> No physical grabbing or wrestling without consent</li>
+              <li><strong>Machine-Gunning:</strong> Allow at least 1 second between swings to the same location</li>
+            </ul>
+          </div>
+        </section>
+
+        <hr>
+
+        <!-- Damage Calls -->
+        <section id="damage-calls">
+          <h2>Damage Calls</h2>
+          <p>Every successful strike must be accompanied by a damage call. This verbal announcement tells your opponent how much damage they take and any special properties of the attack.</p>
+
+          <h3 class="h4 mt-4">Basic Damage Format</h3>
+          <p>The standard damage call format is: <strong>[Number] [Type]!</strong></p>
+          <ul>
+            <li><strong>"One!"</strong> - Standard one-handed weapon damage</li>
+            <li><strong>"Two!"</strong> - Two-handed weapon or enhanced damage</li>
+            <li><strong>"Three Magic!"</strong> - Three points of magical damage</li>
+            <li><strong>"Two Silver!"</strong> - Two points of silver damage</li>
+          </ul>
+
+          <h3 class="h4 mt-4">Damage Types</h3>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Call</th>
+                <th>Effect</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Normal</td>
+                <td>"[X]!"</td>
+                <td>Standard physical damage, blocked by armor</td>
+              </tr>
+              <tr>
+                <td>Magic</td>
+                <td>"[X] Magic!"</td>
+                <td>Bypasses non-magical armor</td>
+              </tr>
+              <tr>
+                <td>Silver</td>
+                <td>"[X] Silver!"</td>
+                <td>Effective against lycanthropes and certain undead</td>
+              </tr>
+              <tr>
+                <td>Fire</td>
+                <td>"[X] Fire!"</td>
+                <td>May ignite flammable materials, extra damage to cold creatures</td>
+              </tr>
+              <tr>
+                <td>Ice</td>
+                <td>"[X] Ice!"</td>
+                <td>May slow target, extra damage to fire creatures</td>
+              </tr>
+              <tr>
+                <td>Poison</td>
+                <td>"[X] Poison!"</td>
+                <td>Bypasses armor, may have lingering effects</td>
+              </tr>
+              <tr>
+                <td>Holy</td>
+                <td>"[X] Holy!"</td>
+                <td>Extra damage to undead and demons</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3 class="h4 mt-4">Defensive Calls</h3>
+          <p>When you negate or reduce incoming damage, announce it clearly:</p>
+          <ul>
+            <li><strong>"Armor!"</strong> - Damage absorbed by armor points</li>
+            <li><strong>"Blocked!"</strong> - Attack stopped by shield</li>
+            <li><strong>"Parry!"</strong> - Using a skill to negate the attack</li>
+            <li><strong>"Resist!"</strong> - Immune to the damage type or effect</li>
+            <li><strong>"No Effect!"</strong> - Attack has no effect on you</li>
+          </ul>
+        </section>
+
+        <hr>
+
+        <!-- Hit Locations -->
+        <section id="hit-locations">
+          <h2>Hit Locations</h2>
+          <p>LARP Adventures uses a locational hit system. Different parts of the body may have different armor values, and some effects only apply to specific locations.</p>
+
+          <h3 class="h4 mt-4">Valid Target Areas</h3>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="stat-block mb-4">
+                <div class="stat-block-header">Torso</div>
+                <div class="stat-block-subheader">Primary Target Zone</div>
+                <div class="stat-row">
+                  <span class="stat-label">Includes</span>
+                  <span>Chest, stomach, back, shoulders</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">Armor Value</span>
+                  <span>Full armor applies</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">Special</span>
+                  <span>Vital shots deal +1 damage</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="stat-block mb-4">
+                <div class="stat-block-header">Arms</div>
+                <div class="stat-block-subheader">Secondary Target Zone</div>
+                <div class="stat-row">
+                  <span class="stat-label">Includes</span>
+                  <span>Upper arm, forearm (not hands)</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">Armor Value</span>
+                  <span>Arm armor only</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">Special</span>
+                  <span>Disable effects affect limb use</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="stat-block mb-4">
+                <div class="stat-block-header">Legs</div>
+                <div class="stat-block-subheader">Secondary Target Zone</div>
+                <div class="stat-row">
+                  <span class="stat-label">Includes</span>
+                  <span>Thighs, calves (not feet)</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">Armor Value</span>
+                  <span>Leg armor only</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">Special</span>
+                  <span>Leg wounds reduce movement</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="stat-block mb-4">
+                <div class="stat-block-header">Restricted Zones</div>
+                <div class="stat-block-subheader">Never Target</div>
+                <div class="stat-row">
+                  <span class="stat-label">Head/Neck</span>
+                  <span>Always off-limits</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">Groin</span>
+                  <span>Always off-limits</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">Hands/Feet</span>
+                  <span>Hits don't count</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <hr>
+
+        <!-- Special Abilities -->
+        <section id="special-abilities">
+          <h2>Special Abilities</h2>
+          <p>Beyond basic damage, characters can learn special combat abilities that create dramatic effects on the battlefield. These abilities require XP investment and often have limited uses per day.</p>
+
+          <h3 class="h4 mt-4">Combat Maneuvers</h3>
+
+          <div class="stat-block mb-4">
+            <div class="stat-block-header">Disarm</div>
+            <div class="stat-block-subheader">Warrior Combat Skill</div>
+            <div class="stat-row">
+              <span class="stat-label">Cost</span>
+              <span>3 XP</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Prerequisites</span>
+              <span>Weapon Proficiency</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Call</span>
+              <span>"Disarm!"</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Uses</span>
+              <span>3/day</span>
+            </div>
+            <hr class="my-3">
+            <p class="mb-0"><em>Strike the opponent's weapon. They must drop their weapon for 10 seconds and may not pick it up during that time.</em></p>
+          </div>
+
+          <div class="stat-block mb-4">
+            <div class="stat-block-header">Stun</div>
+            <div class="stat-block-subheader">Warrior Combat Skill</div>
+            <div class="stat-row">
+              <span class="stat-label">Cost</span>
+              <span>4 XP</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Prerequisites</span>
+              <span>Weapon Mastery</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Call</span>
+              <span>"Stun 5 seconds!"</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Uses</span>
+              <span>2/day</span>
+            </div>
+            <hr class="my-3">
+            <p class="mb-0"><em>A powerful blow that leaves the target dazed. They cannot attack, defend, or move for 5 seconds.</em></p>
+          </div>
+
+          <div class="stat-block mb-4">
+            <div class="stat-block-header">Vital Strike</div>
+            <div class="stat-block-subheader">Rogue Combat Skill</div>
+            <div class="stat-row">
+              <span class="stat-label">Cost</span>
+              <span>5 XP</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Prerequisites</span>
+              <span>Anatomy Knowledge</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Call</span>
+              <span>"Vital [X]!"</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Uses</span>
+              <span>2/day</span>
+            </div>
+            <hr class="my-3">
+            <p class="mb-0"><em>A precisely aimed strike at a vital point. Deal double your normal weapon damage.</em></p>
+          </div>
+
+          <h3 class="h4 mt-4">Effect Durations</h3>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Effect</th>
+                <th>Duration</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Stun</td>
+                <td>As called</td>
+                <td>Cannot take any actions</td>
+              </tr>
+              <tr>
+                <td>Knockback</td>
+                <td>Instant</td>
+                <td>Take 3 steps back immediately</td>
+              </tr>
+              <tr>
+                <td>Root</td>
+                <td>10 seconds</td>
+                <td>Cannot move feet, may still fight</td>
+              </tr>
+              <tr>
+                <td>Slow</td>
+                <td>30 seconds</td>
+                <td>Move at half speed</td>
+              </tr>
+              <tr>
+                <td>Blind</td>
+                <td>10 seconds</td>
+                <td>Must close or cover eyes</td>
+              </tr>
+              <tr>
+                <td>Silence</td>
+                <td>30 seconds</td>
+                <td>Cannot speak or cast spells</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <hr>
+
+        <!-- Death and Dying -->
+        <section id="death-dying">
+          <h2>Death and Dying</h2>
+          <p>When your character's hit points reach zero or below, they have fallen in combat. But death in Osterra is rarely the end - resurrection is possible, though it comes at a cost.</p>
+
+          <h3 class="h4 mt-4">The Dying State</h3>
+          <p>When reduced to 0 hit points:</p>
+          <ol>
+            <li>Fall to the ground (safely!) and remain still</li>
+            <li>Begin your 5-minute "bleed-out" timer</li>
+            <li>You may groan, call weakly for help, or roleplay dying</li>
+            <li>You cannot move, attack, or use abilities</li>
+            <li>You are aware of your surroundings but cannot act on that knowledge</li>
+          </ol>
+
+          <h3 class="h4 mt-4">Stabilization</h3>
+          <p>A dying character can be stabilized to stop the bleed-out timer:</p>
+          <ul>
+            <li><strong>First Aid:</strong> 30 seconds of roleplay bandaging (requires First Aid skill)</li>
+            <li><strong>Healing Magic:</strong> Any healing spell or ability stabilizes and restores HP</li>
+            <li><strong>Healing Potions:</strong> Administered by another character</li>
+          </ul>
+
+          <div class="callout">
+            <div class="callout-title">Stabilized but Wounded</div>
+            <p class="mb-0">A stabilized character is unconscious and helpless. They remain at 0 HP until healed and cannot wake up on their own. They may be moved, searched, or (unfortunately) finished off by enemies.</p>
+          </div>
+
+          <h3 class="h4 mt-4">Death and the Killing Blow</h3>
+          <p>A character dies when:</p>
+          <ul>
+            <li>Their bleed-out timer expires without stabilization</li>
+            <li>A conscious enemy delivers a "Killing Blow"</li>
+            <li>Certain instant-death effects (rare, always announced clearly)</li>
+          </ul>
+
+          <p>To deliver a Killing Blow, you must:</p>
+          <ol>
+            <li>Stand over the helpless target</li>
+            <li>Place your weapon on their torso</li>
+            <li>Count slowly: "Killing Blow 1, Killing Blow 2, Killing Blow 3"</li>
+            <li>If uninterrupted, the target is dead</li>
+          </ol>
+
+          <h3 class="h4 mt-4">Resurrection</h3>
+          <p>When your character dies:</p>
+          <ul>
+            <li>Lie still for at least 1 minute of respectful death roleplay</li>
+            <li>Optionally, place a white headband or hold weapon overhead to signal "dead"</li>
+            <li>Proceed to the Resurrection Circle (location announced at event)</li>
+            <li>Spend 10 minutes in the circle, roleplaying your journey back from death</li>
+            <li>Spend 1 Resurrection Token (you begin each event with 3)</li>
+            <li>Return to play with full HP but no restored abilities or items</li>
+          </ul>
+
+          <div class="callout">
+            <div class="callout-title">Permanent Death</div>
+            <p class="mb-0">If you have no Resurrection Tokens remaining, your character's death is permanent. You may create a new character and continue playing, or speak with staff about other options (some rare in-game effects can restore tokens or resurrect without them).</p>
+          </div>
+        </section>
+
+        <!-- Navigation -->
+        <div class="d-flex justify-content-between mt-5 pt-4" style="border-top: var(--border-standard);">
+          <a href="hub.html" class="btn btn-outline-primary"><i class="bi bi-arrow-left me-2"></i>Back to Hub</a>
+          <a href="rules-units.html" class="btn btn-outline-primary">Unit & Land Rules <i class="bi bi-arrow-right ms-2"></i></a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-5" style="background-color: var(--color-bg-page); border-top: var(--border-heavy);">
+    <div class="container">
+      <p class="text-muted text-center mb-0">&copy; 2026 LARP Adventures. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/theme-switcher.js"></script>
+</body>
+</html>

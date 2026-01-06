@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dungeon">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Approved Garb & Gear - LARP Adventures</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="../css/variables.css" rel="stylesheet">
+  <link href="../css/theme-dungeon.css" rel="stylesheet" id="theme-css">
+  <style>
+    .vendor-logo {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--color-primary-subtle);
+      border: 2px solid var(--color-primary);
+      border-radius: var(--radius-md);
+      font-size: var(--text-2xl);
+      font-weight: var(--font-bold);
+      color: var(--color-primary);
+    }
+    .vendor-card {
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+    .vendor-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+    .category-badge {
+      font-size: var(--text-xs);
+      padding: 0.25rem 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="landing.html">LARP Adventures</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="landing.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="event-index.html">Events</a></li>
+          <li class="nav-item"><a class="nav-link" href="hub.html">Rules & Lore</a></li>
+          <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
+          <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+        </ul>
+        <a href="../portal/dashboard.html" class="btn btn-primary btn-sm">Player Portal</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="py-4" style="background-color: var(--color-bg-muted); border-bottom: var(--border-heavy);">
+    <div class="container">
+      <h1>Approved Garb & Gear</h1>
+      <p class="lead mb-0">Curated vendors for LARP-safe equipment</p>
+    </div>
+  </header>
+
+  <main class="container py-5">
+    <!-- Vendor Grid -->
+    <section class="mb-5">
+      <div class="row">
+        <!-- Calimacil -->
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card h-100 vendor-card">
+            <div class="card-body">
+              <div class="d-flex align-items-start mb-3">
+                <div class="vendor-logo me-3">
+                  <i class="bi bi-lightning-charge"></i>
+                </div>
+                <div>
+                  <h3 class="h5 mb-1">Calimacil</h3>
+                  <span class="badge bg-danger category-badge">Weapons</span>
+                </div>
+              </div>
+              <p class="text-muted">Premium foam weapons known for durability and realistic design. Industry leader in LARP-safe combat gear.</p>
+              <a href="#" target="_blank" class="btn btn-outline-primary btn-sm">Visit Store <i class="bi bi-box-arrow-up-right ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mytholon -->
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card h-100 vendor-card">
+            <div class="card-body">
+              <div class="d-flex align-items-start mb-3">
+                <div class="vendor-logo me-3">
+                  <i class="bi bi-person-standing-dress"></i>
+                </div>
+                <div>
+                  <h3 class="h5 mb-1">Mytholon</h3>
+                  <span class="badge bg-success category-badge">Garb</span>
+                </div>
+              </div>
+              <p class="text-muted">Extensive collection of medieval and fantasy costumes. Quality garb for every character type and budget.</p>
+              <a href="#" target="_blank" class="btn btn-outline-primary btn-sm">Visit Store <i class="bi bi-box-arrow-up-right ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kult of Athena -->
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card h-100 vendor-card">
+            <div class="card-body">
+              <div class="d-flex align-items-start mb-3">
+                <div class="vendor-logo me-3">
+                  <i class="bi bi-shield-shaded"></i>
+                </div>
+                <div>
+                  <h3 class="h5 mb-1">Kult of Athena</h3>
+                  <span class="badge bg-secondary category-badge">Armor</span>
+                </div>
+              </div>
+              <p class="text-muted">Wide selection of armor and weapons from multiple manufacturers. Great for finding specific pieces.</p>
+              <a href="#" target="_blank" class="btn btn-outline-primary btn-sm">Visit Store <i class="bi bi-box-arrow-up-right ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Armstreet -->
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card h-100 vendor-card">
+            <div class="card-body">
+              <div class="d-flex align-items-start mb-3">
+                <div class="vendor-logo me-3">
+                  <i class="bi bi-shield-fill"></i>
+                </div>
+                <div>
+                  <h3 class="h5 mb-1">Armstreet</h3>
+                  <span class="badge bg-secondary category-badge">Armor</span>
+                </div>
+              </div>
+              <p class="text-muted">Historical armor crafted with attention to authenticity. Custom sizing available for perfect fit.</p>
+              <a href="#" target="_blank" class="btn btn-outline-primary btn-sm">Visit Store <i class="bi bi-box-arrow-up-right ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Medieval Collectibles -->
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card h-100 vendor-card">
+            <div class="card-body">
+              <div class="d-flex align-items-start mb-3">
+                <div class="vendor-logo me-3">
+                  <i class="bi bi-bag-heart"></i>
+                </div>
+                <div>
+                  <h3 class="h5 mb-1">Medieval Collectibles</h3>
+                  <span class="badge bg-info category-badge">Accessories</span>
+                </div>
+              </div>
+              <p class="text-muted">Pouches, belts, boots, and accessories to complete your look. Affordable options for every adventurer.</p>
+              <a href="#" target="_blank" class="btn btn-outline-primary btn-sm">Visit Store <i class="bi bi-box-arrow-up-right ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mitryl -->
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card h-100 vendor-card">
+            <div class="card-body">
+              <div class="d-flex align-items-start mb-3">
+                <div class="vendor-logo me-3">
+                  <i class="bi bi-gem"></i>
+                </div>
+                <div>
+                  <h3 class="h5 mb-1">Mitryl</h3>
+                  <span class="badge bg-info category-badge">Accessories</span>
+                </div>
+              </div>
+              <p class="text-muted">Fantasy jewelry and magical accessories. Perfect for adding character flair and mystical elements.</p>
+              <a href="#" target="_blank" class="btn btn-outline-primary btn-sm">Visit Store <i class="bi bi-box-arrow-up-right ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Epic Armoury -->
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card h-100 vendor-card">
+            <div class="card-body">
+              <div class="d-flex align-items-start mb-3">
+                <div class="vendor-logo me-3">
+                  <i class="bi bi-hammer"></i>
+                </div>
+                <div>
+                  <h3 class="h5 mb-1">Epic Armoury</h3>
+                  <span class="badge bg-danger category-badge">Weapons</span>
+                  <span class="badge bg-secondary category-badge ms-1">Armor</span>
+                </div>
+              </div>
+              <p class="text-muted">Comprehensive LARP gear including weapons, armor, and accessories. Trusted by larpers worldwide.</p>
+              <a href="#" target="_blank" class="btn btn-outline-primary btn-sm">Visit Store <i class="bi bi-box-arrow-up-right ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Burgschneider -->
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card h-100 vendor-card">
+            <div class="card-body">
+              <div class="d-flex align-items-start mb-3">
+                <div class="vendor-logo me-3">
+                  <i class="bi bi-scissors"></i>
+                </div>
+                <div>
+                  <h3 class="h5 mb-1">Burgschneider</h3>
+                  <span class="badge bg-success category-badge">Garb</span>
+                </div>
+              </div>
+              <p class="text-muted">High-quality medieval garb with historical accuracy. Excellent craftsmanship and durable materials.</p>
+              <a href="#" target="_blank" class="btn btn-outline-primary btn-sm">Visit Store <i class="bi bi-box-arrow-up-right ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ateliers Nemesis -->
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card h-100 vendor-card">
+            <div class="card-body">
+              <div class="d-flex align-items-start mb-3">
+                <div class="vendor-logo me-3">
+                  <i class="bi bi-handbag"></i>
+                </div>
+                <div>
+                  <h3 class="h5 mb-1">Ateliers Nemesis</h3>
+                  <span class="badge bg-warning text-dark category-badge">Leather</span>
+                </div>
+              </div>
+              <p class="text-muted">Handcrafted leather goods including belts, pouches, and armor pieces. Custom work available.</p>
+              <a href="#" target="_blank" class="btn btn-outline-primary btn-sm">Visit Store <i class="bi bi-box-arrow-up-right ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vendor Application Callout -->
+    <section class="mb-5">
+      <div class="callout">
+        <div class="callout-title"><i class="bi bi-shop me-2"></i>Want to be listed?</div>
+        <p class="mb-3">Are you a vendor specializing in LARP-safe equipment, costumes, or accessories? We're always looking to expand our curated list of trusted suppliers.</p>
+        <a href="contact.html" class="btn btn-primary">Contact us to apply for our vendor program</a>
+      </div>
+    </section>
+
+    <!-- Disclaimer -->
+    <section class="mb-5">
+      <div class="alert alert-secondary" role="alert">
+        <i class="bi bi-info-circle me-2"></i>
+        <strong>Disclaimer:</strong> LARP Adventures is not affiliated with these vendors. Always verify weapon safety compliance before purchasing. All weapons must pass our safety check before use at events.
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-5" style="background-color: var(--color-bg-page); border-top: var(--border-heavy);">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <h4 class="h5">LARP Adventures</h4>
+          <p class="text-muted">Live action roleplaying in the realm of Osterra since 2015.</p>
+        </div>
+        <div class="col-md-4 mb-4">
+          <h4 class="h5">Quick Links</h4>
+          <ul class="list-unstyled">
+            <li><a href="event-index.html">Events</a></li>
+            <li><a href="hub.html">Rules & Lore</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4 mb-4">
+          <h4 class="h5">Connect</h4>
+          <ul class="list-unstyled">
+            <li><a href="#"><i class="bi bi-discord me-2"></i>Discord Community</a></li>
+            <li><a href="#"><i class="bi bi-facebook me-2"></i>Facebook Group</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+      <p class="text-muted text-center mb-0">&copy; 2026 LARP Adventures. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/theme-switcher.js"></script>
+</body>
+</html>
