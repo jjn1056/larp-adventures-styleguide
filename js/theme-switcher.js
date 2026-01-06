@@ -9,6 +9,7 @@
   const STORAGE_KEY = 'larp-adventures-theme';
   const DEFAULT_THEME = 'dungeon';
   const THEMES = [
+    { id: 'base', name: 'Base (No Theme)', icon: 'grid' },
     { id: 'dungeon', name: 'Dungeon Master', icon: 'book' },
     { id: 'traveller', name: 'Traveller', icon: 'rocket' },
     { id: 'whitebox', name: 'White Box', icon: 'square' },
@@ -42,7 +43,7 @@
       const currentPath = window.location.pathname;
       let cssPath;
 
-      if (currentPath.includes('/public/') || currentPath.includes('/portal/')) {
+      if (currentPath.includes('/public/') || currentPath.includes('/portal/') || currentPath.includes('/admin/')) {
         cssPath = `../css/theme-${theme}.css`;
       } else {
         cssPath = `css/theme-${theme}.css`;

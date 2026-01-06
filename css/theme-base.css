@@ -1,0 +1,201 @@
+/*
+ * Theme: Base (No Theme)
+ * Pure Bootstrap baseline - minimal custom styling
+ * Use this to see raw Bootstrap appearance
+ */
+
+[data-theme="base"] {
+  /* ========================================
+     COLOR PALETTE - Bootstrap Defaults
+     ======================================== */
+
+  /* Primary - Bootstrap Blue */
+  --color-primary: #0d6efd;
+  --color-primary-hover: #0b5ed7;
+  --color-primary-active: #0a58ca;
+  --color-primary-light: #9ec5fe;
+  --color-primary-subtle: #e7f1ff;
+
+  /* Secondary - Bootstrap Gray */
+  --color-secondary: #6c757d;
+  --color-secondary-hover: #5c636a;
+  --color-secondary-active: #565e64;
+  --color-secondary-light: #c4c8cb;
+  --color-secondary-subtle: #e9ecef;
+
+  /* Backgrounds - Neutral */
+  --color-bg-page: #ffffff;
+  --color-bg-surface: #ffffff;
+  --color-bg-elevated: #ffffff;
+  --color-bg-muted: #f8f9fa;
+  --color-bg-subtle: #f8f9fa;
+
+  /* Text - Bootstrap Defaults */
+  --color-text-primary: #212529;
+  --color-text-secondary: #6c757d;
+  --color-text-muted: #6c757d;
+  --color-text-inverse: #ffffff;
+  --color-text-link: #0d6efd;
+  --color-text-link-hover: #0a58ca;
+
+  /* Borders - Bootstrap Defaults */
+  --color-border: #dee2e6;
+  --color-border-light: #e9ecef;
+  --color-border-dark: #adb5bd;
+
+  /* Status Colors - Bootstrap Defaults */
+  --color-success: #198754;
+  --color-success-bg: #d1e7dd;
+  --color-success-border: #badbcc;
+
+  --color-warning: #ffc107;
+  --color-warning-bg: #fff3cd;
+  --color-warning-border: #ffecb5;
+
+  --color-danger: #dc3545;
+  --color-danger-bg: #f8d7da;
+  --color-danger-border: #f5c2c7;
+
+  --color-info: #0dcaf0;
+  --color-info-bg: #cff4fc;
+  --color-info-border: #b6effb;
+
+  /* ========================================
+     TYPOGRAPHY - System Defaults
+     ======================================== */
+
+  --font-heading: inherit;
+  --font-body: inherit;
+
+  /* ========================================
+     BORDER STYLES - Minimal
+     ======================================== */
+
+  --border-style: solid;
+  --border-color: var(--color-border);
+  --border-standard: 1px solid var(--color-border);
+  --border-heavy: 1px solid var(--color-border-dark);
+
+  /* ========================================
+     COMPONENT TOKENS - Bootstrap Compatible
+     ======================================== */
+
+  /* Cards */
+  --card-bg: var(--color-bg-surface);
+  --card-border: var(--border-standard);
+  --card-shadow: none;
+  --card-header-bg: var(--color-bg-muted);
+  --card-header-border: var(--border-standard);
+
+  /* Buttons */
+  --btn-primary-bg: var(--color-primary);
+  --btn-primary-border: var(--color-primary);
+  --btn-primary-text: var(--color-text-inverse);
+  --btn-primary-hover-bg: var(--color-primary-hover);
+  --btn-primary-hover-border: var(--color-primary-hover);
+
+  /* Forms */
+  --input-bg: var(--color-bg-surface);
+  --input-border: var(--color-border);
+  --input-focus-border: var(--color-primary);
+  --input-focus-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+
+  /* Navigation */
+  --nav-bg: var(--color-bg-surface);
+  --nav-link-color: var(--color-text-secondary);
+  --nav-link-hover-color: var(--color-text-primary);
+  --nav-link-active-color: var(--color-primary);
+
+  /* Tables */
+  --table-header-bg: var(--color-bg-muted);
+  --table-border: var(--border-standard);
+  --table-stripe-bg: var(--color-bg-subtle);
+
+  /* Alerts */
+  --alert-border-width: 1px;
+
+  /* Callouts */
+  --callout-bg: var(--color-bg-muted);
+  --callout-border: var(--color-border-dark);
+  --callout-title-color: var(--color-text-primary);
+}
+
+/* ========================================
+   BASE THEME STYLES - Minimal Overrides
+   ======================================== */
+
+[data-theme="base"] body {
+  background-color: var(--color-bg-page);
+  color: var(--color-text-primary);
+}
+
+/* Remove custom heading styles */
+[data-theme="base"] h1,
+[data-theme="base"] h2,
+[data-theme="base"] h3,
+[data-theme="base"] h4,
+[data-theme="base"] h5,
+[data-theme="base"] h6 {
+  font-family: var(--font-heading);
+  border: none;
+  padding: 0;
+  margin-bottom: 0.5rem;
+}
+
+/* Basic link styling */
+[data-theme="base"] a {
+  color: var(--color-text-link);
+  text-decoration: underline;
+}
+
+[data-theme="base"] a:hover {
+  color: var(--color-text-link-hover);
+}
+
+/* Cards - Bootstrap default */
+[data-theme="base"] .card {
+  background: var(--card-bg);
+  border: var(--card-border);
+  border-radius: 0.375rem;
+}
+
+[data-theme="base"] .card-header {
+  background: var(--card-header-bg);
+  border-bottom: var(--card-header-border);
+}
+
+/* Callouts - Simple box */
+[data-theme="base"] .callout {
+  background: var(--callout-bg);
+  border: 1px solid var(--callout-border);
+  border-radius: 0.375rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+[data-theme="base"] .callout-title {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* Tables */
+[data-theme="base"] .table thead {
+  background: var(--table-header-bg);
+}
+
+/* Navbar */
+[data-theme="base"] .navbar {
+  background: var(--nav-bg);
+  border-bottom: var(--border-standard);
+}
+
+/* HR - Simple line */
+[data-theme="base"] hr {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 1rem 0;
+}
+
+[data-theme="base"] hr.heavy {
+  border-top: 1px solid var(--color-border-dark);
+}
