@@ -16,6 +16,7 @@
     { id: 'phb', name: "Player's Handbook", icon: 'book' },
     { id: 'arcane', name: 'Arcane Academy', icon: 'star' },
     { id: 'fey', name: 'Fey Court', icon: 'flower' },
+    { id: 'frost', name: 'Frost Court', icon: 'snow' },
     { id: 'highcontrast', name: 'High Contrast', icon: 'eye' }
   ];
 
