@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dungeon">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Join - LARP Adventures</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="../css/variables.css" rel="stylesheet">
+  <link href="../css/theme-dungeon.css" rel="stylesheet" id="theme-css">
+  <style>
+    body {
+      min-height: 100vh;
+      background-color: var(--color-bg-page);
+    }
+
+    .wizard-header {
+      background-color: var(--color-bg-surface);
+      border-bottom: var(--border-heavy);
+      padding: var(--space-4) 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .wizard-logo {
+      font-family: var(--font-heading);
+      font-size: var(--text-xl);
+      font-weight: var(--font-bold);
+      color: var(--color-primary);
+      text-decoration: none;
+    }
+
+    .wizard-logo:hover {
+      color: var(--color-primary-dark);
+    }
+
+    /* Progress Steps */
+    .wizard-progress {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-2);
+      margin: var(--space-6) 0;
+    }
+
+    .wizard-step {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+    }
+
+    .wizard-step .step-number {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: var(--font-semibold);
+      background: var(--color-bg-muted);
+      border: 2px solid var(--color-border-default);
+      transition: all var(--transition-fast);
+    }
+
+    .wizard-step.active .step-number {
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+      color: white;
+    }
+
+    .wizard-step.completed .step-number {
+      background: var(--color-success);
+      border-color: var(--color-success);
+      color: white;
+    }
+
+    .wizard-step.active .step-label {
+      color: var(--color-text-primary);
+      font-weight: var(--font-medium);
+    }
+
+    .wizard-step.completed .step-label {
+      color: var(--color-success);
+    }
+
+    .step-connector {
+      width: 40px;
+      height: 2px;
+      background: var(--color-border-default);
+    }
+
+    .step-connector.completed {
+      background: var(--color-success);
+    }
+
+    @media (max-width: 768px) {
+      .wizard-step .step-label {
+        display: none;
+      }
+      .step-connector {
+        width: 24px;
+      }
+    }
+
+    /* Wizard Content */
+    .wizard-content {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: var(--space-4);
+    }
+
+    .wizard-panel {
+      display: none;
+      background: var(--color-bg-surface);
+      border: var(--border-heavy);
+      padding: var(--space-6);
+      margin-bottom: var(--space-4);
+    }
+
+    .wizard-panel.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .wizard-panel h2 {
+      font-size: var(--text-xl);
+      margin-bottom: var(--space-2);
+    }
+
+    .wizard-panel .lead {
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-5);
+    }
+
+    /* Document Checklist */
+    .document-checklist {
+      list-style: none;
+      padding: 0;
+      margin: var(--space-4) 0;
+    }
+
+    .document-checklist li {
+      padding: var(--space-3);
+      border: var(--border-standard);
+      margin-bottom: var(--space-2);
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+      background: var(--color-bg-page);
+    }
+
+    .document-checklist .form-check-input {
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+
+    .document-checklist .doc-info h5 {
+      font-size: var(--text-base);
+      margin: 0 0 var(--space-1);
+    }
+
+    .document-checklist .doc-info p {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      margin: 0;
+    }
+
+    .document-checklist .doc-link {
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+
+    /* Gear Cards */
+    .gear-option {
+      border: var(--border-standard);
+      padding: var(--space-4);
+      margin-bottom: var(--space-3);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .gear-option:hover {
+      border-color: var(--color-primary);
+    }
+
+    .gear-option.selected {
+      border-color: var(--color-primary);
+      background: var(--color-primary-subtle);
+    }
+
+    .gear-option h5 {
+      margin-bottom: var(--space-2);
+    }
+
+    .gear-option p {
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      margin: 0;
+    }
+
+    /* Faction Cards */
+    .faction-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-3);
+    }
+
+    .faction-card {
+      border: var(--border-standard);
+      padding: var(--space-4);
+      text-align: center;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .faction-card:hover {
+      border-color: var(--color-primary);
+      transform: translateY(-2px);
+    }
+
+    .faction-card.selected {
+      border-color: var(--color-primary);
+      background: var(--color-primary-subtle);
+    }
+
+    .faction-card .faction-icon {
+      font-size: var(--text-3xl);
+      margin-bottom: var(--space-2);
+    }
+
+    .faction-card h5 {
+      font-size: var(--text-base);
+      margin-bottom: var(--space-1);
+    }
+
+    .faction-card p {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      margin: 0;
+    }
+
+    /* Wizard Navigation */
+    .wizard-nav {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-3);
+      padding-top: var(--space-4);
+      border-top: var(--border-standard);
+      margin-top: var(--space-4);
+    }
+
+    .wizard-nav .btn {
+      min-width: 140px;
+    }
+
+    /* Success Panel */
+    .success-panel {
+      text-align: center;
+      padding: var(--space-8);
+    }
+
+    .success-panel .success-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--color-success-subtle);
+      color: var(--color-success);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--text-3xl);
+      margin: 0 auto var(--space-4);
+    }
+
+    .success-panel h2 {
+      margin-bottom: var(--space-2);
+    }
+
+    .success-panel p {
+      color: var(--color-text-secondary);
+      max-width: 400px;
+      margin: 0 auto var(--space-5);
+    }
+
+    .next-steps {
+      text-align: left;
+      background: var(--color-bg-muted);
+      padding: var(--space-4);
+      margin: var(--space-5) 0;
+    }
+
+    .next-steps h4 {
+      font-size: var(--text-base);
+      margin-bottom: var(--space-3);
+    }
+
+    .next-steps ul {
+      margin: 0;
+      padding-left: var(--space-5);
+    }
+
+    .next-steps li {
+      margin-bottom: var(--space-2);
+    }
+
+    /* Help sidebar */
+    .help-card {
+      background: var(--color-bg-surface);
+      border: var(--border-standard);
+      padding: var(--space-4);
+      margin-bottom: var(--space-4);
+    }
+
+    .help-card h4 {
+      font-size: var(--text-base);
+      margin-bottom: var(--space-2);
+    }
+
+    .help-card p {
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-3);
+    }
+
+    @media (max-width: 576px) {
+      .wizard-panel {
+        padding: var(--space-4);
+        border-left: none;
+        border-right: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="wizard-header">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center">
+        <a href="landing.html" class="wizard-logo">LARP Adventures</a>
+        <a href="../portal/login.html" class="btn btn-outline-secondary btn-sm">
+          Already have an account? Sign In
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Progress Steps -->
+  <div class="container">
+    <div class="wizard-progress">
+      <div class="wizard-step active" data-step="1">
+        <span class="step-number">1</span>
+        <span class="step-label">Account</span>
+      </div>
+      <div class="step-connector"></div>
+      <div class="wizard-step" data-step="2">
+        <span class="step-number">2</span>
+        <span class="step-label">Safety</span>
+      </div>
+      <div class="step-connector"></div>
+      <div class="wizard-step" data-step="3">
+        <span class="step-number">3</span>
+        <span class="step-label">Gear</span>
+      </div>
+      <div class="step-connector"></div>
+      <div class="wizard-step" data-step="4">
+        <span class="step-number">4</span>
+        <span class="step-label">Faction</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wizard Content -->
+  <div class="wizard-content">
+    <!-- Step 1: Account Creation -->
+    <div class="wizard-panel active" id="step1">
+      <h2><i class="bi bi-person-plus me-2"></i>Create Your Account</h2>
+      <p class="lead">Let's get you set up with a player account. This will be your gateway to the world of Osterra.</p>
+
+      <!-- Social Registration -->
+      <div class="d-flex gap-3 mb-4">
+        <button class="btn btn-outline-secondary flex-grow-1">
+          <i class="bi bi-google me-2"></i>Continue with Google
+        </button>
+        <button class="btn btn-outline-secondary flex-grow-1">
+          <i class="bi bi-discord me-2"></i>Continue with Discord
+        </button>
+      </div>
+
+      <div class="text-center text-muted mb-4">
+        <span style="background: var(--color-bg-surface); padding: 0 var(--space-3);">or use email</span>
+        <hr style="margin-top: -10px;">
+      </div>
+
+      <form id="accountForm">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="firstName" class="form-label">First Name <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="firstName" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="lastName" class="form-label">Last Name <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="lastName" required>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email Address <span class="text-danger">*</span></label>
+          <input type="email" class="form-control" id="email" required>
+          <div class="form-text">We'll send important event info and your verification link here.</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="displayName" class="form-label">Display Name</label>
+          <input type="text" class="form-control" id="displayName" placeholder="How others will see you">
+          <div class="form-text">Optional - you can use your real name or a nickname.</div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
+            <input type="password" class="form-control" id="password" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="confirmPassword" class="form-label">Confirm Password <span class="text-danger">*</span></label>
+            <input type="password" class="form-control" id="confirmPassword" required>
+          </div>
+        </div>
+
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" id="ageVerify" required>
+          <label class="form-check-label" for="ageVerify">
+            I am 18 years of age or older (or have parental consent) <span class="text-danger">*</span>
+          </label>
+        </div>
+
+        <div class="wizard-nav">
+          <a href="intro.html" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left me-2"></i>Back
+          </a>
+          <button type="button" class="btn btn-primary" onclick="nextStep(2)">
+            Continue<i class="bi bi-arrow-right ms-2"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Step 2: Safety & Documents -->
+    <div class="wizard-panel" id="step2">
+      <h2><i class="bi bi-shield-check me-2"></i>Safety & Documents</h2>
+      <p class="lead">Your safety is our top priority. Please review and acknowledge these important documents.</p>
+
+      <div class="alert alert-info">
+        <i class="bi bi-info-circle me-2"></i>
+        <strong>Why this matters:</strong> LARP involves physical activity, immersive storytelling, and shared spaces. These documents ensure everyone has a safe, inclusive experience.
+      </div>
+
+      <p class="mb-3"><a href="safety.html">Read our full Safety & Conduct policies</a></p>
+
+      <ul class="document-checklist">
+        <li>
+          <input class="form-check-input" type="checkbox" id="waiver">
+          <div class="doc-info">
+            <h5><label for="waiver">Game Waiver</label></h5>
+            <p>Liability waiver and assumption of risk acknowledgement. Required before your first event.</p>
+          </div>
+          <a href="#" class="doc-link btn btn-sm btn-outline-primary">
+            <i class="bi bi-file-pdf me-1"></i>View PDF
+          </a>
+        </li>
+        <li>
+          <input class="form-check-input" type="checkbox" id="safety">
+          <div class="doc-info">
+            <h5><label for="safety">Safety & Conduct Policy</label></h5>
+            <p>Combat safety rules, check-in/check-out system, consent mechanics, and behavioral expectations.</p>
+          </div>
+          <a href="#" class="doc-link btn btn-sm btn-outline-primary">
+            <i class="bi bi-file-pdf me-1"></i>View PDF
+          </a>
+        </li>
+        <li>
+          <input class="form-check-input" type="checkbox" id="diversity">
+          <div class="doc-info">
+            <h5><label for="diversity">Diversity & Inclusion Statement</label></h5>
+            <p>Our commitment to creating a welcoming environment for all players.</p>
+          </div>
+          <a href="#" class="doc-link btn btn-sm btn-outline-primary">
+            <i class="bi bi-file-pdf me-1"></i>View PDF
+          </a>
+        </li>
+      </ul>
+
+      <div class="form-check mb-3">
+        <input class="form-check-input" type="checkbox" id="acknowledgeAll">
+        <label class="form-check-label" for="acknowledgeAll">
+          <strong>I have read and agree to all policies above</strong>
+        </label>
+      </div>
+
+      <div class="wizard-nav">
+        <button type="button" class="btn btn-outline-secondary" onclick="prevStep(1)">
+          <i class="bi bi-arrow-left me-2"></i>Back
+        </button>
+        <button type="button" class="btn btn-primary" onclick="nextStep(3)">
+          Continue<i class="bi bi-arrow-right ms-2"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Step 3: Gear Readiness -->
+    <div class="wizard-panel" id="step3">
+      <h2><i class="bi bi-backpack me-2"></i>Gear Readiness</h2>
+      <p class="lead">Don't worry - you don't need to own anything to start! We want to help you prepare for your first adventure.</p>
+
+      <h4 class="mb-3">What's your current gear situation?</h4>
+
+      <div class="gear-option" onclick="selectGear(this, 'loaner')">
+        <div class="d-flex align-items-start">
+          <i class="bi bi-box-seam text-primary me-3" style="font-size: 1.5rem;"></i>
+          <div class="flex-grow-1">
+            <h5>I need loaner gear <span class="badge bg-success ms-2">Most Popular</span></h5>
+            <p>We have weapons, costumes, and props available to borrow. Just show up and we'll get you equipped!</p>
+          </div>
+          <input type="radio" name="gearChoice" value="loaner" class="form-check-input">
+        </div>
+      </div>
+
+      <div class="gear-option" onclick="selectGear(this, 'some')">
+        <div class="d-flex align-items-start">
+          <i class="bi bi-bag-check text-warning me-3" style="font-size: 1.5rem;"></i>
+          <div class="flex-grow-1">
+            <h5>I have some basics, but need weapons</h5>
+            <p>Great start! Bring what you have - we can loan you safe, approved LARP weapons.</p>
+          </div>
+          <input type="radio" name="gearChoice" value="some" class="form-check-input">
+        </div>
+      </div>
+
+      <div class="gear-option" onclick="selectGear(this, 'ready')">
+        <div class="d-flex align-items-start">
+          <i class="bi bi-award text-success me-3" style="font-size: 1.5rem;"></i>
+          <div class="flex-grow-1">
+            <h5>I'm fully equipped</h5>
+            <p>Awesome! You're ready to go. Just ensure weapons meet our safety standards at check-in.</p>
+          </div>
+          <input type="radio" name="gearChoice" value="ready" class="form-check-input">
+        </div>
+      </div>
+
+      <div class="gear-option" onclick="selectGear(this, 'shopping')">
+        <div class="d-flex align-items-start">
+          <i class="bi bi-cart text-info me-3" style="font-size: 1.5rem;"></i>
+          <div class="flex-grow-1">
+            <h5>I want to buy my own gear</h5>
+            <p>We'll show you our approved vendors list with recommendations for new players.</p>
+          </div>
+          <input type="radio" name="gearChoice" value="shopping" class="form-check-input">
+        </div>
+      </div>
+
+      <div id="vendorInfo" class="alert alert-secondary mt-4" style="display: none;">
+        <h5><i class="bi bi-shop me-2"></i>Recommended Vendors</h5>
+        <p class="mb-2">These vendors sell gear that meets our safety standards:</p>
+        <div class="row">
+          <div class="col-6 col-md-4 mb-2"><a href="#" class="text-decoration-none">Calimacil</a></div>
+          <div class="col-6 col-md-4 mb-2"><a href="#" class="text-decoration-none">Epic Armoury</a></div>
+          <div class="col-6 col-md-4 mb-2"><a href="#" class="text-decoration-none">Mytholon</a></div>
+          <div class="col-6 col-md-4 mb-2"><a href="#" class="text-decoration-none">Burgschneider</a></div>
+          <div class="col-6 col-md-4 mb-2"><a href="#" class="text-decoration-none">Armstreet</a></div>
+          <div class="col-6 col-md-4 mb-2"><a href="#" class="text-decoration-none">Kult of Athena</a></div>
+        </div>
+        <a href="#" class="btn btn-sm btn-outline-primary mt-2">View Full Vendor List</a>
+      </div>
+
+      <div class="wizard-nav">
+        <button type="button" class="btn btn-outline-secondary" onclick="prevStep(2)">
+          <i class="bi bi-arrow-left me-2"></i>Back
+        </button>
+        <button type="button" class="btn btn-primary" onclick="nextStep(4)">
+          Continue<i class="bi bi-arrow-right ms-2"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Step 4: Faction & Mentorship -->
+    <div class="wizard-panel" id="step4">
+      <h2><i class="bi bi-flag me-2"></i>Choose Your Path</h2>
+      <p class="lead">Select a starting faction to align with. Don't worry - this isn't permanent! You can change allegiances as your story unfolds.</p>
+
+      <h4 class="mb-3">Factions of Osterra</h4>
+      <div class="faction-grid mb-4">
+        <div class="faction-card" onclick="selectFaction(this, 'knights')">
+          <div class="faction-icon">
+            <i class="bi bi-shield-fill"></i>
+          </div>
+          <h5>Order of the Silver Shield</h5>
+          <p>Honor, duty, protection of the realm</p>
+        </div>
+        <div class="faction-card" onclick="selectFaction(this, 'mystics')">
+          <div class="faction-icon">
+            <i class="bi bi-stars"></i>
+          </div>
+          <h5>The Arcane Covenant</h5>
+          <p>Magic, knowledge, ancient secrets</p>
+        </div>
+        <div class="faction-card" onclick="selectFaction(this, 'merchants')">
+          <div class="faction-icon">
+            <i class="bi bi-coin"></i>
+          </div>
+          <h5>Golden Compass Guild</h5>
+          <p>Trade, diplomacy, prosperity</p>
+        </div>
+        <div class="faction-card" onclick="selectFaction(this, 'rangers')">
+          <div class="faction-icon">
+            <i class="bi bi-tree"></i>
+          </div>
+          <h5>Wardens of the Wild</h5>
+          <p>Nature, survival, freedom</p>
+        </div>
+        <div class="faction-card" onclick="selectFaction(this, 'shadows')">
+          <div class="faction-icon">
+            <i class="bi bi-moon-stars"></i>
+          </div>
+          <h5>The Shadow Court</h5>
+          <p>Intrigue, secrets, cunning</p>
+        </div>
+        <div class="faction-card" onclick="selectFaction(this, 'undecided')">
+          <div class="faction-icon">
+            <i class="bi bi-question-circle"></i>
+          </div>
+          <h5>Undecided</h5>
+          <p>Explore before committing</p>
+        </div>
+      </div>
+
+      <h4 class="mb-3">Would you like a mentor?</h4>
+      <p class="text-muted mb-3">Mentors are experienced players who can help you learn the ropes, answer questions, and make your first events more enjoyable.</p>
+      <div class="form-check mb-2">
+        <input class="form-check-input" type="radio" name="mentor" id="mentorYes" value="yes" checked>
+        <label class="form-check-label" for="mentorYes">
+          <strong>Yes, match me with a mentor</strong><br>
+          <small class="text-muted">Get guidance before and during your first events. Your mentor will reach out to introduce themselves.</small>
+        </label>
+      </div>
+      <div class="form-check mb-2">
+        <input class="form-check-input" type="radio" name="mentor" id="mentorFirstEvent" value="first-event">
+        <label class="form-check-label" for="mentorFirstEvent">
+          <strong>Just at my first event</strong><br>
+          <small class="text-muted">We'll pair you with a mentor on-site to help you get started, no commitment beyond that.</small>
+        </label>
+      </div>
+      <div class="form-check mb-4">
+        <input class="form-check-input" type="radio" name="mentor" id="mentorNo" value="no">
+        <label class="form-check-label" for="mentorNo">
+          <strong>No thanks, I'll figure it out</strong><br>
+          <small class="text-muted">You can always request a mentor later from your dashboard or the Mentors page.</small>
+        </label>
+      </div>
+
+      <div class="wizard-nav">
+        <button type="button" class="btn btn-outline-secondary" onclick="prevStep(3)">
+          <i class="bi bi-arrow-left me-2"></i>Back
+        </button>
+        <button type="button" class="btn btn-primary" onclick="completeWizard()">
+          <i class="bi bi-check-circle me-2"></i>Complete Registration
+        </button>
+      </div>
+    </div>
+
+    <!-- Success Panel -->
+    <div class="wizard-panel" id="stepSuccess">
+      <div class="success-panel">
+        <div class="success-icon">
+          <i class="bi bi-check-lg"></i>
+        </div>
+        <h2>Welcome to Osterra!</h2>
+        <p>Your account has been created. Check your email to verify your address and complete setup.</p>
+
+        <div class="next-steps">
+          <h4><i class="bi bi-list-check me-2"></i>What's Next?</h4>
+          <ul>
+            <li><strong>Verify your email</strong> - Click the link we just sent you</li>
+            <li><strong>Join our Discord</strong> - Meet other players and ask questions</li>
+            <li><strong>Browse upcoming events</strong> - Find your first adventure</li>
+            <li><strong>Create your character</strong> - Design your alter ego in Osterra</li>
+          </ul>
+        </div>
+
+        <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+          <a href="../portal/dashboard.html" class="btn btn-primary btn-lg">
+            <i class="bi bi-house me-2"></i>Go to Dashboard
+          </a>
+          <a href="event-index.html" class="btn btn-outline-secondary btn-lg">
+            <i class="bi bi-calendar-event me-2"></i>Browse Events
+          </a>
+        </div>
+
+        <div class="mt-4">
+          <a href="https://discord.gg/example" class="btn btn-outline-primary me-2">
+            <i class="bi bi-discord me-2"></i>Join Discord
+          </a>
+          <a href="https://facebook.com/groups/LARPAdventures" class="btn btn-outline-primary">
+            <i class="bi bi-facebook me-2"></i>Facebook Group
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Help Card (shows alongside wizard) -->
+    <div class="help-card">
+      <h4><i class="bi bi-question-circle me-2"></i>Need Help?</h4>
+      <p>Our community is here to answer questions and help you get started.</p>
+      <a href="https://discord.gg/example" class="btn btn-sm btn-outline-primary w-100 mb-2">
+        <i class="bi bi-discord me-2"></i>Ask on Discord
+      </a>
+      <a href="mailto:LARPAdventures@gmail.com" class="btn btn-sm btn-outline-secondary w-100">
+        <i class="bi bi-envelope me-2"></i>Email Us
+      </a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer style="background-color: var(--color-bg-muted); border-top: var(--border-standard); padding: var(--space-4); text-align: center; margin-top: var(--space-8);">
+    <p class="mb-2">&copy; 2026 LARP Adventures. All rights reserved.</p>
+    <small class="text-muted">
+      <a href="#" class="text-decoration-none">Privacy Policy</a> |
+      <a href="#" class="text-decoration-none">Terms of Service</a> |
+      <a href="faq.html" class="text-decoration-none">FAQ</a>
+    </small>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/theme-switcher.js"></script>
+  <script>
+    let currentStep = 1;
+    let selectedGear = null;
+    let selectedFaction = null;
+
+    function updateProgress(step) {
+      document.querySelectorAll('.wizard-step').forEach((el, idx) => {
+        const stepNum = idx + 1;
+        el.classList.remove('active', 'completed');
+        if (stepNum < step) {
+          el.classList.add('completed');
+        } else if (stepNum === step) {
+          el.classList.add('active');
+        }
+      });
+
+      document.querySelectorAll('.step-connector').forEach((el, idx) => {
+        el.classList.toggle('completed', idx < step - 1);
+      });
+    }
+
+    function showStep(step) {
+      document.querySelectorAll('.wizard-panel').forEach(panel => {
+        panel.classList.remove('active');
+      });
+      document.getElementById('step' + step).classList.add('active');
+      updateProgress(step);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function nextStep(step) {
+      currentStep = step;
+      showStep(step);
+    }
+
+    function prevStep(step) {
+      currentStep = step;
+      showStep(step);
+    }
+
+    function selectGear(element, choice) {
+      document.querySelectorAll('.gear-option').forEach(el => {
+        el.classList.remove('selected');
+        el.querySelector('input[type="radio"]').checked = false;
+      });
+      element.classList.add('selected');
+      element.querySelector('input[type="radio"]').checked = true;
+      selectedGear = choice;
+
+      // Show vendor info if shopping selected
+      document.getElementById('vendorInfo').style.display = choice === 'shopping' ? 'block' : 'none';
+    }
+
+    function selectFaction(element, faction) {
+      document.querySelectorAll('.faction-card').forEach(el => {
+        el.classList.remove('selected');
+      });
+      element.classList.add('selected');
+      selectedFaction = faction;
+    }
+
+    function completeWizard() {
+      document.querySelectorAll('.wizard-panel').forEach(panel => {
+        panel.classList.remove('active');
+      });
+      document.getElementById('stepSuccess').classList.add('active');
+
+      // Update progress to show all completed
+      document.querySelectorAll('.wizard-step').forEach(el => {
+        el.classList.remove('active');
+        el.classList.add('completed');
+      });
+      document.querySelectorAll('.step-connector').forEach(el => {
+        el.classList.add('completed');
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>

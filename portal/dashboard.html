@@ -76,6 +76,94 @@
       border-left: var(--border-width-thick) solid var(--color-primary);
     }
 
+    .digest-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .digest-items {
+      margin-left: 40px;
+    }
+
+    .digest-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: var(--space-3);
+      background: var(--color-bg-page);
+      border: var(--border-standard);
+      margin-bottom: var(--space-2);
+      text-decoration: none;
+      color: var(--color-text-primary);
+      transition: all var(--transition-fast);
+    }
+
+    .digest-item:hover {
+      border-color: var(--color-primary);
+      background: var(--color-bg-muted);
+    }
+
+    .digest-item.unread {
+      border-left: 3px solid var(--color-primary);
+    }
+
+    .digest-item-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .digest-item-content strong {
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .digest-item-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: var(--space-1);
+      margin-left: var(--space-3);
+      flex-shrink: 0;
+    }
+
+    /* Rule change diff modal */
+    .rule-diff {
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      background: var(--color-bg-muted);
+      padding: var(--space-3);
+      border-radius: var(--radius-md);
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .rule-diff .diff-removed {
+      background: #fee2e2;
+      color: #991b1b;
+      text-decoration: line-through;
+    }
+
+    .rule-diff .diff-added {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    [data-theme="tavern"] .rule-diff .diff-removed,
+    [data-theme="frost"] .rule-diff .diff-removed {
+      background: rgba(239, 68, 68, 0.2);
+      color: #fca5a5;
+    }
+
+    [data-theme="tavern"] .rule-diff .diff-added,
+    [data-theme="frost"] .rule-diff .diff-added {
+      background: rgba(34, 197, 94, 0.2);
+      color: #86efac;
+    }
+
     @media (max-width: 991px) {
       .portal-sidebar {
         transform: translateX(-100%);
@@ -173,6 +261,11 @@
         <small class="px-4 text-muted text-uppercase" style="letter-spacing: var(--tracking-wider);">Community</small>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="mentors.html">
+          <i class="bi bi-mortarboard me-2"></i>Mentors
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="forum-index.html">
           <i class="bi bi-chat-dots me-2"></i>Forums
         </a>
@@ -212,6 +305,9 @@
         <h1 class="h4 mb-0">Dashboard</h1>
       </div>
       <div class="d-flex align-items-center gap-3">
+        <a href="spellbook.html" class="btn btn-outline-primary btn-sm">
+          <i class="bi bi-book me-1"></i>Spellbook
+        </a>
         <a href="notifications.html" class="btn btn-outline-secondary position-relative">
           <i class="bi bi-bell"></i>
           <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">3</span>
@@ -235,15 +331,133 @@
       <!-- Welcome / Since Last Login -->
       <section class="mb-5">
         <div class="card digest-card">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <div>
+              <i class="bi bi-sunrise me-2 text-warning"></i>
+              <strong>Welcome back, Sir Aldric!</strong>
+            </div>
+            <span class="badge bg-secondary">Last login: 3 days ago</span>
+          </div>
           <div class="card-body">
-            <h2 class="h5 mb-3"><i class="bi bi-sunrise me-2"></i>Welcome back, Sir Aldric!</h2>
-            <p class="mb-3">Here's what happened since your last visit (3 days ago):</p>
-            <ul class="mb-0">
-              <li><strong>Rites of Spring</strong> registration is now open - 47 of 80 spots filled</li>
-              <li>New lore entry: <a href="lore.html">"The Fall of Ironhold"</a> - <span class="text-primary">unread</span></li>
-              <li>Combat rules updated to version 3.2 - <a href="#">see changes</a></li>
-              <li>2 new messages in the <a href="#">Northern Alliance forum</a></li>
-            </ul>
+            <p class="text-muted mb-4">Here's what you missed while you were away:</p>
+
+            <!-- Rule Changes -->
+            <div class="digest-section mb-4">
+              <div class="d-flex align-items-center mb-2">
+                <span class="digest-icon bg-danger-subtle text-danger">
+                  <i class="bi bi-exclamation-triangle"></i>
+                </span>
+                <strong class="ms-2">Rule Changes</strong>
+                <span class="badge bg-danger ms-auto">1 update</span>
+              </div>
+              <div class="digest-items">
+                <a href="#" class="digest-item unread" data-bs-toggle="modal" data-bs-target="#ruleChangeModal">
+                  <div class="digest-item-content">
+                    <strong>Combat Rules v3.2</strong>
+                    <p class="mb-0 small text-muted">Changes to grappling mechanics and shield bash timing</p>
+                  </div>
+                  <span class="digest-item-meta">
+                    <span class="badge bg-danger-subtle text-danger">Changed</span>
+                    <small class="text-muted">2 hours ago</small>
+                  </span>
+                </a>
+              </div>
+            </div>
+
+            <!-- New Lore -->
+            <div class="digest-section mb-4">
+              <div class="d-flex align-items-center mb-2">
+                <span class="digest-icon bg-info-subtle text-info">
+                  <i class="bi bi-scroll"></i>
+                </span>
+                <strong class="ms-2">New Lore</strong>
+                <span class="badge bg-info ms-auto">2 entries</span>
+              </div>
+              <div class="digest-items">
+                <a href="lore.html" class="digest-item unread">
+                  <div class="digest-item-content">
+                    <strong>The Fall of Ironhold</strong>
+                    <p class="mb-0 small text-muted">The dwarven stronghold has fallen to an ancient darkness...</p>
+                  </div>
+                  <span class="digest-item-meta">
+                    <span class="badge bg-primary-subtle text-primary">Unread</span>
+                    <small class="text-muted">1 day ago</small>
+                  </span>
+                </a>
+                <a href="lore.html" class="digest-item unread">
+                  <div class="digest-item-content">
+                    <strong>Whispers from the East</strong>
+                    <p class="mb-0 small text-muted">Merchants bring troubling news from beyond the mountains...</p>
+                  </div>
+                  <span class="digest-item-meta">
+                    <span class="badge bg-primary-subtle text-primary">Unread</span>
+                    <small class="text-muted">2 days ago</small>
+                  </span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Event Updates -->
+            <div class="digest-section mb-4">
+              <div class="d-flex align-items-center mb-2">
+                <span class="digest-icon bg-success-subtle text-success">
+                  <i class="bi bi-calendar-event"></i>
+                </span>
+                <strong class="ms-2">Event Updates</strong>
+                <span class="badge bg-success ms-auto">1 update</span>
+              </div>
+              <div class="digest-items">
+                <a href="../public/event-detail.html" class="digest-item">
+                  <div class="digest-item-content">
+                    <strong>Rites of Spring</strong>
+                    <p class="mb-0 small text-muted">Registration now open - 47 of 80 spots filled (59%)</p>
+                  </div>
+                  <span class="digest-item-meta">
+                    <span class="badge bg-success">Registered</span>
+                    <small class="text-muted">3 days ago</small>
+                  </span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Mentions & Replies -->
+            <div class="digest-section">
+              <div class="d-flex align-items-center mb-2">
+                <span class="digest-icon bg-primary-subtle text-primary">
+                  <i class="bi bi-chat-dots"></i>
+                </span>
+                <strong class="ms-2">Mentions & Replies</strong>
+                <span class="badge bg-primary ms-auto">3 messages</span>
+              </div>
+              <div class="digest-items">
+                <a href="forum-thread.html" class="digest-item unread">
+                  <div class="digest-item-content">
+                    <strong>Lady Mira</strong> replied to your post
+                    <p class="mb-0 small text-muted">"I agree with your assessment of the Northern territories..."</p>
+                  </div>
+                  <span class="digest-item-meta">
+                    <small class="text-muted">2 days ago</small>
+                  </span>
+                </a>
+                <a href="forum-thread.html" class="digest-item">
+                  <div class="digest-item-content">
+                    <strong>Northern Alliance Forum</strong>
+                    <p class="mb-0 small text-muted">2 new messages since your last visit</p>
+                  </div>
+                  <span class="digest-item-meta">
+                    <small class="text-muted">1 day ago</small>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer d-flex justify-content-between align-items-center">
+            <button class="btn btn-sm btn-outline-secondary" onclick="markAllRead()">
+              <i class="bi bi-check-all me-1"></i>Mark all as read
+            </button>
+            <a href="notifications.html" class="btn btn-sm btn-outline-primary">
+              <i class="bi bi-bell me-1"></i>View all notifications
+            </a>
           </div>
         </div>
       </section>
@@ -374,6 +588,72 @@
         </div>
       </div>
 
+      <!-- Your Mentees Widget -->
+      <div class="row mb-4">
+        <div class="col-12">
+          <div class="card" style="border-left: var(--border-width-thick) solid var(--color-primary);">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <div>
+                <i class="bi bi-mortarboard me-2"></i>
+                <strong>Your Mentees</strong>
+              </div>
+              <span class="badge bg-primary">1 new request</span>
+            </div>
+            <div class="card-body p-0">
+              <!-- New Request -->
+              <div class="p-3 border-bottom" style="background: var(--color-primary-subtle);">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="d-flex align-items-center gap-2">
+                    <div style="width: 36px; height: 36px; border-radius: 50%; background: var(--color-warning); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 0.875rem;">TK</div>
+                    <div>
+                      <strong>Tyler Kingston</strong>
+                      <span class="badge bg-warning text-dark ms-2">New Request</span>
+                      <p class="mb-0 small text-muted">Interested in: Combat & Tactics</p>
+                    </div>
+                  </div>
+                  <div class="btn-group btn-group-sm">
+                    <button class="btn btn-success" onclick="acceptMentee('tyler')"><i class="bi bi-check"></i></button>
+                    <button class="btn btn-outline-secondary" onclick="declineMentee('tyler')"><i class="bi bi-x"></i></button>
+                  </div>
+                </div>
+              </div>
+              <!-- Current Mentees -->
+              <div class="p-3 border-bottom">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="d-flex align-items-center gap-2">
+                    <div style="width: 36px; height: 36px; border-radius: 50%; background: var(--color-success); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 0.875rem;">SM</div>
+                    <div>
+                      <strong>Sarah Miller</strong>
+                      <span class="badge bg-success ms-2">Active</span>
+                      <p class="mb-0 small text-muted">2 events attended together</p>
+                    </div>
+                  </div>
+                  <a href="#" class="btn btn-sm btn-outline-primary">Message</a>
+                </div>
+              </div>
+              <div class="p-3">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="d-flex align-items-center gap-2">
+                    <div style="width: 36px; height: 36px; border-radius: 50%; background: var(--color-info); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 0.875rem;">JP</div>
+                    <div>
+                      <strong>James Patterson</strong>
+                      <span class="badge bg-secondary ms-2">First Event</span>
+                      <p class="mb-0 small text-muted">Registered for Rites of Spring</p>
+                    </div>
+                  </div>
+                  <a href="#" class="btn btn-sm btn-outline-primary">Message</a>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <a href="mentors.html" class="btn btn-outline-primary btn-sm">
+                <i class="bi bi-speedometer2 me-1"></i>Mentor Dashboard
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Recent Activity -->
       <section>
         <div class="card">
@@ -416,6 +696,50 @@
     </div>
   </main>
 
+  <!-- Rule Change Modal -->
+  <div class="modal fade" id="ruleChangeModal" tabindex="-1" aria-labelledby="ruleChangeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ruleChangeModalLabel">
+            <i class="bi bi-exclamation-triangle text-danger me-2"></i>
+            Combat Rules v3.2 Changes
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <span class="badge bg-secondary">Updated 2 hours ago by Rules Committee</span>
+            <a href="../public/reference.html" class="btn btn-sm btn-outline-primary">View Full Rules</a>
+          </div>
+
+          <h6 class="mb-2">Section 4.2: Grappling Mechanics</h6>
+          <div class="rule-diff mb-4">
+            <p class="diff-removed mb-1">Grappling requires a successful hit call followed by "GRAPPLE" within 2 seconds.</p>
+            <p class="diff-added mb-0">Grappling requires a successful hit call followed by "GRAPPLE" within 3 seconds. Target may call "RESIST" if they have the appropriate skill.</p>
+          </div>
+
+          <h6 class="mb-2">Section 5.1: Shield Bash</h6>
+          <div class="rule-diff mb-4">
+            <p class="diff-removed mb-1">Shield bash may be performed once every 10 seconds.</p>
+            <p class="diff-added mb-0">Shield bash may be performed once every 15 seconds. Cooldown begins after the bash lands or is blocked.</p>
+          </div>
+
+          <h6 class="mb-2">Section 5.3: Defensive Stance (New)</h6>
+          <div class="rule-diff">
+            <p class="diff-added mb-0">Players with the Defender path may call "DEFENSIVE STANCE" to reduce incoming damage by 1 for 30 seconds. May be used once per encounter.</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" onclick="markRuleRead()">
+            <i class="bi bi-check me-1"></i>Mark as Read
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Toast Container -->
   <div class="toast-container position-fixed top-0 end-0 p-3">
     <div class="toast" role="alert" id="welcomeToast">
@@ -438,6 +762,66 @@
       const toast = new bootstrap.Toast(document.getElementById('welcomeToast'));
       setTimeout(() => toast.show(), 1000);
     });
+
+    // Mark all digest items as read
+    function markAllRead() {
+      document.querySelectorAll('.digest-item.unread').forEach(item => {
+        item.classList.remove('unread');
+      });
+      document.querySelectorAll('.digest-section .badge').forEach(badge => {
+        if (badge.classList.contains('bg-danger') || badge.classList.contains('bg-info') || badge.classList.contains('bg-primary')) {
+          badge.textContent = '0';
+          badge.classList.remove('bg-danger', 'bg-info', 'bg-primary');
+          badge.classList.add('bg-secondary');
+        }
+      });
+      // Show confirmation toast
+      const toastHtml = `
+        <div class="toast" role="alert">
+          <div class="toast-header">
+            <i class="bi bi-check-circle-fill text-success me-2"></i>
+            <strong class="me-auto">Done!</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+          </div>
+          <div class="toast-body">All items marked as read.</div>
+        </div>
+      `;
+      document.querySelector('.toast-container').insertAdjacentHTML('beforeend', toastHtml);
+      const newToast = document.querySelector('.toast-container .toast:last-child');
+      new bootstrap.Toast(newToast).show();
+    }
+
+    // Mentee actions
+    function acceptMentee(menteeId) {
+      alert(`Accepted mentee request from ${menteeId}!\n\nIn production, this would create a mentorship relationship and notify the mentee.`);
+    }
+
+    function declineMentee(menteeId) {
+      alert(`Declined mentee request from ${menteeId}.\n\nIn production, this would notify the mentee to find another mentor.`);
+    }
+
+    // Mark rule change as read
+    function markRuleRead() {
+      const ruleItem = document.querySelector('.digest-item[data-bs-target="#ruleChangeModal"]');
+      if (ruleItem) {
+        ruleItem.classList.remove('unread');
+        const badge = ruleItem.querySelector('.badge');
+        if (badge) {
+          badge.textContent = 'Read';
+          badge.classList.remove('bg-danger-subtle', 'text-danger');
+          badge.classList.add('bg-secondary');
+        }
+      }
+      // Update section badge
+      const sectionBadge = document.querySelector('.digest-section .badge.bg-danger');
+      if (sectionBadge) {
+        sectionBadge.textContent = '0';
+        sectionBadge.classList.remove('bg-danger');
+        sectionBadge.classList.add('bg-secondary');
+      }
+      // Close modal
+      bootstrap.Modal.getInstance(document.getElementById('ruleChangeModal')).hide();
+    }
   </script>
   <script src="../js/theme-switcher.js"></script>
 </body>

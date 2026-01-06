@@ -58,6 +58,24 @@
       background: var(--color-primary-light);
     }
 
+    .active-character {
+      border: 2px solid var(--color-success) !important;
+      background: var(--color-success-subtle);
+    }
+
+    .active-character-selector .dropdown-toggle {
+      padding: var(--space-3);
+    }
+
+    .active-character-selector .dropdown-menu {
+      padding: var(--space-2);
+    }
+
+    .active-character-selector .dropdown-item {
+      padding: var(--space-2) var(--space-3);
+      border-radius: var(--radius-sm);
+    }
+
     @media (max-width: 991px) {
       .portal-sidebar { display: none; }
       .portal-main { margin-left: 0; }
@@ -144,10 +162,11 @@
           </div>
 
           <!-- Badges / Achievements -->
-          <div class="card">
+          <div class="card mb-4">
             <div class="card-header"><strong>Achievements</strong></div>
             <div class="card-body">
               <div class="d-flex flex-wrap gap-2">
+                <span class="badge bg-primary" title="Active Mentor"><i class="bi bi-mortarboard me-1"></i>Mentor</span>
                 <span class="badge bg-success" title="Attended 10+ events"><i class="bi bi-trophy me-1"></i>Veteran</span>
                 <span class="badge bg-info" title="First event attended"><i class="bi bi-star me-1"></i>First Adventure</span>
                 <span class="badge bg-warning text-dark" title="Helped at 3+ events"><i class="bi bi-heart me-1"></i>Volunteer</span>
@@ -155,58 +174,289 @@
               </div>
             </div>
           </div>
+
+          <!-- Mentor Settings (visible to mentors) -->
+          <div class="card" style="border-color: var(--color-primary);">
+            <div class="card-header d-flex justify-content-between align-items-center" style="background: var(--color-primary-subtle);">
+              <strong><i class="bi bi-mortarboard me-2"></i>Mentor Settings</strong>
+              <span class="badge bg-primary">Active</span>
+            </div>
+            <div class="card-body">
+              <div class="mb-3">
+                <label for="mentorAvailability" class="form-label">Availability Status</label>
+                <select class="form-select" id="mentorAvailability">
+                  <option value="available" selected>Available</option>
+                  <option value="events">At Events Only</option>
+                  <option value="online">Online Only</option>
+                  <option value="unavailable">Not Taking Mentees</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Specialties</label>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="specCombat" checked>
+                  <label class="form-check-label" for="specCombat">Combat & Tactics</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="specRoleplay">
+                  <label class="form-check-label" for="specRoleplay">Roleplay & Story</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="specMagic">
+                  <label class="form-check-label" for="specMagic">Magic System</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="specCrafting">
+                  <label class="form-check-label" for="specCrafting">Crafting & Props</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="specNewPlayer" checked>
+                  <label class="form-check-label" for="specNewPlayer">New Player Orientation</label>
+                </div>
+              </div>
+              <a href="mentors.html" class="btn btn-outline-primary btn-sm w-100">
+                <i class="bi bi-speedometer2 me-1"></i>View Mentor Dashboard
+              </a>
+            </div>
+          </div>
         </div>
 
         <!-- Right Column - Characters & Activity -->
         <div class="col-lg-8">
-          <!-- Characters -->
+          <!-- Characters Section - Enhanced Multi-Character Support -->
           <div class="card mb-4">
             <div class="card-header d-flex justify-content-between align-items-center">
-              <strong>My Characters</strong>
-              <a href="character.html" class="btn btn-outline-primary btn-sm">Manage Characters</a>
+              <div>
+                <strong>My Characters</strong>
+                <span class="badge bg-secondary ms-2">3 PCs / 1 NPC</span>
+              </div>
+              <div class="btn-group">
+                <a href="character.html" class="btn btn-outline-primary btn-sm">Manage</a>
+                <a href="../public/character-builder.html" class="btn btn-primary btn-sm">
+                  <i class="bi bi-plus me-1"></i>New Character
+                </a>
+              </div>
             </div>
             <div class="card-body">
+              <!-- Active Character Selector -->
+              <div class="active-character-selector mb-4">
+                <label class="form-label text-muted small">Currently Playing As:</label>
+                <div class="dropdown">
+                  <button class="btn btn-outline-secondary dropdown-toggle w-100 text-start d-flex align-items-center" type="button" data-bs-toggle="dropdown">
+                    <div class="character-avatar-sm me-2" style="background: var(--color-primary-light); width: 32px; height: 32px; border-radius: 50%;"></div>
+                    <div class="flex-grow-1">
+                      <strong>Sir Aldric Stormwind</strong>
+                      <small class="text-muted d-block">Warrior, Level 5</small>
+                    </div>
+                  </button>
+                  <ul class="dropdown-menu w-100">
+                    <li>
+                      <a class="dropdown-item active d-flex align-items-center" href="#">
+                        <div class="character-avatar-sm me-2" style="background: var(--color-primary-light); width: 32px; height: 32px; border-radius: 50%;"></div>
+                        <div>
+                          <strong>Sir Aldric Stormwind</strong>
+                          <small class="text-muted d-block">Warrior, Level 5</small>
+                        </div>
+                        <i class="bi bi-check-lg ms-auto text-success"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center" href="#">
+                        <div class="character-avatar-sm me-2" style="background: var(--color-secondary-light); width: 32px; height: 32px; border-radius: 50%;"></div>
+                        <div>
+                          <strong>Whisper</strong>
+                          <small class="text-muted d-block">Rogue, Level 2</small>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center" href="#">
+                        <div class="character-avatar-sm me-2" style="background: var(--color-info-subtle); width: 32px; height: 32px; border-radius: 50%;"></div>
+                        <div>
+                          <strong>Mira Brightwater</strong>
+                          <small class="text-muted d-block">Mage, Level 1</small>
+                        </div>
+                      </a>
+                    </li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center text-warning" href="#">
+                        <div class="character-avatar-sm me-2 d-flex align-items-center justify-content-center" style="background: var(--color-warning-subtle); width: 32px; height: 32px; border-radius: 50%;">
+                          <i class="bi bi-mask text-warning"></i>
+                        </div>
+                        <div>
+                          <strong>NPC: Town Guard</strong>
+                          <small class="text-muted d-block">Staff Character</small>
+                        </div>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Character Cards Grid -->
               <div class="row">
-                <!-- Character 1 -->
+                <!-- Character 1 - Active PC -->
                 <div class="col-md-6 mb-3">
-                  <div class="character-card">
+                  <div class="character-card active-character">
                     <div class="character-card-header">
                       <div class="character-avatar" style="background: var(--color-primary-light);"></div>
-                      <div>
+                      <div class="flex-grow-1">
                         <h4 class="character-name">Sir Aldric Stormwind</h4>
                         <p class="character-class mb-0">Warrior, Level 5</p>
                       </div>
-                    </div>
-                    <div class="stat-row">
-                      <span class="stat-label">Status</span>
                       <span class="badge bg-success">Active</span>
                     </div>
                     <div class="stat-row">
                       <span class="stat-label">XP</span>
-                      <span>47</span>
+                      <span>47 / 60</span>
+                    </div>
+                    <div class="stat-row">
+                      <span class="stat-label">Faction</span>
+                      <span>Northern Alliance</span>
+                    </div>
+                    <div class="stat-row">
+                      <span class="stat-label">Visibility</span>
+                      <div class="dropdown">
+                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                          <i class="bi bi-globe me-1"></i>Public
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                          <li><a class="dropdown-item active" href="#"><i class="bi bi-globe me-2"></i>Public</a></li>
+                          <li><a class="dropdown-item" href="#"><i class="bi bi-people me-2"></i>Faction Only</a></li>
+                          <li><a class="dropdown-item" href="#"><i class="bi bi-lock me-2"></i>Private</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="d-flex gap-2 mt-3">
+                      <a href="character.html" class="btn btn-sm btn-outline-primary flex-grow-1">View Sheet</a>
+                      <a href="spellbook.html" class="btn btn-sm btn-outline-secondary">Spellbook</a>
                     </div>
                   </div>
                 </div>
-                <!-- Character 2 -->
+
+                <!-- Character 2 - Inactive PC -->
                 <div class="col-md-6 mb-3">
                   <div class="character-card">
                     <div class="character-card-header">
                       <div class="character-avatar" style="background: var(--color-secondary-light);"></div>
-                      <div>
+                      <div class="flex-grow-1">
                         <h4 class="character-name">Whisper</h4>
                         <p class="character-class mb-0">Rogue, Level 2</p>
                       </div>
-                    </div>
-                    <div class="stat-row">
-                      <span class="stat-label">Status</span>
                       <span class="badge bg-secondary">Inactive</span>
                     </div>
                     <div class="stat-row">
                       <span class="stat-label">XP</span>
-                      <span>15</span>
+                      <span>15 / 20</span>
+                    </div>
+                    <div class="stat-row">
+                      <span class="stat-label">Faction</span>
+                      <span>Shadow Court</span>
+                    </div>
+                    <div class="stat-row">
+                      <span class="stat-label">Visibility</span>
+                      <div class="dropdown">
+                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                          <i class="bi bi-lock me-1"></i>Private
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                          <li><a class="dropdown-item" href="#"><i class="bi bi-globe me-2"></i>Public</a></li>
+                          <li><a class="dropdown-item" href="#"><i class="bi bi-people me-2"></i>Faction Only</a></li>
+                          <li><a class="dropdown-item active" href="#"><i class="bi bi-lock me-2"></i>Private</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="d-flex gap-2 mt-3">
+                      <button class="btn btn-sm btn-success flex-grow-1" onclick="setActiveCharacter('whisper')">
+                        <i class="bi bi-play-fill me-1"></i>Set Active
+                      </button>
+                      <a href="character.html?char=whisper" class="btn btn-sm btn-outline-secondary">View</a>
                     </div>
                   </div>
                 </div>
+
+                <!-- Character 3 - New PC -->
+                <div class="col-md-6 mb-3">
+                  <div class="character-card">
+                    <div class="character-card-header">
+                      <div class="character-avatar" style="background: var(--color-info-subtle);"></div>
+                      <div class="flex-grow-1">
+                        <h4 class="character-name">Mira Brightwater</h4>
+                        <p class="character-class mb-0">Mage, Level 1</p>
+                      </div>
+                      <span class="badge bg-info">New</span>
+                    </div>
+                    <div class="stat-row">
+                      <span class="stat-label">XP</span>
+                      <span>0 / 10</span>
+                    </div>
+                    <div class="stat-row">
+                      <span class="stat-label">Faction</span>
+                      <span class="text-muted">Unaligned</span>
+                    </div>
+                    <div class="stat-row">
+                      <span class="stat-label">Visibility</span>
+                      <div class="dropdown">
+                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                          <i class="bi bi-people me-1"></i>Faction
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                          <li><a class="dropdown-item" href="#"><i class="bi bi-globe me-2"></i>Public</a></li>
+                          <li><a class="dropdown-item active" href="#"><i class="bi bi-people me-2"></i>Faction Only</a></li>
+                          <li><a class="dropdown-item" href="#"><i class="bi bi-lock me-2"></i>Private</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="d-flex gap-2 mt-3">
+                      <button class="btn btn-sm btn-success flex-grow-1" onclick="setActiveCharacter('mira')">
+                        <i class="bi bi-play-fill me-1"></i>Set Active
+                      </button>
+                      <a href="character.html?char=mira" class="btn btn-sm btn-outline-secondary">View</a>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- NPC Character (Staff Only) -->
+                <div class="col-md-6 mb-3">
+                  <div class="character-card npc-character" style="border: 2px dashed var(--color-warning); background: var(--color-warning-subtle);">
+                    <div class="character-card-header">
+                      <div class="character-avatar d-flex align-items-center justify-content-center" style="background: var(--color-warning-subtle);">
+                        <i class="bi bi-mask text-warning" style="font-size: 1.5rem;"></i>
+                      </div>
+                      <div class="flex-grow-1">
+                        <h4 class="character-name">Town Guard</h4>
+                        <p class="character-class mb-0">NPC • Staff Character</p>
+                      </div>
+                      <span class="badge bg-warning text-dark">NPC</span>
+                    </div>
+                    <div class="stat-row">
+                      <span class="stat-label">Type</span>
+                      <span>Recurring NPC</span>
+                    </div>
+                    <div class="stat-row">
+                      <span class="stat-label">Events Used</span>
+                      <span>5</span>
+                    </div>
+                    <div class="stat-row">
+                      <span class="stat-label">Visibility</span>
+                      <span class="badge bg-secondary"><i class="bi bi-shield me-1"></i>Staff Only</span>
+                    </div>
+                    <div class="d-flex gap-2 mt-3">
+                      <button class="btn btn-sm btn-warning flex-grow-1" onclick="setActiveCharacter('npc-guard')">
+                        <i class="bi bi-mask me-1"></i>Switch to NPC
+                      </button>
+                      <a href="character.html?char=npc-guard" class="btn btn-sm btn-outline-secondary">View</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Character Limit Notice -->
+              <div class="alert alert-info mt-3 mb-0">
+                <i class="bi bi-info-circle me-2"></i>
+                <strong>Character Limit:</strong> You can have up to 3 active player characters. Additional characters can be created for NPC/staff purposes.
+                <a href="#" class="alert-link">Learn about retiring characters</a>
               </div>
             </div>
           </div>
@@ -284,6 +534,14 @@
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function setActiveCharacter(charId) {
+      // In production, this would make an API call
+      alert(`Switching active character to: ${charId}\n\nIn production, this would update your active character across the portal.`);
+      // Refresh page to show changes (in production would use state management)
+      // location.reload();
+    }
+  </script>
   <script src="../js/theme-switcher.js"></script>
 </body>
 </html>
