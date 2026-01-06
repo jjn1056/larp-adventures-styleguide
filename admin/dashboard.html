@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dungeon">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - LARP Adventures</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="../css/variables.css" rel="stylesheet">
+  <link href="../css/theme-dungeon.css" rel="stylesheet" id="theme-css">
+  <style>
+    .admin-header {
+      background: var(--color-bg-muted);
+      border-bottom: var(--border-heavy);
+      padding: var(--space-4) 0;
+    }
+    .admin-nav {
+      background: var(--color-bg-surface);
+      border-bottom: var(--border-standard);
+      padding: var(--space-2) 0;
+    }
+    .admin-nav .nav-link {
+      color: var(--color-text-secondary);
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius-md);
+    }
+    .admin-nav .nav-link:hover {
+      background: var(--color-bg-muted);
+      color: var(--color-text-primary);
+    }
+    .admin-nav .nav-link.active {
+      background: var(--color-primary);
+      color: white;
+    }
+    .stat-card {
+      text-align: center;
+      padding: var(--space-4);
+    }
+    .stat-card .stat-value {
+      font-size: var(--text-4xl);
+      font-weight: var(--font-bold);
+      color: var(--color-primary);
+    }
+    .stat-card .stat-label {
+      color: var(--color-text-muted);
+      font-size: var(--text-sm);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-wide);
+    }
+    .alert-card {
+      border-left: 4px solid;
+      padding: var(--space-3);
+      margin-bottom: var(--space-2);
+      background: var(--color-bg-surface);
+    }
+    .alert-card.alert-danger {
+      border-left-color: var(--color-danger);
+    }
+    .alert-card.alert-warning {
+      border-left-color: var(--color-warning);
+    }
+    .alert-card.alert-info {
+      border-left-color: var(--color-info);
+    }
+    .quick-action {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-3);
+      background: var(--color-bg-surface);
+      border: var(--border-standard);
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      color: var(--color-text-primary);
+      transition: all var(--transition-fast);
+    }
+    .quick-action:hover {
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+      transform: translateX(4px);
+    }
+    .quick-action .action-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-md);
+      background: var(--color-primary-subtle);
+      color: var(--color-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--text-lg);
+    }
+  </style>
+</head>
+<body>
+  <!-- Admin Header -->
+  <header class="admin-header">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <h1 class="h4 mb-0" style="border: none;">
+            <i class="bi bi-shield-lock me-2"></i>Admin Console
+          </h1>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+          <span class="text-muted">Logged in as: <strong>Admin User</strong></span>
+          <a href="../portal/dashboard.html" class="btn btn-outline-secondary btn-sm">
+            <i class="bi bi-box-arrow-left me-1"></i>Back to Portal
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Admin Navigation -->
+  <nav class="admin-nav">
+    <div class="container">
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link active" href="dashboard.html">
+            <i class="bi bi-speedometer2 me-1"></i>Dashboard
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="player-list.html">
+            <i class="bi bi-people me-1"></i>Players
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <i class="bi bi-calendar-event me-1"></i>Events
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <i class="bi bi-file-text me-1"></i>Content
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <i class="bi bi-gear me-1"></i>Settings
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container py-4">
+    <!-- Alerts Section -->
+    <section class="mb-4">
+      <h2 class="h5 mb-3"><i class="bi bi-exclamation-triangle me-2"></i>Needs Attention</h2>
+
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="alert-card alert-danger">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <strong class="text-danger"><i class="bi bi-file-earmark-x me-2"></i>3 Expired Waivers</strong>
+                <p class="mb-0 text-muted small">Players registered for upcoming events with expired waivers</p>
+              </div>
+              <a href="player-list.html?filter=expired-waiver" class="btn btn-outline-danger btn-sm">Review</a>
+            </div>
+          </div>
+
+          <div class="alert-card alert-warning">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <strong class="text-warning"><i class="bi bi-flag me-2"></i>2 Flagged Accounts</strong>
+                <p class="mb-0 text-muted small">Accounts flagged for review by staff</p>
+              </div>
+              <a href="player-list.html?filter=flagged" class="btn btn-outline-warning btn-sm">Review</a>
+            </div>
+          </div>
+
+          <div class="alert-card alert-info">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <strong class="text-info"><i class="bi bi-person-plus me-2"></i>5 New Registrations</strong>
+                <p class="mb-0 text-muted small">New accounts created in the last 7 days</p>
+              </div>
+              <a href="player-list.html?filter=new" class="btn btn-outline-info btn-sm">View</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="card h-100">
+            <div class="card-header"><strong>Next Event</strong></div>
+            <div class="card-body">
+              <h5 class="card-title">Rites of Spring</h5>
+              <p class="text-muted mb-2">March 15-17, 2026</p>
+              <div class="d-flex justify-content-between text-muted small mb-3">
+                <span><i class="bi bi-people me-1"></i>47 registered</span>
+                <span><i class="bi bi-person-badge me-1"></i>8 NPCs</span>
+              </div>
+              <a href="#" class="btn btn-outline-primary btn-sm w-100">Manage Event</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Row -->
+    <section class="mb-4">
+      <div class="row g-3">
+        <div class="col-6 col-md-3">
+          <div class="card stat-card">
+            <div class="stat-value">247</div>
+            <div class="stat-label">Total Players</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="card stat-card">
+            <div class="stat-value">89</div>
+            <div class="stat-label">Active (90 days)</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="card stat-card">
+            <div class="stat-value">12</div>
+            <div class="stat-label">New This Month</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="card stat-card">
+            <div class="stat-value">94%</div>
+            <div class="stat-label">Waiver Compliance</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="row">
+      <!-- Recent Activity -->
+      <div class="col-lg-8 mb-4">
+        <div class="card">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <strong>Recent Activity</strong>
+            <a href="#" class="btn btn-sm btn-outline-secondary">View All</a>
+          </div>
+          <div class="list-group list-group-flush">
+            <div class="list-group-item">
+              <div class="d-flex justify-content-between">
+                <div>
+                  <i class="bi bi-person-plus text-success me-2"></i>
+                  <strong>New registration:</strong> Sarah Mitchell
+                </div>
+                <small class="text-muted">2 hours ago</small>
+              </div>
+            </div>
+            <div class="list-group-item">
+              <div class="d-flex justify-content-between">
+                <div>
+                  <i class="bi bi-ticket text-primary me-2"></i>
+                  <strong>Event signup:</strong> Jake Torres registered for Rites of Spring
+                </div>
+                <small class="text-muted">3 hours ago</small>
+              </div>
+            </div>
+            <div class="list-group-item">
+              <div class="d-flex justify-content-between">
+                <div>
+                  <i class="bi bi-pencil text-info me-2"></i>
+                  <strong>Character updated:</strong> Mike Chen updated "Aldric the Bold"
+                </div>
+                <small class="text-muted">5 hours ago</small>
+              </div>
+            </div>
+            <div class="list-group-item">
+              <div class="d-flex justify-content-between">
+                <div>
+                  <i class="bi bi-file-check text-success me-2"></i>
+                  <strong>Waiver signed:</strong> Emily Rodriguez
+                </div>
+                <small class="text-muted">Yesterday</small>
+              </div>
+            </div>
+            <div class="list-group-item">
+              <div class="d-flex justify-content-between">
+                <div>
+                  <i class="bi bi-flag text-warning me-2"></i>
+                  <strong>Account flagged:</strong> Staff note added to John Doe
+                </div>
+                <small class="text-muted">Yesterday</small>
+              </div>
+            </div>
+            <div class="list-group-item">
+              <div class="d-flex justify-content-between">
+                <div>
+                  <i class="bi bi-x-circle text-danger me-2"></i>
+                  <strong>Waiver expired:</strong> Chris Adams - registered for upcoming event
+                </div>
+                <small class="text-muted">2 days ago</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="col-lg-4 mb-4">
+        <h5 class="mb-3">Quick Actions</h5>
+
+        <a href="player-list.html" class="quick-action mb-2">
+          <div class="action-icon"><i class="bi bi-search"></i></div>
+          <div>
+            <strong>Find Player</strong>
+            <p class="mb-0 text-muted small">Search by name or email</p>
+          </div>
+        </a>
+
+        <a href="#" class="quick-action mb-2">
+          <div class="action-icon"><i class="bi bi-person-plus"></i></div>
+          <div>
+            <strong>Add Player</strong>
+            <p class="mb-0 text-muted small">Create account manually</p>
+          </div>
+        </a>
+
+        <a href="#" class="quick-action mb-2">
+          <div class="action-icon"><i class="bi bi-file-earmark-plus"></i></div>
+          <div>
+            <strong>Bulk Waiver Check</strong>
+            <p class="mb-0 text-muted small">Verify event roster</p>
+          </div>
+        </a>
+
+        <a href="#" class="quick-action mb-2">
+          <div class="action-icon"><i class="bi bi-download"></i></div>
+          <div>
+            <strong>Export Data</strong>
+            <p class="mb-0 text-muted small">Download player list CSV</p>
+          </div>
+        </a>
+
+        <a href="#" class="quick-action mb-2">
+          <div class="action-icon"><i class="bi bi-envelope"></i></div>
+          <div>
+            <strong>Send Announcement</strong>
+            <p class="mb-0 text-muted small">Email all players</p>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Event Attendance Summary -->
+    <section>
+      <div class="card">
+        <div class="card-header">
+          <strong>Recent Event Attendance</strong>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-hover mb-0">
+            <thead>
+              <tr>
+                <th>Event</th>
+                <th>Date</th>
+                <th>Players</th>
+                <th>NPCs</th>
+                <th>New Players</th>
+                <th>Retention</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="#">Winter Council 2026</a></td>
+                <td>Jan 10-12, 2026</td>
+                <td>52</td>
+                <td>11</td>
+                <td>7</td>
+                <td><span class="badge bg-success">86%</span></td>
+              </tr>
+              <tr>
+                <td><a href="#">Holiday One-Shot</a></td>
+                <td>Dec 14, 2025</td>
+                <td>28</td>
+                <td>5</td>
+                <td>4</td>
+                <td><span class="badge bg-success">92%</span></td>
+              </tr>
+              <tr>
+                <td><a href="#">Fall Finale</a></td>
+                <td>Nov 8-10, 2025</td>
+                <td>61</td>
+                <td>14</td>
+                <td>9</td>
+                <td><span class="badge bg-warning text-dark">78%</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-4 mt-4" style="background: var(--color-bg-muted); border-top: var(--border-standard);">
+    <div class="container text-center text-muted">
+      <small>LARP Adventures Admin Console &bull; <a href="../public/landing.html">View Public Site</a></small>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/theme-switcher.js"></script>
+</body>
+</html>

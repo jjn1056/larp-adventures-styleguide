@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dungeon">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Player Management - LARP Adventures Admin</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="../css/variables.css" rel="stylesheet">
+  <link href="../css/theme-dungeon.css" rel="stylesheet" id="theme-css">
+  <style>
+    .admin-header {
+      background: var(--color-bg-muted);
+      border-bottom: var(--border-heavy);
+      padding: var(--space-4) 0;
+    }
+    .admin-nav {
+      background: var(--color-bg-surface);
+      border-bottom: var(--border-standard);
+      padding: var(--space-2) 0;
+    }
+    .admin-nav .nav-link {
+      color: var(--color-text-secondary);
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius-md);
+    }
+    .admin-nav .nav-link:hover {
+      background: var(--color-bg-muted);
+      color: var(--color-text-primary);
+    }
+    .admin-nav .nav-link.active {
+      background: var(--color-primary);
+      color: white;
+    }
+    .filter-bar {
+      background: var(--color-bg-surface);
+      border: var(--border-standard);
+      border-radius: var(--radius-md);
+      padding: var(--space-3);
+      margin-bottom: var(--space-4);
+    }
+    .player-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-full);
+      background: var(--color-primary-subtle);
+      color: var(--color-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: var(--font-semibold);
+      font-size: var(--text-sm);
+    }
+    .table th {
+      background: var(--color-bg-muted);
+      font-weight: var(--font-semibold);
+      font-size: var(--text-sm);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-wide);
+      white-space: nowrap;
+    }
+    .table td {
+      vertical-align: middle;
+    }
+    .table .player-name {
+      font-weight: var(--font-medium);
+    }
+    .table .player-email {
+      color: var(--color-text-muted);
+      font-size: var(--text-sm);
+    }
+    .badge-waiver-valid {
+      background: var(--color-success-bg);
+      color: var(--color-success);
+    }
+    .badge-waiver-expired {
+      background: var(--color-danger-bg);
+      color: var(--color-danger);
+    }
+    .badge-waiver-pending {
+      background: var(--color-warning-bg);
+      color: var(--color-warning);
+    }
+    .sortable {
+      cursor: pointer;
+    }
+    .sortable:hover {
+      color: var(--color-primary);
+    }
+    .sortable i {
+      opacity: 0.5;
+    }
+    .bulk-actions {
+      background: var(--color-primary-subtle);
+      border: 1px solid var(--color-primary);
+      border-radius: var(--radius-md);
+      padding: var(--space-2) var(--space-3);
+      display: none;
+    }
+    .bulk-actions.show {
+      display: flex;
+    }
+  </style>
+</head>
+<body>
+  <!-- Admin Header -->
+  <header class="admin-header">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <h1 class="h4 mb-0" style="border: none;">
+            <i class="bi bi-shield-lock me-2"></i>Admin Console
+          </h1>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+          <span class="text-muted">Logged in as: <strong>Admin User</strong></span>
+          <a href="../portal/dashboard.html" class="btn btn-outline-secondary btn-sm">
+            <i class="bi bi-box-arrow-left me-1"></i>Back to Portal
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Admin Navigation -->
+  <nav class="admin-nav">
+    <div class="container">
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link" href="dashboard.html">
+            <i class="bi bi-speedometer2 me-1"></i>Dashboard
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="player-list.html">
+            <i class="bi bi-people me-1"></i>Players
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <i class="bi bi-calendar-event me-1"></i>Events
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <i class="bi bi-file-text me-1"></i>Content
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <i class="bi bi-gear me-1"></i>Settings
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container py-4">
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <div>
+        <h2 class="h4 mb-1" style="border: none;">Player Management</h2>
+        <p class="text-muted mb-0">247 total players</p>
+      </div>
+      <div class="d-flex gap-2">
+        <button class="btn btn-outline-secondary">
+          <i class="bi bi-download me-1"></i>Export CSV
+        </button>
+        <button class="btn btn-primary">
+          <i class="bi bi-person-plus me-1"></i>Add Player
+        </button>
+      </div>
+    </div>
+
+    <!-- Search and Filters -->
+    <div class="filter-bar">
+      <div class="row g-3">
+        <div class="col-md-4">
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-search"></i></span>
+            <input type="text" class="form-control" placeholder="Search by name, email, or character...">
+          </div>
+        </div>
+        <div class="col-md-2">
+          <select class="form-select">
+            <option value="">Waiver Status</option>
+            <option value="valid">Valid</option>
+            <option value="expired">Expired</option>
+            <option value="pending">Pending</option>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <select class="form-select">
+            <option value="">Account Status</option>
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+            <option value="flagged">Flagged</option>
+            <option value="banned">Banned</option>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <select class="form-select">
+            <option value="">Activity</option>
+            <option value="30">Active (30 days)</option>
+            <option value="90">Active (90 days)</option>
+            <option value="365">Active (1 year)</option>
+            <option value="never">Never attended</option>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <button class="btn btn-outline-primary w-100">
+            <i class="bi bi-funnel me-1"></i>More Filters
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bulk Actions Bar (shown when items selected) -->
+    <div class="bulk-actions mb-3 align-items-center gap-3" id="bulkActions">
+      <span class="text-primary"><strong id="selectedCount">0</strong> selected</span>
+      <div class="vr"></div>
+      <button class="btn btn-sm btn-outline-primary">Send Email</button>
+      <button class="btn btn-sm btn-outline-secondary">Export Selected</button>
+      <button class="btn btn-sm btn-outline-warning">Flag Accounts</button>
+      <div class="ms-auto">
+        <button class="btn btn-sm btn-link" onclick="clearSelection()">Clear Selection</button>
+      </div>
+    </div>
+
+    <!-- Player Table -->
+    <div class="card">
+      <div class="table-responsive">
+        <table class="table table-hover mb-0">
+          <thead>
+            <tr>
+              <th style="width: 40px;">
+                <input type="checkbox" class="form-check-input" id="selectAll" onchange="toggleAll(this)">
+              </th>
+              <th class="sortable" onclick="sortTable('name')">
+                Player <i class="bi bi-chevron-expand"></i>
+              </th>
+              <th class="sortable" onclick="sortTable('email')">
+                Email <i class="bi bi-chevron-expand"></i>
+              </th>
+              <th>Characters</th>
+              <th class="sortable" onclick="sortTable('waiver')">
+                Waiver <i class="bi bi-chevron-expand"></i>
+              </th>
+              <th class="sortable" onclick="sortTable('events')">
+                Events <i class="bi bi-chevron-expand"></i>
+              </th>
+              <th class="sortable" onclick="sortTable('last')">
+                Last Active <i class="bi bi-chevron-expand"></i>
+              </th>
+              <th>Status</th>
+              <th style="width: 100px;">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="checkbox" class="form-check-input row-select" onchange="updateSelection()"></td>
+              <td>
+                <div class="d-flex align-items-center gap-2">
+                  <div class="player-avatar">SM</div>
+                  <div>
+                    <a href="player-dossier.html" class="player-name text-decoration-none">Sarah Mitchell</a>
+                  </div>
+                </div>
+              </td>
+              <td class="player-email">sarah.m@email.com</td>
+              <td>
+                <span class="badge bg-secondary">Lyra Nightshade</span>
+              </td>
+              <td><span class="badge badge-waiver-valid">Valid</span></td>
+              <td>12</td>
+              <td>2 hours ago</td>
+              <td><span class="badge bg-success">Active</span></td>
+              <td>
+                <a href="player-dossier.html" class="btn btn-sm btn-outline-primary">View</a>
+              </td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" class="form-check-input row-select" onchange="updateSelection()"></td>
+              <td>
+                <div class="d-flex align-items-center gap-2">
+                  <div class="player-avatar">JT</div>
+                  <div>
+                    <a href="player-dossier.html" class="player-name text-decoration-none">Jake Torres</a>
+                  </div>
+                </div>
+              </td>
+              <td class="player-email">jtorres@email.com</td>
+              <td>
+                <span class="badge bg-secondary">Sir Roland</span>
+                <span class="badge bg-info">+1 NPC</span>
+              </td>
+              <td><span class="badge badge-waiver-valid">Valid</span></td>
+              <td>8</td>
+              <td>1 day ago</td>
+              <td><span class="badge bg-success">Active</span></td>
+              <td>
+                <a href="player-dossier.html" class="btn btn-sm btn-outline-primary">View</a>
+              </td>
+            </tr>
+            <tr class="table-warning">
+              <td><input type="checkbox" class="form-check-input row-select" onchange="updateSelection()"></td>
+              <td>
+                <div class="d-flex align-items-center gap-2">
+                  <div class="player-avatar">CA</div>
+                  <div>
+                    <a href="player-dossier.html" class="player-name text-decoration-none">Chris Adams</a>
+                    <i class="bi bi-flag-fill text-warning ms-1" title="Flagged account"></i>
+                  </div>
+                </div>
+              </td>
+              <td class="player-email">cadams@email.com</td>
+              <td>
+                <span class="badge bg-secondary">Grimjaw</span>
+              </td>
+              <td><span class="badge badge-waiver-expired">Expired</span></td>
+              <td>5</td>
+              <td>2 weeks ago</td>
+              <td><span class="badge bg-warning text-dark">Flagged</span></td>
+              <td>
+                <a href="player-dossier.html" class="btn btn-sm btn-outline-primary">View</a>
+              </td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" class="form-check-input row-select" onchange="updateSelection()"></td>
+              <td>
+                <div class="d-flex align-items-center gap-2">
+                  <div class="player-avatar">MC</div>
+                  <div>
+                    <a href="player-dossier.html" class="player-name text-decoration-none">Mike Chen</a>
+                  </div>
+                </div>
+              </td>
+              <td class="player-email">mchen@email.com</td>
+              <td>
+                <span class="badge bg-secondary">Aldric the Bold</span>
+                <span class="badge bg-secondary">Whisper</span>
+              </td>
+              <td><span class="badge badge-waiver-valid">Valid</span></td>
+              <td>23</td>
+              <td>5 hours ago</td>
+              <td><span class="badge bg-success">Active</span></td>
+              <td>
+                <a href="player-dossier.html" class="btn btn-sm btn-outline-primary">View</a>
+              </td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" class="form-check-input row-select" onchange="updateSelection()"></td>
+              <td>
+                <div class="d-flex align-items-center gap-2">
+                  <div class="player-avatar">ER</div>
+                  <div>
+                    <a href="player-dossier.html" class="player-name text-decoration-none">Emily Rodriguez</a>
+                  </div>
+                </div>
+              </td>
+              <td class="player-email">emily.r@email.com</td>
+              <td>
+                <span class="badge bg-secondary">Sister Mercy</span>
+              </td>
+              <td><span class="badge badge-waiver-valid">Valid</span></td>
+              <td>6</td>
+              <td>Yesterday</td>
+              <td><span class="badge bg-success">Active</span></td>
+              <td>
+                <a href="player-dossier.html" class="btn btn-sm btn-outline-primary">View</a>
+              </td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" class="form-check-input row-select" onchange="updateSelection()"></td>
+              <td>
+                <div class="d-flex align-items-center gap-2">
+                  <div class="player-avatar">JD</div>
+                  <div>
+                    <a href="player-dossier.html" class="player-name text-decoration-none">John Doe</a>
+                    <i class="bi bi-flag-fill text-warning ms-1" title="Flagged account"></i>
+                  </div>
+                </div>
+              </td>
+              <td class="player-email">jdoe@email.com</td>
+              <td>
+                <span class="text-muted">No characters</span>
+              </td>
+              <td><span class="badge badge-waiver-pending">Pending</span></td>
+              <td>0</td>
+              <td>Never</td>
+              <td><span class="badge bg-warning text-dark">Flagged</span></td>
+              <td>
+                <a href="player-dossier.html" class="btn btn-sm btn-outline-primary">View</a>
+              </td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" class="form-check-input row-select" onchange="updateSelection()"></td>
+              <td>
+                <div class="d-flex align-items-center gap-2">
+                  <div class="player-avatar">AJ</div>
+                  <div>
+                    <a href="player-dossier.html" class="player-name text-decoration-none">Alex Johnson</a>
+                    <span class="badge bg-primary ms-1">Mentor</span>
+                  </div>
+                </div>
+              </td>
+              <td class="player-email">alexj@email.com</td>
+              <td>
+                <span class="badge bg-secondary">Theron Stormwind</span>
+                <span class="badge bg-info">+3 NPCs</span>
+              </td>
+              <td><span class="badge badge-waiver-valid">Valid</span></td>
+              <td>47</td>
+              <td>3 hours ago</td>
+              <td><span class="badge bg-success">Active</span></td>
+              <td>
+                <a href="player-dossier.html" class="btn btn-sm btn-outline-primary">View</a>
+              </td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" class="form-check-input row-select" onchange="updateSelection()"></td>
+              <td>
+                <div class="d-flex align-items-center gap-2">
+                  <div class="player-avatar">LW</div>
+                  <div>
+                    <a href="player-dossier.html" class="player-name text-decoration-none">Lisa Wong</a>
+                  </div>
+                </div>
+              </td>
+              <td class="player-email">lwong@email.com</td>
+              <td>
+                <span class="badge bg-secondary">Moonwhisper</span>
+              </td>
+              <td><span class="badge badge-waiver-expired">Expired</span></td>
+              <td>3</td>
+              <td>3 months ago</td>
+              <td><span class="badge bg-secondary">Inactive</span></td>
+              <td>
+                <a href="player-dossier.html" class="btn btn-sm btn-outline-primary">View</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination -->
+      <div class="card-footer d-flex justify-content-between align-items-center">
+        <div class="text-muted small">
+          Showing 1-8 of 247 players
+        </div>
+        <nav>
+          <ul class="pagination pagination-sm mb-0">
+            <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">...</a></li>
+            <li class="page-item"><a class="page-link" href="#">31</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-4 mt-4" style="background: var(--color-bg-muted); border-top: var(--border-standard);">
+    <div class="container text-center text-muted">
+      <small>LARP Adventures Admin Console &bull; <a href="../public/landing.html">View Public Site</a></small>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/theme-switcher.js"></script>
+  <script>
+    // Selection handling
+    function toggleAll(checkbox) {
+      const rows = document.querySelectorAll('.row-select');
+      rows.forEach(row => row.checked = checkbox.checked);
+      updateSelection();
+    }
+
+    function updateSelection() {
+      const selected = document.querySelectorAll('.row-select:checked').length;
+      const bulkActions = document.getElementById('bulkActions');
+      const selectedCount = document.getElementById('selectedCount');
+
+      if (selected > 0) {
+        bulkActions.classList.add('show');
+        selectedCount.textContent = selected;
+      } else {
+        bulkActions.classList.remove('show');
+      }
+    }
+
+    function clearSelection() {
+      document.getElementById('selectAll').checked = false;
+      document.querySelectorAll('.row-select').forEach(row => row.checked = false);
+      updateSelection();
+    }
+
+    // Placeholder sort function
+    function sortTable(column) {
+      console.log('Sort by:', column);
+      // In a real app, this would sort the table data
+    }
+  </script>
+</body>
+</html>
