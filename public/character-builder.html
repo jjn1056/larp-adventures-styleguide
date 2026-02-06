@@ -454,6 +454,10 @@
         </div>
         <div class="progress-step" data-step="5">
           <span class="step-circle">5</span>
+          <span class="step-label">Access</span>
+        </div>
+        <div class="progress-step" data-step="6">
+          <span class="step-circle">6</span>
           <span class="step-label">Review</span>
         </div>
       </div>
@@ -701,13 +705,88 @@
               <i class="bi bi-arrow-left me-2"></i>Back
             </button>
             <button class="btn btn-primary" onclick="goToStep(5)">
+              Accessibility<i class="bi bi-arrow-right ms-2"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 5: Accessibility & Accommodations -->
+        <div class="builder-panel" id="step5">
+          <h2><i class="bi bi-universal-access me-2"></i>Accessibility & Accommodations</h2>
+          <p class="lead">Help us ensure your safety and comfort at events.</p>
+
+          <div class="backstory-section">
+            <div class="form-check mb-4">
+              <input class="form-check-input" type="checkbox" id="hasAccessNeeds" onchange="toggleAccessFields()">
+              <label class="form-check-label" for="hasAccessNeeds">
+                <strong>I have accessibility needs for events</strong>
+              </label>
+            </div>
+
+            <div id="accessFields" style="display: none;">
+              <div class="mb-3">
+                <label for="mobilityNeeds" class="form-label">Mobility Needs</label>
+                <select class="form-select" id="mobilityNeeds">
+                  <option value="none">None</option>
+                  <option value="wheelchair">Wheelchair</option>
+                  <option value="limited">Limited mobility</option>
+                  <option value="cane-walker">Cane/walker</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label for="hearingNeeds" class="form-label">Hearing Needs</label>
+                <select class="form-select" id="hearingNeeds">
+                  <option value="none">None</option>
+                  <option value="hard-of-hearing">Hard of hearing</option>
+                  <option value="deaf">Deaf</option>
+                  <option value="asl">ASL interpreter needed</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label for="visionNeeds" class="form-label">Vision Needs</label>
+                <select class="form-select" id="visionNeeds">
+                  <option value="none">None</option>
+                  <option value="low-vision">Low vision</option>
+                  <option value="color-blind">Color blind</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label for="dietaryNeeds" class="form-label">Dietary Needs</label>
+                <input type="text" class="form-control" id="dietaryNeeds" placeholder="e.g., vegetarian, gluten-free, nut allergy">
+              </div>
+
+              <div class="mb-3">
+                <label for="otherAccess" class="form-label">Other Accommodations</label>
+                <textarea class="form-control" id="otherAccess" rows="3" placeholder="Any other accessibility needs or accommodations..."></textarea>
+              </div>
+
+              <div class="mb-3">
+                <label for="emergencyContact" class="form-label">Emergency Contact</label>
+                <input type="text" class="form-control" id="emergencyContact" placeholder="Name and phone number">
+              </div>
+            </div>
+
+            <div class="alert alert-info mt-3">
+              <i class="bi bi-lock me-2"></i>
+              <strong>Privacy:</strong> This information is shared only with event organizers to ensure your safety and comfort.
+            </div>
+          </div>
+
+          <div class="builder-nav">
+            <button class="btn btn-outline-secondary" onclick="goToStep(4)">
+              <i class="bi bi-arrow-left me-2"></i>Back
+            </button>
+            <button class="btn btn-primary" onclick="goToStep(6)">
               Review Character<i class="bi bi-arrow-right ms-2"></i>
             </button>
           </div>
         </div>
 
-        <!-- Step 5: Review -->
-        <div class="builder-panel" id="step5">
+        <!-- Step 6: Review -->
+        <div class="builder-panel" id="step6">
           <h2><i class="bi bi-check-circle me-2"></i>Review Your Character</h2>
           <p class="lead">Make sure everything looks right before creating your character.</p>
 
@@ -746,7 +825,7 @@
           </div>
 
           <div class="builder-nav">
-            <button class="btn btn-outline-secondary" onclick="goToStep(4)">
+            <button class="btn btn-outline-secondary" onclick="goToStep(5)">
               <i class="bi bi-arrow-left me-2"></i>Back
             </button>
             <button class="btn btn-success btn-lg" onclick="createCharacter()" id="createBtn" disabled>
@@ -836,12 +915,17 @@
         }
       });
 
-      // Update review if on step 5
-      if (step === 5) {
+      // Update review if on step 6
+      if (step === 6) {
         updateReview();
       }
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function toggleAccessFields() {
+      const checked = document.getElementById('hasAccessNeeds').checked;
+      document.getElementById('accessFields').style.display = checked ? 'block' : 'none';
     }
 
     function selectPath(element, path) {
