@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="phb">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quick Start Guide - LARP Adventures</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="../css/variables.css" rel="stylesheet">
+  <link href="../css/theme-phb.css" rel="stylesheet" id="theme-css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="landing.html">LARP Adventures</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="landing.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="event-index.html">Events</a></li>
+          <li class="nav-item"><a class="nav-link active" href="hub.html">Rules</a></li>
+          <li class="nav-item"><a class="nav-link" href="lore-hub.html">Lore</a></li>
+          <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
+          <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+        </ul>
+        <a href="../portal/login.html" class="btn btn-primary btn-sm">Player Portal</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="py-4" style="background-color: var(--color-bg-muted); border-bottom: var(--border-heavy);">
+    <div class="container">
+      <nav aria-label="breadcrumb" class="mb-2">
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item"><a href="landing.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="hub.html">Rules</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Quick Start Guide</li>
+        </ol>
+      </nav>
+      <h1>Quick Start Guide</h1>
+      <p class="lead mb-0">Everything you need for your first event in Osterra</p>
+    </div>
+  </header>
+
+  <main class="container py-5">
+    <!-- Choose Your Path -->
+    <section class="mb-5">
+      <h2><i class="bi bi-signpost-split me-2"></i>Choose Your Path</h2>
+      <p>Every character in Osterra follows one of four paths. Your path determines your starting abilities and how you grow over time. Don't worry about picking "wrong" &mdash; cross-training lets you learn from other paths as you advance.</p>
+
+      <div class="row">
+        <div class="col-md-6 col-lg-3 mb-4">
+          <div class="card h-100">
+            <div class="card-body text-center">
+              <i class="bi bi-shield-fill" style="font-size: 2rem; color: var(--color-primary);"></i>
+              <h3 class="h5 mt-3">Warrior</h3>
+              <p class="text-muted">Frontline combatant. Heavy armor, shields, battlefield control, and fear effects. Start with 3 Armor Points.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 mb-4">
+          <div class="card h-100">
+            <div class="card-body text-center">
+              <i class="bi bi-eye-fill" style="font-size: 2rem; color: var(--color-primary);"></i>
+              <h3 class="h5 mt-3">Rogue</h3>
+              <p class="text-muted">Stealth and subterfuge. Traps, locks, poisons, pickpocketing, and backstab. Start with 2 Armor Points.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 mb-4">
+          <div class="card h-100">
+            <div class="card-body text-center">
+              <i class="bi bi-stars" style="font-size: 2rem; color: var(--color-primary);"></i>
+              <h3 class="h5 mt-3">Mage</h3>
+              <p class="text-muted">Arcane caster. Combat magic, wards, enchantments, and necromancy. Spellbook-based casting system.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 mb-4">
+          <div class="card h-100">
+            <div class="card-body text-center">
+              <i class="bi bi-heart-pulse-fill" style="font-size: 2rem; color: var(--color-primary);"></i>
+              <h3 class="h5 mt-3">Healer</h3>
+              <p class="text-muted">Support and divine magic. Healing, blessings, curses, undead control, and restoration. Start with 2 Armor Points.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr>
+
+    <!-- Core Mechanics -->
+    <section class="mb-5">
+      <h2><i class="bi bi-gear me-2"></i>Core Mechanics</h2>
+      <p>Here's what you need to know before your first fight.</p>
+
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <div class="card h-100">
+            <div class="card-header"><strong>Combat States</strong></div>
+            <div class="card-body">
+              <ul class="mb-0">
+                <li><strong>Combat Ready</strong> &mdash; Full health, able to fight</li>
+                <li><strong>Wounded</strong> &mdash; Limb damage, reduced capability</li>
+                <li><strong>Mortally Wounded</strong> &mdash; Dying; can crawl and call for aid</li>
+                <li><strong>Dead</strong> &mdash; Cannot engage until revived</li>
+                <li><strong>Stable</strong> &mdash; Healed from mortal wound but not combat ready</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="card h-100">
+            <div class="card-header"><strong>Armor Points (AP)</strong></div>
+            <div class="card-body">
+              <p>Physical armor absorbs damage before your body takes hits. AP varies by path:</p>
+              <ul class="mb-0">
+                <li><strong>Warriors:</strong> Start at 3 AP, can reach 5 AP</li>
+                <li><strong>Rogues/Healers:</strong> Max 2 AP</li>
+                <li><strong>Mages:</strong> No starting AP (rely on wards)</li>
+              </ul>
+              <p class="text-muted mt-2 mb-0"><small>Note: Metal armor interferes with Rogue stealth abilities.</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <div class="callout-title">Physical Representation (Phys-Rep)</div>
+        <p class="mb-0">All abilities require appropriate props, costumes, or roleplay. Spells need spellbooks, traps need cards, poisons use purple ribbons, and wards use yellow ribbon. We'll help you sort this out at your first event!</p>
+      </div>
+    </section>
+
+    <hr>
+
+    <!-- Your First Event -->
+    <section class="mb-5">
+      <h2><i class="bi bi-calendar-event me-2"></i>Your First Event</h2>
+      <p>Here's what to bring and what to expect.</p>
+
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <div class="card h-100">
+            <div class="card-header"><strong>What to Bring</strong></div>
+            <div class="card-body">
+              <ul class="mb-0">
+                <li>Costume or garb (we have loaner items available!)</li>
+                <li>Comfortable shoes for outdoor terrain</li>
+                <li>Weather-appropriate layers</li>
+                <li>Water bottle and personal medications</li>
+                <li>Sleeping bag/bedding if overnight event</li>
+                <li>A positive attitude and willingness to learn</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="card h-100">
+            <div class="card-header"><strong>What to Expect</strong></div>
+            <div class="card-body">
+              <ul class="mb-0">
+                <li>Check-in and weapons safety inspection</li>
+                <li>New player orientation with a mentor</li>
+                <li>In-game introduction to the world</li>
+                <li>Combat training with experienced players</li>
+                <li>Quests and roleplaying encounters</li>
+                <li>Meals and downtime (events vary)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr>
+
+    <!-- Safety -->
+    <section class="mb-5">
+      <h2><i class="bi bi-shield-check me-2"></i>Safety First</h2>
+      <p>Your safety and comfort are our top priority.</p>
+
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <ul>
+            <li>All weapons must pass safety inspection before play</li>
+            <li>No actual physical contact during Loot or Pickpocket actions</li>
+            <li>Bound players are never actually tied up</li>
+            <li>Consent is required for certain effects (e.g., being animated as undead)</li>
+          </ul>
+        </div>
+        <div class="col-md-6 mb-4">
+          <ul>
+            <li>Organizers adjudicate any uncertain situations</li>
+            <li>You can always call "Hold" to pause play for safety</li>
+            <li>Hydration and rest breaks are encouraged</li>
+            <li>Medical staff on-site at all events</li>
+          </ul>
+        </div>
+      </div>
+
+      <a href="safety.html" class="btn btn-outline-primary">Read Full Safety & Policies</a>
+    </section>
+
+    <hr>
+
+    <!-- Next Steps -->
+    <section class="mb-5">
+      <div class="text-center">
+        <h2>Ready to Play?</h2>
+        <p class="lead">Dive into the full rules or create your character now.</p>
+        <div class="d-flex justify-content-center gap-3">
+          <a href="hub.html" class="btn btn-outline-primary">Full Rules</a>
+          <a href="character-builder.html" class="btn btn-primary">Build Your Character</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-5" style="background-color: var(--color-bg-page); border-top: var(--border-heavy);">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <h4 class="h5">LARP Adventures</h4>
+          <p class="text-muted">Live action roleplaying in the realm of Osterra since 2015.</p>
+        </div>
+        <div class="col-md-4 mb-4">
+          <h4 class="h5">Quick Links</h4>
+          <ul class="list-unstyled">
+            <li><a href="event-index.html">Events</a></li>
+            <li><a href="hub.html">Rules</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4 mb-4">
+          <h4 class="h5">Connect</h4>
+          <ul class="list-unstyled">
+            <li><a href="#"><i class="bi bi-discord me-2"></i>Discord Community</a></li>
+            <li><a href="#"><i class="bi bi-facebook me-2"></i>Facebook Group</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+      <p class="text-muted text-center mb-0">&copy; 2026 LARP Adventures. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/theme-switcher.js"></script>
+</body>
+</html>
