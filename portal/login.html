@@ -103,11 +103,12 @@
   </style>
 </head>
 <body>
+  <a href="#main-content" class="visually-hidden-focusable">Skip to content</a>
   <a href="../public/landing.html" class="back-link btn btn-outline-secondary btn-sm">
-    <i class="bi bi-arrow-left me-2"></i>Back to Site
+    <i class="bi bi-arrow-left me-2" aria-hidden="true"></i>Back to Site
   </a>
 
-  <div class="login-container">
+  <div id="main-content" class="login-container">
     <div class="login-card">
       <div class="login-header">
         <div class="login-logo">LARP Adventures</div>
@@ -117,10 +118,10 @@
       <!-- Social Login Options -->
       <div class="social-login">
         <button class="btn btn-outline-secondary">
-          <i class="bi bi-google me-2"></i>Google
+          <i class="bi bi-google me-2" aria-hidden="true"></i>Google
         </button>
         <button class="btn btn-outline-secondary">
-          <i class="bi bi-discord me-2"></i>Discord
+          <i class="bi bi-discord me-2" aria-hidden="true"></i>Discord
         </button>
       </div>
 
@@ -149,7 +150,7 @@
         </div>
 
         <button type="submit" class="btn btn-primary w-100 mb-3">
-          <i class="bi bi-box-arrow-in-right me-2"></i>Sign In
+          <i class="bi bi-box-arrow-in-right me-2" aria-hidden="true"></i>Sign In
         </button>
       </form>
 

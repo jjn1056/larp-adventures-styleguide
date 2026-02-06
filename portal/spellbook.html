@@ -134,6 +134,7 @@
   </style>
 </head>
 <body>
+  <a href="#main-content" class="visually-hidden-focusable">Skip to content</a>
   <!-- Sidebar -->
   <nav class="portal-sidebar d-none d-lg-block">
     <div class="px-4 mb-4">
@@ -253,7 +254,7 @@
     </div>
   </nav>
 
-  <main class="portal-main">
+  <main id="main-content" class="portal-main">
     <!-- Sticky Search Header -->
     <div class="spellbook-search">
       <div class="d-flex justify-content-between align-items-center mb-2">
@@ -261,10 +262,10 @@
         <span class="offline-ready"><i class="bi bi-wifi-off"></i> Offline Ready</span>
       </div>
       <div class="input-group">
-        <span class="input-group-text"><i class="bi bi-search"></i></span>
-        <input type="text" class="form-control" id="skillSearch" placeholder="Search skills..." autofocus>
-        <button class="btn btn-outline-secondary" type="button" id="clearSearch">
-          <i class="bi bi-x-lg"></i>
+        <span class="input-group-text"><i class="bi bi-search" aria-hidden="true"></i></span>
+        <input type="text" class="form-control" id="skillSearch" placeholder="Search skills..." autofocus aria-label="Search skills">
+        <button class="btn btn-outline-secondary" type="button" id="clearSearch" aria-label="Clear search">
+          <i class="bi bi-x-lg" aria-hidden="true"></i>
         </button>
       </div>
       <div class="category-filters mt-2">

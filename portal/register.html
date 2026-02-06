@@ -99,6 +99,7 @@
   </style>
 </head>
 <body>
+  <a href="#main-content" class="visually-hidden-focusable">Skip to content</a>
   <!-- Sidebar -->
   <nav class="portal-sidebar d-none d-lg-block">
     <div class="px-4 mb-4">
@@ -115,7 +116,7 @@
     </ul>
   </nav>
 
-  <main class="portal-main">
+  <main id="main-content" class="portal-main">
     <header class="portal-header">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb mb-0">
@@ -173,7 +174,7 @@
               <div class="row mb-4">
                 <div class="col-md-6 mb-3">
                   <label class="ticket-option d-block selected">
-                    <input type="radio" name="character" value="aldric" checked>
+                    <input type="radio" name="character" value="aldric" checked aria-label="Sir Aldric Stormwind, Warrior Level 5">
                     <div class="d-flex align-items-center gap-3">
                       <div class="character-avatar" style="background: var(--color-primary-light);"></div>
                       <div>
@@ -185,7 +186,7 @@
                 </div>
                 <div class="col-md-6 mb-3">
                   <label class="ticket-option d-block">
-                    <input type="radio" name="character" value="whisper">
+                    <input type="radio" name="character" value="whisper" aria-label="Whisper, Rogue Level 2">
                     <div class="d-flex align-items-center gap-3">
                       <div class="character-avatar" style="background: var(--color-secondary-light);"></div>
                       <div>

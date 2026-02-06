@@ -50,6 +50,7 @@
   </style>
 </head>
 <body>
+  <a href="#main-content" class="visually-hidden-focusable">Skip to content</a>
   <!-- Sidebar -->
   <nav class="portal-sidebar d-none d-lg-block">
     <div class="px-4 mb-4">
@@ -169,7 +170,7 @@
     </div>
   </nav>
 
-  <main class="portal-main">
+  <main id="main-content" class="portal-main">
     <header class="portal-header">
       <h1 class="h4 mb-0">Settings</h1>
     </header>
@@ -261,8 +262,8 @@
             <h3>Privacy Settings</h3>
             <form>
               <div class="mb-3">
-                <label class="form-label">Profile Visibility</label>
-                <select class="form-select">
+                <label for="profileVisibility" class="form-label">Profile Visibility</label>
+                <select class="form-select" id="profileVisibility">
                   <option selected>Public - Anyone can view your profile</option>
                   <option>Members Only - Only logged-in players can view</option>
                   <option>Private - Only you can view your profile</option>

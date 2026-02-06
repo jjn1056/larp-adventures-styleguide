@@ -405,11 +405,12 @@
   </style>
 </head>
 <body>
+  <a href="#main-content" class="visually-hidden-focusable">Skip to content</a>
   <!-- Header -->
   <nav class="navbar navbar-expand-lg" style="background-color: var(--color-bg-surface); border-bottom: var(--border-heavy);">
     <div class="container">
       <a class="navbar-brand" href="landing.html" style="font-family: var(--font-heading);">LARP Adventures</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
@@ -433,7 +434,7 @@
   </div>
 
   <!-- Progress Tracker -->
-  <div class="builder-progress">
+  <div id="main-content" class="builder-progress">
     <div class="container">
       <div class="progress-steps">
         <div class="progress-step active" data-step="1">
@@ -678,6 +679,7 @@
 
             <div class="prompt-card">
               <h5><i class="bi bi-geo-alt me-2"></i>Where are you from?</h5>
+              <label for="homeland" class="visually-hidden">Where are you from?</label>
               <select class="form-select" id="homeland" oninput="updatePreview()">
                 <option value="">Select a homeland...</option>
                 <option value="Northern Reaches">The Northern Reaches (cold, hardy, honor-bound)</option>
@@ -690,11 +692,13 @@
 
             <div class="prompt-card">
               <h5><i class="bi bi-heart me-2"></i>What drives you?</h5>
+              <label for="motivation" class="visually-hidden">What drives you?</label>
               <textarea class="form-control" id="motivation" rows="3" placeholder="Why did your character come to Osterra? What do they seek?" oninput="updatePreview()"></textarea>
             </div>
 
             <div class="prompt-card">
               <h5><i class="bi bi-lightning me-2"></i>What's your greatest flaw?</h5>
+              <label for="flaw" class="visually-hidden">What's your greatest flaw?</label>
               <select class="form-select" id="flaw">
                 <option value="">Select a character flaw...</option>
                 <option value="Prideful">Prideful - You struggle to admit when you're wrong</option>
@@ -708,6 +712,7 @@
 
             <div class="prompt-card">
               <h5><i class="bi bi-journal-text me-2"></i>Additional backstory (optional)</h5>
+              <label for="backstory" class="visually-hidden">Additional backstory</label>
               <textarea class="form-control" id="backstory" rows="4" placeholder="Any additional details about your character's history, relationships, or goals..."></textarea>
             </div>
           </div>
