@@ -323,6 +323,38 @@
             </form>
           </section>
 
+          <!-- Event Interests -->
+          <section id="event-interests" class="settings-section">
+            <h3>Dashboard Digest Preferences</h3>
+            <p class="text-muted">Choose which types of updates appear in your dashboard digest.</p>
+            <form>
+              <div class="mb-4">
+                <label class="form-label fw-semibold">Show in Digest</label>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="digestRules" checked>
+                  <label class="form-check-label" for="digestRules">Rule changes</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="digestLore" checked>
+                  <label class="form-check-label" for="digestLore">Lore drops</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="digestEvents" checked>
+                  <label class="form-check-label" for="digestEvents">Event announcements</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="digestMentions" checked>
+                  <label class="form-check-label" for="digestMentions">Mentions and replies</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="digestFaction">
+                  <label class="form-check-label" for="digestFaction">Faction activity</label>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary">Save Digest Preferences</button>
+            </form>
+          </section>
+
           <!-- Appearance Settings -->
           <section id="appearance" class="settings-section">
             <h3>Appearance</h3>
@@ -331,12 +363,12 @@
                 <label class="form-label">Theme</label>
                 <div class="d-flex gap-3">
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="theme" id="themeDungeon" checked>
-                    <label class="form-check-label" for="themeDungeon">Dungeon Master (Warm)</label>
+                    <input class="form-check-input" type="radio" name="theme" id="themePhb" checked>
+                    <label class="form-check-label" for="themePhb">Player's Handbook</label>
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="theme" id="themeTraveller">
-                    <label class="form-check-label" for="themeTraveller">Traveller (Cool)</label>
+                    <input class="form-check-input" type="radio" name="theme" id="themeTavern">
+                    <label class="form-check-label" for="themeTavern">Tavern at Night</label>
                   </div>
                   <div class="form-check">
                     <input class="form-check-input" type="radio" name="theme" id="themeWhitebox">
