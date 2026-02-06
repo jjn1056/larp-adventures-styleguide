@@ -448,6 +448,11 @@
 [data-theme="tavern"] .navbar {
   background-color: var(--nav-bg);
   border-bottom: var(--nav-border);
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  position: sticky;
+  top: 0;
+  z-index: 1030;
 }
 
 [data-theme="tavern"] .navbar-brand {
