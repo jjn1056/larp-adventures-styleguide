@@ -475,10 +475,9 @@
                 <i class="bi bi-shield-fill"></i>
               </div>
               <h4>Warrior</h4>
-              <p>Masters of combat who protect their allies and vanquish their foes.</p>
+              <p>Frontline combatant. Heavy armor, shields, battlefield control, and fear effects.</p>
               <div class="path-stats">
-                <i class="bi bi-heart-fill text-danger me-1"></i>+3 HP |
-                <i class="bi bi-lightning-fill text-warning me-1"></i>+1 Stamina
+                <i class="bi bi-shield-fill text-primary me-1"></i>3 Armor Points
               </div>
             </div>
 
@@ -487,10 +486,9 @@
                 <i class="bi bi-eye-fill"></i>
               </div>
               <h4>Rogue</h4>
-              <p>Cunning operatives skilled in stealth, subterfuge, and precision strikes.</p>
+              <p>Stealth and subterfuge. Traps, locks, poisons, pickpocketing, and backstab.</p>
               <div class="path-stats">
-                <i class="bi bi-heart-fill text-danger me-1"></i>+1 HP |
-                <i class="bi bi-lightning-fill text-warning me-1"></i>+3 Stamina
+                <i class="bi bi-shield-fill text-primary me-1"></i>2 Armor Points
               </div>
             </div>
 
@@ -499,53 +497,27 @@
                 <i class="bi bi-stars"></i>
               </div>
               <h4>Mage</h4>
-              <p>Wielders of arcane power who bend reality to their will.</p>
+              <p>Arcane caster. Combat magic, wards, enchantments, and necromancy via spellbook.</p>
               <div class="path-stats">
-                <i class="bi bi-heart-fill text-danger me-1"></i>+1 HP |
-                <i class="bi bi-droplet-fill text-primary me-1"></i>+4 Mana
+                <i class="bi bi-book-fill text-primary me-1"></i>Spellbook casting
               </div>
             </div>
 
             <div class="path-card" onclick="selectPath(this, 'healer')">
               <div class="path-icon">
-                <i class="bi bi-plus-circle-fill"></i>
+                <i class="bi bi-heart-pulse-fill"></i>
               </div>
               <h4>Healer</h4>
-              <p>Devoted servants of life who mend wounds and restore the fallen.</p>
+              <p>Support and divine magic. Healing, blessings, curses, and restoration.</p>
               <div class="path-stats">
-                <i class="bi bi-heart-fill text-danger me-1"></i>+2 HP |
-                <i class="bi bi-droplet-fill text-primary me-1"></i>+3 Mana
-              </div>
-            </div>
-
-            <div class="path-card" onclick="selectPath(this, 'crafter')">
-              <div class="path-icon">
-                <i class="bi bi-hammer"></i>
-              </div>
-              <h4>Crafter</h4>
-              <p>Artisans who create magical items, potions, and equipment.</p>
-              <div class="path-stats">
-                <i class="bi bi-heart-fill text-danger me-1"></i>+2 HP |
-                <i class="bi bi-gem text-info me-1"></i>+2 Craft Points
-              </div>
-            </div>
-
-            <div class="path-card" onclick="selectPath(this, 'diplomat')">
-              <div class="path-icon">
-                <i class="bi bi-chat-heart-fill"></i>
-              </div>
-              <h4>Diplomat</h4>
-              <p>Charismatic leaders who inspire allies and negotiate with enemies.</p>
-              <div class="path-stats">
-                <i class="bi bi-heart-fill text-danger me-1"></i>+2 HP |
-                <i class="bi bi-people-fill text-success me-1"></i>+2 Influence
+                <i class="bi bi-shield-fill text-primary me-1"></i>2 Armor Points
               </div>
             </div>
           </div>
 
           <div class="alert alert-info">
             <i class="bi bi-info-circle me-2"></i>
-            <strong>Tip:</strong> Your path is just a starting point! You can learn skills from other paths as you gain experience.
+            <strong>Tip:</strong> Your path is just a starting point! At Tier 2 you unlock cross-training and can learn abilities from other paths.
           </div>
 
           <div class="builder-nav">
@@ -570,36 +542,33 @@
             </div>
 
             <div class="skill-tier">
-              <div class="skill-tier-label">Tier 1 (Starting)</div>
+              <div class="skill-tier-label">Tier 0 (Starting)</div>
               <div class="skill-list">
-                <span class="skill-badge" onclick="toggleSkill(this)" data-skill="weapon-proficiency" data-tooltip="Proficiency with one weapon type">
+                <span class="skill-badge" onclick="toggleSkill(this)" data-skill="weapon-proficiency">
                   <i class="bi bi-sword me-1"></i>Weapon Proficiency
                 </span>
-                <span class="skill-badge" onclick="toggleSkill(this)" data-skill="armor-training" data-tooltip="Wear light armor without penalty">
-                  <i class="bi bi-shield me-1"></i>Armor Training
+                <span class="skill-badge" onclick="toggleSkill(this)" data-skill="armor-proficiency">
+                  <i class="bi bi-shield me-1"></i>Armor Proficiency
                 </span>
-                <span class="skill-badge" onclick="toggleSkill(this)" data-skill="battle-cry" data-tooltip="Rally nearby allies">
-                  <i class="bi bi-megaphone me-1"></i>Battle Cry
-                </span>
-                <span class="skill-badge" onclick="toggleSkill(this)" data-skill="parry" data-tooltip="Block one attack per encounter">
-                  <i class="bi bi-x-circle me-1"></i>Parry
+                <span class="skill-badge" onclick="toggleSkill(this)" data-skill="shield-use">
+                  <i class="bi bi-shield-fill me-1"></i>Shield Use
                 </span>
               </div>
             </div>
 
             <div class="skill-tier">
-              <div class="skill-tier-label">Tier 2 (Unlockable)</div>
+              <div class="skill-tier-label">Tier 1</div>
               <div class="skill-list">
-                <span class="skill-badge locked" data-skill="shield-bash" data-tooltip="Requires Armor Training">
-                  <i class="bi bi-shield-fill me-1"></i>Shield Bash
+                <span class="skill-badge locked" data-skill="hardiness">
+                  <i class="bi bi-heart-pulse me-1"></i>Hardiness
                   <i class="bi bi-lock-fill ms-1"></i>
                 </span>
-                <span class="skill-badge locked" data-skill="dual-wield" data-tooltip="Requires Weapon Proficiency">
-                  <i class="bi bi-diagram-2 me-1"></i>Dual Wield
+                <span class="skill-badge locked" data-skill="intimidating-presence">
+                  <i class="bi bi-exclamation-triangle me-1"></i>Intimidating Presence
                   <i class="bi bi-lock-fill ms-1"></i>
                 </span>
-                <span class="skill-badge locked" data-skill="intimidate" data-tooltip="Requires Battle Cry">
-                  <i class="bi bi-exclamation-triangle me-1"></i>Intimidate
+                <span class="skill-badge locked" data-skill="repair">
+                  <i class="bi bi-wrench me-1"></i>Repair
                   <i class="bi bi-lock-fill ms-1"></i>
                 </span>
               </div>
@@ -818,16 +787,8 @@
           <hr>
 
           <div class="preview-stat">
-            <span><i class="bi bi-heart-fill text-danger me-1"></i>Health</span>
-            <span id="previewHP">10</span>
-          </div>
-          <div class="preview-stat">
-            <span><i class="bi bi-lightning-fill text-warning me-1"></i>Stamina</span>
-            <span id="previewStamina">5</span>
-          </div>
-          <div class="preview-stat">
-            <span><i class="bi bi-droplet-fill text-primary me-1"></i>Mana</span>
-            <span id="previewMana">0</span>
+            <span><i class="bi bi-shield-fill text-primary me-1"></i>Armor Points</span>
+            <span id="previewAP">-</span>
           </div>
         </div>
       </div>
@@ -849,14 +810,12 @@
       backstory: ''
     };
 
-    // Path bonuses
+    // Path stats (Armor Points)
     const pathBonuses = {
-      warrior: { hp: 3, stamina: 1, mana: 0 },
-      rogue: { hp: 1, stamina: 3, mana: 0 },
-      mage: { hp: 1, stamina: 0, mana: 4 },
-      healer: { hp: 2, stamina: 0, mana: 3 },
-      crafter: { hp: 2, stamina: 0, mana: 0 },
-      diplomat: { hp: 2, stamina: 0, mana: 0 }
+      warrior: { ap: 3 },
+      rogue: { ap: 2 },
+      mage: { ap: 0 },
+      healer: { ap: 2 }
     };
 
     function goToStep(step) {
@@ -898,18 +857,14 @@
       document.getElementById('previewSubtitle').textContent = 'Level 1 ' + element.querySelector('h4').textContent;
 
       const bonuses = pathBonuses[path];
-      document.getElementById('previewHP').textContent = 10 + bonuses.hp;
-      document.getElementById('previewStamina').textContent = 5 + bonuses.stamina;
-      document.getElementById('previewMana').textContent = bonuses.mana;
+      document.getElementById('previewAP').textContent = bonuses.ap;
 
       // Update avatar icon based on path
       const icons = {
         warrior: 'bi-shield-fill',
         rogue: 'bi-eye-fill',
         mage: 'bi-stars',
-        healer: 'bi-plus-circle-fill',
-        crafter: 'bi-hammer',
-        diplomat: 'bi-chat-heart-fill'
+        healer: 'bi-heart-pulse-fill'
       };
       document.getElementById('previewAvatar').innerHTML = `<i class="bi ${icons[path]}"></i>`;
     }
