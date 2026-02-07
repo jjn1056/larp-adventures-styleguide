@@ -858,6 +858,31 @@
             </button>
           </div>
         </div>
+
+        <!-- Success Panel -->
+        <div class="builder-panel" id="stepSuccess">
+          <div class="text-center py-4">
+            <div class="d-inline-flex align-items-center justify-content-center rounded-circle mb-3"
+                 style="width: 80px; height: 80px; background: var(--color-success-subtle, #d1fae5); color: var(--color-success, #16a34a); font-size: 2.5rem;">
+              <i class="bi bi-check-lg"></i>
+            </div>
+            <h2>Your Character is Ready!</h2>
+            <p class="lead">Create an account to save your character and join the adventure.</p>
+
+            <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center mt-4">
+              <a href="join.html" class="btn btn-primary btn-lg">
+                <i class="bi bi-person-plus me-2"></i>Join to Save
+              </a>
+              <a href="../portal/character.html" class="btn btn-outline-primary btn-lg">
+                <i class="bi bi-file-earmark-person me-2"></i>View Character Sheet
+              </a>
+            </div>
+
+            <p class="text-muted mt-3">
+              <small>Already have an account? <a href="../portal/login.html">Sign in</a> to save this character.</small>
+            </p>
+          </div>
+        </div>
       </div>
 
       <!-- Character Preview Sidebar -->
@@ -1044,9 +1069,18 @@
     });
 
     function createCharacter() {
-      // In production, this would save to the server
-      alert('Character created! In production, this would save to your account and redirect to your character sheet.');
-      window.location.href = '../portal/character.html';
+      document.querySelectorAll('.builder-panel').forEach(panel => {
+        panel.classList.remove('active');
+      });
+      document.getElementById('stepSuccess').classList.add('active');
+
+      // Mark all progress steps as completed
+      document.querySelectorAll('.progress-step').forEach(el => {
+        el.classList.remove('active');
+        el.classList.add('completed');
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   </script>
 </body>
