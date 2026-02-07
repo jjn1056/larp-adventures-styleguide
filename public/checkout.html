@@ -413,13 +413,10 @@
           </section>
 
           <!-- Navigation -->
-          <div class="checkout-nav">
+          <div class="checkout-nav justify-content-start">
             <a href="event-detail.html" class="btn btn-outline-secondary">
               <i class="bi bi-arrow-left me-2"></i>Back to Event
             </a>
-            <button class="btn btn-primary" id="continueToInfo" disabled onclick="goToStep(2)">
-              Continue to Your Info<i class="bi bi-arrow-right ms-2"></i>
-            </button>
           </div>
         </div>
 
@@ -607,6 +604,13 @@
                 <span id="total">$0.00</span>
               </div>
             </div>
+
+            <!-- Continue button (visible on step 1) -->
+            <div id="sidebarContinue" class="mt-3">
+              <button class="btn btn-primary w-100 btn-lg" id="sidebarContinueBtn" disabled onclick="goToStep(2)">
+                Continue to Your Info<i class="bi bi-arrow-right ms-2"></i>
+              </button>
+            </div>
           </div>
           <div class="card-footer text-muted small">
             <i class="bi bi-shield-check me-1"></i>Secure checkout powered by Stripe
@@ -719,7 +723,7 @@
     function updateOrderSummary() {
       const orderItems = document.getElementById('order-items');
       const orderTotals = document.getElementById('order-totals');
-      const continueBtn = document.getElementById('continueToInfo');
+      const continueBtn = document.getElementById('sidebarContinueBtn');
       let items = [];
       let subtotal = 0;
 
@@ -819,6 +823,30 @@
 
       // Hide sidebar on success step
       document.getElementById('orderSidebar').style.display = step === 4 ? 'none' : '';
+
+      // Update sidebar continue button per step
+      var sidebarBtn = document.getElementById('sidebarContinueBtn');
+      var sidebarWrap = document.getElementById('sidebarContinue');
+      if (step === 1) {
+        sidebarWrap.style.display = '';
+        sidebarBtn.textContent = '';
+        sidebarBtn.innerHTML = 'Continue to Your Info<i class="bi bi-arrow-right ms-2"></i>';
+        sidebarBtn.onclick = function() { goToStep(2); };
+      } else if (step === 2) {
+        sidebarWrap.style.display = '';
+        sidebarBtn.disabled = false;
+        sidebarBtn.textContent = '';
+        sidebarBtn.innerHTML = 'Continue to Payment<i class="bi bi-arrow-right ms-2"></i>';
+        sidebarBtn.onclick = function() { goToStep(3); };
+      } else if (step === 3) {
+        sidebarWrap.style.display = '';
+        sidebarBtn.disabled = false;
+        sidebarBtn.className = 'btn btn-success w-100 btn-lg';
+        sidebarBtn.innerHTML = '<i class="bi bi-lock-fill me-2"></i>Pay ' + (document.getElementById('payTotal').textContent);
+        sidebarBtn.onclick = function() { completeCheckout(); };
+      } else {
+        sidebarWrap.style.display = 'none';
+      }
 
       currentStep = step;
       window.scrollTo({ top: 0, behavior: 'smooth' });
