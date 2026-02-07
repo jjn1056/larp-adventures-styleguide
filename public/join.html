@@ -205,47 +205,6 @@
       margin: 0;
     }
 
-    /* Faction Cards */
-    .faction-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: var(--space-3);
-    }
-
-    .faction-card {
-      border: var(--border-standard);
-      padding: var(--space-4);
-      text-align: center;
-      cursor: pointer;
-      transition: all var(--transition-fast);
-    }
-
-    .faction-card:hover {
-      border-color: var(--color-primary);
-      transform: translateY(-2px);
-    }
-
-    .faction-card.selected {
-      border-color: var(--color-primary);
-      background: var(--color-primary-subtle);
-    }
-
-    .faction-card .faction-icon {
-      font-size: var(--text-3xl);
-      margin-bottom: var(--space-2);
-    }
-
-    .faction-card h5 {
-      font-size: var(--text-base);
-      margin-bottom: var(--space-1);
-    }
-
-    .faction-card p {
-      font-size: var(--text-sm);
-      color: var(--color-text-muted);
-      margin: 0;
-    }
-
     /* Wizard Navigation */
     .wizard-nav {
       display: flex;
@@ -372,7 +331,7 @@
       <div class="step-connector"></div>
       <div class="wizard-step" data-step="4">
         <span class="step-number">4</span>
-        <span class="step-label">Faction</span>
+        <span class="step-label">Mentor</span>
       </div>
     </div>
   </div>
@@ -589,56 +548,9 @@
       </div>
     </div>
 
-    <!-- Step 4: Faction & Mentorship -->
+    <!-- Step 4: Mentorship -->
     <div class="wizard-panel" id="step4">
-      <h2><i class="bi bi-flag me-2"></i>Choose Your Path</h2>
-      <p class="lead">Select a starting faction to align with. Don't worry - this isn't permanent! You can change allegiances as your story unfolds.</p>
-
-      <h4 class="mb-3">Factions of Osterra</h4>
-      <div class="faction-grid mb-4">
-        <div class="faction-card" onclick="selectFaction(this, 'knights')">
-          <div class="faction-icon">
-            <i class="bi bi-shield-fill"></i>
-          </div>
-          <h5>Order of the Silver Shield</h5>
-          <p>Honor, duty, protection of the realm</p>
-        </div>
-        <div class="faction-card" onclick="selectFaction(this, 'mystics')">
-          <div class="faction-icon">
-            <i class="bi bi-stars"></i>
-          </div>
-          <h5>The Arcane Covenant</h5>
-          <p>Magic, knowledge, ancient secrets</p>
-        </div>
-        <div class="faction-card" onclick="selectFaction(this, 'merchants')">
-          <div class="faction-icon">
-            <i class="bi bi-coin"></i>
-          </div>
-          <h5>Golden Compass Guild</h5>
-          <p>Trade, diplomacy, prosperity</p>
-        </div>
-        <div class="faction-card" onclick="selectFaction(this, 'rangers')">
-          <div class="faction-icon">
-            <i class="bi bi-tree"></i>
-          </div>
-          <h5>Wardens of the Wild</h5>
-          <p>Nature, survival, freedom</p>
-        </div>
-        <div class="faction-card" onclick="selectFaction(this, 'shadows')">
-          <div class="faction-icon">
-            <i class="bi bi-moon-stars"></i>
-          </div>
-          <h5>The Shadow Court</h5>
-          <p>Intrigue, secrets, cunning</p>
-        </div>
-        <div class="faction-card" onclick="selectFaction(this, 'undecided')">
-          <div class="faction-icon">
-            <i class="bi bi-question-circle"></i>
-          </div>
-          <h5>Undecided</h5>
-          <p>Explore before committing</p>
-        </div>
-      </div>
+      <h2><i class="bi bi-people me-2"></i>Mentorship</h2>
 
       <h4 class="mb-3">Would you like a mentor?</h4>
       <p class="text-muted mb-3">Mentors are experienced players who can help you learn the ropes, answer questions, and make your first events more enjoyable.</p>
@@ -744,7 +656,6 @@
   <script>
     let currentStep = 1;
     let selectedGear = null;
-    let selectedFaction = null;
 
     function updateProgress(step) {
       document.querySelectorAll('.wizard-step').forEach((el, idx) => {
@@ -792,14 +703,6 @@
 
       // Show vendor info if shopping selected
       document.getElementById('vendorInfo').style.display = choice === 'shopping' ? 'block' : 'none';
-    }
-
-    function selectFaction(element, faction) {
-      document.querySelectorAll('.faction-card').forEach(el => {
-        el.classList.remove('selected');
-      });
-      element.classList.add('selected');
-      selectedFaction = faction;
     }
 
     function completeWizard() {
