@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dungeon">
+<html lang="en" data-theme="phb">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +7,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
   <link href="../css/variables.css" rel="stylesheet">
-  <link href="../css/theme-dungeon.css" rel="stylesheet" id="theme-css">
+  <link href="../css/theme-phb.css" rel="stylesheet" id="theme-css">
   <style>
     .portal-sidebar {
       width: var(--sidebar-width);
@@ -50,6 +50,23 @@
 
     .portal-sidebar .nav-link i {
       width: 24px;
+    }
+
+    .sidebar-section-toggle {
+      cursor: pointer;
+      padding: var(--space-2) 0;
+    }
+
+    .sidebar-section-toggle:hover {
+      color: var(--color-text-primary) !important;
+    }
+
+    .sidebar-section-toggle[aria-expanded="false"] .bi-chevron-down {
+      transform: rotate(-90deg);
+    }
+
+    .sidebar-section-toggle .bi-chevron-down {
+      transition: transform var(--transition-fast);
     }
 
     .stat-card {
@@ -152,14 +169,12 @@
       color: #166534;
     }
 
-    [data-theme="tavern"] .rule-diff .diff-removed,
-    [data-theme="frost"] .rule-diff .diff-removed {
+    [data-theme="tavern"] .rule-diff .diff-removed {
       background: rgba(239, 68, 68, 0.2);
       color: #fca5a5;
     }
 
-    [data-theme="tavern"] .rule-diff .diff-added,
-    [data-theme="frost"] .rule-diff .diff-added {
+    [data-theme="tavern"] .rule-diff .diff-added {
       background: rgba(34, 197, 94, 0.2);
       color: #86efac;
     }
@@ -182,11 +197,12 @@
   </style>
 </head>
 <body>
+  <a href="#main-content" class="visually-hidden-focusable">Skip to content</a>
   <!-- Sidebar -->
   <nav class="portal-sidebar d-none d-lg-block">
     <div class="px-4 mb-4">
       <a href="../public/landing.html" class="text-decoration-none">
-        <h1 class="h5 mb-0" style="font-family: var(--font-heading);">LARP Adventures</h1>
+        <h1 class="h5 mb-0 d-flex align-items-center gap-2" style="font-family: var(--font-heading);"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 2 L4 8 L4 16 C4 24 16 30 16 30 C16 30 28 24 28 16 L28 8 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><line x1="16" y1="8" x2="16" y2="22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="24" r="1.5" fill="currentColor"/></svg>LARP Adventures</h1>
       </a>
       <small class="text-muted">Player Portal</small>
     </div>
@@ -219,68 +235,75 @@
       </li>
 
       <li class="nav-item mt-3">
-        <small class="px-4 text-muted text-uppercase" style="letter-spacing: var(--tracking-wider);">Play</small>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="lore.html">
-          <i class="bi bi-scroll me-2"></i>Lore Drops
-          <span class="badge bg-primary ms-auto">3</span>
+        <a class="sidebar-section-toggle px-4 text-muted text-uppercase d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#sidebar-play" role="button" aria-expanded="true" aria-controls="sidebar-play" style="letter-spacing: var(--tracking-wider); font-size: var(--text-sm); text-decoration: none;">
+          Play <i class="bi bi-chevron-down small"></i>
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="spellbook.html">
-          <i class="bi bi-book me-2"></i>Spellbook
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="group.html">
-          <i class="bi bi-people me-2"></i>My Coalition
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="marketplace.html">
-          <i class="bi bi-shop me-2"></i>Marketplace
-        </a>
-      </li>
+      <div class="collapse show" id="sidebar-play">
+        <li class="nav-item">
+          <a class="nav-link" href="lore.html">
+            <i class="bi bi-scroll me-2"></i>Lore Drops
+            <span class="badge bg-primary ms-auto">3</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="spellbook.html">
+            <i class="bi bi-book me-2"></i>Spellbook
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="group.html">
+            <i class="bi bi-people me-2"></i>My Faction
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="marketplace.html">
+            <i class="bi bi-shop me-2"></i>Marketplace
+          </a>
+        </li>
+      </div>
 
       <li class="nav-item mt-3">
-        <small class="px-4 text-muted text-uppercase" style="letter-spacing: var(--tracking-wider);">Events</small>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="../public/event-index.html">
-          <i class="bi bi-calendar-event me-2"></i>Upcoming Events
+        <a class="sidebar-section-toggle px-4 text-muted text-uppercase d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#sidebar-events" role="button" aria-expanded="true" aria-controls="sidebar-events" style="letter-spacing: var(--tracking-wider); font-size: var(--text-sm); text-decoration: none;">
+          Events <i class="bi bi-chevron-down small"></i>
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="register.html">
-          <i class="bi bi-ticket me-2"></i>My Registrations
-        </a>
-      </li>
+      <div class="collapse show" id="sidebar-events">
+        <li class="nav-item">
+          <a class="nav-link" href="../public/event-index.html">
+            <i class="bi bi-calendar-event me-2"></i>Upcoming Events
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="register.html">
+            <i class="bi bi-ticket me-2"></i>My Registrations
+          </a>
+        </li>
+      </div>
 
       <li class="nav-item mt-3">
-        <small class="px-4 text-muted text-uppercase" style="letter-spacing: var(--tracking-wider);">Community</small>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="mentors.html">
-          <i class="bi bi-mortarboard me-2"></i>Mentors
+        <a class="sidebar-section-toggle px-4 text-muted text-uppercase d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#sidebar-community" role="button" aria-expanded="true" aria-controls="sidebar-community" style="letter-spacing: var(--tracking-wider); font-size: var(--text-sm); text-decoration: none;">
+          Community <i class="bi bi-chevron-down small"></i>
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="forum-index.html">
-          <i class="bi bi-chat-dots me-2"></i>Forums
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="wiki.html">
-          <i class="bi bi-book me-2"></i>Wiki
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="notifications.html">
-          <i class="bi bi-bell me-2"></i>Notifications
-          <span class="badge bg-primary ms-auto">3</span>
-        </a>
-      </li>
+      <div class="collapse show" id="sidebar-community">
+        <li class="nav-item">
+          <a class="nav-link" href="mentors.html">
+            <i class="bi bi-mortarboard me-2"></i>Mentors
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="wiki.html">
+            <i class="bi bi-book me-2"></i>Wiki
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="notifications.html">
+            <i class="bi bi-bell me-2"></i>Notifications
+            <span class="badge bg-primary ms-auto">3</span>
+          </a>
+        </li>
+      </div>
     </ul>
 
     <div class="mt-auto p-4" style="position: absolute; bottom: 0; width: 100%;">
@@ -295,12 +318,12 @@
   </nav>
 
   <!-- Main Content -->
-  <main class="portal-main">
+  <main id="main-content" class="portal-main">
     <!-- Header -->
     <header class="portal-header d-flex justify-content-between align-items-center">
       <div class="d-flex align-items-center">
-        <button class="btn btn-outline-secondary d-lg-none me-3" type="button">
-          <i class="bi bi-list"></i>
+        <button class="btn btn-outline-secondary d-lg-none me-3" type="button" aria-label="Toggle sidebar menu">
+          <i class="bi bi-list" aria-hidden="true"></i>
         </button>
         <h1 class="h4 mb-0">Dashboard</h1>
       </div>
@@ -308,8 +331,8 @@
         <a href="spellbook.html" class="btn btn-outline-primary btn-sm">
           <i class="bi bi-book me-1"></i>Spellbook
         </a>
-        <a href="notifications.html" class="btn btn-outline-secondary position-relative">
-          <i class="bi bi-bell"></i>
+        <a href="notifications.html" class="btn btn-outline-secondary position-relative" aria-label="Notifications">
+          <i class="bi bi-bell" aria-hidden="true"></i>
           <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">3</span>
         </a>
         <div class="dropdown">
@@ -339,7 +362,21 @@
             <span class="badge bg-secondary">Last login: 3 days ago</span>
           </div>
           <div class="card-body">
-            <p class="text-muted mb-4">Here's what you missed while you were away:</p>
+            <p class="text-muted mb-3">Here's what you missed while you were away:</p>
+
+            <!-- Digest Filters -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <div class="btn-group" role="group" aria-label="Filter digest by type">
+                <button type="button" class="btn btn-outline-primary btn-sm active">All</button>
+                <button type="button" class="btn btn-outline-primary btn-sm">Rule Changes</button>
+                <button type="button" class="btn btn-outline-primary btn-sm">Lore Drops</button>
+                <button type="button" class="btn btn-outline-primary btn-sm">Events</button>
+                <button type="button" class="btn btn-outline-primary btn-sm">Mentions</button>
+              </div>
+              <a href="settings.html" class="btn btn-link btn-sm text-muted">
+                <i class="bi bi-gear me-1"></i>Manage Preferences
+              </a>
+            </div>
 
             <!-- Rule Changes -->
             <div class="digest-section mb-4">
@@ -408,6 +445,9 @@
               </div>
               <div class="digest-items">
                 <a href="../public/event-detail.html" class="digest-item">
+                  <div class="bg-secondary bg-opacity-10 d-flex align-items-center justify-content-center mb-2" style="height: 100px; border: var(--border-standard);">
+                    <i class="bi bi-image text-muted" style="font-size: 2rem;"></i>
+                  </div>
                   <div class="digest-item-content">
                     <strong>Rites of Spring</strong>
                     <p class="mb-0 small text-muted">Registration now open - 47 of 80 spots filled (59%)</p>
@@ -430,22 +470,13 @@
                 <span class="badge bg-primary ms-auto">3 messages</span>
               </div>
               <div class="digest-items">
-                <a href="forum-thread.html" class="digest-item unread">
+                <a href="#" class="digest-item unread">
                   <div class="digest-item-content">
                     <strong>Lady Mira</strong> replied to your post
                     <p class="mb-0 small text-muted">"I agree with your assessment of the Northern territories..."</p>
                   </div>
                   <span class="digest-item-meta">
                     <small class="text-muted">2 days ago</small>
-                  </span>
-                </a>
-                <a href="forum-thread.html" class="digest-item">
-                  <div class="digest-item-content">
-                    <strong>Northern Alliance Forum</strong>
-                    <p class="mb-0 small text-muted">2 new messages since your last visit</p>
-                  </div>
-                  <span class="digest-item-meta">
-                    <small class="text-muted">1 day ago</small>
                   </span>
                 </a>
               </div>
@@ -612,8 +643,8 @@
                     </div>
                   </div>
                   <div class="btn-group btn-group-sm">
-                    <button class="btn btn-success" onclick="acceptMentee('tyler')"><i class="bi bi-check"></i></button>
-                    <button class="btn btn-outline-secondary" onclick="declineMentee('tyler')"><i class="bi bi-x"></i></button>
+                    <button class="btn btn-success" onclick="acceptMentee('tyler')" aria-label="Accept mentee request"><i class="bi bi-check" aria-hidden="true"></i></button>
+                    <button class="btn btn-outline-secondary" onclick="declineMentee('tyler')" aria-label="Decline mentee request"><i class="bi bi-x" aria-hidden="true"></i></button>
                   </div>
                 </div>
               </div>
@@ -679,7 +710,7 @@
             <div class="feed-item">
               <div class="feed-avatar" style="background: var(--color-primary);"></div>
               <div class="feed-content">
-                <p class="mb-1"><strong>Lady Mira</strong> replied to your forum post</p>
+                <p class="mb-1"><strong>Lady Mira</strong> replied to your post</p>
                 <p class="feed-meta mb-0">2 days ago</p>
               </div>
             </div>
@@ -747,7 +778,7 @@
         <i class="bi bi-bell-fill text-primary me-2"></i>
         <strong class="me-auto">Welcome Back!</strong>
         <small>Just now</small>
-        <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
       </div>
       <div class="toast-body">
         You have 3 unread notifications.
@@ -824,5 +855,6 @@
     }
   </script>
   <script src="../js/theme-switcher.js"></script>
+  <script src="../js/sidebar-collapse.js"></script>
 </body>
 </html>

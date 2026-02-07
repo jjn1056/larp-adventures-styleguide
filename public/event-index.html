@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dungeon">
+<html lang="en" data-theme="phb">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,13 +7,22 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
   <link href="../css/variables.css" rel="stylesheet">
-  <link href="../css/theme-dungeon.css" rel="stylesheet" id="theme-css">
+  <link href="../css/theme-phb.css" rel="stylesheet" id="theme-css">
 </head>
 <body>
+  <a href="#main-content" class="visually-hidden-focusable">Skip to content</a>
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg">
     <div class="container">
-      <a class="navbar-brand" href="landing.html">LARP Adventures</a>
+      <a class="navbar-brand d-flex align-items-center gap-2" href="landing.html">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+          <path d="M16 2 L4 8 L4 16 C4 24 16 30 16 30 C16 30 28 24 28 16 L28 8 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          <line x1="16" y1="8" x2="16" y2="22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="12" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="16" cy="24" r="1.5" fill="currentColor"/>
+        </svg>
+        LARP Adventures
+      </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -21,11 +30,12 @@
         <ul class="navbar-nav me-auto">
           <li class="nav-item"><a class="nav-link" href="landing.html">Home</a></li>
           <li class="nav-item"><a class="nav-link active" href="event-index.html">Events</a></li>
-          <li class="nav-item"><a class="nav-link" href="hub.html">Rules & Lore</a></li>
+          <li class="nav-item"><a class="nav-link" href="hub.html">Rules</a></li>
+          <li class="nav-item"><a class="nav-link" href="lore-hub.html">Lore</a></li>
           <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
           <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
         </ul>
-        <a href="../portal/dashboard.html" class="btn btn-primary btn-sm">Player Portal</a>
+        <a href="../portal/login.html" class="btn btn-primary btn-sm">Player Portal</a>
       </div>
     </div>
   </nav>
@@ -33,12 +43,18 @@
   <!-- Page Header -->
   <header class="py-4" style="background-color: var(--color-bg-muted); border-bottom: var(--border-heavy);">
     <div class="container">
+      <nav aria-label="breadcrumb" class="mb-2">
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item"><a href="landing.html">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Events</li>
+        </ol>
+      </nav>
       <h1>Events</h1>
       <p class="lead mb-0">Join us for adventures in the realm of Osterra</p>
     </div>
   </header>
 
-  <main class="container py-5">
+  <main id="main-content" class="container py-5">
     <!-- Filter Tabs -->
     <ul class="nav nav-tabs mb-4">
       <li class="nav-item">
@@ -62,6 +78,9 @@
               <span class="badge bg-primary">Campout</span>
             </div>
             <div class="card-body">
+              <div class="bg-secondary bg-opacity-10 d-flex align-items-center justify-content-center mb-3" style="height: 150px; border: var(--border-standard);">
+                <i class="bi bi-image text-muted" style="font-size: 2rem;"></i>
+              </div>
               <h3 class="h4">Rites of Spring</h3>
               <p class="text-muted"><i class="bi bi-geo-alt me-1"></i>Camp Evergreen, PA</p>
               <p>The veil between worlds grows thin as winter yields to spring. Ancient rituals must be performed to ensure the harvest...</p>
@@ -81,6 +100,9 @@
               <span class="badge bg-secondary">Day Event</span>
             </div>
             <div class="card-body">
+              <div class="bg-secondary bg-opacity-10 d-flex align-items-center justify-content-center mb-3" style="height: 150px; border: var(--border-standard);">
+                <i class="bi bi-image text-muted" style="font-size: 2rem;"></i>
+              </div>
               <h3 class="h4">Spring Quest</h3>
               <p class="text-muted"><i class="bi bi-geo-alt me-1"></i>Riverside Park, NJ</p>
               <p>A single-day adventure perfect for new players. Hunt for artifacts, solve puzzles, and test your skills in friendly combat.</p>
@@ -100,6 +122,9 @@
               <span class="badge bg-primary">Campout</span>
             </div>
             <div class="card-body">
+              <div class="bg-secondary bg-opacity-10 d-flex align-items-center justify-content-center mb-3" style="height: 150px; border: var(--border-standard);">
+                <i class="bi bi-image text-muted" style="font-size: 2rem;"></i>
+              </div>
               <h3 class="h4">Summer Quest</h3>
               <p class="text-muted"><i class="bi bi-geo-alt me-1"></i>Camp Evergreen, PA</p>
               <p>Midsummer brings the annual tournament. Compete for glory, forge alliances, and uncover ancient secrets buried beneath the camp.</p>
@@ -119,6 +144,9 @@
               <span class="badge bg-info">Special</span>
             </div>
             <div class="card-body">
+              <div class="bg-secondary bg-opacity-10 d-flex align-items-center justify-content-center mb-3" style="height: 150px; border: var(--border-standard);">
+                <i class="bi bi-image text-muted" style="font-size: 2rem;"></i>
+              </div>
               <h3 class="h4">Bardstock Festival</h3>
               <p class="text-muted"><i class="bi bi-geo-alt me-1"></i>Riverside Park, NJ</p>
               <p>A celebration of arts and culture in Osterra. Music, performances, crafting workshops, and light roleplay. Family friendly!</p>
@@ -138,6 +166,9 @@
               <span class="badge bg-primary">Campout</span>
             </div>
             <div class="card-body">
+              <div class="bg-secondary bg-opacity-10 d-flex align-items-center justify-content-center mb-3" style="height: 150px; border: var(--border-standard);">
+                <i class="bi bi-image text-muted" style="font-size: 2rem;"></i>
+              </div>
               <h3 class="h4">Autumn Adventure</h3>
               <p class="text-muted"><i class="bi bi-geo-alt me-1"></i>Camp Evergreen, PA</p>
               <p>As leaves fall and nights grow long, darkness stirs in the ancient forest. Will you answer the call to defend Osterra?</p>
@@ -157,6 +188,9 @@
               <span class="badge bg-info">Special</span>
             </div>
             <div class="card-body">
+              <div class="bg-secondary bg-opacity-10 d-flex align-items-center justify-content-center mb-3" style="height: 150px; border: var(--border-standard);">
+                <i class="bi bi-image text-muted" style="font-size: 2rem;"></i>
+              </div>
               <h3 class="h4">Winter Council</h3>
               <p class="text-muted"><i class="bi bi-geo-alt me-1"></i>Community Hall, Philadelphia</p>
               <p>The annual gathering of all factions. Feast, negotiate treaties, settle disputes, and plan for the year ahead. Indoor event.</p>
@@ -202,7 +236,7 @@
           <h4 class="h5">Quick Links</h4>
           <ul class="list-unstyled">
             <li><a href="event-index.html">Events</a></li>
-            <li><a href="hub.html">Rules & Lore</a></li>
+            <li><a href="hub.html">Rules</a></li>
             <li><a href="faq.html">FAQ</a></li>
             <li><a href="organizers.html">Contact Us</a></li>
           </ul>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dungeon">
+<html lang="en" data-theme="phb">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,32 +7,11 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
   <link href="../css/variables.css" rel="stylesheet">
-  <link href="../css/theme-dungeon.css" rel="stylesheet" id="theme-css">
+  <link href="../css/theme-phb.css" rel="stylesheet" id="theme-css">
   <style>
     body {
       min-height: 100vh;
       background-color: var(--color-bg-page);
-    }
-
-    .wizard-header {
-      background-color: var(--color-bg-surface);
-      border-bottom: var(--border-heavy);
-      padding: var(--space-4) 0;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .wizard-logo {
-      font-family: var(--font-heading);
-      font-size: var(--text-xl);
-      font-weight: var(--font-bold);
-      color: var(--color-primary);
-      text-decoration: none;
-    }
-
-    .wizard-logo:hover {
-      color: var(--color-primary-dark);
     }
 
     /* Progress Steps */
@@ -205,47 +184,6 @@
       margin: 0;
     }
 
-    /* Faction Cards */
-    .faction-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: var(--space-3);
-    }
-
-    .faction-card {
-      border: var(--border-standard);
-      padding: var(--space-4);
-      text-align: center;
-      cursor: pointer;
-      transition: all var(--transition-fast);
-    }
-
-    .faction-card:hover {
-      border-color: var(--color-primary);
-      transform: translateY(-2px);
-    }
-
-    .faction-card.selected {
-      border-color: var(--color-primary);
-      background: var(--color-primary-subtle);
-    }
-
-    .faction-card .faction-icon {
-      font-size: var(--text-3xl);
-      margin-bottom: var(--space-2);
-    }
-
-    .faction-card h5 {
-      font-size: var(--text-base);
-      margin-bottom: var(--space-1);
-    }
-
-    .faction-card p {
-      font-size: var(--text-sm);
-      color: var(--color-text-muted);
-      margin: 0;
-    }
-
     /* Wizard Navigation */
     .wizard-nav {
       display: flex;
@@ -339,20 +277,47 @@
   </style>
 </head>
 <body>
-  <!-- Header -->
-  <header class="wizard-header">
+  <a href="#main-content" class="visually-hidden-focusable">Skip to content</a>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg" style="background-color: var(--color-bg-surface); border-bottom: var(--border-heavy);">
     <div class="container">
-      <div class="d-flex justify-content-between align-items-center">
-        <a href="landing.html" class="wizard-logo">LARP Adventures</a>
-        <a href="../portal/login.html" class="btn btn-outline-secondary btn-sm">
-          Already have an account? Sign In
-        </a>
+      <a class="navbar-brand d-flex align-items-center gap-2" href="landing.html" style="font-family: var(--font-heading);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+          <path d="M16 2 L4 8 L4 16 C4 24 16 30 16 30 C16 30 28 24 28 16 L28 8 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          <line x1="16" y1="8" x2="16" y2="22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="12" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="16" cy="24" r="1.5" fill="currentColor"/>
+        </svg>
+        LARP Adventures
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="landing.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="event-index.html">Events</a></li>
+          <li class="nav-item"><a class="nav-link" href="hub.html">Rules</a></li>
+          <li class="nav-item"><a class="nav-link" href="lore-hub.html">Lore</a></li>
+          <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
+          <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+        </ul>
+        <a href="../portal/login.html" class="btn btn-primary btn-sm">Player Portal</a>
       </div>
     </div>
-  </header>
+  </nav>
+
+  <div class="container py-2">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><a href="landing.html">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">How to Join</li>
+      </ol>
+    </nav>
+  </div>
 
   <!-- Progress Steps -->
-  <div class="container">
+  <div id="main-content" class="container">
     <div class="wizard-progress">
       <div class="wizard-step active" data-step="1">
         <span class="step-number">1</span>
@@ -371,7 +336,7 @@
       <div class="step-connector"></div>
       <div class="wizard-step" data-step="4">
         <span class="step-number">4</span>
-        <span class="step-label">Faction</span>
+        <span class="step-label">Mentor</span>
       </div>
     </div>
   </div>
@@ -440,10 +405,7 @@
           </label>
         </div>
 
-        <div class="wizard-nav">
-          <a href="intro.html" class="btn btn-outline-secondary">
-            <i class="bi bi-arrow-left me-2"></i>Back
-          </a>
+        <div class="wizard-nav justify-content-end">
           <button type="button" class="btn btn-primary" onclick="nextStep(2)">
             Continue<i class="bi bi-arrow-right ms-2"></i>
           </button>
@@ -588,56 +550,9 @@
       </div>
     </div>
 
-    <!-- Step 4: Faction & Mentorship -->
+    <!-- Step 4: Mentorship -->
     <div class="wizard-panel" id="step4">
-      <h2><i class="bi bi-flag me-2"></i>Choose Your Path</h2>
-      <p class="lead">Select a starting faction to align with. Don't worry - this isn't permanent! You can change allegiances as your story unfolds.</p>
-
-      <h4 class="mb-3">Factions of Osterra</h4>
-      <div class="faction-grid mb-4">
-        <div class="faction-card" onclick="selectFaction(this, 'knights')">
-          <div class="faction-icon">
-            <i class="bi bi-shield-fill"></i>
-          </div>
-          <h5>Order of the Silver Shield</h5>
-          <p>Honor, duty, protection of the realm</p>
-        </div>
-        <div class="faction-card" onclick="selectFaction(this, 'mystics')">
-          <div class="faction-icon">
-            <i class="bi bi-stars"></i>
-          </div>
-          <h5>The Arcane Covenant</h5>
-          <p>Magic, knowledge, ancient secrets</p>
-        </div>
-        <div class="faction-card" onclick="selectFaction(this, 'merchants')">
-          <div class="faction-icon">
-            <i class="bi bi-coin"></i>
-          </div>
-          <h5>Golden Compass Guild</h5>
-          <p>Trade, diplomacy, prosperity</p>
-        </div>
-        <div class="faction-card" onclick="selectFaction(this, 'rangers')">
-          <div class="faction-icon">
-            <i class="bi bi-tree"></i>
-          </div>
-          <h5>Wardens of the Wild</h5>
-          <p>Nature, survival, freedom</p>
-        </div>
-        <div class="faction-card" onclick="selectFaction(this, 'shadows')">
-          <div class="faction-icon">
-            <i class="bi bi-moon-stars"></i>
-          </div>
-          <h5>The Shadow Court</h5>
-          <p>Intrigue, secrets, cunning</p>
-        </div>
-        <div class="faction-card" onclick="selectFaction(this, 'undecided')">
-          <div class="faction-icon">
-            <i class="bi bi-question-circle"></i>
-          </div>
-          <h5>Undecided</h5>
-          <p>Explore before committing</p>
-        </div>
-      </div>
+      <h2><i class="bi bi-people me-2"></i>Mentorship</h2>
 
       <h4 class="mb-3">Would you like a mentor?</h4>
       <p class="text-muted mb-3">Mentors are experienced players who can help you learn the ropes, answer questions, and make your first events more enjoyable.</p>
@@ -688,12 +603,15 @@
             <li><strong>Verify your email</strong> - Click the link we just sent you</li>
             <li><strong>Join our Discord</strong> - Meet other players and ask questions</li>
             <li><strong>Browse upcoming events</strong> - Find your first adventure</li>
-            <li><strong>Create your character</strong> - Design your alter ego in Osterra</li>
+            <li><strong><a href="character-builder.html">Create your character</a></strong> - Design your alter ego in Osterra</li>
           </ul>
         </div>
 
         <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
-          <a href="../portal/dashboard.html" class="btn btn-primary btn-lg">
+          <a href="character-builder.html" class="btn btn-primary btn-lg">
+            <i class="bi bi-hammer me-2"></i>Build Your Character
+          </a>
+          <a href="../portal/dashboard.html" class="btn btn-outline-primary btn-lg">
             <i class="bi bi-house me-2"></i>Go to Dashboard
           </a>
           <a href="event-index.html" class="btn btn-outline-secondary btn-lg">
@@ -740,7 +658,6 @@
   <script>
     let currentStep = 1;
     let selectedGear = null;
-    let selectedFaction = null;
 
     function updateProgress(step) {
       document.querySelectorAll('.wizard-step').forEach((el, idx) => {
@@ -788,14 +705,6 @@
 
       // Show vendor info if shopping selected
       document.getElementById('vendorInfo').style.display = choice === 'shopping' ? 'block' : 'none';
-    }
-
-    function selectFaction(element, faction) {
-      document.querySelectorAll('.faction-card').forEach(el => {
-        el.classList.remove('selected');
-      });
-      element.classList.add('selected');
-      selectedFaction = faction;
     }
 
     function completeWizard() {

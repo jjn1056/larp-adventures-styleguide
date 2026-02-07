@@ -7,18 +7,10 @@
   'use strict';
 
   const STORAGE_KEY = 'larp-adventures-theme';
-  const DEFAULT_THEME = 'dungeon';
+  const DEFAULT_THEME = 'phb';
   const THEMES = [
-    { id: 'base', name: 'Base (No Theme)', icon: 'grid' },
-    { id: 'dungeon', name: 'Dungeon Master', icon: 'book' },
-    { id: 'traveller', name: 'Traveller', icon: 'rocket' },
-    { id: 'whitebox', name: 'White Box', icon: 'square' },
-    { id: 'tavern', name: 'Tavern at Night', icon: 'moon' },
     { id: 'phb', name: "Player's Handbook", icon: 'book' },
-    { id: 'arcane', name: 'Arcane Academy', icon: 'star' },
-    { id: 'fey', name: 'Fey Court', icon: 'flower' },
-    { id: 'frost', name: 'Frost Court', icon: 'snow' },
-    { id: 'highcontrast', name: 'High Contrast', icon: 'eye' }
+    { id: 'tavern', name: 'Tavern at Night', icon: 'moon' }
   ];
 
   // Get saved theme or default

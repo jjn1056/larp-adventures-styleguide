@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dungeon">
+<html lang="en" data-theme="phb">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +7,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
   <link href="../css/variables.css" rel="stylesheet">
-  <link href="../css/theme-dungeon.css" rel="stylesheet" id="theme-css">
+  <link href="../css/theme-phb.css" rel="stylesheet" id="theme-css">
   <style>
     .hero-video {
       position: relative;
@@ -188,28 +188,48 @@
   </style>
 </head>
 <body>
+  <a href="#main-content" class="visually-hidden-focusable">Skip to content</a>
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg">
     <div class="container">
-      <a class="navbar-brand" href="landing.html">LARP Adventures</a>
+      <a class="navbar-brand d-flex align-items-center gap-2" href="landing.html">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+          <path d="M16 2 L4 8 L4 16 C4 24 16 30 16 30 C16 30 28 24 28 16 L28 8 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          <line x1="16" y1="8" x2="16" y2="22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="12" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="16" cy="24" r="1.5" fill="currentColor"/>
+        </svg>
+        LARP Adventures
+      </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="mainNav">
         <ul class="navbar-nav me-auto">
           <li class="nav-item"><a class="nav-link" href="landing.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link active" href="intro.html">What is LARP?</a></li>
           <li class="nav-item"><a class="nav-link" href="event-index.html">Events</a></li>
-          <li class="nav-item"><a class="nav-link" href="hub.html">Rules & Lore</a></li>
+          <li class="nav-item"><a class="nav-link" href="hub.html">Rules</a></li>
+          <li class="nav-item"><a class="nav-link" href="lore-hub.html">Lore</a></li>
+          <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
           <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
         </ul>
-        <a href="join.html" class="btn btn-primary btn-sm">Join the Adventure</a>
+        <a href="../portal/login.html" class="btn btn-primary btn-sm">Player Portal</a>
       </div>
     </div>
   </nav>
 
+  <!-- Breadcrumb -->
+  <div class="container py-3">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><a href="landing.html">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">What is LARP?</li>
+      </ol>
+    </nav>
+  </div>
+
   <!-- Hero Section with Video -->
-  <header class="hero-video">
+  <header id="main-content" class="hero-video">
     <div class="video-placeholder">
       <div class="text-center">
         <i class="bi bi-play-circle" style="font-size: 4rem;"></i>
@@ -510,43 +530,22 @@
   </section>
 
   <!-- CTA Banner -->
-  <section class="cta-banner">
-    <div class="container">
-      <h2 style="font-size: var(--text-4xl); margin-bottom: var(--space-4);">Ready to Begin Your Adventure?</h2>
-      <p style="font-size: var(--text-lg); opacity: 0.9; max-width: 600px; margin: 0 auto var(--space-6);">
-        Join hundreds of adventurers in the world of Osterra. Your legend awaits.
-      </p>
-      <div class="d-flex flex-wrap justify-content-center gap-3">
-        <a href="join.html" class="btn btn-light btn-lg">Start Your Journey</a>
-        <a href="event-index.html" class="btn btn-outline-light btn-lg">View Upcoming Events</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Connect Section -->
   <section class="py-5">
-    <div class="container text-center">
-      <h2>Join Our Community</h2>
-      <p class="lead text-muted mb-4">Connect with fellow adventurers and stay updated</p>
-
-      <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
-        <a href="https://discord.gg/larpadventures" class="social-button discord">
-          <i class="bi bi-discord"></i> Join Our Discord
-        </a>
-        <a href="https://www.facebook.com/groups/LARPAdventures" class="social-button facebook">
-          <i class="bi bi-facebook"></i> Facebook Group
-        </a>
-      </div>
-
-      <!-- Mailing List -->
-      <div class="card mx-auto" style="max-width: 500px;">
-        <div class="card-body">
-          <h4 class="h5 mb-3">Subscribe to Updates</h4>
-          <form class="d-flex gap-2">
-            <input type="email" class="form-control" placeholder="your@email.com">
-            <button type="submit" class="btn btn-primary">Subscribe</button>
-          </form>
-          <small class="text-muted mt-2 d-block">Event announcements and news. No spam, unsubscribe anytime.</small>
+    <div class="container">
+      <div class="callout">
+        <div class="d-flex gap-4 align-items-center">
+          <div class="bg-secondary bg-opacity-10 d-flex align-items-center justify-content-center flex-shrink-0" style="width: 150px; height: 150px; border: var(--border-standard);">
+            <i class="bi bi-image text-muted" style="font-size: 2rem;"></i>
+          </div>
+          <div>
+            <div class="callout-title">Ready to Begin Your Adventure?</div>
+            <p class="mb-3" style="color: var(--color-text-secondary);">Join hundreds of adventurers in the world of Osterra. Your legend awaits.</p>
+            <div class="d-flex flex-wrap gap-3">
+              <a href="join.html" class="btn btn-primary btn-lg">Start Your Journey</a>
+              <a href="character-builder.html" class="btn btn-outline-primary btn-lg">Build Your Character</a>
+              <a href="event-index.html" class="btn btn-outline-primary btn-lg">View Upcoming Events</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -558,24 +557,23 @@
       <div class="row">
         <div class="col-md-4 mb-4">
           <h4 class="h5">LARP Adventures</h4>
-          <p class="text-muted">Live action roleplaying in the realm of Osterra. Monthly events in the mid-Atlantic region.</p>
-          <p class="text-muted mb-0"><a href="mailto:LARPAdventures@gmail.com">LARPAdventures@gmail.com</a></p>
+          <p class="text-muted">Live action roleplaying in the realm of Osterra since 2015.</p>
         </div>
         <div class="col-md-4 mb-4">
           <h4 class="h5">Quick Links</h4>
           <ul class="list-unstyled">
             <li><a href="event-index.html">Events</a></li>
-            <li><a href="hub.html">Rules & Lore</a></li>
+            <li><a href="hub.html">Rules</a></li>
             <li><a href="faq.html">FAQ</a></li>
-            <li><a href="organizers.html">Organizers</a></li>
             <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="vendors.html">Approved Vendors</a></li>
           </ul>
         </div>
         <div class="col-md-4 mb-4">
           <h4 class="h5">Connect</h4>
           <ul class="list-unstyled">
             <li><a href="#"><i class="bi bi-discord me-2"></i>Discord Community</a></li>
-            <li><a href="https://www.facebook.com/groups/LARPAdventures"><i class="bi bi-facebook me-2"></i>Facebook Group</a></li>
+            <li><a href="#"><i class="bi bi-facebook me-2"></i>Facebook Group</a></li>
             <li><a href="#"><i class="bi bi-instagram me-2"></i>Instagram</a></li>
             <li><a href="https://www.youtube.com/@LARPAdventures" target="_blank"><i class="bi bi-youtube me-2"></i>YouTube</a></li>
           </ul>

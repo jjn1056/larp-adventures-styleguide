@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dungeon">
+<html lang="en" data-theme="phb">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,13 +7,24 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
   <link href="../css/variables.css" rel="stylesheet">
-  <link href="../css/theme-dungeon.css" rel="stylesheet" id="theme-css">
+  <link href="../css/theme-phb.css" rel="stylesheet" id="theme-css">
 </head>
 <body>
+  <a href="#main-content" class="visually-hidden-focusable">Skip to content</a>
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg">
     <div class="container">
-      <a class="navbar-brand" href="#">LARP Adventures</a>
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+          <!-- Shield -->
+          <path d="M16 2 L4 8 L4 16 C4 24 16 30 16 30 C16 30 28 24 28 16 L28 8 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          <!-- Sword -->
+          <line x1="16" y1="8" x2="16" y2="22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="12" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="16" cy="24" r="1.5" fill="currentColor"/>
+        </svg>
+        LARP Adventures
+      </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -21,7 +32,8 @@
         <ul class="navbar-nav me-auto">
           <li class="nav-item"><a class="nav-link active" href="landing.html">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="event-index.html">Events</a></li>
-          <li class="nav-item"><a class="nav-link" href="hub.html">Rules & Lore</a></li>
+          <li class="nav-item"><a class="nav-link" href="hub.html">Rules</a></li>
+          <li class="nav-item"><a class="nav-link" href="lore-hub.html">Lore</a></li>
           <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
           <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
         </ul>
@@ -31,83 +43,248 @@
   </nav>
 
   <!-- Hero Section -->
-  <header class="py-5" style="background-color: var(--color-bg-muted); border-bottom: var(--border-heavy);">
+  <header id="main-content" class="py-5" style="background-color: var(--color-bg-muted); border-bottom: var(--border-heavy);">
     <div class="container">
       <div class="row align-items-center">
-        <div class="col-lg-8">
+        <div class="col-lg-5 mb-4 mb-lg-0">
+          <div class="bg-secondary bg-opacity-10 d-flex align-items-center justify-content-center h-100" style="min-height: 250px; border: var(--border-standard);">
+            <i class="bi bi-image text-muted" style="font-size: 2rem;"></i>
+          </div>
+        </div>
+        <div class="col-lg-7">
           <h1 style="font-size: var(--text-5xl); border: none; margin-bottom: var(--space-4);">Welcome to Osterra</h1>
           <p class="lead" style="font-size: var(--text-xl); color: var(--color-text-secondary);">
             A fantasy live-action roleplaying game where you become the hero of your own story.
             Battle ancient evils, forge alliances, and shape the fate of a realm where magic is real.
           </p>
           <div class="d-flex gap-3 mt-4">
-            <a href="event-index.html" class="btn btn-primary btn-lg">View Upcoming Events</a>
-            <a href="hub.html" class="btn btn-outline-primary btn-lg">Learn the Rules</a>
+            <a href="intro.html" class="btn btn-primary btn-lg d-inline-flex align-items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+                <circle cx="16" cy="16" r="12" fill="none" stroke="currentColor" stroke-width="2"/>
+                <path d="M16 4 L16 16 L24 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="16" cy="16" r="2" fill="currentColor"/>
+              </svg>
+              What is LARP?
+            </a>
+            <a href="join.html" class="btn btn-outline-primary btn-lg d-inline-flex align-items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+                <path d="M16 4 C16 4 6 8 6 8 L6 18 C6 24 16 28 16 28 C16 28 26 24 26 18 L26 8 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <line x1="16" y1="12" x2="16" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="12" y1="16" x2="20" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              Start Your Journey
+            </a>
           </div>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- What is LARP Section -->
-  <section class="py-5">
-    <div class="container">
-      <h2>What is LARP?</h2>
-      <p class="lead">Live Action Roleplaying (LARP) is collaborative storytelling where you <em>become</em> your character.</p>
-
-      <div class="row mt-4">
-        <div class="col-md-4 mb-4">
-          <div class="card h-100">
-            <div class="card-body">
-              <h3 class="h5"><i class="bi bi-sword me-2"></i>Combat & Adventure</h3>
-              <p>Engage in safe, foam-weapon combat. Lead raids against enemy forces. Defend your allies in the heat of battle.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="card h-100">
-            <div class="card-body">
-              <h3 class="h5"><i class="bi bi-chat-quote me-2"></i>Roleplay & Story</h3>
-              <p>Create a unique character with their own goals and backstory. Navigate politics, solve mysteries, and forge relationships.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="card h-100">
-            <div class="card-body">
-              <h3 class="h5"><i class="bi bi-people me-2"></i>Community</h3>
-              <p>Join a welcoming community of adventurers. Make friends, share stories, and create memories that last a lifetime.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="heavy">
-
   <!-- Next Event Section -->
   <section class="py-5" style="background-color: var(--color-bg-subtle);">
     <div class="container">
       <h2>Next Adventure</h2>
 
-      <div class="card mt-4" style="max-width: 600px;">
-        <div class="card-header d-flex justify-content-between align-items-center">
-          <span>March 15-17, 2026</span>
-          <span class="badge bg-primary">Campout Event</span>
+      <div class="row mt-4">
+        <div class="col-lg-8 mb-4">
+          <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <span><i class="bi bi-calendar-event me-1" aria-hidden="true"></i> March 15-17, 2026</span>
+              <span class="badge bg-primary">Campout Event</span>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-5 mb-3 mb-md-0">
+                  <div class="bg-secondary bg-opacity-10 d-flex align-items-center justify-content-center h-100" style="min-height: 250px; border: var(--border-standard);">
+                    <i class="bi bi-image text-muted" style="font-size: 2rem;"></i>
+                  </div>
+                </div>
+                <div class="col-md-7">
+                  <h3 class="h3 mb-2">Rites of Spring</h3>
+                  <p class="text-muted mb-3"><i class="bi bi-geo-alt me-1" aria-hidden="true"></i>Camp Evergreen, Pennsylvania</p>
+                  <p>The veil between worlds grows thin as winter yields to spring. Ancient rituals must be performed to ensure the harvest, but dark forces seek to corrupt the ceremony. Heroes from across Osterra must unite to protect the sacred groves.</p>
+                  <ul class="mb-0 small">
+                    <li>Night battles and ritual encounters</li>
+                    <li>All meals and bunk lodging included</li>
+                    <li>New players welcome — orientation and loaner gear provided</li>
+                  </ul>
+                  <a href="event-detail.html" class="btn btn-outline-primary btn-sm mt-3">View full schedule, logistics & directions <i class="bi bi-arrow-right ms-1"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="card-body">
-          <h3 class="h4">Rites of Spring</h3>
-          <p class="text-muted"><i class="bi bi-geo-alt me-1"></i>Camp Evergreen, Pennsylvania</p>
-          <p>The veil between worlds grows thin as winter yields to spring. Ancient rituals must be performed to ensure the harvest, but dark forces seek to corrupt the ceremony...</p>
-          <div class="d-flex justify-content-between align-items-center">
-            <span style="font-size: var(--text-lg); font-weight: var(--font-semibold);">$85 - $125</span>
-            <a href="event-detail.html" class="btn btn-primary">View Details & Register</a>
+
+        <div class="col-lg-4 mb-4">
+          <div class="card" style="position: sticky; top: 20px;">
+            <div class="card-header"><strong>Tickets</strong></div>
+            <div class="card-body">
+              <table class="table table-sm mb-3">
+                <tbody>
+                  <tr>
+                    <td>Full Weekend</td>
+                    <td class="text-end fw-semibold">$125</td>
+                  </tr>
+                  <tr>
+                    <td>Saturday Only</td>
+                    <td class="text-end fw-semibold">$85</td>
+                  </tr>
+                  <tr>
+                    <td>NPC Weekend</td>
+                    <td class="text-end fw-semibold">$45</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="alert alert-info py-2 mb-3">
+                <small><i class="bi bi-clock me-1" aria-hidden="true"></i>Early bird pricing ends March 1</small>
+              </div>
+              <a href="checkout.html" class="btn btn-primary w-100 btn-lg mb-2">
+                <i class="bi bi-ticket-perforated me-2" aria-hidden="true"></i>Buy Tickets
+              </a>
+              <p class="text-center mb-0"><small class="text-muted">33 spots remaining</small></p>
+            </div>
           </div>
         </div>
       </div>
 
-      <p class="mt-4"><a href="event-index.html">View all upcoming events <i class="bi bi-arrow-right"></i></a></p>
+      <p class="mt-2"><a href="event-index.html">View all upcoming events <i class="bi bi-arrow-right"></i></a></p>
+    </div>
+  </section>
+
+  <hr class="heavy">
+
+  <!-- What is LARP Section -->
+  <section class="py-5">
+    <div class="container">
+      <h2>What is LARP?</h2>
+      <p class="lead">No experience necessary! Live Action Roleplaying is collaborative storytelling where you <em>become</em> your character. We provide loaner gear and orientation for new players — just bring yourself and a sense of adventure.</p>
+
+      <div class="row mt-4">
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body d-flex gap-3">
+              <div class="bg-secondary bg-opacity-10 d-flex align-items-center justify-content-center flex-shrink-0" style="width: 80px; height: 80px; border: var(--border-standard);">
+                <i class="bi bi-image text-muted"></i>
+              </div>
+              <div>
+                <h3 class="h5"><i class="bi bi-sword me-2" aria-hidden="true"></i>Combat & Adventure</h3>
+                <p class="mb-0">Engage in safe, foam-weapon combat. Lead raids against enemy forces. Defend your allies in the heat of battle.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body d-flex gap-3">
+              <div class="bg-secondary bg-opacity-10 d-flex align-items-center justify-content-center flex-shrink-0" style="width: 80px; height: 80px; border: var(--border-standard);">
+                <i class="bi bi-image text-muted"></i>
+              </div>
+              <div>
+                <h3 class="h5"><i class="bi bi-chat-quote me-2" aria-hidden="true"></i>Roleplay & Story</h3>
+                <p class="mb-0">Create a unique character with their own goals and backstory. Navigate politics, solve mysteries, and forge relationships.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body d-flex gap-3">
+              <div class="bg-secondary bg-opacity-10 d-flex align-items-center justify-content-center flex-shrink-0" style="width: 80px; height: 80px; border: var(--border-standard);">
+                <i class="bi bi-image text-muted"></i>
+              </div>
+              <div>
+                <h3 class="h5"><i class="bi bi-people me-2" aria-hidden="true"></i>Community</h3>
+                <p class="mb-0">Join a welcoming community of adventurers. Make friends, share stories, and create memories that last a lifetime.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex gap-3 mt-2">
+        <a href="intro.html" class="btn btn-outline-primary"><i class="bi bi-info-circle me-1"></i>Learn More About LARP</a>
+        <a href="join.html" class="btn btn-primary"><i class="bi bi-person-plus me-1"></i>Start Your Journey</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Choose Your Path Section -->
+  <section class="py-5" style="background-color: var(--color-bg-muted);">
+    <div class="container">
+      <h2>Choose Your Path</h2>
+      <p class="lead">Four paths await. Each shapes how you experience Osterra.</p>
+
+      <div class="row mt-4 g-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 text-center" style="border: var(--border-standard); background: var(--color-bg-card);">
+            <div class="card-body">
+              <div class="d-inline-flex align-items-center justify-content-center rounded-circle mb-3"
+                   style="width: 64px; height: 64px; background: var(--color-primary-subtle); color: var(--color-primary); font-size: 1.75rem;">
+                <i class="bi bi-shield-fill" aria-hidden="true"></i>
+              </div>
+              <h4>Warrior</h4>
+              <p>Frontline combatant. Heavy armor, shields, and battlefield control.</p>
+              <span class="badge" style="background: var(--color-primary-subtle); color: var(--color-primary);">
+                <i class="bi bi-shield-fill me-1" aria-hidden="true"></i>3 Armor Points
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 text-center" style="border: var(--border-standard); background: var(--color-bg-card);">
+            <div class="card-body">
+              <div class="d-inline-flex align-items-center justify-content-center rounded-circle mb-3"
+                   style="width: 64px; height: 64px; background: var(--color-primary-subtle); color: var(--color-primary); font-size: 1.75rem;">
+                <i class="bi bi-eye-fill" aria-hidden="true"></i>
+              </div>
+              <h4>Rogue</h4>
+              <p>Stealth and subterfuge. Traps, locks, poisons, and backstab.</p>
+              <span class="badge" style="background: var(--color-primary-subtle); color: var(--color-primary);">
+                <i class="bi bi-shield-fill me-1" aria-hidden="true"></i>2 Armor Points
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 text-center" style="border: var(--border-standard); background: var(--color-bg-card);">
+            <div class="card-body">
+              <div class="d-inline-flex align-items-center justify-content-center rounded-circle mb-3"
+                   style="width: 64px; height: 64px; background: var(--color-primary-subtle); color: var(--color-primary); font-size: 1.75rem;">
+                <i class="bi bi-stars" aria-hidden="true"></i>
+              </div>
+              <h4>Mage</h4>
+              <p>Arcane caster. Combat magic, wards, enchantments, and necromancy.</p>
+              <span class="badge" style="background: var(--color-primary-subtle); color: var(--color-primary);">
+                <i class="bi bi-book-fill me-1" aria-hidden="true"></i>Spellbook casting
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 text-center" style="border: var(--border-standard); background: var(--color-bg-card);">
+            <div class="card-body">
+              <div class="d-inline-flex align-items-center justify-content-center rounded-circle mb-3"
+                   style="width: 64px; height: 64px; background: var(--color-primary-subtle); color: var(--color-primary); font-size: 1.75rem;">
+                <i class="bi bi-heart-pulse-fill" aria-hidden="true"></i>
+              </div>
+              <h4>Healer</h4>
+              <p>Support and divine magic. Healing, blessings, curses, and restoration.</p>
+              <span class="badge" style="background: var(--color-primary-subtle); color: var(--color-primary);">
+                <i class="bi bi-shield-fill me-1" aria-hidden="true"></i>2 Armor Points
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-4">
+        <a href="character-builder.html" class="btn btn-primary btn-lg">
+          Build Your Character
+        </a>
+        <p class="text-muted mt-2">
+          <small>Choose skills, pick a faction, and craft your backstory</small>
+        </p>
+      </div>
     </div>
   </section>
 
@@ -117,37 +294,24 @@
       <h2>How to Get Started</h2>
 
       <div class="row mt-4">
-        <div class="col-md-3 mb-4 text-center">
+        <div class="col-md-4 mb-4 text-center">
           <div class="rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
                style="width: 60px; height: 60px; background: var(--color-primary); color: white; font-size: var(--text-2xl); font-weight: bold;">1</div>
-          <h4 class="h5">Read the Rules</h4>
-          <p>Start with our <a href="hub.html">Rules Hub</a> to understand combat, magic, and character creation.</p>
+          <h4 class="h5">Create an Account</h4>
+          <p>Follow our guided <a href="join.html">onboarding wizard</a> to set up your account and first character.</p>
         </div>
-        <div class="col-md-3 mb-4 text-center">
+        <div class="col-md-4 mb-4 text-center">
           <div class="rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
                style="width: 60px; height: 60px; background: var(--color-primary); color: white; font-size: var(--text-2xl); font-weight: bold;">2</div>
-          <h4 class="h5">Create a Character</h4>
-          <p>Use our <a href="character-builder.html">Character Builder</a> to choose your path and craft your story.</p>
-        </div>
-        <div class="col-md-3 mb-4 text-center">
-          <div class="rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-               style="width: 60px; height: 60px; background: var(--color-primary); color: white; font-size: var(--text-2xl); font-weight: bold;">3</div>
           <h4 class="h5">Register for an Event</h4>
           <p>Pick an <a href="event-index.html">upcoming event</a> and secure your spot.</p>
         </div>
-        <div class="col-md-3 mb-4 text-center">
+        <div class="col-md-4 mb-4 text-center">
           <div class="rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-               style="width: 60px; height: 60px; background: var(--color-primary); color: white; font-size: var(--text-2xl); font-weight: bold;">4</div>
+               style="width: 60px; height: 60px; background: var(--color-primary); color: white; font-size: var(--text-2xl); font-weight: bold;">3</div>
           <h4 class="h5">Join the Adventure</h4>
           <p>Show up ready to play. New player orientation is included at every event!</p>
         </div>
-      </div>
-
-      <div class="callout mt-4">
-        <div class="callout-title">New to LARP?</div>
-        <p class="mb-2">No experience necessary! We provide loaner gear and one-on-one orientation for new players. Just bring yourself and a sense of adventure.</p>
-        <a href="intro.html" class="btn btn-outline-primary me-2"><i class="bi bi-info-circle me-1"></i>What is LARP?</a>
-        <a href="join.html" class="btn btn-primary"><i class="bi bi-person-plus me-1"></i>Start Your Journey</a>
       </div>
     </div>
   </section>
@@ -201,7 +365,7 @@
           <h4 class="h5">Quick Links</h4>
           <ul class="list-unstyled">
             <li><a href="event-index.html">Events</a></li>
-            <li><a href="hub.html">Rules & Lore</a></li>
+            <li><a href="hub.html">Rules</a></li>
             <li><a href="faq.html">FAQ</a></li>
             <li><a href="contact.html">Contact Us</a></li>
             <li><a href="vendors.html">Approved Vendors</a></li>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dungeon">
+<html lang="en" data-theme="phb">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +7,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
   <link href="../css/variables.css" rel="stylesheet">
-  <link href="../css/theme-dungeon.css" rel="stylesheet" id="theme-css">
+  <link href="../css/theme-phb.css" rel="stylesheet" id="theme-css">
   <style>
     body {
       min-height: 100vh;
@@ -139,7 +139,7 @@
     /* Path Selection Cards */
     .path-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
       gap: var(--space-4);
       margin-bottom: var(--space-6);
     }
@@ -405,25 +405,48 @@
   </style>
 </head>
 <body>
-  <!-- Header -->
+  <a href="#main-content" class="visually-hidden-focusable">Skip to content</a>
+  <!-- Navigation -->
   <nav class="navbar navbar-expand-lg" style="background-color: var(--color-bg-surface); border-bottom: var(--border-heavy);">
     <div class="container">
-      <a class="navbar-brand" href="landing.html" style="font-family: var(--font-heading);">LARP Adventures</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="landing.html" style="font-family: var(--font-heading);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+          <path d="M16 2 L4 8 L4 16 C4 24 16 30 16 30 C16 30 28 24 28 16 L28 8 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          <line x1="16" y1="8" x2="16" y2="22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="12" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="16" cy="24" r="1.5" fill="currentColor"/>
+        </svg>
+        LARP Adventures
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav me-auto">
           <li class="nav-item"><a class="nav-link" href="landing.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="event-index.html">Events</a></li>
           <li class="nav-item"><a class="nav-link" href="hub.html">Rules</a></li>
-          <li class="nav-item"><a class="nav-link" href="reference.html">Skills Reference</a></li>
+          <li class="nav-item"><a class="nav-link" href="lore-hub.html">Lore</a></li>
+          <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
+          <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
         </ul>
+        <a href="../portal/login.html" class="btn btn-primary btn-sm">Player Portal</a>
       </div>
     </div>
   </nav>
 
+  <div class="container py-2">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><a href="landing.html">Home</a></li>
+        <li class="breadcrumb-item"><a href="hub.html">Rules</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Character Builder</li>
+      </ol>
+    </nav>
+  </div>
+
   <!-- Progress Tracker -->
-  <div class="builder-progress">
+  <div id="main-content" class="builder-progress">
     <div class="container">
       <div class="progress-steps">
         <div class="progress-step active" data-step="1">
@@ -444,6 +467,10 @@
         </div>
         <div class="progress-step" data-step="5">
           <span class="step-circle">5</span>
+          <span class="step-label">Access</span>
+        </div>
+        <div class="progress-step" data-step="6">
+          <span class="step-circle">6</span>
           <span class="step-label">Review</span>
         </div>
       </div>
@@ -461,81 +488,65 @@
 
           <div class="path-grid">
             <div class="path-card" onclick="selectPath(this, 'warrior')">
+              <div class="bg-secondary bg-opacity-10 d-flex align-items-center justify-content-center mb-3" style="height: 120px; border: var(--border-standard);">
+                <i class="bi bi-image text-muted" style="font-size: 2rem;"></i>
+              </div>
               <div class="path-icon">
                 <i class="bi bi-shield-fill"></i>
               </div>
               <h4>Warrior</h4>
-              <p>Masters of combat who protect their allies and vanquish their foes.</p>
+              <p>Frontline combatant. Heavy armor, shields, battlefield control, and fear effects.</p>
               <div class="path-stats">
-                <i class="bi bi-heart-fill text-danger me-1"></i>+3 HP |
-                <i class="bi bi-lightning-fill text-warning me-1"></i>+1 Stamina
+                <i class="bi bi-shield-fill text-primary me-1"></i>3 Armor Points
               </div>
             </div>
 
             <div class="path-card" onclick="selectPath(this, 'rogue')">
+              <div class="bg-secondary bg-opacity-10 d-flex align-items-center justify-content-center mb-3" style="height: 120px; border: var(--border-standard);">
+                <i class="bi bi-image text-muted" style="font-size: 2rem;"></i>
+              </div>
               <div class="path-icon">
                 <i class="bi bi-eye-fill"></i>
               </div>
               <h4>Rogue</h4>
-              <p>Cunning operatives skilled in stealth, subterfuge, and precision strikes.</p>
+              <p>Stealth and subterfuge. Traps, locks, poisons, pickpocketing, and backstab.</p>
               <div class="path-stats">
-                <i class="bi bi-heart-fill text-danger me-1"></i>+1 HP |
-                <i class="bi bi-lightning-fill text-warning me-1"></i>+3 Stamina
+                <i class="bi bi-shield-fill text-primary me-1"></i>2 Armor Points
               </div>
             </div>
 
             <div class="path-card" onclick="selectPath(this, 'mage')">
+              <div class="bg-secondary bg-opacity-10 d-flex align-items-center justify-content-center mb-3" style="height: 120px; border: var(--border-standard);">
+                <i class="bi bi-image text-muted" style="font-size: 2rem;"></i>
+              </div>
               <div class="path-icon">
                 <i class="bi bi-stars"></i>
               </div>
               <h4>Mage</h4>
-              <p>Wielders of arcane power who bend reality to their will.</p>
+              <p>Arcane caster. Combat magic, wards, enchantments, and necromancy via spellbook.</p>
               <div class="path-stats">
-                <i class="bi bi-heart-fill text-danger me-1"></i>+1 HP |
-                <i class="bi bi-droplet-fill text-primary me-1"></i>+4 Mana
+                <i class="bi bi-book-fill text-primary me-1"></i>Spellbook casting
               </div>
             </div>
 
             <div class="path-card" onclick="selectPath(this, 'healer')">
+              <div class="bg-secondary bg-opacity-10 d-flex align-items-center justify-content-center mb-3" style="height: 120px; border: var(--border-standard);">
+                <i class="bi bi-image text-muted" style="font-size: 2rem;"></i>
+              </div>
               <div class="path-icon">
-                <i class="bi bi-plus-circle-fill"></i>
+                <i class="bi bi-heart-pulse-fill"></i>
               </div>
               <h4>Healer</h4>
-              <p>Devoted servants of life who mend wounds and restore the fallen.</p>
+              <p>Support and divine magic. Healing, blessings, curses, and restoration.</p>
               <div class="path-stats">
-                <i class="bi bi-heart-fill text-danger me-1"></i>+2 HP |
-                <i class="bi bi-droplet-fill text-primary me-1"></i>+3 Mana
-              </div>
-            </div>
-
-            <div class="path-card" onclick="selectPath(this, 'crafter')">
-              <div class="path-icon">
-                <i class="bi bi-hammer"></i>
-              </div>
-              <h4>Crafter</h4>
-              <p>Artisans who create magical items, potions, and equipment.</p>
-              <div class="path-stats">
-                <i class="bi bi-heart-fill text-danger me-1"></i>+2 HP |
-                <i class="bi bi-gem text-info me-1"></i>+2 Craft Points
-              </div>
-            </div>
-
-            <div class="path-card" onclick="selectPath(this, 'diplomat')">
-              <div class="path-icon">
-                <i class="bi bi-chat-heart-fill"></i>
-              </div>
-              <h4>Diplomat</h4>
-              <p>Charismatic leaders who inspire allies and negotiate with enemies.</p>
-              <div class="path-stats">
-                <i class="bi bi-heart-fill text-danger me-1"></i>+2 HP |
-                <i class="bi bi-people-fill text-success me-1"></i>+2 Influence
+                <i class="bi bi-shield-fill text-primary me-1"></i>2 Armor Points
               </div>
             </div>
           </div>
 
           <div class="alert alert-info">
             <i class="bi bi-info-circle me-2"></i>
-            <strong>Tip:</strong> Your path is just a starting point! You can learn skills from other paths as you gain experience.
+            <strong>Tip:</strong> Your path is just a starting point! At Tier 2 you unlock cross-training and can learn abilities from other paths.
           </div>
 
           <div class="builder-nav">
@@ -560,36 +571,33 @@
             </div>
 
             <div class="skill-tier">
-              <div class="skill-tier-label">Tier 1 (Starting)</div>
+              <div class="skill-tier-label">Tier 0 (Starting)</div>
               <div class="skill-list">
-                <span class="skill-badge" onclick="toggleSkill(this)" data-skill="weapon-proficiency" data-tooltip="Proficiency with one weapon type">
+                <span class="skill-badge" onclick="toggleSkill(this)" data-skill="weapon-proficiency">
                   <i class="bi bi-sword me-1"></i>Weapon Proficiency
                 </span>
-                <span class="skill-badge" onclick="toggleSkill(this)" data-skill="armor-training" data-tooltip="Wear light armor without penalty">
-                  <i class="bi bi-shield me-1"></i>Armor Training
+                <span class="skill-badge" onclick="toggleSkill(this)" data-skill="armor-proficiency">
+                  <i class="bi bi-shield me-1"></i>Armor Proficiency
                 </span>
-                <span class="skill-badge" onclick="toggleSkill(this)" data-skill="battle-cry" data-tooltip="Rally nearby allies">
-                  <i class="bi bi-megaphone me-1"></i>Battle Cry
-                </span>
-                <span class="skill-badge" onclick="toggleSkill(this)" data-skill="parry" data-tooltip="Block one attack per encounter">
-                  <i class="bi bi-x-circle me-1"></i>Parry
+                <span class="skill-badge" onclick="toggleSkill(this)" data-skill="shield-use">
+                  <i class="bi bi-shield-fill me-1"></i>Shield Use
                 </span>
               </div>
             </div>
 
             <div class="skill-tier">
-              <div class="skill-tier-label">Tier 2 (Unlockable)</div>
+              <div class="skill-tier-label">Tier 1</div>
               <div class="skill-list">
-                <span class="skill-badge locked" data-skill="shield-bash" data-tooltip="Requires Armor Training">
-                  <i class="bi bi-shield-fill me-1"></i>Shield Bash
+                <span class="skill-badge locked" data-skill="hardiness">
+                  <i class="bi bi-heart-pulse me-1"></i>Hardiness
                   <i class="bi bi-lock-fill ms-1"></i>
                 </span>
-                <span class="skill-badge locked" data-skill="dual-wield" data-tooltip="Requires Weapon Proficiency">
-                  <i class="bi bi-diagram-2 me-1"></i>Dual Wield
+                <span class="skill-badge locked" data-skill="intimidating-presence">
+                  <i class="bi bi-exclamation-triangle me-1"></i>Intimidating Presence
                   <i class="bi bi-lock-fill ms-1"></i>
                 </span>
-                <span class="skill-badge locked" data-skill="intimidate" data-tooltip="Requires Battle Cry">
-                  <i class="bi bi-exclamation-triangle me-1"></i>Intimidate
+                <span class="skill-badge locked" data-skill="repair">
+                  <i class="bi bi-wrench me-1"></i>Repair
                   <i class="bi bi-lock-fill ms-1"></i>
                 </span>
               </div>
@@ -683,6 +691,7 @@
 
             <div class="prompt-card">
               <h5><i class="bi bi-geo-alt me-2"></i>Where are you from?</h5>
+              <label for="homeland" class="visually-hidden">Where are you from?</label>
               <select class="form-select" id="homeland" oninput="updatePreview()">
                 <option value="">Select a homeland...</option>
                 <option value="Northern Reaches">The Northern Reaches (cold, hardy, honor-bound)</option>
@@ -695,11 +704,13 @@
 
             <div class="prompt-card">
               <h5><i class="bi bi-heart me-2"></i>What drives you?</h5>
+              <label for="motivation" class="visually-hidden">What drives you?</label>
               <textarea class="form-control" id="motivation" rows="3" placeholder="Why did your character come to Osterra? What do they seek?" oninput="updatePreview()"></textarea>
             </div>
 
             <div class="prompt-card">
               <h5><i class="bi bi-lightning me-2"></i>What's your greatest flaw?</h5>
+              <label for="flaw" class="visually-hidden">What's your greatest flaw?</label>
               <select class="form-select" id="flaw">
                 <option value="">Select a character flaw...</option>
                 <option value="Prideful">Prideful - You struggle to admit when you're wrong</option>
@@ -713,6 +724,7 @@
 
             <div class="prompt-card">
               <h5><i class="bi bi-journal-text me-2"></i>Additional backstory (optional)</h5>
+              <label for="backstory" class="visually-hidden">Additional backstory</label>
               <textarea class="form-control" id="backstory" rows="4" placeholder="Any additional details about your character's history, relationships, or goals..."></textarea>
             </div>
           </div>
@@ -722,13 +734,88 @@
               <i class="bi bi-arrow-left me-2"></i>Back
             </button>
             <button class="btn btn-primary" onclick="goToStep(5)">
+              Accessibility<i class="bi bi-arrow-right ms-2"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 5: Accessibility & Accommodations -->
+        <div class="builder-panel" id="step5">
+          <h2><i class="bi bi-universal-access me-2"></i>Accessibility & Accommodations</h2>
+          <p class="lead">Help us ensure your safety and comfort at events.</p>
+
+          <div class="backstory-section">
+            <div class="form-check mb-4">
+              <input class="form-check-input" type="checkbox" id="hasAccessNeeds" onchange="toggleAccessFields()">
+              <label class="form-check-label" for="hasAccessNeeds">
+                <strong>I have accessibility needs for events</strong>
+              </label>
+            </div>
+
+            <div id="accessFields" style="display: none;">
+              <div class="mb-3">
+                <label for="mobilityNeeds" class="form-label">Mobility Needs</label>
+                <select class="form-select" id="mobilityNeeds">
+                  <option value="none">None</option>
+                  <option value="wheelchair">Wheelchair</option>
+                  <option value="limited">Limited mobility</option>
+                  <option value="cane-walker">Cane/walker</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label for="hearingNeeds" class="form-label">Hearing Needs</label>
+                <select class="form-select" id="hearingNeeds">
+                  <option value="none">None</option>
+                  <option value="hard-of-hearing">Hard of hearing</option>
+                  <option value="deaf">Deaf</option>
+                  <option value="asl">ASL interpreter needed</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label for="visionNeeds" class="form-label">Vision Needs</label>
+                <select class="form-select" id="visionNeeds">
+                  <option value="none">None</option>
+                  <option value="low-vision">Low vision</option>
+                  <option value="color-blind">Color blind</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label for="dietaryNeeds" class="form-label">Dietary Needs</label>
+                <input type="text" class="form-control" id="dietaryNeeds" placeholder="e.g., vegetarian, gluten-free, nut allergy">
+              </div>
+
+              <div class="mb-3">
+                <label for="otherAccess" class="form-label">Other Accommodations</label>
+                <textarea class="form-control" id="otherAccess" rows="3" placeholder="Any other accessibility needs or accommodations..."></textarea>
+              </div>
+
+              <div class="mb-3">
+                <label for="emergencyContact" class="form-label">Emergency Contact</label>
+                <input type="text" class="form-control" id="emergencyContact" placeholder="Name and phone number">
+              </div>
+            </div>
+
+            <div class="alert alert-info mt-3">
+              <i class="bi bi-lock me-2"></i>
+              <strong>Privacy:</strong> This information is shared only with event organizers to ensure your safety and comfort.
+            </div>
+          </div>
+
+          <div class="builder-nav">
+            <button class="btn btn-outline-secondary" onclick="goToStep(4)">
+              <i class="bi bi-arrow-left me-2"></i>Back
+            </button>
+            <button class="btn btn-primary" onclick="goToStep(6)">
               Review Character<i class="bi bi-arrow-right ms-2"></i>
             </button>
           </div>
         </div>
 
-        <!-- Step 5: Review -->
-        <div class="builder-panel" id="step5">
+        <!-- Step 6: Review -->
+        <div class="builder-panel" id="step6">
           <h2><i class="bi bi-check-circle me-2"></i>Review Your Character</h2>
           <p class="lead">Make sure everything looks right before creating your character.</p>
 
@@ -767,12 +854,56 @@
           </div>
 
           <div class="builder-nav">
-            <button class="btn btn-outline-secondary" onclick="goToStep(4)">
+            <button class="btn btn-outline-secondary" onclick="goToStep(5)">
               <i class="bi bi-arrow-left me-2"></i>Back
             </button>
             <button class="btn btn-success btn-lg" onclick="createCharacter()" id="createBtn" disabled>
               <i class="bi bi-person-plus me-2"></i>Create Character
             </button>
+          </div>
+        </div>
+
+        <!-- Success Panel -->
+        <div class="builder-panel" id="stepSuccess">
+          <div class="text-center py-4">
+            <div class="d-inline-flex align-items-center justify-content-center rounded-circle mb-3"
+                 style="width: 80px; height: 80px; background: var(--color-success-subtle, #d1fae5); color: var(--color-success, #16a34a); font-size: 2.5rem;">
+              <i class="bi bi-check-lg"></i>
+            </div>
+            <h2>Your Character is Ready!</h2>
+            <p class="lead">Create an account to save your character and join the adventure.</p>
+          </div>
+
+          <div class="card mb-4">
+            <div class="card-header">
+              <strong>Character Summary</strong>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <p><strong>Name:</strong> <span id="successName">-</span></p>
+                  <p><strong>Path:</strong> <span id="successPath">-</span></p>
+                  <p><strong>Faction:</strong> <span id="successFaction">-</span></p>
+                  <p><strong>Homeland:</strong> <span id="successHomeland">-</span></p>
+                </div>
+                <div class="col-md-6">
+                  <p><strong>Skills:</strong></p>
+                  <ul id="successSkills" class="mb-0">
+                    <li class="text-muted">-</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center">
+            <a href="join.html" class="btn btn-primary btn-lg">
+              <i class="bi bi-person-plus me-2"></i>Join to Save
+            </a>
+
+            <p class="text-muted mt-3">
+              <small>Already have an account? <a href="../portal/login.html">Sign in</a> to save this character.</small>
+            </p>
           </div>
         </div>
       </div>
@@ -808,16 +939,8 @@
           <hr>
 
           <div class="preview-stat">
-            <span><i class="bi bi-heart-fill text-danger me-1"></i>Health</span>
-            <span id="previewHP">10</span>
-          </div>
-          <div class="preview-stat">
-            <span><i class="bi bi-lightning-fill text-warning me-1"></i>Stamina</span>
-            <span id="previewStamina">5</span>
-          </div>
-          <div class="preview-stat">
-            <span><i class="bi bi-droplet-fill text-primary me-1"></i>Mana</span>
-            <span id="previewMana">0</span>
+            <span><i class="bi bi-shield-fill text-primary me-1"></i>Armor Points</span>
+            <span id="previewAP">-</span>
           </div>
         </div>
       </div>
@@ -839,14 +962,12 @@
       backstory: ''
     };
 
-    // Path bonuses
+    // Path stats (Armor Points)
     const pathBonuses = {
-      warrior: { hp: 3, stamina: 1, mana: 0 },
-      rogue: { hp: 1, stamina: 3, mana: 0 },
-      mage: { hp: 1, stamina: 0, mana: 4 },
-      healer: { hp: 2, stamina: 0, mana: 3 },
-      crafter: { hp: 2, stamina: 0, mana: 0 },
-      diplomat: { hp: 2, stamina: 0, mana: 0 }
+      warrior: { ap: 3 },
+      rogue: { ap: 2 },
+      mage: { ap: 0 },
+      healer: { ap: 2 }
     };
 
     function goToStep(step) {
@@ -867,12 +988,17 @@
         }
       });
 
-      // Update review if on step 5
-      if (step === 5) {
+      // Update review if on step 6
+      if (step === 6) {
         updateReview();
       }
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function toggleAccessFields() {
+      const checked = document.getElementById('hasAccessNeeds').checked;
+      document.getElementById('accessFields').style.display = checked ? 'block' : 'none';
     }
 
     function selectPath(element, path) {
@@ -888,18 +1014,14 @@
       document.getElementById('previewSubtitle').textContent = 'Level 1 ' + element.querySelector('h4').textContent;
 
       const bonuses = pathBonuses[path];
-      document.getElementById('previewHP').textContent = 10 + bonuses.hp;
-      document.getElementById('previewStamina').textContent = 5 + bonuses.stamina;
-      document.getElementById('previewMana').textContent = bonuses.mana;
+      document.getElementById('previewAP').textContent = bonuses.ap;
 
       // Update avatar icon based on path
       const icons = {
         warrior: 'bi-shield-fill',
         rogue: 'bi-eye-fill',
         mage: 'bi-stars',
-        healer: 'bi-plus-circle-fill',
-        crafter: 'bi-hammer',
-        diplomat: 'bi-chat-heart-fill'
+        healer: 'bi-heart-pulse-fill'
       };
       document.getElementById('previewAvatar').innerHTML = `<i class="bi ${icons[path]}"></i>`;
     }
@@ -970,9 +1092,33 @@
     });
 
     function createCharacter() {
-      // In production, this would save to the server
-      alert('Character created! In production, this would save to your account and redirect to your character sheet.');
-      window.location.href = '../portal/character.html';
+      // Populate success summary
+      document.getElementById('successName').textContent = character.name || 'Not set';
+      document.getElementById('successPath').textContent = character.path ?
+        document.querySelector('.path-card.selected h4').textContent : 'Not selected';
+      document.getElementById('successFaction').textContent = character.faction ?
+        document.querySelector('.faction-card.selected h5').textContent.replace(/^.+?\s/, '') : 'Not selected';
+      document.getElementById('successHomeland').textContent = character.homeland || 'Not selected';
+
+      const successSkills = document.getElementById('successSkills');
+      if (character.skills.length > 0) {
+        successSkills.innerHTML = character.skills.map(s =>
+          `<li>${s.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</li>`
+        ).join('');
+      }
+
+      document.querySelectorAll('.builder-panel').forEach(panel => {
+        panel.classList.remove('active');
+      });
+      document.getElementById('stepSuccess').classList.add('active');
+
+      // Mark all progress steps as completed
+      document.querySelectorAll('.progress-step').forEach(el => {
+        el.classList.remove('active');
+        el.classList.add('completed');
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   </script>
 </body>

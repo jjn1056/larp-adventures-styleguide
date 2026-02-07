@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dungeon">
+<html lang="en" data-theme="phb">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
 
   <!-- Theme CSS -->
   <link href="css/variables.css" rel="stylesheet">
-  <link href="css/theme-dungeon.css" rel="stylesheet" id="theme-css">
+  <link href="css/theme-phb.css" rel="stylesheet" id="theme-css">
 
   <style>
     /* Style Guide specific styles */
@@ -109,14 +109,15 @@
   </style>
 </head>
 <body>
+  <a href="#main-content" class="visually-hidden-focusable">Skip to content</a>
   <!-- Top Navigation -->
   <nav class="sg-nav">
     <div class="container">
-      <h1 class="h4 mb-0" style="border: none; padding: 0;">LARP Adventures Style Guide</h1>
+      <h1 class="h4 mb-0 d-flex align-items-center gap-2" style="border: none; padding: 0;"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 2 L4 8 L4 16 C4 24 16 30 16 30 C16 30 28 24 28 16 L28 8 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><line x1="16" y1="8" x2="16" y2="22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="24" r="1.5" fill="currentColor"/></svg>LARP Adventures Style Guide</h1>
     </div>
   </nav>
 
-  <div class="container">
+  <div id="main-content" class="container">
     <div class="row">
       <!-- Sidebar Navigation -->
       <div class="col-lg-3 d-none d-lg-block">
@@ -1190,10 +1191,10 @@
         <!-- Reactions -->
         <section id="reactions" class="sg-section">
           <h2>Reactions</h2>
-          <p>LARP-themed reaction buttons for lore articles, forum posts, and other community content. Reactions provide a quick way for players to engage with content without writing comments.</p>
+          <p>LARP-themed reaction buttons for lore articles, community posts, and other content. Reactions provide a quick way for players to engage with content without writing comments.</p>
 
           <h3 class="h5">Full Reaction Bar</h3>
-          <p>The complete set of four LARP-themed reactions for primary content like lore articles and forum original posts.</p>
+          <p>The complete set of four LARP-themed reactions for primary content like lore articles and community posts.</p>
           <div class="sg-example">
             <style>
               .sg-reactions {
@@ -1378,7 +1379,7 @@
           <h3 class="h5">Usage Guidelines</h3>
           <ul>
             <li><strong>Lore Articles:</strong> Place the full reaction bar after the article content, before navigation buttons.</li>
-            <li><strong>Forum Posts:</strong> Use the full reaction bar for original posts; use a compact version (2 buttons) for replies.</li>
+            <li><strong>Community Posts:</strong> Use the full reaction bar for original posts; use a compact version (2 buttons) for replies.</li>
             <li><strong>Theming:</strong> Reactions use CSS variables and automatically adapt to different themes.</li>
             <li><strong>Accessibility:</strong> Always include the <code>title</code> attribute for tooltip text describing the reaction.</li>
             <li><strong>Interactive State:</strong> Add the <code>.active</code> class when a user has reacted, and update the count accordingly.</li>

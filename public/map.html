@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dungeon">
+<html lang="en" data-theme="phb">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +7,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
   <link href="../css/variables.css" rel="stylesheet">
-  <link href="../css/theme-dungeon.css" rel="stylesheet" id="theme-css">
+  <link href="../css/theme-phb.css" rel="stylesheet" id="theme-css">
   <style>
     body {
       min-height: 100vh;
@@ -326,10 +326,19 @@
   </style>
 </head>
 <body>
+  <a href="#main-content" class="visually-hidden-focusable">Skip to content</a>
   <!-- Header -->
   <nav class="navbar navbar-expand-lg" style="background-color: var(--color-bg-surface); border-bottom: var(--border-heavy);">
     <div class="container-fluid">
-      <a class="navbar-brand" href="landing.html" style="font-family: var(--font-heading);">LARP Adventures</a>
+      <a class="navbar-brand d-flex align-items-center gap-2" href="landing.html" style="font-family: var(--font-heading);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+          <path d="M16 2 L4 8 L4 16 C4 24 16 30 16 30 C16 30 28 24 28 16 L28 8 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          <line x1="16" y1="8" x2="16" y2="22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="12" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="16" cy="24" r="1.5" fill="currentColor"/>
+        </svg>
+        LARP Adventures
+      </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -338,28 +347,26 @@
           <li class="nav-item"><a class="nav-link" href="landing.html">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="event-index.html">Events</a></li>
           <li class="nav-item"><a class="nav-link" href="hub.html">Rules</a></li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle active" href="#" data-bs-toggle="dropdown">Lore</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item active" href="map.html">Map of Osterra</a></li>
-              <li><a class="dropdown-item" href="reference.html">World History</a></li>
-              <li><a class="dropdown-item" href="../portal/lore.html">Lore Drops</a></li>
-            </ul>
-          </li>
+          <li class="nav-item"><a class="nav-link active" href="lore-hub.html">Lore</a></li>
           <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
+          <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
         </ul>
-        <div class="d-flex gap-2">
-          <a href="../portal/login.html" class="btn btn-outline-primary">Sign In</a>
-          <a href="join.html" class="btn btn-primary">Join</a>
-        </div>
+        <a href="../portal/login.html" class="btn btn-primary btn-sm">Player Portal</a>
       </div>
     </div>
   </nav>
 
-  <div class="map-container">
+  <div id="main-content" class="map-container">
     <!-- Sidebar -->
     <aside class="map-sidebar" id="mapSidebar">
       <div class="map-sidebar-header">
+        <nav aria-label="breadcrumb" class="mb-2">
+          <ol class="breadcrumb mb-0" style="font-size: var(--text-sm);">
+            <li class="breadcrumb-item"><a href="landing.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="lore-hub.html">Lore</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Map</li>
+          </ol>
+        </nav>
         <h1 class="h5 mb-1"><i class="bi bi-map me-2"></i>Map of Osterra</h1>
         <p class="text-muted mb-0 small">Explore the realm and its territories</p>
       </div>

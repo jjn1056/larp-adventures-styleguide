@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dungeon">
+<html lang="en" data-theme="phb">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,13 +7,22 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
   <link href="../css/variables.css" rel="stylesheet">
-  <link href="../css/theme-dungeon.css" rel="stylesheet" id="theme-css">
+  <link href="../css/theme-phb.css" rel="stylesheet" id="theme-css">
 </head>
 <body>
+  <a href="#main-content" class="visually-hidden-focusable">Skip to content</a>
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg">
     <div class="container">
-      <a class="navbar-brand" href="landing.html">LARP Adventures</a>
+      <a class="navbar-brand d-flex align-items-center gap-2" href="landing.html">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+          <path d="M16 2 L4 8 L4 16 C4 24 16 30 16 30 C16 30 28 24 28 16 L28 8 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          <line x1="16" y1="8" x2="16" y2="22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="12" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="16" cy="24" r="1.5" fill="currentColor"/>
+        </svg>
+        LARP Adventures
+      </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -21,11 +30,12 @@
         <ul class="navbar-nav me-auto">
           <li class="nav-item"><a class="nav-link" href="landing.html">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="event-index.html">Events</a></li>
-          <li class="nav-item"><a class="nav-link" href="hub.html">Rules & Lore</a></li>
+          <li class="nav-item"><a class="nav-link" href="hub.html">Rules</a></li>
+          <li class="nav-item"><a class="nav-link" href="lore-hub.html">Lore</a></li>
           <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
           <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
         </ul>
-        <a href="../portal/dashboard.html" class="btn btn-primary btn-sm">Player Portal</a>
+        <a href="../portal/login.html" class="btn btn-primary btn-sm">Player Portal</a>
       </div>
     </div>
   </nav>
@@ -33,12 +43,18 @@
   <!-- Page Header -->
   <header class="py-4" style="background-color: var(--color-bg-muted); border-bottom: var(--border-heavy);">
     <div class="container">
+      <nav aria-label="breadcrumb" class="mb-2">
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item"><a href="landing.html">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Organizers</li>
+        </ol>
+      </nav>
       <h1>Meet the Organizers</h1>
       <p class="lead mb-0">The team behind LARP Adventures</p>
     </div>
   </header>
 
-  <main class="container py-5">
+  <main id="main-content" class="container py-5">
     <p class="lead mb-5">LARP Adventures is run by a dedicated team of volunteers who share a passion for storytelling, community, and bringing the world of Osterra to life.</p>
 
     <!-- Leadership Team -->
@@ -49,7 +65,9 @@
         <div class="col-md-6 col-lg-4 mb-4">
           <div class="card h-100">
             <div class="card-body text-center">
-              <div class="feed-avatar mx-auto mb-3" style="width: 80px; height: 80px; background: var(--color-primary);"></div>
+              <div class="bg-secondary bg-opacity-10 d-flex align-items-center justify-content-center rounded-circle mx-auto mb-3" style="width: 100px; height: 100px; border: var(--border-standard);">
+                <i class="bi bi-image text-muted" style="font-size: 2rem;"></i>
+              </div>
               <h3 class="h5 mb-1">Skip Lipman</h3>
               <p class="text-muted mb-2">Game Director</p>
               <p class="small">Founder of LARP Adventures and the visionary behind Osterra. Skip handles overall game direction, major story arcs, and community relations.</p>
@@ -64,7 +82,9 @@
         <div class="col-md-6 col-lg-4 mb-4">
           <div class="card h-100">
             <div class="card-body text-center">
-              <div class="feed-avatar mx-auto mb-3" style="width: 80px; height: 80px; background: var(--color-secondary);"></div>
+              <div class="bg-secondary bg-opacity-10 d-flex align-items-center justify-content-center rounded-circle mx-auto mb-3" style="width: 100px; height: 100px; border: var(--border-standard);">
+                <i class="bi bi-image text-muted" style="font-size: 2rem;"></i>
+              </div>
               <h3 class="h5 mb-1">Cynthia Ashley</h3>
               <p class="text-muted mb-2">Operations Director</p>
               <p class="small">Manages event logistics, site coordination, and player registration. Cynthia ensures every event runs smoothly from start to finish.</p>
@@ -79,7 +99,9 @@
         <div class="col-md-6 col-lg-4 mb-4">
           <div class="card h-100">
             <div class="card-body text-center">
-              <div class="feed-avatar mx-auto mb-3" style="width: 80px; height: 80px; background: var(--color-info);"></div>
+              <div class="bg-secondary bg-opacity-10 d-flex align-items-center justify-content-center rounded-circle mx-auto mb-3" style="width: 100px; height: 100px; border: var(--border-standard);">
+                <i class="bi bi-image text-muted" style="font-size: 2rem;"></i>
+              </div>
               <h3 class="h5 mb-1">Donald Wayne Barton III</h3>
               <p class="text-muted mb-2">Rules Director</p>
               <p class="small">Leads the rules committee and ensures fair, balanced gameplay. Contact Don for rules questions and clarifications.</p>
@@ -242,7 +264,7 @@
           <h4 class="h5">Quick Links</h4>
           <ul class="list-unstyled">
             <li><a href="event-index.html">Events</a></li>
-            <li><a href="hub.html">Rules & Lore</a></li>
+            <li><a href="hub.html">Rules</a></li>
             <li><a href="faq.html">FAQ</a></li>
             <li><a href="organizers.html">Contact Us</a></li>
           </ul>

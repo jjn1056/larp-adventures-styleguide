@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dungeon">
+<html lang="en" data-theme="phb">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +7,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
   <link href="../css/variables.css" rel="stylesheet">
-  <link href="../css/theme-dungeon.css" rel="stylesheet" id="theme-css">
+  <link href="../css/theme-phb.css" rel="stylesheet" id="theme-css">
   <style>
     /* Reference document specific styles */
     .ref-sidebar {
@@ -40,10 +40,19 @@
   </style>
 </head>
 <body>
+  <a href="#main-content" class="visually-hidden-focusable">Skip to content</a>
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg">
     <div class="container">
-      <a class="navbar-brand" href="landing.html">LARP Adventures</a>
+      <a class="navbar-brand d-flex align-items-center gap-2" href="landing.html">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+          <path d="M16 2 L4 8 L4 16 C4 24 16 30 16 30 C16 30 28 24 28 16 L28 8 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          <line x1="16" y1="8" x2="16" y2="22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="12" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="16" cy="24" r="1.5" fill="currentColor"/>
+        </svg>
+        LARP Adventures
+      </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -51,11 +60,12 @@
         <ul class="navbar-nav me-auto">
           <li class="nav-item"><a class="nav-link" href="landing.html">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="event-index.html">Events</a></li>
-          <li class="nav-item"><a class="nav-link active" href="hub.html">Rules & Lore</a></li>
+          <li class="nav-item"><a class="nav-link active" href="hub.html">Rules</a></li>
+          <li class="nav-item"><a class="nav-link" href="lore-hub.html">Lore</a></li>
           <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
           <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
         </ul>
-        <a href="../portal/dashboard.html" class="btn btn-primary btn-sm">Player Portal</a>
+        <a href="../portal/login.html" class="btn btn-primary btn-sm">Player Portal</a>
       </div>
     </div>
   </nav>
@@ -65,7 +75,7 @@
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb mb-0">
         <li class="breadcrumb-item"><a href="landing.html">Home</a></li>
-        <li class="breadcrumb-item"><a href="hub.html">Rules & Lore</a></li>
+        <li class="breadcrumb-item"><a href="hub.html">Rules</a></li>
         <li class="breadcrumb-item active" aria-current="page">Unit & Land Rules</li>
       </ol>
     </nav>
@@ -80,7 +90,7 @@
     </div>
   </header>
 
-  <main class="container py-5">
+  <main id="main-content" class="container py-5">
     <!-- Rules Navigation -->
     <nav class="rules-nav mb-4 pb-3" style="border-bottom: var(--border-standard);">
       <span class="text-muted me-2">Rules:</span>
@@ -206,8 +216,8 @@
           </ol>
 
           <div class="callout">
-            <div class="callout-title">Coalition vs. Unit</div>
-            <p class="mb-0">A <strong>Coalition</strong> is an alliance of multiple units working together. Coalitions can claim larger territories and field larger armies, but require coordination between member units. Each unit retains its independence within the coalition.</p>
+            <div class="callout-title">Faction vs. Unit</div>
+            <p class="mb-0">A <strong>Faction</strong> is an alliance of multiple units working together. Factions can claim larger territories and field larger armies, but require coordination between member units. Each unit retains its independence within the faction.</p>
           </div>
         </section>
 

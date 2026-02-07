@@ -1,19 +1,28 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dungeon">
+<html lang="en" data-theme="phb">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rules & Lore Hub - LARP Adventures</title>
+  <title>Rules Hub - LARP Adventures</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
   <link href="../css/variables.css" rel="stylesheet">
-  <link href="../css/theme-dungeon.css" rel="stylesheet" id="theme-css">
+  <link href="../css/theme-phb.css" rel="stylesheet" id="theme-css">
 </head>
 <body>
+  <a href="#main-content" class="visually-hidden-focusable">Skip to content</a>
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg">
     <div class="container">
-      <a class="navbar-brand" href="landing.html">LARP Adventures</a>
+      <a class="navbar-brand d-flex align-items-center gap-2" href="landing.html">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+          <path d="M16 2 L4 8 L4 16 C4 24 16 30 16 30 C16 30 28 24 28 16 L28 8 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          <line x1="16" y1="8" x2="16" y2="22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="12" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="16" cy="24" r="1.5" fill="currentColor"/>
+        </svg>
+        LARP Adventures
+      </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -21,11 +30,12 @@
         <ul class="navbar-nav me-auto">
           <li class="nav-item"><a class="nav-link" href="landing.html">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="event-index.html">Events</a></li>
-          <li class="nav-item"><a class="nav-link active" href="hub.html">Rules & Lore</a></li>
+          <li class="nav-item"><a class="nav-link active" href="hub.html">Rules</a></li>
+          <li class="nav-item"><a class="nav-link" href="lore-hub.html">Lore</a></li>
           <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
           <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
         </ul>
-        <a href="../portal/dashboard.html" class="btn btn-primary btn-sm">Player Portal</a>
+        <a href="../portal/login.html" class="btn btn-primary btn-sm">Player Portal</a>
       </div>
     </div>
   </nav>
@@ -33,18 +43,24 @@
   <!-- Page Header -->
   <header class="py-4" style="background-color: var(--color-bg-muted); border-bottom: var(--border-heavy);">
     <div class="container">
-      <h1>Rules & Lore Hub</h1>
+      <nav aria-label="breadcrumb" class="mb-2">
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item"><a href="landing.html">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Rules</li>
+        </ol>
+      </nav>
+      <h1>Rules Hub</h1>
       <p class="lead mb-0">Everything you need to know about playing in Osterra</p>
     </div>
   </header>
 
-  <main class="container py-5">
+  <main id="main-content" class="container py-5">
     <!-- Quick Start -->
     <section class="mb-5">
       <div class="callout">
         <div class="callout-title">New Player?</div>
         <p>Start with our <strong>Quick Start Guide</strong> for the essentials, then explore the full rules when you're ready. Don't worry about memorizing everything - we'll teach you at your first event!</p>
-        <a href="reference.html" class="btn btn-primary btn-sm">Read Quick Start Guide</a>
+        <a href="quickstart.html" class="btn btn-primary btn-sm">Read Quick Start Guide</a>
       </div>
     </section>
 
@@ -188,57 +204,6 @@
       </div>
     </section>
 
-    <hr class="heavy">
-
-    <!-- Lore -->
-    <section class="mb-5">
-      <h2>World of Osterra</h2>
-      <p>Explore the history, geography, and factions of our fantasy realm.</p>
-
-      <div class="row">
-        <div class="col-md-6 col-lg-3 mb-4">
-          <div class="card h-100 text-center">
-            <div class="card-body">
-              <i class="bi bi-globe" style="font-size: 2rem; color: var(--color-primary);"></i>
-              <h4 class="h5 mt-3">World History</h4>
-              <p class="text-muted">The ages of Osterra and the events that shaped the realm.</p>
-              <a href="reference.html">Read</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3 mb-4">
-          <div class="card h-100 text-center">
-            <div class="card-body">
-              <i class="bi bi-map" style="font-size: 2rem; color: var(--color-primary);"></i>
-              <h4 class="h5 mt-3">Map of Osterra</h4>
-              <p class="text-muted">Interactive map of lands, cities, and notable locations.</p>
-              <a href="map.html">Explore Map</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3 mb-4">
-          <div class="card h-100 text-center">
-            <div class="card-body">
-              <i class="bi bi-flag" style="font-size: 2rem; color: var(--color-primary);"></i>
-              <h4 class="h5 mt-3">Factions</h4>
-              <p class="text-muted">The coalitions, guilds, and organizations you can join.</p>
-              <a href="reference.html">Read</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3 mb-4">
-          <div class="card h-100 text-center">
-            <div class="card-body">
-              <i class="bi bi-people" style="font-size: 2rem; color: var(--color-primary);"></i>
-              <h4 class="h5 mt-3">Races & Peoples</h4>
-              <p class="text-muted">The various peoples who call Osterra home.</p>
-              <a href="reference.html">Read</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <hr>
 
     <!-- Resources -->
@@ -307,7 +272,7 @@
           <h4 class="h5">Quick Links</h4>
           <ul class="list-unstyled">
             <li><a href="event-index.html">Events</a></li>
-            <li><a href="hub.html">Rules & Lore</a></li>
+            <li><a href="hub.html">Rules</a></li>
             <li><a href="faq.html">FAQ</a></li>
             <li><a href="contact.html">Contact Us</a></li>
           </ul>

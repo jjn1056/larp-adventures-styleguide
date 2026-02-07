@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dungeon">
+<html lang="en" data-theme="phb">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +7,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
   <link href="../css/variables.css" rel="stylesheet">
-  <link href="../css/theme-dungeon.css" rel="stylesheet" id="theme-css">
+  <link href="../css/theme-phb.css" rel="stylesheet" id="theme-css">
   <style>
     body {
       min-height: 100vh;
@@ -103,24 +103,25 @@
   </style>
 </head>
 <body>
+  <a href="#main-content" class="visually-hidden-focusable">Skip to content</a>
   <a href="../public/landing.html" class="back-link btn btn-outline-secondary btn-sm">
-    <i class="bi bi-arrow-left me-2"></i>Back to Site
+    <i class="bi bi-arrow-left me-2" aria-hidden="true"></i>Back to Site
   </a>
 
-  <div class="login-container">
+  <div id="main-content" class="login-container">
     <div class="login-card">
       <div class="login-header">
-        <div class="login-logo">LARP Adventures</div>
+        <div class="login-logo d-flex align-items-center justify-content-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 2 L4 8 L4 16 C4 24 16 30 16 30 C16 30 28 24 28 16 L28 8 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><line x1="16" y1="8" x2="16" y2="22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="24" r="1.5" fill="currentColor"/></svg>LARP Adventures</div>
         <p class="login-subtitle">Sign in to access the Player Portal</p>
       </div>
 
       <!-- Social Login Options -->
       <div class="social-login">
         <button class="btn btn-outline-secondary">
-          <i class="bi bi-google me-2"></i>Google
+          <i class="bi bi-google me-2" aria-hidden="true"></i>Google
         </button>
         <button class="btn btn-outline-secondary">
-          <i class="bi bi-discord me-2"></i>Discord
+          <i class="bi bi-discord me-2" aria-hidden="true"></i>Discord
         </button>
       </div>
 
@@ -149,7 +150,7 @@
         </div>
 
         <button type="submit" class="btn btn-primary w-100 mb-3">
-          <i class="bi bi-box-arrow-in-right me-2"></i>Sign In
+          <i class="bi bi-box-arrow-in-right me-2" aria-hidden="true"></i>Sign In
         </button>
       </form>
 
