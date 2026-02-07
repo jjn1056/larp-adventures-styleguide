@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="phb">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - LARP Adventures</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="../css/variables.css" rel="stylesheet">
+  <link href="../css/theme-phb.css" rel="stylesheet" id="theme-css">
+  <style>
+    body {
+      min-height: 100vh;
+      background-color: var(--color-bg-page);
+    }
+
+    /* Progress Steps */
+    .checkout-progress {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-2);
+      margin: var(--space-4) 0;
+    }
+
+    .checkout-step {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+    }
+
+    .checkout-step .step-number {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: var(--font-semibold);
+      background: var(--color-bg-muted);
+      border: 2px solid var(--color-border-default);
+      transition: all var(--transition-fast);
+    }
+
+    .checkout-step.active .step-number {
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+      color: white;
+    }
+
+    .checkout-step.completed .step-number {
+      background: var(--color-success);
+      border-color: var(--color-success);
+      color: white;
+    }
+
+    .checkout-step.active .step-label {
+      color: var(--color-text-primary);
+      font-weight: var(--font-medium);
+    }
+
+    .checkout-step.completed .step-label {
+      color: var(--color-success);
+    }
+
+    .step-connector {
+      width: 40px;
+      height: 2px;
+      background: var(--color-border-default);
+    }
+
+    .step-connector.completed {
+      background: var(--color-success);
+    }
+
+    @media (max-width: 768px) {
+      .checkout-step .step-label {
+        display: none;
+      }
+      .step-connector {
+        width: 24px;
+      }
+    }
+
+    /* Checkout Panels */
+    .checkout-panel {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .checkout-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Ticket Options (from portal/checkout.html) */
+    .ticket-option {
+      border: var(--border-standard);
+      border-radius: var(--radius-md);
+      padding: var(--space-4);
+      background: var(--color-bg-surface);
+      transition: all var(--transition-fast);
+      margin-bottom: var(--space-3);
+    }
+
+    .ticket-option:hover {
+      border-color: var(--color-primary) !important;
+    }
+
+    .ticket-option.selected {
+      border-color: var(--color-primary);
+      background: var(--color-primary-subtle);
+    }
+
+    .qty-control {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .qty-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-full);
+      border: var(--border-standard);
+      background: var(--color-bg-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .qty-btn:hover {
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+      color: white;
+    }
+
+    .qty-value {
+      width: 40px;
+      text-align: center;
+      font-weight: var(--font-semibold);
+    }
+
+    .addon-option {
+      border: var(--border-standard);
+      border-radius: var(--radius-md);
+      padding: var(--space-3);
+      background: var(--color-bg-surface);
+      transition: all var(--transition-fast);
+    }
+
+    .addon-option:hover {
+      border-color: var(--color-primary);
+    }
+
+    .addon-option.selected {
+      border-color: var(--color-primary);
+      background: var(--color-primary-subtle);
+    }
+
+    .order-summary {
+      position: sticky;
+      top: 20px;
+    }
+
+    .early-bird-badge {
+      background: var(--color-success-subtle);
+      color: var(--color-success);
+      font-size: var(--text-xs);
+      padding: var(--space-1) var(--space-2);
+      border-radius: var(--radius-sm);
+      font-weight: var(--font-semibold);
+    }
+
+    .ticket-price {
+      font-size: var(--text-xl);
+      font-weight: var(--font-bold);
+    }
+
+    .pwyw-input {
+      width: 80px;
+      text-align: center;
+    }
+
+    /* Navigation */
+    .checkout-nav {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-3);
+      padding-top: var(--space-4);
+      border-top: var(--border-standard);
+      margin-top: var(--space-4);
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="visually-hidden-focusable">Skip to content</a>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg" style="background-color: var(--color-bg-surface); border-bottom: var(--border-heavy);">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="landing.html" style="font-family: var(--font-heading);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+          <path d="M16 2 L4 8 L4 16 C4 24 16 30 16 30 C16 30 28 24 28 16 L28 8 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          <line x1="16" y1="8" x2="16" y2="22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="12" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="16" cy="24" r="1.5" fill="currentColor"/>
+        </svg>
+        LARP Adventures
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="landing.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="event-index.html">Events</a></li>
+          <li class="nav-item"><a class="nav-link" href="hub.html">Rules</a></li>
+          <li class="nav-item"><a class="nav-link" href="lore-hub.html">Lore</a></li>
+          <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
+          <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+        </ul>
+        <a href="../portal/login.html" class="btn btn-primary btn-sm">Player Portal</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Breadcrumb -->
+  <div class="container py-2">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><a href="landing.html">Home</a></li>
+        <li class="breadcrumb-item"><a href="event-index.html">Events</a></li>
+        <li class="breadcrumb-item"><a href="event-detail.html">Rites of Spring</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Checkout</li>
+      </ol>
+    </nav>
+  </div>
+
+  <!-- Progress Steps -->
+  <div class="container">
+    <div class="checkout-progress">
+      <div class="checkout-step active" data-step="1">
+        <span class="step-number">1</span>
+        <span class="step-label">Tickets</span>
+      </div>
+      <div class="step-connector"></div>
+      <div class="checkout-step" data-step="2">
+        <span class="step-number">2</span>
+        <span class="step-label">Your Info</span>
+      </div>
+      <div class="step-connector"></div>
+      <div class="checkout-step" data-step="3">
+        <span class="step-number">3</span>
+        <span class="step-label">Payment</span>
+      </div>
+      <div class="step-connector"></div>
+      <div class="checkout-step" data-step="4">
+        <span class="step-number">4</span>
+        <span class="step-label">Confirm</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main id="main-content" class="container py-4">
+    <div class="row">
+      <!-- Checkout Panels -->
+      <div class="col-lg-8">
+
+        <!-- Step 1: Tickets -->
+        <div class="checkout-panel active" id="step1">
+          <section class="mb-5">
+            <h2 class="h4 mb-4">Select Your Tickets</h2>
+
+            <!-- Full Weekend Pass -->
+            <div class="ticket-option" data-ticket="weekend" data-price="85">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="flex-grow-1">
+                  <div class="d-flex align-items-center gap-2 mb-2">
+                    <h3 class="h5 mb-0">Full Weekend Pass</h3>
+                    <span class="early-bird-badge">Early Bird - Save $20</span>
+                  </div>
+                  <p class="text-muted mb-2">Friday 6pm - Sunday 2pm. Includes all meals, cabin bunk, and full event access.</p>
+                  <span class="ticket-price">$85</span>
+                  <span class="text-muted text-decoration-line-through ms-2">$105</span>
+                </div>
+                <div class="qty-control">
+                  <button class="qty-btn qty-minus" type="button" aria-label="Decrease Full Weekend Pass quantity"><i class="bi bi-dash" aria-hidden="true"></i></button>
+                  <span class="qty-value">0</span>
+                  <button class="qty-btn qty-plus" type="button" aria-label="Increase Full Weekend Pass quantity"><i class="bi bi-plus" aria-hidden="true"></i></button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Saturday Day Pass -->
+            <div class="ticket-option" data-ticket="saturday" data-price="45">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="flex-grow-1">
+                  <h3 class="h5 mb-2">Saturday Day Pass</h3>
+                  <p class="text-muted mb-2">Saturday 9am - 10pm. Includes lunch and dinner, no overnight accommodations.</p>
+                  <span class="ticket-price">$45</span>
+                </div>
+                <div class="qty-control">
+                  <button class="qty-btn qty-minus" type="button" aria-label="Decrease Saturday Day Pass quantity"><i class="bi bi-dash" aria-hidden="true"></i></button>
+                  <span class="qty-value">0</span>
+                  <button class="qty-btn qty-plus" type="button" aria-label="Increase Saturday Day Pass quantity"><i class="bi bi-plus" aria-hidden="true"></i></button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Youth Package -->
+            <div class="ticket-option" data-ticket="youth" data-price="25">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="flex-grow-1">
+                  <div class="d-flex align-items-center gap-2 mb-2">
+                    <h3 class="h5 mb-0">Youth Package (13-17)</h3>
+                    <span class="badge bg-info">Requires Parent/Guardian</span>
+                  </div>
+                  <p class="text-muted mb-2">Full weekend access for youth players. Must be accompanied by a registered adult.</p>
+                  <span class="ticket-price">$25</span>
+                </div>
+                <div class="qty-control">
+                  <button class="qty-btn qty-minus" type="button" aria-label="Decrease Youth Package quantity"><i class="bi bi-dash" aria-hidden="true"></i></button>
+                  <span class="qty-value">0</span>
+                  <button class="qty-btn qty-plus" type="button" aria-label="Increase Youth Package quantity"><i class="bi bi-plus" aria-hidden="true"></i></button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pay What You Can -->
+            <div class="ticket-option" data-ticket="pwyw" data-price="10">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="flex-grow-1">
+                  <div class="d-flex align-items-center gap-2 mb-2">
+                    <h3 class="h5 mb-0">Pay What You Can</h3>
+                    <span class="badge bg-secondary">Financial Hardship Option</span>
+                  </div>
+                  <p class="text-muted mb-2">We believe everyone should be able to play. Minimum $10, pay what feels right for you.</p>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="ticket-price">$</span>
+                    <input type="number" class="form-control pwyw-input" value="10" min="10" id="pwyw-amount" aria-label="Pay what you can amount">
+                    <span class="text-muted">+</span>
+                  </div>
+                </div>
+                <div class="qty-control">
+                  <button class="qty-btn qty-minus" type="button" aria-label="Decrease Pay What You Can quantity"><i class="bi bi-dash" aria-hidden="true"></i></button>
+                  <span class="qty-value">0</span>
+                  <button class="qty-btn qty-plus" type="button" aria-label="Increase Pay What You Can quantity"><i class="bi bi-plus" aria-hidden="true"></i></button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Add-ons Section -->
+          <section class="mb-5">
+            <h2 class="h4 mb-4">Add-ons</h2>
+
+            <div class="row g-3">
+              <div class="col-md-4">
+                <label class="addon-option d-block h-100">
+                  <input type="checkbox" class="d-none" data-addon="tshirt" data-price="25" aria-label="Add Event T-Shirt">
+                  <div class="d-flex justify-content-between align-items-start mb-2">
+                    <span class="fw-semibold">Event T-Shirt</span>
+                    <span class="fw-bold">$25</span>
+                  </div>
+                  <p class="text-muted small mb-0">Limited edition 2026 Rites of Spring shirt</p>
+                </label>
+              </div>
+
+              <div class="col-md-4">
+                <label class="addon-option d-block h-100">
+                  <input type="checkbox" class="d-none" data-addon="meals" data-price="15" aria-label="Add Extra Meal Tickets">
+                  <div class="d-flex justify-content-between align-items-start mb-2">
+                    <span class="fw-semibold">Extra Meal Tickets</span>
+                    <span class="fw-bold">$15</span>
+                  </div>
+                  <p class="text-muted small mb-0">5-pack of additional meal tickets for guests</p>
+                </label>
+              </div>
+
+              <div class="col-md-4">
+                <label class="addon-option d-block h-100">
+                  <input type="checkbox" class="d-none" data-addon="scholarship" data-price="10" aria-label="Add Scholarship Fund donation">
+                  <div class="d-flex justify-content-between align-items-start mb-2">
+                    <span class="fw-semibold">Scholarship Fund</span>
+                    <span class="fw-bold">$10</span>
+                  </div>
+                  <p class="text-muted small mb-2">Help other players attend events</p>
+                  <span class="badge bg-success"><i class="bi bi-heart-fill me-1"></i>Community Support</span>
+                </label>
+              </div>
+            </div>
+          </section>
+
+          <!-- Promo Code -->
+          <section class="mb-5">
+            <h2 class="h5 mb-3">Have a promo code?</h2>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Enter code" aria-label="Promo code">
+                  <button class="btn btn-outline-primary" type="button">Apply</button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Navigation -->
+          <div class="checkout-nav">
+            <a href="event-detail.html" class="btn btn-outline-secondary">
+              <i class="bi bi-arrow-left me-2"></i>Back to Event
+            </a>
+            <button class="btn btn-primary" id="continueToInfo" disabled onclick="goToStep(2)">
+              Continue to Your Info<i class="bi bi-arrow-right ms-2"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 2: Your Info -->
+        <div class="checkout-panel" id="step2">
+          <h2 class="h4 mb-4">Your Information</h2>
+          <p class="text-muted mb-4">We need a few details to complete your registration.</p>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="guestFirstName" class="form-label">First Name *</label>
+              <input type="text" class="form-control" id="guestFirstName" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="guestLastName" class="form-label">Last Name *</label>
+              <input type="text" class="form-control" id="guestLastName" required>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="guestEmail" class="form-label">Email Address *</label>
+            <input type="email" class="form-control" id="guestEmail" required>
+            <div class="form-text">Your tickets and event info will be sent here.</div>
+          </div>
+          <div class="mb-3">
+            <label for="guestPhone" class="form-label">Phone Number</label>
+            <input type="tel" class="form-control" id="guestPhone">
+            <div class="form-text">Optional — for day-of event communications only.</div>
+          </div>
+
+          <div class="alert alert-info">
+            <i class="bi bi-person-check me-2"></i>
+            <strong>Already have an account?</strong>
+            <a href="../portal/login.html">Sign in</a> for a faster checkout.
+          </div>
+
+          <!-- Navigation -->
+          <div class="checkout-nav">
+            <button class="btn btn-outline-secondary" onclick="goToStep(1)">
+              <i class="bi bi-arrow-left me-2"></i>Back
+            </button>
+            <button class="btn btn-primary" onclick="goToStep(3)">
+              Continue to Payment<i class="bi bi-arrow-right ms-2"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 3: Payment -->
+        <div class="checkout-panel" id="step3">
+          <h2 class="h4 mb-4">Payment</h2>
+          <p class="text-muted mb-4">All transactions are secure and encrypted.</p>
+
+          <div class="mb-4">
+            <div class="form-check form-check-inline mb-3">
+              <input class="form-check-input" type="radio" name="paymentMethod" id="payCard" value="card" checked>
+              <label class="form-check-label" for="payCard">
+                <i class="bi bi-credit-card me-1"></i>Credit / Debit Card
+              </label>
+            </div>
+            <div class="form-check form-check-inline mb-3">
+              <input class="form-check-input" type="radio" name="paymentMethod" id="payPaypal" value="paypal">
+              <label class="form-check-label" for="payPaypal">
+                <i class="bi bi-paypal me-1"></i>PayPal
+              </label>
+            </div>
+          </div>
+
+          <!-- Card fields (placeholder for Stripe Elements) -->
+          <div class="mb-3">
+            <label for="cardNumber" class="form-label">Card Number</label>
+            <input type="text" class="form-control" id="cardNumber" placeholder="1234 5678 9012 3456">
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="cardExpiry" class="form-label">Expiration</label>
+              <input type="text" class="form-control" id="cardExpiry" placeholder="MM / YY">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="cardCvc" class="form-label">CVC</label>
+              <input type="text" class="form-control" id="cardCvc" placeholder="123">
+            </div>
+          </div>
+
+          <!-- Navigation -->
+          <div class="checkout-nav">
+            <button class="btn btn-outline-secondary" onclick="goToStep(2)">
+              <i class="bi bi-arrow-left me-2"></i>Back
+            </button>
+            <button class="btn btn-success btn-lg" id="payBtn" onclick="completeCheckout()">
+              <i class="bi bi-lock-fill me-2"></i>Pay <span id="payTotal">$0.00</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 4: Success -->
+        <div class="checkout-panel" id="step4">
+          <!-- Success icon + confirmation -->
+          <div class="text-center py-4">
+            <div class="d-inline-flex align-items-center justify-content-center rounded-circle mb-3"
+                 style="width: 80px; height: 80px; background: var(--color-success-subtle, #d1fae5); color: var(--color-success, #16a34a); font-size: 2.5rem;">
+              <i class="bi bi-check-lg"></i>
+            </div>
+            <h2>You're Registered!</h2>
+            <p class="lead">Confirmation sent to <strong id="confirmEmail">your email</strong>.</p>
+          </div>
+
+          <!-- Order summary card (static recap) -->
+          <div class="card mb-4">
+            <div class="card-header"><strong>Order Confirmation</strong></div>
+            <div class="card-body">
+              <p><strong>Event:</strong> Rites of Spring — Mar 15-17, 2026</p>
+              <div id="confirmItems"></div>
+              <hr>
+              <div class="d-flex justify-content-between fw-bold">
+                <span>Total Paid</span>
+                <span id="confirmTotal">$0.00</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Inline account creation (quick signup) -->
+          <div class="card mb-4" style="border-color: var(--color-primary);">
+            <div class="card-header" style="background: var(--color-primary-subtle);">
+              <strong><i class="bi bi-person-plus me-2"></i>Save Your Registration</strong>
+            </div>
+            <div class="card-body">
+              <p>Create an account to manage your booking, build a character, and get event updates.</p>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="setPassword" class="form-label">Set a Password</label>
+                  <input type="password" class="form-control" id="setPassword">
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="confirmPassword" class="form-label">Confirm Password</label>
+                  <input type="password" class="form-control" id="confirmPassword">
+                </div>
+              </div>
+              <button class="btn btn-primary" onclick="quickSignup()">
+                <i class="bi bi-person-check me-2"></i>Create Account
+              </button>
+              <p class="text-muted mt-3 mb-0">
+                <small>Want the full onboarding experience? <a href="join.html">Go through the join wizard</a> instead.</small>
+              </p>
+            </div>
+          </div>
+
+          <!-- Secondary actions -->
+          <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+            <a href="character-builder.html" class="btn btn-outline-primary btn-lg">
+              <i class="bi bi-hammer me-2"></i>Build Your Character
+            </a>
+            <a href="event-index.html" class="btn btn-outline-secondary btn-lg">
+              <i class="bi bi-calendar-event me-2"></i>Browse More Events
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order Summary Sidebar -->
+      <div class="col-lg-4" id="orderSidebar">
+        <div class="order-summary card" style="background: var(--color-bg-muted);">
+          <div class="card-header">
+            <strong><i class="bi bi-cart3 me-2"></i>Order Summary</strong>
+          </div>
+          <div class="card-body">
+            <div id="order-items">
+              <p class="text-muted text-center py-4">
+                <i class="bi bi-ticket-perforated d-block" style="font-size: var(--text-2xl);"></i>
+                No tickets selected yet
+              </p>
+            </div>
+
+            <div id="order-totals" class="d-none">
+              <hr>
+              <div class="d-flex justify-content-between mb-2">
+                <span>Subtotal</span>
+                <span id="subtotal">$0.00</span>
+              </div>
+              <div class="d-flex justify-content-between mb-2 text-muted">
+                <span>Processing Fee</span>
+                <span id="fee">$0.00</span>
+              </div>
+              <hr>
+              <div class="d-flex justify-content-between fw-bold" style="font-size: var(--text-lg);">
+                <span>Total</span>
+                <span id="total">$0.00</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer text-muted small">
+            <i class="bi bi-shield-check me-1"></i>Secure checkout powered by Stripe
+          </div>
+        </div>
+
+        <!-- Event Quick Info -->
+        <div class="card mt-4">
+          <div class="card-header">
+            <strong>Event Details</strong>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between">
+              <span><i class="bi bi-calendar me-2"></i>Date</span>
+              <span>Mar 15-17, 2026</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <span><i class="bi bi-geo-alt me-2"></i>Location</span>
+              <span>Camp Evergreen, PA</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <span><i class="bi bi-people me-2"></i>Spots Left</span>
+              <span class="badge bg-success">33</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Help -->
+        <div class="card mt-4">
+          <div class="card-body">
+            <h5 class="card-title"><i class="bi bi-question-circle me-2"></i>Need Help?</h5>
+            <p class="card-text small mb-2">Questions about registration?</p>
+            <a href="faq.html" class="btn btn-outline-primary btn-sm">FAQ</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-5" style="background-color: var(--color-bg-page); border-top: var(--border-heavy);">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <h4 class="h5">LARP Adventures</h4>
+          <p class="text-muted">Live action roleplaying in the realm of Osterra since 2015.</p>
+        </div>
+        <div class="col-md-4 mb-4">
+          <h4 class="h5">Quick Links</h4>
+          <ul class="list-unstyled">
+            <li><a href="event-index.html">Events</a></li>
+            <li><a href="hub.html">Rules</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="organizers.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4 mb-4">
+          <h4 class="h5">Questions?</h4>
+          <p class="text-muted">Email us at <a href="mailto:events@larpadventures.com">events@larpadventures.com</a></p>
+        </div>
+      </div>
+      <hr>
+      <p class="text-muted text-center mb-0">&copy; 2026 LARP Adventures. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    let currentStep = 1;
+
+    // Ticket quantity controls
+    document.querySelectorAll('.ticket-option').forEach(option => {
+      const minusBtn = option.querySelector('.qty-minus');
+      const plusBtn = option.querySelector('.qty-plus');
+      const qtyValue = option.querySelector('.qty-value');
+
+      minusBtn.addEventListener('click', () => {
+        let qty = parseInt(qtyValue.textContent);
+        if (qty > 0) {
+          qtyValue.textContent = qty - 1;
+          if (qty - 1 === 0) option.classList.remove('selected');
+          updateOrderSummary();
+        }
+      });
+
+      plusBtn.addEventListener('click', () => {
+        let qty = parseInt(qtyValue.textContent);
+        if (qty < 10) {
+          qtyValue.textContent = qty + 1;
+          option.classList.add('selected');
+          updateOrderSummary();
+        }
+      });
+    });
+
+    // Add-on selection
+    document.querySelectorAll('.addon-option').forEach(option => {
+      option.addEventListener('click', () => {
+        const checkbox = option.querySelector('input[type="checkbox"]');
+        checkbox.checked = !checkbox.checked;
+        option.classList.toggle('selected', checkbox.checked);
+        updateOrderSummary();
+      });
+    });
+
+    // PWYW amount change
+    document.getElementById('pwyw-amount').addEventListener('change', updateOrderSummary);
+
+    // Update order summary
+    function updateOrderSummary() {
+      const orderItems = document.getElementById('order-items');
+      const orderTotals = document.getElementById('order-totals');
+      const continueBtn = document.getElementById('continueToInfo');
+      let items = [];
+      let subtotal = 0;
+
+      // Calculate tickets
+      document.querySelectorAll('.ticket-option').forEach(option => {
+        const qty = parseInt(option.querySelector('.qty-value').textContent);
+        if (qty > 0) {
+          const ticketType = option.dataset.ticket;
+          let price = parseInt(option.dataset.price);
+
+          if (ticketType === 'pwyw') {
+            price = parseInt(document.getElementById('pwyw-amount').value) || 10;
+          }
+
+          const ticketNames = {
+            'weekend': 'Full Weekend Pass',
+            'saturday': 'Saturday Day Pass',
+            'youth': 'Youth Package',
+            'pwyw': 'Pay What You Can'
+          };
+
+          items.push({
+            name: ticketNames[ticketType],
+            qty: qty,
+            price: price * qty
+          });
+          subtotal += price * qty;
+        }
+      });
+
+      // Calculate add-ons
+      document.querySelectorAll('.addon-option input:checked').forEach(addon => {
+        const price = parseInt(addon.dataset.price);
+        const addonNames = {
+          'tshirt': 'Event T-Shirt',
+          'meals': 'Extra Meal Tickets',
+          'scholarship': 'Scholarship Fund'
+        };
+        items.push({
+          name: addonNames[addon.dataset.addon],
+          qty: 1,
+          price: price
+        });
+        subtotal += price;
+      });
+
+      // Update display
+      if (items.length === 0) {
+        orderItems.innerHTML = '<p class="text-muted text-center py-4"><i class="bi bi-ticket-perforated d-block" style="font-size: var(--text-2xl);"></i>No tickets selected yet</p>';
+        orderTotals.classList.add('d-none');
+        continueBtn.disabled = true;
+      } else {
+        let itemsHtml = '';
+        items.forEach(item => {
+          itemsHtml += '<div class="d-flex justify-content-between mb-2"><span>' + item.name + (item.qty > 1 ? ' x' + item.qty : '') + '</span><span>$' + item.price.toFixed(2) + '</span></div>';
+        });
+        orderItems.innerHTML = itemsHtml;
+        orderTotals.classList.remove('d-none');
+
+        const fee = Math.round(subtotal * 0.03 * 100) / 100;
+        const total = subtotal + fee;
+
+        document.getElementById('subtotal').textContent = '$' + subtotal.toFixed(2);
+        document.getElementById('fee').textContent = '$' + fee.toFixed(2);
+        document.getElementById('total').textContent = '$' + total.toFixed(2);
+        document.getElementById('payTotal').textContent = '$' + total.toFixed(2);
+        continueBtn.disabled = false;
+      }
+
+      // Store items for confirmation
+      window._orderItems = items;
+      window._orderTotal = subtotal + Math.round(subtotal * 0.03 * 100) / 100;
+    }
+
+    // Step navigation
+    function goToStep(step) {
+      // Hide all panels
+      document.querySelectorAll('.checkout-panel').forEach(panel => {
+        panel.classList.remove('active');
+      });
+      document.getElementById('step' + step).classList.add('active');
+
+      // Update progress indicators
+      document.querySelectorAll('.checkout-step').forEach((el, idx) => {
+        const stepNum = idx + 1;
+        el.classList.remove('active', 'completed');
+        if (stepNum < step) {
+          el.classList.add('completed');
+        } else if (stepNum === step) {
+          el.classList.add('active');
+        }
+      });
+
+      document.querySelectorAll('.step-connector').forEach((el, idx) => {
+        el.classList.toggle('completed', idx < step - 1);
+      });
+
+      // Hide sidebar on success step
+      document.getElementById('orderSidebar').style.display = step === 4 ? 'none' : '';
+
+      currentStep = step;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Complete checkout — populate confirmation and show step 4
+    function completeCheckout() {
+      // Populate confirmation email
+      const email = document.getElementById('guestEmail').value || 'your email';
+      document.getElementById('confirmEmail').textContent = email;
+
+      // Populate confirmation items
+      const items = window._orderItems || [];
+      let itemsHtml = '';
+      items.forEach(item => {
+        itemsHtml += '<div class="d-flex justify-content-between mb-1"><span>' + item.name + (item.qty > 1 ? ' x' + item.qty : '') + '</span><span>$' + item.price.toFixed(2) + '</span></div>';
+      });
+      document.getElementById('confirmItems').innerHTML = itemsHtml;
+
+      // Populate total
+      const total = window._orderTotal || 0;
+      document.getElementById('confirmTotal').textContent = '$' + total.toFixed(2);
+
+      // Show step 4
+      goToStep(4);
+
+      // Mark all steps completed
+      document.querySelectorAll('.checkout-step').forEach(el => {
+        el.classList.remove('active');
+        el.classList.add('completed');
+      });
+      document.querySelectorAll('.step-connector').forEach(el => {
+        el.classList.add('completed');
+      });
+    }
+
+    // Quick signup placeholder
+    function quickSignup() {
+      const pw = document.getElementById('setPassword').value;
+      const confirm = document.getElementById('confirmPassword').value;
+      if (!pw || !confirm) {
+        alert('Please fill in both password fields.');
+        return;
+      }
+      if (pw !== confirm) {
+        alert('Passwords do not match.');
+        return;
+      }
+      alert('Account created! (Style guide placeholder — in production this would call the API.)');
+    }
+  </script>
+  <script src="../js/theme-switcher.js"></script>
+</body>
+</html>
