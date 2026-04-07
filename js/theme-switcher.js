@@ -164,10 +164,21 @@
       .theme-btn + .theme-btn {
         border-top: 1px solid #eee;
       }
+
+      @media (max-width: 991.98px) {
+        .theme-switcher-float.has-mobile-bar {
+          bottom: 80px;
+        }
+      }
     `;
 
     document.head.appendChild(styles);
     document.body.appendChild(switcher);
+
+    // Bump switcher up if a mobile sticky bar is present
+    if (document.querySelector('.mobile-sticky-bar')) {
+      switcher.classList.add('has-mobile-bar');
+    }
 
     // Toggle options panel - using onclick for better Safari compatibility
     const toggle = switcher.querySelector('.theme-toggle');
