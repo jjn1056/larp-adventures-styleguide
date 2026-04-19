@@ -1,122 +1,110 @@
 /*
- * Theme: Tavern at Night
- * Warm dark theme - cozy candlelit atmosphere
- * Deep browns, amber/gold accents, inviting darkness
+ * Theme: Tavern at Night — dark candlelit atmosphere
+ * Role-based tokens; structural decisions live in variables.css.
+ * Status colors retuned so Warning ≠ Primary; Danger has real contrast.
  */
 
 [data-theme="tavern"] {
-  /* ========================================
-     COLOR PALETTE
-     ======================================== */
+  /* ---------- Core palette ---------- */
+  --_amber-500: #d4a454;
+  --_amber-600: #c49444;
+  --_amber-400: #e8b864;
+  --_copper-500: #a67c52;
+  --_copper-400: #b88c62;
+  --_copper-600: #8a6642;
 
-  /* Primary - Warm Amber/Gold (candlelight) */
-  --color-primary: #d4a454;
-  --color-primary-hover: #e8b864;
-  --color-primary-active: #c49444;
-  --color-primary-light: #5a4a2a;
-  --color-primary-subtle: #2a2418;
+  --_ink-900: #1a1412;
+  --_ink-800: #242019;
+  --_ink-700: #2a2320;
+  --_ink-600: #3a3230;
+  --_ink-500: #4a4038;
+  --_ink-400: #5a5048;
 
-  /* Secondary - Deep Copper */
-  --color-secondary: #a67c52;
-  --color-secondary-hover: #b88c62;
-  --color-secondary-active: #8a6642;
-  --color-secondary-light: #4a3a2a;
-  --color-secondary-subtle: #2a221a;
+  /* ---------- Role tokens ---------- */
+  --color-primary:            var(--_amber-500);
+  --color-primary-hover:      var(--_amber-400);
+  --color-primary-active:     var(--_amber-600);
+  --color-primary-fg:         var(--_ink-900);         /* text ON primary */
+  --color-primary-bg-soft:    rgba(212, 164, 84, 0.14);/* tint behind primary text */
+  --color-primary-border:     var(--_amber-500);
 
-  /* Backgrounds - Deep Warm Browns */
-  --color-bg-page: #1a1412;
-  --color-bg-surface: #2a2320;
-  --color-bg-elevated: #3a3230;
-  --color-bg-muted: #3a3230;
-  --color-bg-subtle: #242019;
+  --color-secondary:          var(--_copper-500);
+  --color-secondary-hover:    var(--_copper-400);
+  --color-secondary-active:   var(--_copper-600);
+  --color-secondary-fg:       #ffffff;
+  --color-secondary-bg-soft:  rgba(166, 124, 82, 0.18);
+  --color-secondary-border:   var(--_copper-500);
 
-  /* Text - Warm Light Tones */
-  --color-text-primary: #e8e0d4;
+  --color-bg-page:     var(--_ink-900);
+  --color-bg-surface:  var(--_ink-700);
+  --color-bg-elevated: var(--_ink-600);
+  --color-bg-muted:    var(--_ink-600);
+  --color-bg-subtle:   var(--_ink-800);
+
+  --color-text-primary:   #e8e0d4;
   --color-text-secondary: #b8a898;
-  --color-text-muted: #887868;
-  --color-text-inverse: #1a1412;
-  --color-text-link: #d4a454;
-  --color-text-link-hover: #e8b864;
+  --color-text-muted:     #887868;
+  --color-text-inverse:   var(--_ink-900);
+  --color-text-link:      var(--_amber-500);
+  --color-text-link-hover:var(--_amber-400);
 
-  /* Borders - Warm Browns */
-  --color-border: #4a4038;
-  --color-border-light: #3a3028;
-  --color-border-dark: #5a5048;
+  --color-border:       var(--_ink-500);
+  --color-border-light: var(--_ink-600);
+  --color-border-dark:  var(--_ink-400);
 
-  /* Status Colors - Muted for dark theme */
-  --color-success: #7cb87c;
-  --color-success-bg: #1a2a1a;
-  --color-success-border: #3a5a3a;
+  /* Status — retuned: warning is orange (not amber!), danger brighter */
+  --color-success:        #8fcf8f;
+  --color-success-bg:     #1e2e1e;
+  --color-success-border: #4a6a4a;
 
-  --color-warning: #d4a454;
-  --color-warning-bg: #2a2418;
-  --color-warning-border: #5a4a2a;
+  --color-warning:        #e89658;            /* orange, NOT amber */
+  --color-warning-bg:     #2e2218;
+  --color-warning-border: #6a4a30;
 
-  --color-danger: #c47474;
-  --color-danger-bg: #2a1a1a;
-  --color-danger-border: #5a3a3a;
+  --color-danger:         #e57a7a;            /* brighter red for AA on dark */
+  --color-danger-bg:      #2e1a1a;
+  --color-danger-border:  #6a3a3a;
 
-  --color-info: #74a4c4;
-  --color-info-bg: #1a2430;
-  --color-info-border: #3a5060;
+  --color-info:           #8cb8d4;
+  --color-info-bg:        #1a2633;
+  --color-info-border:    #3a5a72;
 
-  /* ========================================
-     TYPOGRAPHY OVERRIDES
-     ======================================== */
+  /* Focus & on-primary */
+  --color-focus-ring: var(--_amber-400);
+  --color-on-primary: var(--_ink-900);
 
-  --font-heading: Georgia, 'Times New Roman', serif;
-  --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  /* Shadows — dark bg: use deeper blacks + subtle warm inner glow */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.55), 0 2px 4px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 12px 20px rgba(0, 0, 0, 0.65), 0 4px 6px rgba(0, 0, 0, 0.4);
 
-  /* ========================================
-     BORDER STYLES
-     ======================================== */
+  /* Typography */
+  --font-display: 'Cormorant Garamond', 'Palatino Linotype', Palatino, Georgia, serif;
+  --font-heading: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-body:    'Lora', Georgia, serif;
 
-  --border-style: solid;
-  --border-color: var(--color-border);
-  --border-standard: var(--border-width-thin) var(--border-style) var(--color-border);
-  --border-heavy: var(--border-width-medium) var(--border-style) var(--color-border-dark);
+  /* Borders */
+  --border-standard: var(--border-width-thin) solid var(--color-border);
+  --border-heavy:    var(--border-width-medium) solid var(--color-border-dark);
 
-  /* ========================================
-     COMPONENT-SPECIFIC TOKENS
-     ======================================== */
+  /* Component tokens */
+  --card-bg:     var(--color-bg-surface);
+  --card-border: var(--border-width-medium) solid var(--color-border-dark);
+  --card-shadow: var(--shadow-md);
 
-  /* Cards - wooden notice board feel */
-  --card-bg: var(--color-bg-surface);
-  --card-border: 2px solid var(--color-border-dark);
-  --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  --card-radius: var(--radius-sm);
-
-  /* Buttons */
-  --btn-radius: var(--radius-sm);
-  --btn-font-weight: var(--font-semibold);
-  --btn-text-transform: uppercase;
-  --btn-letter-spacing: var(--tracking-wide);
-
-  /* Tables */
-  --table-border: var(--border-standard);
-  --table-header-bg: var(--color-bg-muted);
-  --table-stripe-bg: var(--color-bg-subtle);
-
-  /* Forms */
-  --input-bg: var(--color-bg-subtle);
-  --input-border: var(--border-standard);
+  --input-bg:                 var(--color-bg-subtle);
+  --input-border:             var(--border-width-thin) solid var(--color-border);
   --input-focus-border-color: var(--color-primary);
-  --input-radius: var(--radius-sm);
 
-  /* Navigation */
-  --nav-bg: var(--color-bg-surface);
-  --nav-border: var(--border-heavy);
-  --nav-link-color: var(--color-text-primary);
+  --nav-bg:               var(--color-bg-surface);
+  --nav-border:           var(--border-heavy);
+  --nav-link-color:       var(--color-text-primary);
   --nav-link-hover-color: var(--color-primary);
-
-  /* Alerts/Callouts */
-  --alert-radius: var(--radius-sm);
-  --alert-border-width: var(--border-width-medium);
 }
 
-/* ========================================
-   BASE STYLES
-   ======================================== */
+/* =========================================================================
+   BASE
+   ========================================================================= */
 
 [data-theme="tavern"] body {
   font-family: var(--font-body);
@@ -126,19 +114,13 @@
   background-color: var(--color-bg-page);
 }
 
-/* Headings */
-[data-theme="tavern"] h1,
-[data-theme="tavern"] h2,
-[data-theme="tavern"] h3,
-[data-theme="tavern"] h4,
-[data-theme="tavern"] h5,
-[data-theme="tavern"] h6,
-[data-theme="tavern"] .h1,
-[data-theme="tavern"] .h2,
-[data-theme="tavern"] .h3,
-[data-theme="tavern"] .h4,
-[data-theme="tavern"] .h5,
-[data-theme="tavern"] .h6 {
+/* Headings — clean by default, borders only inside .prose */
+[data-theme="tavern"] h1, [data-theme="tavern"] .h1,
+[data-theme="tavern"] h2, [data-theme="tavern"] .h2,
+[data-theme="tavern"] h3, [data-theme="tavern"] .h3,
+[data-theme="tavern"] h4, [data-theme="tavern"] .h4,
+[data-theme="tavern"] h5, [data-theme="tavern"] .h5,
+[data-theme="tavern"] h6, [data-theme="tavern"] .h6 {
   font-family: var(--font-heading);
   font-weight: var(--font-bold);
   line-height: var(--leading-tight);
@@ -146,24 +128,8 @@
   margin-bottom: var(--space-4);
 }
 
-[data-theme="tavern"] h1,
-[data-theme="tavern"] .h1 {
-  font-size: var(--text-4xl);
-  letter-spacing: var(--tracking-tight);
-  border-bottom: var(--border-heavy);
-  border-color: var(--color-primary);
-  padding-bottom: var(--space-3);
-  margin-bottom: var(--space-6);
-}
-
-[data-theme="tavern"] h2,
-[data-theme="tavern"] .h2 {
-  font-size: var(--text-3xl);
-  border-bottom: var(--border-standard);
-  padding-bottom: var(--space-2);
-  margin-bottom: var(--space-5);
-}
-
+[data-theme="tavern"] h1, [data-theme="tavern"] .h1 { font-size: var(--text-4xl); letter-spacing: var(--tracking-tight); }
+[data-theme="tavern"] h2, [data-theme="tavern"] .h2 { font-size: var(--text-3xl); }
 [data-theme="tavern"] h3, [data-theme="tavern"] .h3 { font-size: var(--text-2xl); }
 [data-theme="tavern"] h4, [data-theme="tavern"] .h4 { font-size: var(--text-xl); }
 [data-theme="tavern"] h5, [data-theme="tavern"] .h5 { font-size: var(--text-lg); }
@@ -171,62 +137,60 @@
   font-size: var(--text-base);
   text-transform: uppercase;
   letter-spacing: var(--tracking-wide);
+  color: var(--color-text-secondary);
+  font-family: var(--font-ui);
 }
 
-/* Links */
+/* Prose flourishes only */
+[data-theme="tavern"] .prose h1 {
+  border-bottom: var(--border-width-medium) solid var(--color-primary);
+  padding-bottom: var(--space-3);
+  margin-bottom: var(--space-6);
+  color: var(--color-primary);
+  font-family: var(--font-display);
+}
+[data-theme="tavern"] .prose h2 {
+  border-bottom: var(--border-width-thin) solid var(--color-border);
+  padding-bottom: var(--space-2);
+}
+
+/* Links — underline, no border-bottom */
 [data-theme="tavern"] a {
   color: var(--color-text-link);
   text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: all var(--transition-fast);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: color var(--transition-fast);
 }
-
+[data-theme="tavern"] .prose a, [data-theme="tavern"] a.link {
+  text-decoration: underline;
+  text-decoration-color: var(--color-border-dark);
+}
 [data-theme="tavern"] a:hover {
   color: var(--color-text-link-hover);
-  border-bottom-color: var(--color-text-link-hover);
+  text-decoration: underline;
+  text-decoration-color: var(--color-primary);
 }
 
-/* Paragraphs */
-[data-theme="tavern"] p {
-  margin-bottom: var(--space-4);
-}
+[data-theme="tavern"] p { margin-bottom: var(--space-4); }
+[data-theme="tavern"] ul, [data-theme="tavern"] ol { margin-bottom: var(--space-4); padding-left: var(--space-6); }
+[data-theme="tavern"] li { margin-bottom: var(--space-2); }
 
-/* Lists */
-[data-theme="tavern"] ul,
-[data-theme="tavern"] ol {
-  margin-bottom: var(--space-4);
-  padding-left: var(--space-6);
-}
-
-[data-theme="tavern"] li {
-  margin-bottom: var(--space-2);
-}
-
-/* Blockquotes - tavern story style */
+/* Blockquote */
 [data-theme="tavern"] blockquote {
+  font-family: var(--font-display);
   font-style: italic;
+  font-size: var(--text-xl);
   border-left: var(--border-width-thick) solid var(--color-primary);
   padding: var(--space-4) var(--space-6);
   margin: var(--space-6) 0;
   background-color: var(--color-bg-subtle);
   color: var(--color-text-secondary);
 }
+[data-theme="tavern"] blockquote p:last-child { margin-bottom: 0; }
 
-[data-theme="tavern"] blockquote p:last-child {
-  margin-bottom: 0;
-}
-
-/* Horizontal Rules */
-[data-theme="tavern"] hr {
-  border: none;
-  border-top: var(--border-standard);
-  margin: var(--space-8) 0;
-}
-
-[data-theme="tavern"] hr.heavy {
-  border-top: var(--border-heavy);
-  border-color: var(--color-primary);
-}
+[data-theme="tavern"] hr { border: none; border-top: var(--border-standard); margin: var(--space-8) 0; }
+[data-theme="tavern"] hr.heavy { border-top: var(--border-heavy); border-color: var(--color-primary); }
 
 /* Code */
 [data-theme="tavern"] code {
@@ -237,98 +201,86 @@
   border-radius: var(--radius-sm);
   color: var(--color-primary);
 }
-
 [data-theme="tavern"] pre {
   font-family: var(--font-mono);
   background-color: var(--color-bg-subtle);
   padding: var(--space-4);
-  overflow-x: auto;
   border: var(--border-standard);
+  overflow-x: auto;
   margin-bottom: var(--space-4);
 }
+[data-theme="tavern"] pre code { background: none; padding: 0; color: var(--color-text-primary); }
 
-[data-theme="tavern"] pre code {
-  background: none;
-  padding: 0;
-  color: var(--color-text-primary);
+/* =========================================================================
+   BOOTSTRAP OVERRIDES
+   ========================================================================= */
+
+[data-theme="tavern"] .btn {
+  border-radius: var(--btn-radius);
+  font-family: var(--font-ui);
+  font-weight: var(--font-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  border-width: var(--border-width-medium);
+  transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
 }
 
-/* ========================================
-   BOOTSTRAP OVERRIDES
-   ======================================== */
+/* a.btn-* specificity fix — same pattern as PHB. */
+[data-theme="tavern"] a.btn-primary,
+[data-theme="tavern"] a.btn-primary:hover,
+[data-theme="tavern"] a.btn-primary:focus,
+[data-theme="tavern"] a.btn-primary:active,
+[data-theme="tavern"] .btn-primary,
+[data-theme="tavern"] .btn-primary:hover { color: var(--color-on-primary); }
 
+[data-theme="tavern"] a.btn-secondary,
+[data-theme="tavern"] a.btn-secondary:hover,
+[data-theme="tavern"] .btn-secondary { color: var(--color-secondary-fg); }
+
+[data-theme="tavern"] a.btn-danger,
+[data-theme="tavern"] a.btn-danger:hover,
+[data-theme="tavern"] .btn-danger { color: var(--_ink-900); }
+
+[data-theme="tavern"] a.btn-outline-primary:hover,
+[data-theme="tavern"] a.btn-outline-primary:focus,
+[data-theme="tavern"] a.btn-outline-primary:active { color: var(--color-on-primary); }
 [data-theme="tavern"] .btn-primary {
   --bs-btn-bg: var(--color-primary);
   --bs-btn-border-color: var(--color-primary);
-  --bs-btn-color: #1a1412;
+  --bs-btn-color: var(--color-on-primary);
   --bs-btn-hover-bg: var(--color-primary-hover);
   --bs-btn-hover-border-color: var(--color-primary-hover);
-  --bs-btn-hover-color: #1a1412;
+  --bs-btn-hover-color: var(--color-on-primary);
   --bs-btn-active-bg: var(--color-primary-active);
   --bs-btn-active-border-color: var(--color-primary-active);
-  --bs-btn-active-color: #1a1412;
-  background-color: var(--color-primary);
-  color: #1a1412 !important;
-  text-transform: var(--btn-text-transform);
-  letter-spacing: var(--btn-letter-spacing);
-  font-weight: var(--btn-font-weight);
+  --bs-btn-active-color: var(--color-on-primary);
 }
-
-[data-theme="tavern"] .btn-primary:hover,
-[data-theme="tavern"] .btn-primary:focus,
-[data-theme="tavern"] .btn-primary:active {
-  color: #1a1412 !important;
-}
-
 [data-theme="tavern"] .btn-secondary {
   --bs-btn-bg: var(--color-secondary);
   --bs-btn-border-color: var(--color-secondary);
-  --bs-btn-color: #ffffff;
+  --bs-btn-color: var(--color-secondary-fg);
   --bs-btn-hover-bg: var(--color-secondary-hover);
   --bs-btn-hover-border-color: var(--color-secondary-hover);
-  --bs-btn-hover-color: #ffffff;
-  --bs-btn-active-bg: var(--color-secondary-active);
-  --bs-btn-active-border-color: var(--color-secondary-active);
-  --bs-btn-active-color: #ffffff;
-  background-color: var(--color-secondary);
-  color: #ffffff !important;
-  text-transform: var(--btn-text-transform);
-  letter-spacing: var(--btn-letter-spacing);
-  font-weight: var(--btn-font-weight);
+  --bs-btn-hover-color: var(--color-secondary-fg);
 }
-
-[data-theme="tavern"] .btn-secondary:hover,
-[data-theme="tavern"] .btn-secondary:focus,
-[data-theme="tavern"] .btn-secondary:active {
-  color: #ffffff !important;
-}
-
 [data-theme="tavern"] .btn-outline-primary {
   --bs-btn-color: var(--color-primary);
   --bs-btn-border-color: var(--color-primary);
   --bs-btn-hover-bg: var(--color-primary);
-  --bs-btn-hover-color: #1a1412;
+  --bs-btn-hover-color: var(--color-on-primary);
   --bs-btn-hover-border-color: var(--color-primary);
-  --bs-btn-active-bg: var(--color-primary-hover);
-  --bs-btn-active-border-color: var(--color-primary-hover);
-  --bs-btn-active-color: #1a1412;
-  text-transform: var(--btn-text-transform);
-  letter-spacing: var(--btn-letter-spacing);
-  font-weight: var(--btn-font-weight);
 }
-
-[data-theme="tavern"] .btn-outline-primary:hover,
-[data-theme="tavern"] .btn-outline-primary:focus,
-[data-theme="tavern"] .btn-outline-primary:active {
-  color: #1a1412 !important;
-}
-
 [data-theme="tavern"] .btn-outline-secondary {
   --bs-btn-color: var(--color-text-secondary);
   --bs-btn-border-color: var(--color-border-dark);
   --bs-btn-hover-bg: var(--color-bg-muted);
   --bs-btn-hover-color: var(--color-text-primary);
   --bs-btn-hover-border-color: var(--color-border-dark);
+}
+[data-theme="tavern"] .btn-danger {
+  --bs-btn-bg: var(--color-danger);
+  --bs-btn-border-color: var(--color-danger);
+  --bs-btn-color: var(--_ink-900);
 }
 
 /* Cards */
@@ -337,22 +289,17 @@
   --bs-card-border-color: var(--color-border-dark);
   --bs-card-border-radius: var(--card-radius);
   --bs-card-color: var(--color-text-primary);
+  border-width: var(--border-width-medium);
   box-shadow: var(--card-shadow);
 }
-
 [data-theme="tavern"] .card-header {
   background-color: var(--color-bg-muted);
   border-bottom: var(--border-standard);
+  font-family: var(--font-heading);
   font-weight: var(--font-semibold);
   color: var(--color-text-primary);
 }
-
-[data-theme="tavern"] .card-body {
-  color: var(--color-text-primary);
-}
-
 [data-theme="tavern"] .card-footer {
-  padding: var(--space-3) var(--space-4);
   background-color: var(--color-bg-surface);
   border-top: var(--border-standard);
 }
@@ -363,14 +310,17 @@
   --bs-table-border-color: var(--color-border);
   --bs-table-color: var(--color-text-primary);
 }
-
 [data-theme="tavern"] .table > thead {
-  background-color: var(--table-header-bg);
+  background-color: var(--color-bg-muted);
+  color: var(--color-primary);
+  font-family: var(--font-ui);
   font-weight: var(--font-semibold);
+  text-transform: uppercase;
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-wide);
 }
-
 [data-theme="tavern"] .table-striped > tbody > tr:nth-of-type(odd) {
-  --bs-table-striped-bg: var(--table-stripe-bg);
+  --bs-table-striped-bg: var(--color-bg-subtle);
 }
 
 /* Forms */
@@ -380,214 +330,66 @@
   border: var(--input-border);
   border-radius: var(--input-radius);
   color: var(--color-text-primary);
+  font-family: var(--font-ui);
 }
-
-[data-theme="tavern"] .form-control::placeholder {
-  color: var(--color-text-muted);
-}
-
+[data-theme="tavern"] .form-control::placeholder { color: var(--color-text-muted); }
 [data-theme="tavern"] .form-control:focus,
 [data-theme="tavern"] .form-select:focus {
   background-color: var(--input-bg);
   border-color: var(--input-focus-border-color);
-  box-shadow: 0 0 0 0.2rem rgba(212, 164, 84, 0.25);
+  box-shadow: 0 0 0 3px var(--color-primary-bg-soft);
   color: var(--color-text-primary);
 }
-
-[data-theme="tavern"] .form-label {
-  color: var(--color-text-primary);
-}
-
-[data-theme="tavern"] .form-text {
-  color: var(--color-text-muted);
-}
-
-[data-theme="tavern"] .form-check-label {
-  color: var(--color-text-primary);
-}
-
-/* Input groups */
-[data-theme="tavern"] .input-group-text {
-  background-color: var(--color-bg-muted);
-  border: var(--border-standard);
-  color: var(--color-text-secondary);
-}
+[data-theme="tavern"] .form-label { color: var(--color-text-primary); font-family: var(--font-ui); }
 
 /* Alerts */
 [data-theme="tavern"] .alert {
   border-radius: var(--alert-radius);
-  border-width: var(--alert-border-width);
+  border-width: var(--border-width-medium);
   border-left-width: var(--border-width-thick);
 }
-
-[data-theme="tavern"] .alert-success {
-  --bs-alert-bg: var(--color-success-bg);
-  --bs-alert-border-color: var(--color-success-border);
-  --bs-alert-color: var(--color-success);
-}
-
-[data-theme="tavern"] .alert-warning {
-  --bs-alert-bg: var(--color-warning-bg);
-  --bs-alert-border-color: var(--color-warning-border);
-  --bs-alert-color: var(--color-warning);
-}
-
-[data-theme="tavern"] .alert-danger {
-  --bs-alert-bg: var(--color-danger-bg);
-  --bs-alert-border-color: var(--color-danger-border);
-  --bs-alert-color: var(--color-danger);
-}
-
-[data-theme="tavern"] .alert-info {
-  --bs-alert-bg: var(--color-info-bg);
-  --bs-alert-border-color: var(--color-info-border);
-  --bs-alert-color: var(--color-info);
-}
+[data-theme="tavern"] .alert-success { --bs-alert-bg: var(--color-success-bg); --bs-alert-border-color: var(--color-success-border); --bs-alert-color: var(--color-success); }
+[data-theme="tavern"] .alert-warning { --bs-alert-bg: var(--color-warning-bg); --bs-alert-border-color: var(--color-warning-border); --bs-alert-color: var(--color-warning); }
+[data-theme="tavern"] .alert-danger  { --bs-alert-bg: var(--color-danger-bg);  --bs-alert-border-color: var(--color-danger-border);  --bs-alert-color: var(--color-danger); }
+[data-theme="tavern"] .alert-info    { --bs-alert-bg: var(--color-info-bg);    --bs-alert-border-color: var(--color-info-border);    --bs-alert-color: var(--color-info); }
 
 /* Navbar */
-[data-theme="tavern"] .navbar {
-  background-color: var(--nav-bg);
-  border-bottom: var(--nav-border);
-  position: sticky;
-  top: 0;
-  z-index: 1030;
-}
-
-[data-theme="tavern"] .navbar-brand {
-  font-family: var(--font-heading);
-  font-weight: var(--font-bold);
-  font-size: var(--text-xl);
-  color: var(--color-primary);
-}
-
-[data-theme="tavern"] .nav-link {
-  color: var(--color-text-secondary);
-}
-
-[data-theme="tavern"] .nav-link:hover,
-[data-theme="tavern"] .nav-link.active {
-  color: var(--color-primary);
-}
+[data-theme="tavern"] .navbar { background-color: var(--nav-bg); border-bottom: var(--nav-border); font-family: var(--font-ui); }
+[data-theme="tavern"] .navbar-brand { font-family: var(--font-display); font-weight: var(--font-bold); font-size: var(--text-2xl); color: var(--color-primary); }
+[data-theme="tavern"] .nav-link { color: var(--color-text-secondary); }
+[data-theme="tavern"] .nav-link:hover, [data-theme="tavern"] .nav-link.active { color: var(--color-primary); }
 
 /* Badges */
 [data-theme="tavern"] .badge {
+  font-family: var(--font-ui);
   font-weight: var(--font-semibold);
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
   font-size: var(--text-xs);
+  border-radius: var(--radius-sm);
 }
+[data-theme="tavern"] .badge.bg-primary   { background-color: var(--color-primary) !important; color: var(--color-on-primary); }
+[data-theme="tavern"] .badge.bg-secondary { background-color: var(--color-bg-muted) !important; color: var(--color-text-primary); }
 
-[data-theme="tavern"] .badge.bg-primary {
-  background-color: var(--color-primary) !important;
-  color: var(--color-text-inverse);
-}
-
-[data-theme="tavern"] .badge.bg-secondary {
-  background-color: var(--color-bg-muted) !important;
-  color: var(--color-text-primary);
-}
-
-/* Dropdowns */
-[data-theme="tavern"] .dropdown-menu {
-  background-color: var(--color-bg-surface);
-  border: var(--border-standard);
-}
-
-[data-theme="tavern"] .dropdown-item {
-  color: var(--color-text-primary);
-}
-
-[data-theme="tavern"] .dropdown-item:hover {
-  background-color: var(--color-bg-muted);
-  color: var(--color-primary);
-}
-
-/* Modals */
+/* Modal */
 [data-theme="tavern"] .modal-content {
   background-color: var(--color-bg-surface);
   border: var(--border-heavy);
   color: var(--color-text-primary);
 }
+[data-theme="tavern"] .modal-header { border-bottom: var(--border-standard); }
+[data-theme="tavern"] .modal-footer { border-top: var(--border-standard); }
+[data-theme="tavern"] .btn-close { filter: invert(1) grayscale(1); opacity: 0.7; }
+[data-theme="tavern"] .btn-close:hover { opacity: 1; }
 
-[data-theme="tavern"] .modal-header {
-  border-bottom: var(--border-standard);
-}
+/* Progress */
+[data-theme="tavern"] .progress { background-color: var(--color-bg-subtle); border: var(--border-standard); }
+[data-theme="tavern"] .progress-bar { background-color: var(--color-primary); color: var(--color-on-primary); }
 
-[data-theme="tavern"] .modal-footer {
-  border-top: var(--border-standard);
-}
-
-[data-theme="tavern"] .btn-close {
-  filter: invert(1);
-}
-
-/* List groups */
-[data-theme="tavern"] .list-group-item {
-  background-color: var(--color-bg-surface);
-  border-color: var(--color-border);
-  color: var(--color-text-primary);
-}
-
-[data-theme="tavern"] .list-group-item.active {
-  background-color: var(--color-primary);
-  border-color: var(--color-primary);
-  color: var(--color-text-inverse);
-}
-
-/* Accordion */
-[data-theme="tavern"] .accordion-button {
-  background-color: var(--color-bg-surface);
-  color: var(--color-text-primary);
-}
-
-[data-theme="tavern"] .accordion-button:not(.collapsed) {
-  background-color: var(--color-bg-muted);
-  color: var(--color-primary);
-}
-
-[data-theme="tavern"] .accordion-body {
-  background-color: var(--color-bg-surface);
-  color: var(--color-text-primary);
-}
-
-/* Pagination */
-[data-theme="tavern"] .page-link {
-  background-color: var(--color-bg-surface);
-  border-color: var(--color-border);
-  color: var(--color-text-primary);
-}
-
-[data-theme="tavern"] .page-link:hover {
-  background-color: var(--color-bg-muted);
-  border-color: var(--color-border);
-  color: var(--color-primary);
-}
-
-[data-theme="tavern"] .page-item.active .page-link {
-  background-color: var(--color-primary);
-  border-color: var(--color-primary);
-  color: var(--color-text-inverse);
-}
-
-/* Text utilities */
-[data-theme="tavern"] .text-muted {
-  color: var(--color-text-muted) !important;
-}
-
-[data-theme="tavern"] .text-secondary {
-  color: var(--color-text-secondary) !important;
-}
-
-/* Background utilities */
-[data-theme="tavern"] .bg-light {
-  background-color: var(--color-bg-muted) !important;
-}
-
-/* ========================================
+/* =========================================================================
    CUSTOM COMPONENTS
-   ======================================== */
+   ========================================================================= */
 
-/* RPG-style callout box */
 [data-theme="tavern"] .callout {
   background-color: var(--color-bg-subtle);
   border: var(--border-standard);
@@ -595,9 +397,8 @@
   padding: var(--space-4);
   margin-bottom: var(--space-4);
 }
-
 [data-theme="tavern"] .callout-title {
-  font-family: var(--font-heading);
+  font-family: var(--font-display);
   font-weight: var(--font-bold);
   font-size: var(--text-lg);
   margin-bottom: var(--space-2);
@@ -606,111 +407,42 @@
   color: var(--color-primary);
 }
 
-/* Stat block */
 [data-theme="tavern"] .stat-block {
   background-color: var(--color-bg-surface);
   border: var(--border-heavy);
   padding: var(--space-4);
   margin-bottom: var(--space-4);
 }
-
 [data-theme="tavern"] .stat-block-header {
-  font-family: var(--font-heading);
+  font-family: var(--font-display);
   font-size: var(--text-2xl);
   font-weight: var(--font-bold);
-  border-bottom: var(--border-standard);
-  border-color: var(--color-primary);
+  border-bottom: var(--border-width-thin) solid var(--color-primary);
   padding-bottom: var(--space-2);
   margin-bottom: var(--space-3);
   color: var(--color-primary);
 }
-
-[data-theme="tavern"] .stat-block-subheader {
-  font-style: italic;
-  color: var(--color-text-secondary);
-  margin-bottom: var(--space-3);
-}
-
+[data-theme="tavern"] .stat-block-subheader { font-style: italic; color: var(--color-text-secondary); margin-bottom: var(--space-3); }
 [data-theme="tavern"] .stat-row {
   display: flex;
   justify-content: space-between;
   padding: var(--space-1) 0;
-  border-bottom: 1px dotted var(--color-border);
+  border-bottom: 1px dashed var(--color-border);
 }
+[data-theme="tavern"] .stat-row:last-child { border-bottom: none; }
+[data-theme="tavern"] .stat-label { font-weight: var(--font-semibold); color: var(--color-text-secondary); }
 
-[data-theme="tavern"] .stat-row:last-child {
-  border-bottom: none;
-}
+[data-theme="tavern"] .feed-item { display: flex; gap: var(--space-3); padding: var(--space-4); border-bottom: var(--border-standard); }
+[data-theme="tavern"] .feed-avatar { width: 40px; height: 40px; border-radius: var(--radius-full); background-color: var(--color-bg-muted); flex-shrink: 0; }
+[data-theme="tavern"] .feed-meta { font-size: var(--text-sm); color: var(--color-text-muted); }
 
-[data-theme="tavern"] .stat-label {
-  font-weight: var(--font-semibold);
-  color: var(--color-text-secondary);
-}
+[data-theme="tavern"] .character-card-header { display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-3); }
+[data-theme="tavern"] .character-avatar { width: 60px; height: 60px; border-radius: var(--radius-full); border: var(--border-standard); }
+[data-theme="tavern"] .character-name { font-family: var(--font-display); font-size: var(--text-xl); font-weight: var(--font-bold); margin: 0; color: var(--color-primary); }
+[data-theme="tavern"] .character-class { font-style: italic; color: var(--color-text-secondary); }
 
-/* Feed items */
-[data-theme="tavern"] .feed-item {
-  display: flex;
-  gap: var(--space-3);
-  padding: var(--space-4);
-  border-bottom: var(--border-standard);
-}
-
-[data-theme="tavern"] .feed-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-full);
-  background-color: var(--color-bg-muted);
-  flex-shrink: 0;
-}
-
-[data-theme="tavern"] .feed-meta {
-  font-size: var(--text-sm);
-  color: var(--color-text-muted);
-}
-
-/* Scrollbar styling for dark theme */
-[data-theme="tavern"] ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-[data-theme="tavern"] ::-webkit-scrollbar-track {
-  background: var(--color-bg-subtle);
-}
-
-[data-theme="tavern"] ::-webkit-scrollbar-thumb {
-  background: var(--color-border-dark);
-  border-radius: 5px;
-}
-
-[data-theme="tavern"] ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-primary);
-}
-
-/* Character cards */
-[data-theme="tavern"] .character-card-header {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  margin-bottom: var(--space-3);
-}
-
-[data-theme="tavern"] .character-avatar {
-  width: 60px;
-  height: 60px;
-  border-radius: var(--radius-full);
-  border: var(--border-standard);
-}
-
-[data-theme="tavern"] .character-name {
-  font-family: var(--font-heading);
-  font-size: var(--text-xl);
-  font-weight: var(--font-bold);
-  margin: 0;
-  color: var(--color-primary);
-}
-
-[data-theme="tavern"] .character-class {
-  font-style: italic;
-  color: var(--color-text-secondary);
-}
+/* Scrollbar */
+[data-theme="tavern"] ::-webkit-scrollbar { width: 10px; height: 10px; }
+[data-theme="tavern"] ::-webkit-scrollbar-track { background: var(--color-bg-subtle); }
+[data-theme="tavern"] ::-webkit-scrollbar-thumb { background: var(--color-border-dark); border-radius: 5px; }
+[data-theme="tavern"] ::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
