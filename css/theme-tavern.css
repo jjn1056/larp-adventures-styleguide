@@ -432,6 +432,48 @@
 [data-theme="tavern"] .stat-row:last-child { border-bottom: none; }
 [data-theme="tavern"] .stat-label { font-weight: var(--font-semibold); color: var(--color-text-secondary); }
 
+/* Rules reference pages */
+[data-theme="tavern"] .rules-toc {
+  position: sticky;
+  top: 80px;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  padding-right: var(--space-3);
+}
+[data-theme="tavern"] .rules-toc h6 {
+  color: var(--color-text-muted);
+  letter-spacing: var(--tracking-wider);
+  font-size: var(--text-xs);
+}
+[data-theme="tavern"] .rules-toc .nav-link {
+  color: var(--color-text-secondary);
+  padding: var(--space-1) var(--space-2);
+  font-size: var(--text-sm);
+}
+[data-theme="tavern"] .rules-toc .nav-link:hover,
+[data-theme="tavern"] .rules-toc .nav-link.active {
+  color: var(--color-primary);
+  background: var(--color-bg-subtle);
+}
+[data-theme="tavern"] .rule-doc {
+  max-width: var(--content-max-width);
+}
+[data-theme="tavern"] .rule-doc h3 {
+  margin-top: var(--space-5);
+}
+[data-theme="tavern"] .rule-doc p,
+[data-theme="tavern"] .rule-doc li {
+  line-height: var(--leading-relaxed);
+}
+[data-theme="tavern"] .source-link {
+  background: var(--color-bg-subtle);
+  border: var(--border-standard);
+  padding: var(--space-3);
+}
+[data-theme="tavern"] .doc-card .bi {
+  font-size: var(--text-2xl);
+}
+
 [data-theme="tavern"] .feed-item { display: flex; gap: var(--space-3); padding: var(--space-4); border-bottom: var(--border-standard); }
 [data-theme="tavern"] .feed-avatar { width: 40px; height: 40px; border-radius: var(--radius-full); background-color: var(--color-bg-muted); flex-shrink: 0; }
 [data-theme="tavern"] .feed-meta { font-size: var(--text-sm); color: var(--color-text-muted); }

@@ -459,7 +459,7 @@
         </div>
         <div class="progress-step" data-step="3">
           <span class="step-circle">3</span>
-          <span class="step-label">Faction</span>
+          <span class="step-label">Unit</span>
         </div>
         <div class="progress-step" data-step="4">
           <span class="step-circle">4</span>
@@ -562,51 +562,45 @@
         <!-- Step 2: Choose Skills -->
         <div class="builder-panel" id="step2">
           <h2><i class="bi bi-journal-bookmark me-2"></i>Choose Starting Skills</h2>
-          <p class="lead">Select 3 skills from your path's skill tree. Additional skills can be learned through gameplay.</p>
+          <p class="lead">Use your path rules to choose up to 3 Tier 0 skills for your first event. Guild trainers and organizers can help you finalize them on site.</p>
 
           <div class="skill-tree" id="skillTree">
             <div class="skill-tree-header">
-              <h4 class="mb-0" id="pathSkillsTitle">Warrior Skills</h4>
+              <h4 class="mb-0" id="pathSkillsTitle">Tier 0 Skill Notes</h4>
               <span class="badge bg-primary" id="skillCount">0 / 3 selected</span>
             </div>
 
             <div class="skill-tier">
-              <div class="skill-tier-label">Tier 0 (Starting)</div>
+              <div class="skill-tier-label">Tier 0 (First Event)</div>
               <div class="skill-list">
-                <span class="skill-badge" onclick="toggleSkill(this)" data-skill="weapon-proficiency">
-                  <i class="bi bi-sword me-1"></i>Weapon Proficiency
+                <span class="skill-badge" onclick="toggleSkill(this)" data-skill="review-path-rules">
+                  <i class="bi bi-book me-1"></i>Review Path Rules
                 </span>
-                <span class="skill-badge" onclick="toggleSkill(this)" data-skill="armor-proficiency">
-                  <i class="bi bi-shield me-1"></i>Armor Proficiency
+                <span class="skill-badge" onclick="toggleSkill(this)" data-skill="choose-tier-zero-skills">
+                  <i class="bi bi-check2-square me-1"></i>Choose Tier 0 Skills
                 </span>
-                <span class="skill-badge" onclick="toggleSkill(this)" data-skill="shield-use">
-                  <i class="bi bi-shield-fill me-1"></i>Shield Use
+                <span class="skill-badge" onclick="toggleSkill(this)" data-skill="talk-to-guild-trainer">
+                  <i class="bi bi-people me-1"></i>Talk to Guild Trainer
                 </span>
               </div>
             </div>
 
             <div class="skill-tier">
-              <div class="skill-tier-label">Tier 1</div>
+              <div class="skill-tier-label">Rules References</div>
               <div class="skill-list">
-                <span class="skill-badge locked" data-skill="hardiness">
-                  <i class="bi bi-heart-pulse me-1"></i>Hardiness
-                  <i class="bi bi-lock-fill ms-1"></i>
-                </span>
-                <span class="skill-badge locked" data-skill="intimidating-presence">
-                  <i class="bi bi-exclamation-triangle me-1"></i>Intimidating Presence
-                  <i class="bi bi-lock-fill ms-1"></i>
-                </span>
-                <span class="skill-badge locked" data-skill="repair">
-                  <i class="bi bi-wrench me-1"></i>Repair
-                  <i class="bi bi-lock-fill ms-1"></i>
-                </span>
+                <a class="skill-badge text-decoration-none" href="rules/01-character-creation-how-to.html">
+                  <i class="bi bi-person-plus me-1"></i>Creation How-To
+                </a>
+                <a class="skill-badge text-decoration-none" href="rules/index.html">
+                  <i class="bi bi-list-ul me-1"></i>Full Rules Index
+                </a>
               </div>
             </div>
           </div>
 
           <div class="alert alert-secondary">
             <i class="bi bi-lightbulb me-2"></i>
-            <strong>How skills work:</strong> Skills in LARP Adventures are called during combat or roleplay. For example, calling "PARRY" when struck will negate one attack per encounter.
+            <strong>How skills work:</strong> Tier 0 skills cost 0 points. Tier 1 and beyond cost skill points equal to the skill tier, and cross-training opens at even tiers of your primary path.
           </div>
 
           <div class="builder-nav">
@@ -621,50 +615,33 @@
 
         <!-- Step 3: Choose Faction -->
         <div class="builder-panel" id="step3">
-          <h2><i class="bi bi-flag me-2"></i>Choose Your Faction</h2>
-          <p class="lead">Factions provide story hooks, allies, and enemies. Your choice affects your character's role in the world.</p>
+          <h2><i class="bi bi-flag me-2"></i>Choose Your Unit Plan</h2>
+          <p class="lead">Units are player-organized groups that adventure together and may participate in land, war, economy, and council play.</p>
 
           <div class="faction-grid mb-4">
-            <div class="faction-card" onclick="selectFaction(this, 'northern')">
+            <div class="faction-card" onclick="selectFaction(this, 'existing-unit')">
               <div class="faction-banner" style="background: linear-gradient(90deg, #8b5cf6, #6366f1);"></div>
-              <h5><i class="bi bi-shield-fill me-2"></i>Northern Alliance</h5>
-              <p>Honor and duty guide us. We stand against the darkness.</p>
+              <h5><i class="bi bi-people me-2"></i>Join an Existing Unit</h5>
+              <p>Find a player unit whose style, story, and field role fit your character.</p>
             </div>
 
-            <div class="faction-card" onclick="selectFaction(this, 'arcane')">
-              <div class="faction-banner" style="background: linear-gradient(90deg, #3b82f6, #0ea5e9);"></div>
-              <h5><i class="bi bi-stars me-2"></i>Arcane Covenant</h5>
-              <p>Knowledge is the greatest power. We seek the truths of the universe.</p>
-            </div>
-
-            <div class="faction-card" onclick="selectFaction(this, 'golden')">
-              <div class="faction-banner" style="background: linear-gradient(90deg, #f59e0b, #eab308);"></div>
-              <h5><i class="bi bi-coin me-2"></i>Golden Compass</h5>
-              <p>Trade builds bridges. Prosperity brings peace to all.</p>
-            </div>
-
-            <div class="faction-card" onclick="selectFaction(this, 'wardens')">
+            <div class="faction-card" onclick="selectFaction(this, 'new-unit')">
               <div class="faction-banner" style="background: linear-gradient(90deg, #22c55e, #10b981);"></div>
-              <h5><i class="bi bi-tree-fill me-2"></i>Wardens of the Wild</h5>
-              <p>Nature's guardians. We protect the balance of the world.</p>
-            </div>
-
-            <div class="faction-card" onclick="selectFaction(this, 'shadow')">
-              <div class="faction-banner" style="background: linear-gradient(90deg, #ef4444, #dc2626);"></div>
-              <h5><i class="bi bi-moon-stars-fill me-2"></i>Shadow Court</h5>
-              <p>Power through any means. The ends justify our methods.</p>
+              <h5><i class="bi bi-flag me-2"></i>Form a New Unit</h5>
+              <p>Requires 4 players, heraldry, a standard, leadership contacts, history, and Council approval.</p>
             </div>
 
             <div class="faction-card" onclick="selectFaction(this, 'unaligned')">
               <div class="faction-banner" style="background: linear-gradient(90deg, #6b7280, #9ca3af);"></div>
-              <h5><i class="bi bi-question-circle me-2"></i>Unaligned</h5>
-              <p>I walk my own path. Let the factions vie for my loyalty.</p>
+              <h5><i class="bi bi-signpost me-2"></i>Start Unaligned</h5>
+              <p>Begin as an independent adventurer and decide through play.</p>
             </div>
           </div>
 
           <div class="alert alert-info">
             <i class="bi bi-info-circle me-2"></i>
-            <strong>Note:</strong> Faction allegiance can change through gameplay. Many characters start unaligned and join a faction after their first event.
+            <strong>Unit rules:</strong> Read the Faction & Land Game rules before declaring a unit or claiming hexes on the land map.
+            <a href="rules/12-faction-land-game-rules.html" class="alert-link">Open the rules</a>.
           </div>
 
           <div class="builder-nav">
@@ -828,7 +805,7 @@
                 <div class="col-md-6">
                   <p><strong>Name:</strong> <span id="reviewName">Not set</span></p>
                   <p><strong>Path:</strong> <span id="reviewPath">Not selected</span></p>
-                  <p><strong>Faction:</strong> <span id="reviewFaction">Not selected</span></p>
+                  <p><strong>Unit Plan:</strong> <span id="reviewFaction">Not selected</span></p>
                   <p><strong>Homeland:</strong> <span id="reviewHomeland">Not selected</span></p>
                 </div>
                 <div class="col-md-6">
@@ -843,7 +820,7 @@
 
           <div class="alert alert-warning">
             <i class="bi bi-exclamation-triangle me-2"></i>
-            <strong>Remember:</strong> Your character will start at Level 1. Path, skills, and faction can be adjusted during your first few events as you learn the game.
+            <strong>Remember:</strong> Your character starts at Tier 0. Path and skill choices remain flexible while you learn the game, then lock in at Tier 3 after 7 attended events.
           </div>
 
           <div class="form-check mb-4">
@@ -883,7 +860,7 @@
                 <div class="col-md-6">
                   <p><strong>Name:</strong> <span id="successName">-</span></p>
                   <p><strong>Path:</strong> <span id="successPath">-</span></p>
-                  <p><strong>Faction:</strong> <span id="successFaction">-</span></p>
+                  <p><strong>Unit Plan:</strong> <span id="successFaction">-</span></p>
                   <p><strong>Homeland:</strong> <span id="successHomeland">-</span></p>
                 </div>
                 <div class="col-md-6">
@@ -924,7 +901,7 @@
             <span id="previewPath">-</span>
           </div>
           <div class="preview-stat">
-            <span>Faction</span>
+            <span>Unit Plan</span>
             <span id="previewFaction">-</span>
           </div>
           <div class="preview-stat">
@@ -1011,7 +988,7 @@
 
       // Update preview
       document.getElementById('previewPath').textContent = element.querySelector('h4').textContent;
-      document.getElementById('previewSubtitle').textContent = 'Level 1 ' + element.querySelector('h4').textContent;
+      document.getElementById('previewSubtitle').textContent = 'Tier 0 ' + element.querySelector('h4').textContent;
 
       const bonuses = pathBonuses[path];
       document.getElementById('previewAP').textContent = bonuses.ap;

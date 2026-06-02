@@ -474,6 +474,48 @@
 [data-theme="phb"] .stat-row:last-child { border-bottom: none; }
 [data-theme="phb"] .stat-label { font-weight: var(--font-bold); color: var(--color-primary); }
 
+/* Rules reference pages */
+[data-theme="phb"] .rules-toc {
+  position: sticky;
+  top: 80px;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  padding-right: var(--space-3);
+}
+[data-theme="phb"] .rules-toc h6 {
+  color: var(--color-text-muted);
+  letter-spacing: var(--tracking-wider);
+  font-size: var(--text-xs);
+}
+[data-theme="phb"] .rules-toc .nav-link {
+  color: var(--color-text-secondary);
+  padding: var(--space-1) var(--space-2);
+  font-size: var(--text-sm);
+}
+[data-theme="phb"] .rules-toc .nav-link:hover,
+[data-theme="phb"] .rules-toc .nav-link.active {
+  color: var(--color-primary);
+  background: var(--color-bg-subtle);
+}
+[data-theme="phb"] .rule-doc {
+  max-width: var(--content-max-width);
+}
+[data-theme="phb"] .rule-doc h3 {
+  margin-top: var(--space-5);
+}
+[data-theme="phb"] .rule-doc p,
+[data-theme="phb"] .rule-doc li {
+  line-height: var(--leading-relaxed);
+}
+[data-theme="phb"] .source-link {
+  background: var(--color-bg-subtle);
+  border: var(--border-standard);
+  padding: var(--space-3);
+}
+[data-theme="phb"] .doc-card .bi {
+  font-size: var(--text-2xl);
+}
+
 /* Feed */
 [data-theme="phb"] .feed-item {
   display: flex; gap: var(--space-3);

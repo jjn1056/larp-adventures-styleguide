@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="phb">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Character Creation How-To - LARP Adventures</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="../../css/variables.css" rel="stylesheet">
+  <link href="../../css/theme-phb.css" rel="stylesheet" id="theme-css">
+</head>
+<body>
+  <a href="#main-content" class="visually-hidden-focusable">Skip to content</a>
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="../landing.html">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+          <path d="M16 2 L4 8 L4 16 C4 24 16 30 16 30 C16 30 28 24 28 16 L28 8 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          <line x1="16" y1="8" x2="16" y2="22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="12" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="16" cy="24" r="1.5" fill="currentColor"/>
+        </svg>
+        LARP Adventures
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="../landing.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="../event-index.html">Events</a></li>
+          <li class="nav-item"><a class="nav-link active" href="../hub.html">Rules</a></li>
+          <li class="nav-item"><a class="nav-link" href="../lore-hub.html">Lore</a></li>
+          <li class="nav-item"><a class="nav-link" href="../news.html">News</a></li>
+          <li class="nav-item"><a class="nav-link" href="../faq.html">FAQ</a></li>
+        </ul>
+        <a href="../../portal/login.html" class="btn btn-primary btn-sm">Player Portal</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="py-4" style="background-color: var(--color-bg-muted); border-bottom: var(--border-heavy);">
+    <div class="container">
+      <nav aria-label="breadcrumb" class="mb-2">
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item"><a href="../landing.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="../hub.html">Rules</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Character Creation How-To</li>
+        </ol>
+      </nav>
+      <h1>Character Creation How-To</h1>
+      <p class="lead mb-0">How to create a character, prepare basic garb, understand skill points, and work with guilds.</p>
+    </div>
+  </header>
+
+  <main id="main-content" class="container py-5">
+    <div class="row g-5">
+
+      <aside class="col-lg-3 d-none d-lg-block">
+        <nav class="rules-toc">
+          <a class="btn btn-outline-primary btn-sm w-100 mb-3" href="index.html"><i class="bi bi-list-ul me-2"></i>Rules Index</a>
+          <h6 class="text-uppercase mt-4 mb-2">Character Creation</h6><ul class="nav flex-column"><li class="nav-item"><a class="nav-link active" href="01-character-creation-how-to.html"><i class="bi bi-person-plus me-2"></i>Character Creation How-To</a></li></ul>
+<h6 class="text-uppercase mt-4 mb-2">Paths</h6><ul class="nav flex-column"><li class="nav-item"><a class="nav-link" href="02-warrior-path-skills-abilities.html"><i class="bi bi-shield-fill me-2"></i>Warrior Path Skills &amp; Abilities</a></li>
+<li class="nav-item"><a class="nav-link" href="03-rogue-path-skills-abilities.html"><i class="bi bi-eye-fill me-2"></i>Rogue Path Skills &amp; Abilities</a></li>
+<li class="nav-item"><a class="nav-link" href="04-healer-path-skills-abilities.html"><i class="bi bi-heart-pulse-fill me-2"></i>Healer Path Skills &amp; Abilities</a></li>
+<li class="nav-item"><a class="nav-link" href="05-mage-path-skills-abilities.html"><i class="bi bi-stars me-2"></i>Mage Path Skills &amp; Abilities</a></li></ul>
+<h6 class="text-uppercase mt-4 mb-2">Professions</h6><ul class="nav flex-column"><li class="nav-item"><a class="nav-link" href="06-bardic-arcana-skills-abilities.html"><i class="bi bi-music-note-beamed me-2"></i>Bardic Arcana Skills &amp; Abilities</a></li>
+<li class="nav-item"><a class="nav-link" href="07-artificer-skills-abilities.html"><i class="bi bi-tools me-2"></i>Artificer Skills &amp; Abilities</a></li>
+<li class="nav-item"><a class="nav-link" href="08-scholar-skills-abilities.html"><i class="bi bi-mortarboard me-2"></i>Scholar Skills &amp; Abilities</a></li></ul>
+<h6 class="text-uppercase mt-4 mb-2">General Rules</h6><ul class="nav flex-column"><li class="nav-item"><a class="nav-link" href="09-general-combat-ruleset.html"><i class="bi bi-sword me-2"></i>General C.O.M.B.a.T. Ruleset</a></li>
+<li class="nav-item"><a class="nav-link" href="10-rules-of-war.html"><i class="bi bi-flag me-2"></i>Rules of War</a></li>
+<li class="nav-item"><a class="nav-link" href="11-ship-combat-rules.html"><i class="bi bi-water me-2"></i>Ship Combat Rules</a></li>
+<li class="nav-item"><a class="nav-link" href="12-faction-land-game-rules.html"><i class="bi bi-map me-2"></i>Faction &amp; Land Game Rules</a></li>
+<li class="nav-item"><a class="nav-link" href="13-familiar-hatching-rules.html"><i class="bi bi-egg me-2"></i>Familiar Hatching Rules</a></li>
+<li class="nav-item"><a class="nav-link" href="14-potion-and-scroll-rules.html"><i class="bi bi-flask me-2"></i>Potion and Scroll Rules</a></li></ul>
+<h6 class="text-uppercase mt-4 mb-2">Player Resources</h6><ul class="nav flex-column"><li class="nav-item"><a class="nav-link" href="15-organizer-concern-report-form.html"><i class="bi bi-shield-check me-2"></i>Organizer Concern Report Form</a></li>
+<li class="nav-item"><a class="nav-link" href="16-osterran-compendium-of-knowledge.html"><i class="bi bi-journal-richtext me-2"></i>Osterran Compendium of Knowledge</a></li>
+<li class="nav-item"><a class="nav-link" href="17-character-sheets.html"><i class="bi bi-file-earmark-text me-2"></i>Character Sheets</a></li></ul>
+        </nav>
+      </aside>
+      <article class="col-lg-9 rule-doc prose">
+        <div class="source-link mb-4"><a href="../../rules/01-character-creation-how-to.md"><i class="bi bi-markdown me-2"></i>View source Markdown</a></div>
+<h2 id="character-creation-how-to">Character Creation How-To</h2>
+<p class="text-muted small">Back to <a href="rules.html">rules index</a>.</p>
+<hr>
+<h3>Getting Started</h3>
+<p>What do you need for your first Event?</p>
+<ul>
+<li>A character name</li>
+<li>Basic Garb</li>
+<li>That’s it! The rest can come with time</li>
+</ul>
+<p>Who are you?</p>
+<ul>
+<li>What name do you wish to go by in game?</li>
+<ul>
+<li>Suggested name generator sites include:</li>
+<ul>
+<li>behindthename.com renamer tool</li>
+<li>fantasynamegenerators.com</li>
+<li>mythopedia.com</li>
+<li>name-generator.org.uk</li>
+</ul>
+</ul>
+<li>Are you portraying a fantasy race?</li>
+<ul>
+<li>To help keep up immersion, consider practical effects for fantasy races. Ex: Pointed ears for elves, tusks for orcs, furred ears for beast races, etc…</li>
+</ul>
+<li>Where did your character come from?</li>
+<ul>
+<li>Are they an Osterran native? Did they come through a portal? What is their home like?</li>
+<li>Does your character have any memory of their life before Osterra?</li>
+</ul>
+<li>What path are you interested in?</li>
+<ul>
+<li>We have four main paths: Warrior, Rogue, Healer, and Mage. Check out the path rules and talk to the different guilds to learn more about them.</li>
+</ul>
+<li>Limitations:</li>
+<ul>
+<li>Original Characters only (No canon characters from any media. EX: You can be INSPIRED BY Legolas, but you cannot BE Legolas, elven archer and prince of Mirkwood.)</li>
+<li>Medieval Fantasy-esque only</li>
+<ul>
+<li>See “Kit/Garb/Equipment” explanations for more detail</li>
+</ul>
+</ul>
+</ul>
+<hr>
+<h3>Kit/Garb/Equipment</h3>
+<p>What should you expect?</p>
+<ul>
+<li>Larp kits and aesthetics come in all varieties based on setting. Larp Adventures’ Facebook page and Discord server are great resources to see our general immersion aesthetic.</li>
+<li>Medieval Fantasy, Rangers, Viking, Warriors of the Steppe, Swashbucklers, Knights, Monks, Wenches, Priestesses, and so much more are all within the realm of possibility. Modern sci-fi aesthetics and firearms are not currently viable in our setting.</li>
+</ul>
+<p>What should your kit be?</p>
+<ul>
+<li>Your kit should be COMFORTABLE and give you the ability to safely move.</li>
+<li>If you are unsure of where to start, the best place is a basic tunic in a solid color, belt, pants, and boots. Simple can sometimes be ideal.</li>
+</ul>
+<p>Where can you find accessible garb/equipment?</p>
+<ul>
+<li>L.A.R.P. Adventures approved online vendors:</li>
+<ul>
+<li>Calimacil</li>
+<li>Epic Armoury</li>
+<li>Medieval Collectibles</li>
+<li>Burgschneider</li>
+<li>Many more…</li>
+</ul>
+<li>Second-hand marketplaces for Renaissance Garb on Facebook</li>
+<li>Second-hand marketplace within the L.A.R.P. Adventures Discord</li>
+<li>Thrift Stores</li>
+<li>Etsy</li>
+<li>Amazon</li>
+<li>Box stores like Target/Walmart/K-Mart are excellent for basic belts, boots, and leggings</li>
+</ul>
+<hr>
+<h3>Skill Point System</h3>
+<p>Skill Points and Tiers</p>
+<ul>
+<li>Tiers are based on the number of events attended. (See chart below)</li>
+<li>Skill Points are earned, training in skills costs points.</li>
+<li>At a player&#x27;s first event, they are Tier 0.</li>
+<li>Attending events will net players skill points based on the type of event. They use these points to train (purchase) new skills.</li>
+<li>The types of events are:</li>
+<ul>
+<li>Day Events = 1 Skill Point</li>
+<li>Campout Events = 2 Skill Points</li>
+<li>Festival Events = 3 Skill Points</li>
+</ul>
+<li>Additional Skill Points may be earned through specific circumstances such as NPCing for the event’s plot modules, and specific profession events.</li>
+</ul>
+<p>Training/Purchasing Skills</p>
+<ul>
+<li>Players can train/purchase as many skills as they have Skill Points for after their first event.</li>
+<li>Skill points earned for an event are available at the START of the event you attend.</li>
+<li>Any skills available to learn at Tier 0 cost 0 points to train in. You may take up to 3 Tier 0 skills at your first event, and up to 3 at each event after until you have acquired all Tier 0 skills for your primary class.</li>
+<li>Skills available at Tier 1 and Beyond cost a number of skill points equal to the skill’s Tier.</li>
+<li>Cross training into another path becomes available at the even tiers of your primary class.</li>
+<ul>
+<li>At tier 2, you can pay 2 skill points to learn a Tier 0 or Tier 1 skill from another path.</li>
+<li>At tier 4, you can pay 4 skill points to learn a Tier 2 skill from another path.</li>
+<li>At tier 6, you can pay 6 skill points to learn a Tier 3 skill from another path.</li>
+</ul>
+<li>With regards to Cross-Training: Players must train in at least 1 skill in a Tier before ascending to the next Tier.</li>
+</ul>
+<p>Guilds</p>
+<p>What do the guilds do?</p>
+<ul>
+<li>Each Skill Path is governed by a Guild, there are four Guilds; The Warriors Guild, Healers Guild, Mages Guild, and Rogues Guild.</li>
+<li>Your primary Skill Path determines which Guild you belong to. Though you are encouraged to seek out your sub-class guild masters to ensure you understand any of your sub-class skills.</li>
+<li>The Guilds are meant as a way to foster role play and to help train players in the proper use of skills in game, as well as to hold players accountable for their Physical Representations of said skills, spells, and abilities.</li>
+</ul>
+<p>Guild Masters</p>
+<ul>
+<li>Each Guild is led by a Master or pair of Masters, often some of the veteran players in the path. These masters work directly with Organizers on clarifications and updates.</li>
+</ul>
+<p>Skill Trainers</p>
+<ul>
+<li>Players that reach Tier 3 may petition to become Skill Trainers. Skill Trainers serve the Guilds by learning about all of the skills, spells, and abilities in their Skill Path.</li>
+<li>In doing so they can help other players create the Physical Representations and develop the role playing skills needed to bring the skills into play.</li>
+</ul>
+<p>Evolving System &amp; Skill Supplements</p>
+<ul>
+<li>One of the duties of the Guilds is to work to improve game play and the rules system. As we move ahead, we will learn more about what works and what doesn’t.</li>
+<li>Players will propose new skills, spells, and abilities to their guild masters who will then report to Organizers any that stand out. It is ever our goal to create balance, keep in check rules and power creep, and above all to have fun.</li>
+</ul>
+      </article>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../js/theme-switcher.js"></script>
+</body>
+</html>

@@ -31,17 +31,9 @@
     // Find and update the theme CSS link
     const themeLink = document.getElementById('theme-css');
     if (themeLink) {
-      // Determine the correct path based on current location
-      const currentPath = window.location.pathname;
-      let cssPath;
-
-      if (currentPath.includes('/public/') || currentPath.includes('/portal/') || currentPath.includes('/admin/')) {
-        cssPath = `../css/theme-${theme}.css`;
-      } else {
-        cssPath = `css/theme-${theme}.css`;
-      }
-
-      themeLink.href = cssPath;
+      const currentHref = themeLink.getAttribute('href') || '';
+      const nextHref = currentHref.replace(/theme-[^/]+\.css$/, `theme-${theme}.css`);
+      themeLink.href = nextHref || `css/theme-${theme}.css`;
     }
 
     // Update button states

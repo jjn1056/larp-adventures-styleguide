@@ -258,198 +258,276 @@
     <!-- Sticky Search Header -->
     <div class="spellbook-search">
       <div class="d-flex justify-content-between align-items-center mb-2">
-        <h1 class="h5 mb-0"><i class="bi bi-book me-2"></i>Spellbook</h1>
-        <span class="offline-ready"><i class="bi bi-wifi-off"></i> Offline Ready</span>
+        <h1 class="h5 mb-0"><i class="bi bi-book me-2"></i>Rules Library</h1>
+        <span class="offline-ready"><i class="bi bi-journal-check"></i> Current Docs</span>
       </div>
       <div class="input-group">
         <span class="input-group-text"><i class="bi bi-search" aria-hidden="true"></i></span>
-        <input type="text" class="form-control" id="skillSearch" placeholder="Search skills..." autofocus aria-label="Search skills">
+        <input type="text" class="form-control" id="skillSearch" placeholder="Search rules..." autofocus aria-label="Search skills">
         <button class="btn btn-outline-secondary" type="button" id="clearSearch" aria-label="Clear search">
           <i class="bi bi-x-lg" aria-hidden="true"></i>
         </button>
       </div>
       <div class="category-filters mt-2">
         <button class="category-filter active" data-category="all">All</button>
-        <button class="category-filter" data-category="combat">Combat</button>
-        <button class="category-filter" data-category="magic">Magic</button>
-        <button class="category-filter" data-category="healing">Healing</button>
-        <button class="category-filter" data-category="stealth">Stealth</button>
-        <button class="category-filter" data-category="utility">Utility</button>
+        <button class="category-filter" data-category="character">Character</button>
+        <button class="category-filter" data-category="paths">Paths</button>
+        <button class="category-filter" data-category="professions">Professions</button>
+        <button class="category-filter" data-category="rules">Rules</button>
+        <button class="category-filter" data-category="resources">Resources</button>
       </div>
     </div>
 
     <div class="container-fluid p-3">
-      <!-- Skill Cards -->
+      <!-- Rule Cards -->
 
-      <!-- Combat Skills -->
-      <div class="skill-card" data-category="combat" data-keywords="strike damage weapon melee attack">
+      <div class="skill-card" data-category="character" data-keywords="character creation how-to character creation how to create a character, prepare basic garb, understand skill points, and work with guilds.">
         <div class="skill-card-header" onclick="toggleSkill(this)">
           <div>
-            <span class="skill-name">Power Strike</span>
-            <span class="skill-cost ms-2">3 Stamina</span>
+            <span class="skill-name">Character Creation How-To</span>
+            <span class="skill-cost ms-2">Character Creation</span>
           </div>
           <i class="bi bi-chevron-down"></i>
         </div>
         <div class="skill-card-body">
-          <div class="skill-call">"Power Strike 5!"</div>
-          <p>Deal 5 damage with your next melee attack. Must be called before swinging.</p>
-          <p class="text-muted mb-0"><strong>Path:</strong> Warrior | <strong>Tier:</strong> 2</p>
+          <p>How to create a character, prepare basic garb, understand skill points, and work with guilds.</p>
+          <p class="mb-0"><a href="../public/rules/01-character-creation-how-to.html" class="btn btn-outline-primary btn-sm"><i class="bi bi-person-plus me-1"></i>Open Document</a></p>
         </div>
       </div>
 
-      <div class="skill-card" data-category="combat" data-keywords="shield bash knockback push defensive block">
+      <div class="skill-card" data-category="paths" data-keywords="warrior path skills &amp; abilities paths warrior skills, tiers, armor, shields, and battlefield role.">
         <div class="skill-card-header" onclick="toggleSkill(this)">
           <div>
-            <span class="skill-name">Shield Bash</span>
-            <span class="skill-cost ms-2">2 Stamina</span>
+            <span class="skill-name">Warrior Path Skills &amp; Abilities</span>
+            <span class="skill-cost ms-2">Paths</span>
           </div>
           <i class="bi bi-chevron-down"></i>
         </div>
         <div class="skill-card-body">
-          <div class="skill-call">"Shield Bash - Knockback!"</div>
-          <p>Target must take 3 steps backward. Requires shield to be equipped.</p>
-          <p class="text-muted mb-0"><strong>Path:</strong> Warrior | <strong>Tier:</strong> 1</p>
+          <p>Warrior skills, tiers, armor, shields, and battlefield role.</p>
+          <p class="mb-0"><a href="../public/rules/02-warrior-path-skills-abilities.html" class="btn btn-outline-primary btn-sm"><i class="bi bi-shield-fill me-1"></i>Open Document</a></p>
         </div>
       </div>
 
-      <!-- Magic Skills -->
-      <div class="skill-card" data-category="magic" data-keywords="fire flame burn spell arcane">
+      <div class="skill-card" data-category="paths" data-keywords="rogue path skills &amp; abilities paths rogue stealth, traps, locks, poisons, and precision abilities.">
         <div class="skill-card-header" onclick="toggleSkill(this)">
           <div>
-            <span class="skill-name">Fireball</span>
-            <span class="skill-cost ms-2">5 Mana</span>
+            <span class="skill-name">Rogue Path Skills &amp; Abilities</span>
+            <span class="skill-cost ms-2">Paths</span>
           </div>
           <i class="bi bi-chevron-down"></i>
         </div>
         <div class="skill-card-body">
-          <div class="skill-call">"By arcane fire, Fireball 10!"</div>
-          <p>Throw a packet dealing 10 fire damage to the target. Cannot be blocked by shields.</p>
-          <p class="text-muted mb-0"><strong>Path:</strong> Wizard | <strong>Tier:</strong> 3</p>
+          <p>Rogue stealth, traps, locks, poisons, and precision abilities.</p>
+          <p class="mb-0"><a href="../public/rules/03-rogue-path-skills-abilities.html" class="btn btn-outline-primary btn-sm"><i class="bi bi-eye-fill me-1"></i>Open Document</a></p>
         </div>
       </div>
 
-      <div class="skill-card" data-category="magic" data-keywords="ice freeze cold spell winter frost">
+      <div class="skill-card" data-category="paths" data-keywords="healer path skills &amp; abilities paths healer restoration, blessings, curses, and divine support.">
         <div class="skill-card-header" onclick="toggleSkill(this)">
           <div>
-            <span class="skill-name">Frost Bolt</span>
-            <span class="skill-cost ms-2">3 Mana</span>
+            <span class="skill-name">Healer Path Skills &amp; Abilities</span>
+            <span class="skill-cost ms-2">Paths</span>
           </div>
           <i class="bi bi-chevron-down"></i>
         </div>
         <div class="skill-card-body">
-          <div class="skill-call">"By winter's chill, Frost Bolt - Root 10 seconds!"</div>
-          <p>Throw a packet that roots the target in place for 10 seconds. Target cannot move feet but may still attack.</p>
-          <p class="text-muted mb-0"><strong>Path:</strong> Wizard | <strong>Tier:</strong> 2</p>
+          <p>Healer restoration, blessings, curses, and divine support.</p>
+          <p class="mb-0"><a href="../public/rules/04-healer-path-skills-abilities.html" class="btn btn-outline-primary btn-sm"><i class="bi bi-heart-pulse-fill me-1"></i>Open Document</a></p>
         </div>
       </div>
 
-      <!-- Healing Skills -->
-      <div class="skill-card" data-category="healing" data-keywords="heal cure restore health wounds mend">
+      <div class="skill-card" data-category="paths" data-keywords="mage path skills &amp; abilities paths mage spellbook casting, wards, enchantments, and arcane combat.">
         <div class="skill-card-header" onclick="toggleSkill(this)">
           <div>
-            <span class="skill-name">Healing Touch</span>
-            <span class="skill-cost ms-2">4 Mana</span>
+            <span class="skill-name">Mage Path Skills &amp; Abilities</span>
+            <span class="skill-cost ms-2">Paths</span>
           </div>
           <i class="bi bi-chevron-down"></i>
         </div>
         <div class="skill-card-body">
-          <div class="skill-call">"By the light, I heal you 3!"</div>
-          <p>Touch a target to restore 3 Hit Points. Requires 5 seconds of roleplay contact.</p>
-          <p class="text-muted mb-0"><strong>Path:</strong> Healer | <strong>Tier:</strong> 1</p>
+          <p>Mage spellbook casting, wards, enchantments, and arcane combat.</p>
+          <p class="mb-0"><a href="../public/rules/05-mage-path-skills-abilities.html" class="btn btn-outline-primary btn-sm"><i class="bi bi-stars me-1"></i>Open Document</a></p>
         </div>
       </div>
 
-      <!-- Stealth Skills -->
-      <div class="skill-card" data-category="stealth" data-keywords="hide sneak invisible shadow rogue">
+      <div class="skill-card" data-category="professions" data-keywords="bardic arcana skills &amp; abilities professions bardic profession skills for creative magical practice.">
         <div class="skill-card-header" onclick="toggleSkill(this)">
           <div>
-            <span class="skill-name">Backstab</span>
-            <span class="skill-cost ms-2">2 Stamina</span>
+            <span class="skill-name">Bardic Arcana Skills &amp; Abilities</span>
+            <span class="skill-cost ms-2">Professions</span>
           </div>
           <i class="bi bi-chevron-down"></i>
         </div>
         <div class="skill-card-body">
-          <div class="skill-call">"Backstab - Double Damage!"</div>
-          <p>Deal double weapon damage when attacking from behind. Must strike target's back.</p>
-          <p class="text-muted mb-0"><strong>Path:</strong> Rogue | <strong>Tier:</strong> 2</p>
+          <p>Bardic profession skills for creative magical practice.</p>
+          <p class="mb-0"><a href="../public/rules/06-bardic-arcana-skills-abilities.html" class="btn btn-outline-primary btn-sm"><i class="bi bi-music-note-beamed me-1"></i>Open Document</a></p>
         </div>
       </div>
 
-      <!-- Utility Skills -->
-      <div class="skill-card" data-category="utility" data-keywords="identify detect analyze lore knowledge">
+      <div class="skill-card" data-category="professions" data-keywords="artificer skills &amp; abilities professions artificer crafting, tinkering, formulas, and item-focused rules.">
         <div class="skill-card-header" onclick="toggleSkill(this)">
           <div>
-            <span class="skill-name">Identify</span>
-            <span class="skill-cost ms-2">1 Mana</span>
+            <span class="skill-name">Artificer Skills &amp; Abilities</span>
+            <span class="skill-cost ms-2">Professions</span>
           </div>
           <i class="bi bi-chevron-down"></i>
         </div>
         <div class="skill-card-body">
-          <div class="skill-call">"Identify!"</div>
-          <p>Point at an item to learn its magical properties. Show this card to a marshal or the item's owner to receive information.</p>
-          <p class="text-muted mb-0"><strong>Path:</strong> General | <strong>Tier:</strong> 1</p>
+          <p>Artificer crafting, tinkering, formulas, and item-focused rules.</p>
+          <p class="mb-0"><a href="../public/rules/07-artificer-skills-abilities.html" class="btn btn-outline-primary btn-sm"><i class="bi bi-tools me-1"></i>Open Document</a></p>
+        </div>
+      </div>
+
+      <div class="skill-card" data-category="professions" data-keywords="scholar skills &amp; abilities professions scholar research, lore, language, and knowledge systems.">
+        <div class="skill-card-header" onclick="toggleSkill(this)">
+          <div>
+            <span class="skill-name">Scholar Skills &amp; Abilities</span>
+            <span class="skill-cost ms-2">Professions</span>
+          </div>
+          <i class="bi bi-chevron-down"></i>
+        </div>
+        <div class="skill-card-body">
+          <p>Scholar research, lore, language, and knowledge systems.</p>
+          <p class="mb-0"><a href="../public/rules/08-scholar-skills-abilities.html" class="btn btn-outline-primary btn-sm"><i class="bi bi-mortarboard me-1"></i>Open Document</a></p>
+        </div>
+      </div>
+
+      <div class="skill-card" data-category="rules" data-keywords="general c.o.m.b.a.t. ruleset general rules core combat, weapons, damage, armor, shields, safety, and death rules.">
+        <div class="skill-card-header" onclick="toggleSkill(this)">
+          <div>
+            <span class="skill-name">General C.O.M.B.a.T. Ruleset</span>
+            <span class="skill-cost ms-2">General Rules</span>
+          </div>
+          <i class="bi bi-chevron-down"></i>
+        </div>
+        <div class="skill-card-body">
+          <p>Core combat, weapons, damage, armor, shields, safety, and death rules.</p>
+          <p class="mb-0"><a href="../public/rules/09-general-combat-ruleset.html" class="btn btn-outline-primary btn-sm"><i class="bi bi-sword me-1"></i>Open Document</a></p>
+        </div>
+      </div>
+
+      <div class="skill-card" data-category="rules" data-keywords="rules of war general rules war rules for larger battles and organized conflict.">
+        <div class="skill-card-header" onclick="toggleSkill(this)">
+          <div>
+            <span class="skill-name">Rules of War</span>
+            <span class="skill-cost ms-2">General Rules</span>
+          </div>
+          <i class="bi bi-chevron-down"></i>
+        </div>
+        <div class="skill-card-body">
+          <p>War rules for larger battles and organized conflict.</p>
+          <p class="mb-0"><a href="../public/rules/10-rules-of-war.html" class="btn btn-outline-primary btn-sm"><i class="bi bi-flag me-1"></i>Open Document</a></p>
+        </div>
+      </div>
+
+      <div class="skill-card" data-category="rules" data-keywords="ship combat rules general rules ships, movement, naval combat, and sea-based play.">
+        <div class="skill-card-header" onclick="toggleSkill(this)">
+          <div>
+            <span class="skill-name">Ship Combat Rules</span>
+            <span class="skill-cost ms-2">General Rules</span>
+          </div>
+          <i class="bi bi-chevron-down"></i>
+        </div>
+        <div class="skill-card-body">
+          <p>Ships, movement, naval combat, and sea-based play.</p>
+          <p class="mb-0"><a href="../public/rules/11-ship-combat-rules.html" class="btn btn-outline-primary btn-sm"><i class="bi bi-water me-1"></i>Open Document</a></p>
+        </div>
+      </div>
+
+      <div class="skill-card" data-category="rules" data-keywords="faction &amp; land game rules general rules units, land turns, resources, movement, structures, and map play.">
+        <div class="skill-card-header" onclick="toggleSkill(this)">
+          <div>
+            <span class="skill-name">Faction &amp; Land Game Rules</span>
+            <span class="skill-cost ms-2">General Rules</span>
+          </div>
+          <i class="bi bi-chevron-down"></i>
+        </div>
+        <div class="skill-card-body">
+          <p>Units, land turns, resources, movement, structures, and map play.</p>
+          <p class="mb-0"><a href="../public/rules/12-faction-land-game-rules.html" class="btn btn-outline-primary btn-sm"><i class="bi bi-map me-1"></i>Open Document</a></p>
+        </div>
+      </div>
+
+      <div class="skill-card" data-category="rules" data-keywords="familiar hatching rules general rules rules for familiar eggs, hatching, bonding, and care.">
+        <div class="skill-card-header" onclick="toggleSkill(this)">
+          <div>
+            <span class="skill-name">Familiar Hatching Rules</span>
+            <span class="skill-cost ms-2">General Rules</span>
+          </div>
+          <i class="bi bi-chevron-down"></i>
+        </div>
+        <div class="skill-card-body">
+          <p>Rules for familiar eggs, hatching, bonding, and care.</p>
+          <p class="mb-0"><a href="../public/rules/13-familiar-hatching-rules.html" class="btn btn-outline-primary btn-sm"><i class="bi bi-egg me-1"></i>Open Document</a></p>
+        </div>
+      </div>
+
+      <div class="skill-card" data-category="rules" data-keywords="potion and scroll rules general rules potion, scroll, formula, crafting, and use rules.">
+        <div class="skill-card-header" onclick="toggleSkill(this)">
+          <div>
+            <span class="skill-name">Potion and Scroll Rules</span>
+            <span class="skill-cost ms-2">General Rules</span>
+          </div>
+          <i class="bi bi-chevron-down"></i>
+        </div>
+        <div class="skill-card-body">
+          <p>Potion, scroll, formula, crafting, and use rules.</p>
+          <p class="mb-0"><a href="../public/rules/14-potion-and-scroll-rules.html" class="btn btn-outline-primary btn-sm"><i class="bi bi-flask me-1"></i>Open Document</a></p>
+        </div>
+      </div>
+
+      <div class="skill-card" data-category="resources" data-keywords="organizer concern report form player resources concern reporting resource and original form link.">
+        <div class="skill-card-header" onclick="toggleSkill(this)">
+          <div>
+            <span class="skill-name">Organizer Concern Report Form</span>
+            <span class="skill-cost ms-2">Player Resources</span>
+          </div>
+          <i class="bi bi-chevron-down"></i>
+        </div>
+        <div class="skill-card-body">
+          <p>Concern reporting resource and original form link.</p>
+          <p class="mb-0"><a href="../public/rules/15-organizer-concern-report-form.html" class="btn btn-outline-primary btn-sm"><i class="bi bi-shield-check me-1"></i>Open Document</a></p>
+        </div>
+      </div>
+
+      <div class="skill-card" data-category="resources" data-keywords="osterran compendium of knowledge player resources player-run wiki links, maps, lore, factions, and external community resources.">
+        <div class="skill-card-header" onclick="toggleSkill(this)">
+          <div>
+            <span class="skill-name">Osterran Compendium of Knowledge</span>
+            <span class="skill-cost ms-2">Player Resources</span>
+          </div>
+          <i class="bi bi-chevron-down"></i>
+        </div>
+        <div class="skill-card-body">
+          <p>Player-run wiki links, maps, lore, factions, and external community resources.</p>
+          <p class="mb-0"><a href="../public/rules/16-osterran-compendium-of-knowledge.html" class="btn btn-outline-primary btn-sm"><i class="bi bi-journal-richtext me-1"></i>Open Document</a></p>
+        </div>
+      </div>
+
+      <div class="skill-card" data-category="resources" data-keywords="character sheets player resources player-created character sheet resource and original app link.">
+        <div class="skill-card-header" onclick="toggleSkill(this)">
+          <div>
+            <span class="skill-name">Character Sheets</span>
+            <span class="skill-cost ms-2">Player Resources</span>
+          </div>
+          <i class="bi bi-chevron-down"></i>
+        </div>
+        <div class="skill-card-body">
+          <p>Player-created character sheet resource and original app link.</p>
+          <p class="mb-0"><a href="../public/rules/17-character-sheets.html" class="btn btn-outline-primary btn-sm"><i class="bi bi-file-earmark-text me-1"></i>Open Document</a></p>
         </div>
       </div>
 
       <!-- No Results Message -->
       <div class="no-results text-center py-5 d-none">
         <i class="bi bi-search" style="font-size: 3rem; color: var(--color-text-muted);"></i>
-        <p class="mt-3 text-muted">No skills found matching your search.</p>
+        <p class="mt-3 text-muted">No rules found matching your search.</p>
       </div>
-
-      <!-- Status Effects Reference -->
       <hr class="my-4">
-      <h2 class="h5 mb-3">Status Effects Reference</h2>
-
-      <div class="row">
-        <div class="col-6 mb-3">
-          <div class="card">
-            <div class="card-body p-3">
-              <h4 class="h6">Knockback</h4>
-              <p class="mb-0 small">Take 3 steps directly backward</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-6 mb-3">
-          <div class="card">
-            <div class="card-body p-3">
-              <h4 class="h6">Stun</h4>
-              <p class="mb-0 small">Cannot move or attack for 3 seconds</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-6 mb-3">
-          <div class="card">
-            <div class="card-body p-3">
-              <h4 class="h6">Root</h4>
-              <p class="mb-0 small">Cannot move feet for duration</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-6 mb-3">
-          <div class="card">
-            <div class="card-body p-3">
-              <h4 class="h6">Silence</h4>
-              <p class="mb-0 small">Cannot use verbal skills or spells</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-6 mb-3">
-          <div class="card">
-            <div class="card-body p-3">
-              <h4 class="h6">Fear</h4>
-              <p class="mb-0 small">Must flee from source for 10 seconds</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-6 mb-3">
-          <div class="card">
-            <div class="card-body p-3">
-              <h4 class="h6">Poison</h4>
-              <p class="mb-0 small">Take 1 damage every 30 seconds until cured</p>
-            </div>
-          </div>
-        </div>
+      <div class="callout">
+        <div class="callout-title">Canonical Source</div>
+        <p class="mb-0">These cards link to the static HTML versions generated from <a href="../rules/rules.md">the imported Markdown rules index</a>.</p>
       </div>
     </div>
   </main>

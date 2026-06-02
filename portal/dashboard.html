@@ -499,7 +499,7 @@
           <div class="col-6 col-md-3 mb-3">
             <div class="stat-card">
               <div class="stat-card-value">47</div>
-              <div class="stat-card-label">Total XP</div>
+              <div class="stat-card-label">Skill Points</div>
             </div>
           </div>
           <div class="col-6 col-md-3 mb-3">
@@ -517,7 +517,7 @@
           <div class="col-6 col-md-3 mb-3">
             <div class="stat-card">
               <div class="stat-card-value">5</div>
-              <div class="stat-card-label">Level</div>
+              <div class="stat-card-label">Tier</div>
             </div>
           </div>
         </div>
@@ -567,17 +567,17 @@
                 <div class="character-avatar" style="background: var(--color-primary-light);"></div>
                 <div>
                   <h4 class="character-name">Sir Aldric Stormwind</h4>
-                  <p class="character-class mb-0">Warrior, Level 5</p>
+                  <p class="character-class mb-0">Warrior, Tier 5</p>
                 </div>
               </div>
 
               <div class="stat-row">
-                <span class="stat-label">Faction</span>
-                <span>Northern Alliance</span>
+                <span class="stat-label">Unit</span>
+                <span>Three Peaks Company</span>
               </div>
               <div class="stat-row">
-                <span class="stat-label">XP Progress</span>
-                <span>47 / 60</span>
+                <span class="stat-label">Skill Points</span>
+                <span>47 spent</span>
               </div>
               <div class="stat-row">
                 <span class="stat-label">Resurrection Tokens</span>
@@ -734,31 +734,29 @@
         <div class="modal-header">
           <h5 class="modal-title" id="ruleChangeModalLabel">
             <i class="bi bi-exclamation-triangle text-danger me-2"></i>
-            Combat Rules v3.2 Changes
+            Current Rules Library
           </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <div class="d-flex justify-content-between align-items-center mb-3">
-            <span class="badge bg-secondary">Updated 2 hours ago by Rules Committee</span>
-            <a href="../public/reference.html" class="btn btn-sm btn-outline-primary">View Full Rules</a>
+            <span class="badge bg-secondary">Updated from imported source docs</span>
+            <a href="../public/rules/index.html" class="btn btn-sm btn-outline-primary">View Full Rules</a>
           </div>
 
-          <h6 class="mb-2">Section 4.2: Grappling Mechanics</h6>
+          <h6 class="mb-2">Character Creation</h6>
           <div class="rule-diff mb-4">
-            <p class="diff-removed mb-1">Grappling requires a successful hit call followed by "GRAPPLE" within 2 seconds.</p>
-            <p class="diff-added mb-0">Grappling requires a successful hit call followed by "GRAPPLE" within 3 seconds. Target may call "RESIST" if they have the appropriate skill.</p>
+            <p class="diff-added mb-0">Start with a name, basic garb, and a path interest. Tier 0 skills can be finalized with guild trainers and organizers.</p>
           </div>
 
-          <h6 class="mb-2">Section 5.1: Shield Bash</h6>
+          <h6 class="mb-2">Rules Coverage</h6>
           <div class="rule-diff mb-4">
-            <p class="diff-removed mb-1">Shield bash may be performed once every 10 seconds.</p>
-            <p class="diff-added mb-0">Shield bash may be performed once every 15 seconds. Cooldown begins after the bash lands or is blocked.</p>
+            <p class="diff-added mb-0">The library includes paths, professions, combat, war, ship, faction, land, familiar, potion, scroll, and player resource documents.</p>
           </div>
 
-          <h6 class="mb-2">Section 5.3: Defensive Stance (New)</h6>
+          <h6 class="mb-2">Source Documents</h6>
           <div class="rule-diff">
-            <p class="diff-added mb-0">Players with the Defender path may call "DEFENSIVE STANCE" to reduce incoming damage by 1 for 30 seconds. May be used once per encounter.</p>
+            <p class="diff-added mb-0">Static HTML pages are generated from the canonical Markdown files in the repo rules directory.</p>
           </div>
         </div>
         <div class="modal-footer">
